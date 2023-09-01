@@ -1,0 +1,15 @@
+.title {
+  margin: 0;
+  font-family: var(--font-family-montsertat);
+  font-weight: var(--text-weight-title);
+  color: var(--text-color-dark-blue);
+}
+
+.title_size_l {
+  font-size: var(--text-font-size-l);
+  line-height: 62px;
+}
+.title_size_m {
+  font-size: var(--text-font-size-m);
+  line-height: 48px;
+}
