@@ -28,7 +28,14 @@
 
 @font-face {
   font-family: 'Lato';
-  src: url(../fonts/lato/lato-regular-webfont.woff) format('woff');
-  src: url(../fonts/lato/lato-regular-webfont.woff2) format('woff2');
+  src: url(../fonts/lato/Lato-Regular.woff) format('woff');
+  src: url(../fonts/lato/Lato-Regular.woff2) format('woff2');
   font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Urbanist';
+  src: url(../fonts/urbanist/Urbanist-SemiBold.woff) format('woff');
+  src: url(../fonts/urbanist/Urbanist-SemiBold.woff2) format('woff2');
+  font-weight: 600;
 }

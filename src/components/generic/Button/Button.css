@@ -1,0 +1,87 @@
+/* Общие стили для кнопок */
+.button {
+  background-color: inherit;
+  border: none;
+  padding: 0;
+
+  border-radius: 20px;
+  padding: 16px 40px;
+
+  font-family: var(--font-family-lato);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.33;
+
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.button:disabled {
+  cursor: default;
+}
+
+/* Стили для кнопки Primary */
+
+.button__primary {
+  align-self: end;
+  color: var(--text-color-white);
+  background-color: var(--border-color-dark-violet);
+}
+
+.button__primary:active,
+.button__primary:hover {
+  background-color: var(--border-color-medium-violet);
+}
+
+.button__primary:disabled {
+  background-color: var(--bg-color-light-violet);
+}
+
+/* Стили для кнопки Secondary */
+.button__secondary {
+  box-sizing: border-box;
+  border: 2px solid var(--border-color-dark-violet);
+  color: var(--text-color-dark-blue);
+  position: relative;
+  overflow: hidden;
+}
+
+.button__secondary::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--border-color-medium-violet);
+  display: inline-block;
+  top: 0;
+  left: -100%;
+  z-index: -1;
+  transition: 0.3s ease-in-out;
+}
+
+.button__secondary:hover {
+  border: 2px solid var(--border-color-medium-violet);
+  transition: 0.3s ease-in-out;
+  color: var(--bg-color-white);
+}
+
+.button__secondary:hover::after {
+  left: 0;
+}
+
+.button__secondary:active::after {
+  background-color: var(--border-color-dark-violet);
+}
+
+.button__secondary:active {
+  border: 2px solid var(--border-color-dark-violet);
+}
+
+.button__secondary:disabled {
+  border: 2px solid var(--bg-color-light-violet, #d9d9f1);
+  color: var(--bg-color-light-violet, #d9d9f1);
+}
+
+.btn-secondary:disabled::after {
+  display: none;
+}
