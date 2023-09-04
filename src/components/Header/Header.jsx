@@ -2,7 +2,7 @@ import React from 'react';
 import './Header.css';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../generic/Logo/Logo';
-import BtnSecondary from '../generic/BtnSecondary/BtnSecondary';
+import Button from '../generic/Button/Button';
 import NavigationLink from '../generic/NavigationLink/NavigationLink';
 import { NAVIGATION_LINKS } from '../../constants/constants';
 
@@ -16,15 +16,16 @@ export default function Header() {
         <ul className="nav">
           {NAVIGATION_LINKS.map(({ link, text }) => (
             <li className="nav__item">
-              <NavigationLink link={link} text={text} key={link}/>
+              <NavigationLink link={link} text={text} key={link} />
             </li>
           ))}
           <li className="nav__item">
-            <BtnSecondary
+            <Button
               onClick={() => navigate('/signin', { replace: true })}
+              variant="secondary"
             >
               Войти
-            </BtnSecondary>
+            </Button>
           </li>
         </ul>
       </nav>

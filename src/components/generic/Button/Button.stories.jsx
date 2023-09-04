@@ -1,11 +1,11 @@
 import React from 'react';
-import BtnSecondary from './BtnSecondary';
+import Button from './Button';
 import '../../App/App.css';
-import './BtnSecondary.css';
+import './Button.css';
 
 export default {
-  title: 'Buttons/Button_secondary',
-  component: BtnSecondary,
+  title: 'Button',
+  component: Button,
   tags: ['autodocs'],
   argTypes: {
     children: {
@@ -22,11 +22,19 @@ export default {
         type: 'radio',
       },
     },
+    variant: {
+      type: 'string',
+      defaultValue: 'primary',
+      options: ['primary', 'secondary'],
+      control: {
+        type: 'radio',
+      },
+    },
   },
 };
 
-const Template = function Button(args) {
-  return <BtnSecondary {...args} />;
+const Template = function Btn(args) {
+  return <Button {...args} />;
 };
 
 export const Default = Template.bind({});
@@ -35,4 +43,5 @@ Default.args = {
   disabled: false,
   type: 'button',
   onClick: () => console.log('pressed'),
+  variant: 'primary',
 };

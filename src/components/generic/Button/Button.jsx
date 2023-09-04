@@ -1,12 +1,14 @@
 import React from 'react';
-import './BtnSecondary.css';
+import './Button.css';
 import PropTypes from 'prop-types';
 
-export default function BtnSecondary({
+export default function Button({
   onClick,
   children,
   type,
   disabled,
+  variant,
+  className,
   ...props
 }) {
   const handlerBtnClick = (e) => {
@@ -16,7 +18,7 @@ export default function BtnSecondary({
 
   return (
     <button
-      className="btn-secondary"
+      className={`button button__${variant} ${className}`}
       onClick={handlerBtnClick}
       type={type}
       disabled={disabled}
@@ -27,14 +29,18 @@ export default function BtnSecondary({
   );
 }
 
-BtnSecondary.propTypes = {
+Button.propTypes = {
   onClick: PropTypes.func.isRequired,
   children: PropTypes.node.isRequired,
   type: PropTypes.oneOf(['button', 'submit']),
   disabled: PropTypes.bool,
+  variant: PropTypes.oneOf(['primary', 'secondary']),
+  className: PropTypes.string,
 };
 
-BtnSecondary.defaultProps = {
+Button.defaultProps = {
   disabled: false,
   type: 'button',
+  variant: 'primary',
+  className: '',
 };
