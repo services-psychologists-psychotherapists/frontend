@@ -26,7 +26,6 @@
   align-self: end;
   color: var(--text-color-white);
   background-color: var(--border-color-dark-violet);
-  cursor: pointer;
 }
 
 .button__primary:active,
@@ -36,7 +35,6 @@
 
 .button__primary:disabled {
   background-color: var(--bg-color-light-violet);
-  cursor: default;
 }
 
 /* Стили для кнопки Secondary */
