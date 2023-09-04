@@ -27,7 +27,3 @@
   --text-weight-title: 700;
   --text-weight-primary: 400;
 }
-
-.page {
-  display: flex;
-}
