@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Title } from '../generic/Title/Title';
 import './Banner.css';
+import Button from '../generic/Button/Button';
+import Title from '../generic/Title/Title';
 
 export default function Banner({
   imgLink,
@@ -17,9 +18,7 @@ export default function Banner({
       <div className="banner__text">
         <Title size="l" text={title} />
         <p className="banner__description">{description}</p>
-        <button className="button-apply" type="button" onClick={onClick}>
-          {textBtn}
-        </button>
+        <Button onClick={onClick}>{textBtn}</Button>
       </div>
       <img
         className={`banner__img banner__img_size_${imgSize}`}

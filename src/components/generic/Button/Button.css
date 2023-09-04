@@ -23,7 +23,6 @@
 /* Стили для кнопки Primary */
 
 .button__primary {
-  align-self: end;
   color: var(--text-color-white);
   background-color: var(--border-color-dark-violet);
 }

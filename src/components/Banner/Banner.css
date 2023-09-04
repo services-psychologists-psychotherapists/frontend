@@ -1,25 +1,3 @@
-.button-apply {
-  padding: 16px 40px;
-  border-radius: 20px;
-  border: none;
-  color: #ffffff;
-  background-color: #6b6bc7;
-  font-size: 18px;
-  line-height: 1.33;
-  cursor: pointer;
-  font-family: var(--font-family-lato);
-  font-weight: 400;
-}
-
-.button-apply:active {
-  background-color: #8d8de9;
-}
-
-.button-apply:disabled {
-  background-color: #d9d9f1;
-  cursor: default;
-}
-
 .banner {
   display: flex;
   gap: 20px;
