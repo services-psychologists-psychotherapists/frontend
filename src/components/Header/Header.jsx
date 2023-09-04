@@ -16,7 +16,7 @@ export default function Header() {
         <ul className="nav">
           {NAVIGATION_LINKS.map(({ link, text }) => (
             <li className="nav__item">
-              <NavigationLink link={link} text={text} />
+              <NavigationLink link={link} text={text} key={link}/>
             </li>
           ))}
           <li className="nav__item">
