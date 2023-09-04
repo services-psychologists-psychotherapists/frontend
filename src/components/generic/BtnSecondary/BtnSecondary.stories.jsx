@@ -25,7 +25,7 @@ export default {
   },
 };
 
-const Template = function (args) {
+const Template = function Button(args) {
   return <BtnSecondary {...args} />;
 };
 
