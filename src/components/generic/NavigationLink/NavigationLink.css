@@ -1,0 +1,34 @@
+.nav-link {
+  text-decoration: none;
+  font-family: var(--font-family-lato);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-color-dark-blue);
+  position: relative;
+  transition: 0.3s;
+}
+
+.nav-link::after {
+  display: inline-block;
+  content: '';
+  opacity: 0;
+  transition: 0.2s;
+  position: absolute;
+}
+
+.nav-link:hover {
+  font-size: 20px;
+  transition: 0.3s;
+}
+
+.active::after,
+.nav-link:active::after {
+  display: block;
+  content: '';
+  width: 100%;
+  height: 1px;
+  background-color: var(--border-color-dark-violet);
+  transition: 0.2s;
+  margin-top: 4px;
+  opacity: 1;
+}

@@ -1,0 +1,19 @@
+.logo {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.logo__title {
+  margin: 0;
+  font-family: 'Urbanist', Arial, sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 28.8px;
+  color: var(--text-color-dark-violet);
+}
+
+.logo__icon {
+  width: 32px;
+  height: 32px;
+}
