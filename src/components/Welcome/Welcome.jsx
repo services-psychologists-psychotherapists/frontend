@@ -2,19 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Welcome.css';
 import Header from '../Header/Header';
-import Banner from '../Banner/Banner';
 import Background from '../generic/Background/Background';
 
-export default function Welcome(props) {
+export default function Welcome({ children, animated, isLoggedIn }) {
   return (
     <section className="welcome">
-      <Header {...props} />
-      <Banner {...props} />
-      <Background {...props} />
+      <Header isLoggedIn={isLoggedIn} />
+      {children}
+      <Background animated={animated} />
     </section>
   );
 }
 
 Welcome.propTypes = {
-  props: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  animated: PropTypes.bool.isRequired,
 };

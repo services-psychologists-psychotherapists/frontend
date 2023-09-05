@@ -16,8 +16,8 @@ export default function Header({ isLoggedIn }) {
       <nav>
         <ul className="nav">
           {NAVIGATION_LINKS.map(({ link, text }) => (
-            <li className="nav__item">
-              <NavigationLink link={link} text={text} key={link} />
+            <li className="nav__item" key={link}>
+              <NavigationLink link={link} text={text} />
             </li>
           ))}
           <li className="nav__item">
