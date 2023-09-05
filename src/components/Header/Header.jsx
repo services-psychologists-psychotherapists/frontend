@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './Header.css';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../generic/Logo/Logo';
@@ -6,7 +7,7 @@ import Button from '../generic/Button/Button';
 import NavigationLink from '../generic/NavigationLink/NavigationLink';
 import { NAVIGATION_LINKS } from '../../constants/constants';
 
-export default function Header() {
+export default function Header({ isLoggedIn }) {
   const navigate = useNavigate();
 
   return (
@@ -20,15 +21,23 @@ export default function Header() {
             </li>
           ))}
           <li className="nav__item">
-            <Button
-              onClick={() => navigate('/signin', { replace: true })}
-              variant="secondary"
-            >
-              Войти
-            </Button>
+            {isLoggedIn ? (
+              <div />
+            ) : (
+              <Button
+                onClick={() => navigate('/signin', { replace: true })}
+                variant="secondary"
+              >
+                Войти
+              </Button>
+            )}
           </li>
         </ul>
       </nav>
     </header>
   );
 }
+
+Header.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+};

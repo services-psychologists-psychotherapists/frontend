@@ -4,6 +4,7 @@
   padding: 40px 80px 60px;
   align-items: center;
   justify-content: space-between;
+  box-sizing: border-box;
 }
 
 .nav {
