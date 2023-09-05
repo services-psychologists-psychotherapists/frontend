@@ -1,0 +1,32 @@
+.terms-cooperation {
+  width: 100%;
+}
+
+.terms-cooperation__container {
+  padding: 32px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.terms-cooperation__text {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  max-width: 589px;
+  width: 100%;
+}
+
+.terms-cooperation__description {
+  color: var(--text-color-dark-blue);
+  font-family: var(--font-family-lato);
+  font-size: 22px;
+  line-height: 28px;
+}
+
+.terms-cooperation__email {
+  font-family: var(--font-family-lato);
+  color: var(--text-color-dark-violet);
+  font-size: 20px;
+  line-height: 26px;
+}
