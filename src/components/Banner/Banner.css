@@ -16,6 +16,7 @@
 
 .banner__description {
   margin: 0;
+  max-width: 500px;
   font-family: var(--font-family-lato);
   font-size: 22px;
   color: var(--text-color-dark-blue);
@@ -34,5 +35,5 @@
 }
 
 .banner__img_size_m {
-  width: 522px;
+  width: 42%;
 }
