@@ -27,3 +27,17 @@
   --text-weight-title: 700;
   --text-weight-primary: 400;
 }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.page {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
