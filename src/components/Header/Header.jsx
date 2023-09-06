@@ -4,8 +4,17 @@ import './Header.css';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../generic/Logo/Logo';
 import Button from '../generic/Button/Button';
-import NavigationLink from '../generic/NavigationLink/NavigationLink';
+// import NavigationLink from '../generic/NavigationLink/NavigationLink';
 import { NAVIGATION_LINKS } from '../../constants/constants';
+import NavLinksList from '../NavLinksList/NavLinksList';
+
+// function List({ list }) {
+//   return list.map(({ link, text }) => (
+//     <li key={link}>
+//       <NavigationLink link={link} text={text} />
+//     </li>
+//   ));
+// }
 
 export default function Header({ isLoggedIn }) {
   const navigate = useNavigate();
@@ -13,26 +22,18 @@ export default function Header({ isLoggedIn }) {
   return (
     <header className="header">
       <Logo />
-      <nav>
-        <ul className="nav">
-          {NAVIGATION_LINKS.map(({ link, text }) => (
-            <li className="nav__item" key={link}>
-              <NavigationLink link={link} text={text} />
-            </li>
-          ))}
-          <li className="nav__item">
-            {isLoggedIn ? (
-              <div />
-            ) : (
-              <Button
-                onClick={() => navigate('/signin', { replace: true })}
-                variant="secondary"
-              >
-                Войти
-              </Button>
-            )}
-          </li>
-        </ul>
+      <nav className="header__nav">
+        <NavLinksList list={NAVIGATION_LINKS} />
+        {isLoggedIn ? (
+          <div />
+        ) : (
+          <Button
+            onClick={() => navigate('/signin', { replace: true })}
+            variant="secondary"
+          >
+            Войти
+          </Button>
+        )}
       </nav>
     </header>
   );

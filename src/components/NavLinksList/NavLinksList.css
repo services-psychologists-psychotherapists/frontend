@@ -1,0 +1,14 @@
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.links_direction_column {
+  gap: 20px;
+  flex-direction: column;
+  align-items: start;
+}

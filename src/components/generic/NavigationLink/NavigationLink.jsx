@@ -1,28 +1,23 @@
 import React from 'react';
 import './NavigationLink.css';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-export default function NavigationLink({ link, text }) {
+export default function NavigationLink({ link, text, navLink }) {
+  const Tag = navLink ? NavLink : Link;
   return (
-    <NavLink
-      to={link}
-      className={`nav-link ${({ isActive, isPending }) => {
-        if (isPending) {
-          return 'pending';
-        }
-        if (isActive) {
-          return 'active';
-        }
-        return '';
-      }}`}
-    >
+    <Tag to={link} className="nav-link">
       {text}
-    </NavLink>
+    </Tag>
   );
 }
 
 NavigationLink.propTypes = {
   link: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  navLink: PropTypes.bool,
+};
+
+NavigationLink.defaultProps = {
+  navLink: true,
 };
