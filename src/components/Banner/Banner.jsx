@@ -12,11 +12,12 @@ export default function Banner({
   description,
   imgSize,
   imgAlt,
+  titleLvl,
 }) {
   return (
     <div className={`banner banner_size_${imgSize}`}>
       <div className="banner__text">
-        <Title size="l" text={title} />
+        <Title size="l" text={title} titleLvl={titleLvl} />
         <p className="banner__description">{description}</p>
         <Button onClick={onClick}>{textBtn}</Button>
       </div>
@@ -37,9 +38,11 @@ Banner.propTypes = {
   imgLink: PropTypes.string.isRequired,
   textBtn: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  titleLvl: PropTypes.string,
 };
 
 Banner.defaultProps = {
   imgSize: 'l',
   imgAlt: 'Баннер',
+  titleLvl: '1',
 };

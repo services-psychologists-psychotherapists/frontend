@@ -8,7 +8,7 @@ import Footer from '../components/Footer/Footer';
 
 export default function HomePage() {
   return (
-    <div className="home-page">
+    <>
       <Welcome animated isLoggedIn={false}>
         <Banner
           description="Все психологи подтвердили образование,  прошли интервью и готовы оказать всю необходимую поддержку и помощь"
@@ -20,6 +20,6 @@ export default function HomePage() {
       </Welcome>
       <EmergencyHelp />
       <Footer />
-    </div>
+    </>
   );
 }
