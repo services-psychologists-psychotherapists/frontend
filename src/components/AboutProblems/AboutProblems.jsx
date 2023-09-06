@@ -11,6 +11,11 @@ export default function AboutProblems() {
         {CUSTOMER_PROBLEMS.map((el) => (
           <li className="about-problems__card" key={el.problemNumber}>
             <p className="about-problems__description">{el.problemName}</p>
+            <img
+              className="about-problems__img"
+              src={el.imgPath}
+              alt={el.imgAlt}
+            />
           </li>
         ))}
       </ul>
