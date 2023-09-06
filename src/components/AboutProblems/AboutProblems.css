@@ -1,0 +1,91 @@
+.about-problems {
+  padding: 120px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.about-problems__title {
+  font-family: var(--font-family-montsertat);
+  font-size: var(--text-font-size-m);
+  line-height: 1.26;
+  font-weight: var(--text-weight-title);
+  max-width: 1280px;
+  margin: 0 auto 48px;
+  color: var(--text-color-dark-blue);
+}
+
+.about-problems__cards {
+  display: grid;
+  padding: 0;
+  margin: auto;
+  max-width: 1280px;
+  grid: repeat(2, 234px) / repeat(12, 1fr);
+  gap: 20px;
+}
+
+.about-problems__card {
+  display: inline-block;
+  list-style: none;
+  border: 1px solid;
+  border-color: var(--border-color-medium-violet);
+  border-radius: 12px;
+}
+
+.about-problems__card:first-child {
+  grid-column: span 6;
+  background-image: url(../../images/first-card.png);
+  background-repeat: no-repeat;
+  background-size: 124px 142px;
+  background-position: bottom 20px right 48px;
+}
+
+.about-problems__card:nth-child(2) {
+  grid-column: span 3;
+  background-image: url(../../images/second-card.png);
+  background-repeat: no-repeat;
+  background-size: 117px 114px;
+  background-position: bottom 20px right 28px;
+}
+
+.about-problems__card:nth-child(3) {
+  grid-column: span 3;
+  background-image: url(../../images/third-card.png);
+  background-repeat: no-repeat;
+  background-size: 118px 111px;
+  background-position: bottom 20px right 28px;
+}
+
+.about-problems__card:nth-child(4) {
+  grid-column: span 4;
+  background-image: url(../../images/fourth-card.png);
+  background-repeat: no-repeat;
+  background-size: 127px 96px;
+  background-position: bottom 24px right 28px;
+}
+
+.about-problems__card:nth-child(5) {
+  grid-column: span 4;
+  background-image: url(../../images/fifth-card.png);
+  background-repeat: no-repeat;
+  background-size: 140px 125px;
+  background-position: bottom 20px right 28px;
+}
+
+.about-problems__card:last-child {
+  grid-column: span 4;
+  background-image: url(../../images/sixth-card.png);
+  background-repeat: no-repeat;
+  background-size: 133px 97px;
+  background-position: bottom 24px right 28px;
+}
+
+.about-problems__description {
+  font-family: var(--font-family-lato);
+  font-size: var(--text-font-size-s);
+  line-height: 1.3;
+  font-weight: var(--text-font-size-s);
+  margin: 32px 32px 0 32px;
+  max-width: 368px;
+  color: var(--text-color-dark-blue);
+}

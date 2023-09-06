@@ -13,6 +13,33 @@ export const NAVIGATION_LINKS = [
   },
 ];
 
+export const CUSTOMER_PROBLEMS = [
+  {
+    problemNumber: '1',
+    problemName: 'Справиться со стрессом, чувством тревоги, страха и паники',
+  },
+  {
+    problemNumber: '2',
+    problemName: 'Преодолеть трудности в отношениях',
+  },
+  {
+    problemNumber: '3',
+    problemName: 'Разобраться в себе, повысить самооценку',
+  },
+  {
+    problemNumber: '4',
+    problemName: 'Определиться с планами на жизнь и построить карьеру',
+  },
+  {
+    problemNumber: '5',
+    problemName: 'Справиться с эмоциями после травматических событий',
+  },
+  {
+    problemNumber: '6',
+    problemName: 'Проработать зависимости и нежелательные привычки',
+  },
+];
+
 export const EMERGENCY_SERVICES = [
   {
     number: '+7 495 989-50-50',
