@@ -7,11 +7,12 @@ export default function HelpfulInformation({
   children,
   containerClassName,
   sectionClassName,
-  ...props
+  size,
+  text,
 }) {
   return (
     <section className={`helpful-information ${sectionClassName || ''}`}>
-      <Title {...props} />
+      <Title size={size} text={text} />
       <div
         className={`helpful-information__container ${containerClassName || ''}`}
       >
@@ -25,6 +26,8 @@ HelpfulInformation.propTypes = {
   children: PropTypes.node,
   containerClassName: PropTypes.string,
   sectionClassName: PropTypes.string,
+  size: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };
 
 HelpfulInformation.defaultProps = {

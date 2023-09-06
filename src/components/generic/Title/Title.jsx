@@ -10,9 +10,9 @@ export default function Title({ size, text, titleLvl }) {
 Title.propTypes = {
   size: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  titleLvl: PropTypes.oneOf(['1', '2', '3', '4', '5', '6']).isRequired,
+  titleLvl: PropTypes.oneOf(['1', '2', '3', '4', '5', '6']),
 };
 
-Title.defaultProp = {
+Title.defaultProps = {
   titleLvl: '2',
 };
