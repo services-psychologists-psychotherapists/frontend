@@ -16,7 +16,7 @@ export default function Banner({
   return (
     <div className={`banner banner_size_${imgSize}`}>
       <div className="banner__text">
-        <Title size="l" text={title} />
+        <Title size="l" text={title} titleLvl="1" />
         <p className="banner__description">{description}</p>
         <Button onClick={onClick}>{textBtn}</Button>
       </div>
