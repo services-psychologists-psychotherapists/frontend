@@ -20,12 +20,13 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "sb": "storybook dev -p 6006",
-    "build-sb": "storybook build",
+    "build-storybook": "storybook build",
     "lint": "eslint . --ext .js,.jsx .",
     "lint:fix": "npm run lint -- --fix",
     "prepare": "husky install",
     "format": "prettier . --write --ignore-path ./.prettierignore",
-    "commit": "cz"
+    "commit": "cz",
+    "chromatic": "npx chromatic --project-token=chpt_7402a8cfaee8c02"
   },
   "browserslist": {
     "production": [
@@ -75,5 +76,7 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "frontend@0.1.0"
 }
