@@ -1,12 +1,12 @@
 import instagramIcon from '../images/footer-icon-instagram.svg';
 import telegramIcon from '../images/footer-icon-telegram.svg';
 import vkIcon from '../images/footer-icon-vk.svg';
-import stress from '../images/about_problem_stress.png';
-import relationship from '../images/about_problem_relationship.png';
-import yourself from '../images/about_problem_understand_yourself.png';
-import career from '../images/about_problem_career.png';
-import posttraumatic from '../images/about_problem_posttraumatic.png';
-import badHabits from '../images/about_problem_bad_habits.png';
+import stress from '../images/about_problem_stress.svg';
+import relationship from '../images/about_problem_relationship.svg';
+import yourself from '../images/about_problem_understand_yourself.svg';
+import career from '../images/about_problem_career.svg';
+import posttraumatic from '../images/about_problem_posttraumatic.svg';
+import badHabits from '../images/about_problem_bad_habits.svg';
 
 export const NAVIGATION_LINKS = [
   {
@@ -46,7 +46,7 @@ export const CUSTOMER_PROBLEMS = [
   },
   {
     problemNumber: '5',
-    problemName: 'Справиться с эмоциями после травматических событий',
+    problemName: 'Справиться с эмоциями после травмирующих событий',
     imgPath: posttraumatic,
     imgAlt: 'posttraumatic',
   },
