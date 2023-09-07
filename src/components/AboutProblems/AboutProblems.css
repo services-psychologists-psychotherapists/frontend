@@ -41,7 +41,6 @@
 
 .about-problems__card:first-child {
   grid-column: span 6;
-  display: grid;
   grid: 1fr / 1fr 0.5fr;
   padding-right: 48px;
 }
