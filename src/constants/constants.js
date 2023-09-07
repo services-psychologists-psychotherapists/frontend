@@ -1,6 +1,6 @@
-import instagramIcon from '../images/instagram.svg';
-import telegramIcon from '../images/telegram.svg';
-import vkIcon from '../images/vk.svg';
+import instagramIcon from '../images/footer-icon-instagram.svg';
+import telegramIcon from '../images/footer-icon-telegram.svg';
+import vkIcon from '../images/footer-icon-vk.svg';
 
 export const NAVIGATION_LINKS = [
   {

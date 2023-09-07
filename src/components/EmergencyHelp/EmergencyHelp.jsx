@@ -5,11 +5,7 @@ import { EMERGENCY_SERVICES } from '../../constants/constants';
 
 export default function EmergencyHelp() {
   return (
-    <HelpfulInformation
-      size="m"
-      text="Необходима экстренная помощь?"
-      titleClassName="emergency-help__title"
-    >
+    <HelpfulInformation size="m" text="Необходима экстренная помощь?">
       <p className="emergency-help__text">
         Если вам требуется экстренная помощь в серьезной или угрожающей жизни
         ситуации — обратитесь в одну из этих организаций:

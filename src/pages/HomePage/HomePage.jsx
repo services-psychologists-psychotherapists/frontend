@@ -1,10 +1,9 @@
 import React from 'react';
 import './HomePage.css';
-import Welcome from '../components/Welcome/Welcome';
-import bannerImg from '../images/home_banner.svg';
-import Banner from '../components/Banner/Banner';
-import EmergencyHelp from '../components/EmergencyHelp/EmergencyHelp';
-import Footer from '../components/Footer/Footer';
+import Welcome from '../../components/Welcome/Welcome';
+import bannerImg from '../../images/home_banner.svg';
+import Banner from '../../components/Banner/Banner';
+import EmergencyHelp from '../../components/EmergencyHelp/EmergencyHelp';
 
 export default function HomePage() {
   return (
@@ -19,7 +18,6 @@ export default function HomePage() {
         />
       </Welcome>
       <EmergencyHelp />
-      <Footer />
     </>
   );
 }
