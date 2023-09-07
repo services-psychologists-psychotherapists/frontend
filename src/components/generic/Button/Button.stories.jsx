@@ -30,6 +30,14 @@ export default {
         type: 'radio',
       },
     },
+    size: {
+      type: 'string',
+      defaultValue: 'l',
+      options: ['l', 'm'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
   },
 };
 
@@ -37,9 +45,17 @@ const Template = function Btn(args) {
   return <Button {...args} />;
 };
 
-export const Default = Template.bind({});
-Default.args = {
+export const Primary = Template.bind({});
+export const Secondary = Template.bind({});
+Secondary.args = {
   children: 'Войти',
+  disabled: false,
+  type: 'button',
+  onClick: () => console.log('pressed'),
+  variant: 'secondary',
+};
+Primary.args = {
+  children: 'Подобрать психолога',
   disabled: false,
   type: 'button',
   onClick: () => console.log('pressed'),
