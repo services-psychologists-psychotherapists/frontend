@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './Footer.css';
 import Logo from '../generic/Logo/Logo';
 import {
@@ -7,6 +6,7 @@ import {
   SERVICE_DOCUMENTS,
   NAVIGATION_LINKS,
 } from '../../constants/constants';
+import NavLinksList from '../NavLinksList/NavLinksList';
 
 export default function Footer() {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -19,17 +19,8 @@ export default function Footer() {
     <footer className="footer">
       <div className="footer__content">
         <Logo />
-        {/* Временная реализация списка навигации */}
         <nav>
-          <ul className="footer__nav-list">
-            {NAVIGATION_LINKS.map(({ link, text }) => (
-              <li key={link}>
-                <Link to={link} className="footer__nav-link">
-                  {text}
-                </Link>
-              </li>
-            ))}
-          </ul>
+          <NavLinksList list={NAVIGATION_LINKS} navLink={false} />
         </nav>
         <ul className="footer__sotial-networks">
           {SOCIAL_MEDIA_ICONS.map((icon) => (
