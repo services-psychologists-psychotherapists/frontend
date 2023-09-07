@@ -9,20 +9,22 @@ export default function Button({
   disabled,
   variant,
   className,
-  ...props
+  size,
 }) {
   const handlerBtnClick = (e) => {
     e.preventDefault();
     onClick();
   };
 
+  const classes = `button button__${variant} button_size_${size} ${className}`;
+
   return (
     <button
-      className={`button button__${variant} ${className}`}
+      className={classes}
       onClick={handlerBtnClick}
       type={type}
       disabled={disabled}
-      {...props}
+      size={size}
     >
       {children}
     </button>
@@ -36,6 +38,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   variant: PropTypes.oneOf(['primary', 'secondary']),
   className: PropTypes.string,
+  size: PropTypes.oneOf(['l', 'm']),
 };
 
 Button.defaultProps = {
@@ -43,4 +46,5 @@ Button.defaultProps = {
   type: 'button',
   variant: 'primary',
   className: '',
+  size: 'l',
 };
