@@ -48,27 +48,3 @@
 .footer__policy-item_selected {
   color: var(--text-color-dark-blue);
 }
-
-/* Временные стили для списка навигации */
-.footer__nav-list {
-  list-style: none;
-  display: flex;
-  gap: 40px;
-}
-
-.footer__nav-link {
-  text-decoration: none;
-  font-family: var(--font-family-lato);
-  font-size: 18px;
-  color: var(--text-color-dark-blue);
-  transition: 0.3s;
-  line-height: 24px;
-  display: inline-block;
-  height: 30px;
-  padding-bottom: 4px;
-  padding-top: 4px;
-}
-
-.footer__nav-link:hover {
-  transform: scale(1.1);
-}

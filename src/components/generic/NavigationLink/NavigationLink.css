@@ -6,6 +6,7 @@
   color: var(--text-color-dark-blue);
   position: relative;
   transition: 0.3s;
+  display: inline-block;
 }
 
 .nav-link::after {
@@ -17,7 +18,7 @@
 }
 
 .nav-link:hover {
-  font-size: 20px;
+  transform: scale(1.1);
   transition: 0.3s;
 }
 
