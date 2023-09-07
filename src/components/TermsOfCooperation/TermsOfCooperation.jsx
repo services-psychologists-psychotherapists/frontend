@@ -8,7 +8,6 @@ export default function TermsOfCooperation() {
     <HelpfulInformation
       size="m"
       text="Остались вопросы?"
-      titleClassName="terms-cooperation__title"
       containerClassName="terms-cooperation__container"
       sectionClassName="terms-cooperation"
     >
