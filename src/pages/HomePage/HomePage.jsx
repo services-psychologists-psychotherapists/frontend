@@ -4,6 +4,7 @@ import Welcome from '../../components/Welcome/Welcome';
 import bannerImg from '../../images/home_banner.svg';
 import Banner from '../../components/Banner/Banner';
 import EmergencyHelp from '../../components/EmergencyHelp/EmergencyHelp';
+import Сalendar from '../../components/Сalendar/Сalendar';
 
 export default function HomePage() {
   return (
@@ -17,6 +18,7 @@ export default function HomePage() {
           title="Подберем психолога, который вам поможет"
         />
       </Welcome>
+      <Сalendar />
       <EmergencyHelp />
     </>
   );

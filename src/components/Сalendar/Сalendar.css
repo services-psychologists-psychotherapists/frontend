@@ -1,0 +1,106 @@
+.calendar {
+  max-width: 588px;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid var(--border-color-medium-violet);
+  display: inline-flex;
+  padding: 32px;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 500px; /* убрать */
+}
+
+.calendar__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calendar__period {
+  max-width: 524px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-family: var(--font-family-lato);
+  color: var(--text-color-dark-blue);
+  font-weight: var(
+    --text-weight-title
+  ); /* подумать может заменить на тайтл элем */
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.calendar__dates {
+  display: grid;
+  grid-template-columns: repeat(7, 60px);
+  grid-template-rows: repeat(2, 60px);
+  gap: 8px;
+}
+
+.calendar__date {
+  cursor: pointer;
+}
+
+.calendar__days-of-week {
+  display: grid;
+  grid-template-columns: repeat(7, 60px);
+  grid-template-rows: repeat(1, 60px);
+  gap: 8px;
+}
+
+.calendar__cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-family-lato);
+  color: var(--text-color-dark-blue);
+}
+
+.calendar__cell:focus {
+  outline: none;
+}
+
+.calendar__date_today,
+.calendar__cell:focus {
+  border-radius: 30px;
+  border: 1px solid var(--border-color-medium-violet);
+}
+
+/* TODO: настроить фокусы */
+/* .calendar__cell:focus {
+} */
+
+/* TODO: настроить размер при фокусе для переключателей */
+/* .calendar__period_switch:focus {
+  border: 1px solid var(--border-color-medium-violet);
+  width: 22.5px;
+  height: 22.5px;
+} */
+
+.calendar__day-of-week_day-of {
+  color: var(--medium_violet, #8d8de9);
+}
+
+.calendar__period_switch {
+  all: unset;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+.calendar__period_prev {
+  background-image: url('./calendar_prev_weeks.svg');
+}
+
+.calendar__period_next {
+  background-image: url('./calendar_next_weeks.svg');
+}
+
+.calendar__date_selected {
+  border-radius: 30px;
+  background: var(--border-color-dark-violet); /* поправить стиль */
+  color: #fff;
+}
