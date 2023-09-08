@@ -5,8 +5,6 @@ import bannerImg from '../../images/home_banner.svg';
 import Banner from '../../components/Banner/Banner';
 import AboutProblems from '../../components/AboutProblems/AboutProblems';
 import EmergencyHelp from '../../components/EmergencyHelp/EmergencyHelp';
-import ScrollerBlock from '../../components/generic/ScrollerBlock/ScrollerBlock';
-import { SLOTS } from '../../constants/db';
 
 export default function HomePage() {
   return (
@@ -22,7 +20,6 @@ export default function HomePage() {
       </Welcome>
       <AboutProblems />
       <EmergencyHelp />
-      <ScrollerBlock slots={SLOTS} />
     </>
   );
 }
