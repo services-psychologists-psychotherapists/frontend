@@ -42,6 +42,11 @@
   overflow: hidden;
 }
 
+.button__secondary span {
+  position: relative;
+  z-index: 2;
+}
+
 .button__secondary::after {
   content: '';
   position: absolute;
@@ -51,7 +56,6 @@
   display: inline-block;
   top: 0;
   left: -100%;
-  z-index: -1;
   transition: 0.3s ease-in-out;
 }
 

@@ -26,7 +26,7 @@ export default function Button({
       disabled={disabled}
       size={size}
     >
-      {children}
+      <span>{children}</span>
     </button>
   );
 }
