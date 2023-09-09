@@ -1,7 +1,7 @@
 import React from 'react';
 import './HowToStart.css';
 import Title from '../generic/Title/Title';
-/* import Button from '../generic/Button/Button'; */
+import Button from '../generic/Button/Button';
 import { LIST_OF_STEPS } from '../../constants/constants';
 
 export default function HowToStart() {
@@ -31,6 +31,15 @@ export default function HowToStart() {
                 <p className="how-to-start__description">
                   {el.descriptionStep}
                 </p>
+                {el.numberStep === '01' ? (
+                  <Button
+                    onClick={() => {}}
+                    className="how-to-start__button-apply"
+                    variant="primary"
+                  >
+                    Подать заявку
+                  </Button>
+                ) : null}
               </li>
             );
           }
