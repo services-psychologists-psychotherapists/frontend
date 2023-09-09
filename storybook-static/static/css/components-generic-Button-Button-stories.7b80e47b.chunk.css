@@ -1,0 +1,142 @@
+/* Общие стили для кнопок */
+.button {
+  background-color: inherit;
+  border: none;
+  padding: 0;
+
+  border-radius: 20px;
+
+  font-family: var(--font-family-lato);
+  font-weight: 400;
+  line-height: 1.33;
+
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.button:disabled {
+  cursor: default;
+}
+
+/* Стили для кнопки Primary */
+
+.button__primary {
+  color: var(--text-color-white);
+  background-color: var(--border-color-dark-violet);
+}
+
+.button__primary:active,
+.button__primary:hover {
+  background-color: var(--border-color-medium-violet);
+}
+
+.button__primary:disabled {
+  background-color: var(--bg-color-light-violet);
+}
+
+/* Стили для кнопки Secondary */
+.button__secondary {
+  box-shadow: inset 0 0 0 2px var(--border-color-dark-violet);
+  color: var(--text-color-dark-blue);
+  position: relative;
+  overflow: hidden;
+}
+
+.button__secondary::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--border-color-medium-violet);
+  display: inline-block;
+  top: 0;
+  left: -100%;
+  z-index: -1;
+  transition: 0.3s ease-in-out;
+}
+
+.button__secondary:hover {
+  box-shadow: inset 0 0 0 2px var(--border-color-medium-violet);
+  transition: 0.3s ease-in-out;
+  color: var(--bg-color-white);
+}
+
+.button__secondary:hover::after {
+  left: 0;
+}
+
+.button__secondary:active::after {
+  background-color: var(--border-color-dark-violet);
+}
+
+.button__secondary:active {
+  box-shadow: inset 0 0 0 2px var(--border-color-dark-violet);
+}
+
+.button__secondary:disabled {
+  box-shadow: inset 0 0 0 2px var(--bg-color-light-violet);
+  color: var(--bg-color-light-violet);
+}
+
+.btn-secondary:disabled::after {
+  display: none;
+}
+
+/* Установка размеров кнопки */
+
+.button_size_m {
+  padding: 12px 24px;
+  font-size: 14px;
+}
+
+.button_size_l {
+  padding: 16px 40px;
+  font-size: 18px;
+}
+
+:root {
+  /* background color */
+  --bg-color-white: #fefefe;
+  --bg-color-light-green: #d4eee4;
+  --bg-color-light-violet: #d9d9f1;
+  --bg-color-loight-yellow: #f7f5ef;
+
+  /* border color */
+  --border-color-medium-violet: #8d8de9;
+  --border-color-dark-violet: #6b6bc7;
+
+  /* text */
+  --font-family-montsertat: 'Montserrat', Arial, sans-serif;
+  --font-family-lato: 'Lato', Arial, sans-serif;
+
+  /* text color */
+  --text-color-dark-blue: #272766;
+  --text-color-dark-violet: #6b6bc7;
+  --text-color-white: #fefefe;
+
+  /* size  */
+  --text-font-size-l: 50px;
+  --text-font-size-m: 38px;
+  --text-font-size-s: 20px;
+
+  /* weight */
+  --text-weight-title: 700;
+  --text-weight-primary: 400;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.page {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  max-width: 1440px;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+
+/*# sourceMappingURL=components-generic-Button-Button-stories.7b80e47b.chunk.css.map*/

@@ -95,3 +95,10 @@ export const SERVICE_DOCUMENTS = [
   'Политика конфиденциальности',
   'Условия использования сервиса',
 ];
+
+export const DROPDOWN_LINKS = [
+  {
+    text: 'Личный кабинет',
+    link: '/profile',
+  },
+];

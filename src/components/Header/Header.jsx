@@ -4,17 +4,9 @@ import './Header.css';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../generic/Logo/Logo';
 import Button from '../generic/Button/Button';
-// import NavigationLink from '../generic/NavigationLink/NavigationLink';
 import { NAVIGATION_LINKS } from '../../constants/constants';
 import NavLinksList from '../NavLinksList/NavLinksList';
-
-// function List({ list }) {
-//   return list.map(({ link, text }) => (
-//     <li key={link}>
-//       <NavigationLink link={link} text={text} />
-//     </li>
-//   ));
-// }
+import UserMenu from '../UserMenu/UserMenu';
 
 export default function Header({ isLoggedIn }) {
   const navigate = useNavigate();
@@ -25,7 +17,7 @@ export default function Header({ isLoggedIn }) {
       <nav className="header__nav">
         <NavLinksList list={NAVIGATION_LINKS} />
         {isLoggedIn ? (
-          <div />
+          <UserMenu />
         ) : (
           <Button
             onClick={() => navigate('/signin', { replace: true })}
