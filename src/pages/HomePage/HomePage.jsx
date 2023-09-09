@@ -3,6 +3,7 @@ import './HomePage.css';
 import Welcome from '../../components/Welcome/Welcome';
 import bannerImg from '../../images/home_banner.svg';
 import Banner from '../../components/Banner/Banner';
+import AboutProblems from '../../components/AboutProblems/AboutProblems';
 import EmergencyHelp from '../../components/EmergencyHelp/EmergencyHelp';
 
 export default function HomePage() {
@@ -17,6 +18,7 @@ export default function HomePage() {
           title="Подберем психолога, который вам поможет"
         />
       </Welcome>
+      <AboutProblems />
       <EmergencyHelp />
     </>
   );

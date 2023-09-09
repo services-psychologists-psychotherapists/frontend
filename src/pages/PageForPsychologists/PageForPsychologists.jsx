@@ -1,20 +1,20 @@
 import React from 'react';
 import './PageForPsychologists.css';
 import Welcome from '../../components/Welcome/Welcome';
-import bannerImg from '../../images/home_banner.svg';
+import bannerImg from '../../images/for_therapist_banner.svg';
 import Banner from '../../components/Banner/Banner';
 import TermsOfCooperation from '../../components/TermsOfCooperation/TermsOfCooperation';
 
 export default function PageForPsychologists() {
   return (
     <>
-      <Welcome animated isLoggedIn={false}>
+      <Welcome animated={false} isLoggedIn={false}>
         <Banner
-          description="Все психологи подтвердили образование,  прошли интервью и готовы оказать всю необходимую поддержку и помощь"
+          description="Поможем организовать вашу удаленную работу и сделаем ее комфортнее"
           imgLink={bannerImg}
           onClick={() => {}}
-          textBtn="Подоборать психолога"
-          title="Подберем психолога, который вам поможет"
+          textBtn="Подать заявку"
+          title="Присоединяйтесь к нашей команде психологов"
         />
       </Welcome>
       <TermsOfCooperation />

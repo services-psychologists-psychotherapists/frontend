@@ -1,6 +1,12 @@
 import instagramIcon from '../images/footer-icon-instagram.svg';
 import telegramIcon from '../images/footer-icon-telegram.svg';
 import vkIcon from '../images/footer-icon-vk.svg';
+import stress from '../images/about_problem_stress.svg';
+import relationship from '../images/about_problem_relationship.svg';
+import yourself from '../images/about_problem_understand_yourself.svg';
+import career from '../images/about_problem_career.svg';
+import posttraumatic from '../images/about_problem_posttraumatic.svg';
+import badHabits from '../images/about_problem_bad_habits.svg';
 
 export const NAVIGATION_LINKS = [
   {
@@ -10,6 +16,45 @@ export const NAVIGATION_LINKS = [
   {
     text: 'Психологам',
     link: '/for_a_therapist',
+  },
+];
+
+export const CUSTOMER_PROBLEMS = [
+  {
+    problemNumber: '1',
+    problemName: 'Справиться со стрессом, чувством тревоги, страха и паники',
+    imgPath: stress,
+    imgAlt: 'stress',
+  },
+  {
+    problemNumber: '2',
+    problemName: 'Преодолеть трудности в отношениях',
+    imgPath: relationship,
+    imgAlt: 'relationship',
+  },
+  {
+    problemNumber: '3',
+    problemName: 'Разобраться в себе, повысить самооценку',
+    imgPath: yourself,
+    imgAlt: 'yourself',
+  },
+  {
+    problemNumber: '4',
+    problemName: 'Определиться с планами на жизнь и построить карьеру',
+    imgPath: career,
+    imgAlt: 'career',
+  },
+  {
+    problemNumber: '5',
+    problemName: 'Справиться с эмоциями после травмирующих событий',
+    imgPath: posttraumatic,
+    imgAlt: 'posttraumatic',
+  },
+  {
+    problemNumber: '6',
+    problemName: 'Проработать зависимости и нежелательные привычки',
+    imgPath: badHabits,
+    imgAlt: 'badHabits',
   },
 ];
 
