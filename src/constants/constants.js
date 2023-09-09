@@ -64,12 +64,12 @@ export const CUSTOMER_PROBLEMS = [
 export const LIST_OF_STEPS = [
   {
     numbKey: 1,
-    type: 'image',
+    content: 'image',
     imgPath: form,
   },
   {
     numbKey: 2,
-    type: 'text',
+    content: 'text',
     numberStep: '01',
     nameStep: 'Заполните заявку',
     descriptionStep:
@@ -77,7 +77,7 @@ export const LIST_OF_STEPS = [
   },
   {
     numbKey: 3,
-    type: 'text',
+    content: 'text',
     numberStep: '02',
     nameStep: 'Ожидайте подтверждения аккаунта',
     descriptionStep:
@@ -85,17 +85,17 @@ export const LIST_OF_STEPS = [
   },
   {
     numbKey: 4,
-    type: 'image',
+    content: 'image',
     imgPath: clock,
   },
   {
     numbKey: 5,
-    type: 'image',
+    content: 'image',
     imgPath: girls,
   },
   {
     numbKey: 6,
-    type: 'text',
+    content: 'text',
     numberStep: '03',
     nameStep: 'Получайте новых клиентов',
     descriptionStep:
