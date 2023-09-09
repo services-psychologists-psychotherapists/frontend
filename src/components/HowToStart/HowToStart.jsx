@@ -13,7 +13,7 @@ export default function HowToStart() {
           if (el.content === 'image') {
             return console.log('imaaaage');
           }
-          return console.log('teeeeeext');
+          return console.log('teeeeeeeext');
         })}
       </ul>
     </section>
