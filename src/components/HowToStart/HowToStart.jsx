@@ -11,7 +11,13 @@ export default function HowToStart() {
       <ul className="how-to-start__cards">
         {LIST_OF_STEPS.map((el) => {
           if (el.content === 'image') {
-            return console.log('imaaaage');
+            <li className="how-to-start__card-img" key={el.numbKey}>
+              <img
+                src={el.imgPath}
+                className="how-to-start__img"
+                alt={el.imgPath}
+              />
+            </li>;
           }
           return console.log('teeeeeeeext');
         })}
