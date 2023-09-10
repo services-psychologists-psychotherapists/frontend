@@ -15,13 +15,13 @@ export default function Сalendar() {
   const currentDate = moment();
 
   const [selectedDay, setSelectedDay] = useState({});
+  const [dates, setDates] = useState([]);
+  const [isChangedWeeks, setIsChangedWeeks] = useState(false);
 
   const [startDay, setStartDay] = useState(currentDate.clone().startOf('week'));
   const [lastDay, setLastDay] = useState(
     moment(startDay).add(NUMBER_OF_DAYS_DISPLAYED, 'days')
   );
-
-  const [dates, setDates] = useState([]);
 
   const formattedCurrentDate = currentDate.format('D-MM-YYYY');
   const formattedStartDate = startDay.format('D MMMM');
@@ -36,40 +36,25 @@ export default function Сalendar() {
     }
   };
 
-  const [isChangedWeeks, setIsChangedWeeks] = useState(false);
-
-  const handleChangeWeeks = () => {
-    if (!isChangedWeeks) {
-      setIsChangedWeeks(true);
-    }
-  };
-
   const switchToNextWeeks = () => {
     setStartDay(startDay.add(NUMBER_TO_SWITCH_THE_WEEKS, 'days'));
     setLastDay(moment(startDay).add(NUMBER_OF_DAYS_DISPLAYED, 'days'));
-
-    handleChangeWeeks();
   };
 
   const switchToPrevWeeks = () => {
     setLastDay(moment(startDay).subtract(1, 'days'));
     setStartDay(startDay.subtract(NUMBER_TO_SWITCH_THE_WEEKS, 'days'));
-
-    handleChangeWeeks();
   };
 
   const resetDates = () => {
-    if (isChangedWeeks) {
-      const resetStartDay = currentDate.clone().startOf('week');
-      const resetLastDay = moment(resetStartDay).add(
-        NUMBER_OF_DAYS_DISPLAYED,
-        'days'
-      );
+    const resetStartDay = currentDate.clone().startOf('week');
+    const resetLastDay = moment(resetStartDay).add(
+      NUMBER_OF_DAYS_DISPLAYED,
+      'days'
+    );
 
-      setStartDay(resetStartDay);
-      setLastDay(resetLastDay);
-      setIsChangedWeeks(false);
-    }
+    setStartDay(resetStartDay);
+    setLastDay(resetLastDay);
   };
 
   useEffect(() => {
@@ -88,11 +73,23 @@ export default function Сalendar() {
 
         currentDatePoint.add(1, 'day');
       }
-
       setDates(newDates);
     };
 
+    // prettier-ignore
+    const handleChangeWeeks = () => {
+      if (
+        currentDate.isSameOrAfter(startDay, 'week')
+        && currentDate.isSameOrBefore(lastDay, 'week')
+      ) {
+        setIsChangedWeeks(false);
+      } else {
+        setIsChangedWeeks(true);
+      }
+    };
+
     generateDates();
+    handleChangeWeeks();
   }, [startDay, lastDay]);
 
   // prettier-ignore
@@ -120,11 +117,13 @@ export default function Сalendar() {
           />
           <div className="calendar__current-weeks">
             {`${formattedStartDate} - ${formattedlastDay}`}
-            <button
-              type="button"
-              className="calendar__period_switch calendar__period_reset"
-              onClick={resetDates}
-            />
+            {isChangedWeeks && (
+              <button
+                type="button"
+                className="calendar__period_switch calendar__period_reset"
+                onClick={resetDates}
+              />
+            )}
           </div>
           <button
             type="button"
