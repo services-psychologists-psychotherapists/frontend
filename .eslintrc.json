@@ -20,7 +20,6 @@
     "import/prefer-default-export": "off",
     "react/jsx-props-no-spreading": "off",
     "comma-dangle": "off",
-    "react/button-has-type": "off",
-    "no-underscore-dangle": "off"
+    "react/button-has-type": "off"
   }
 }
