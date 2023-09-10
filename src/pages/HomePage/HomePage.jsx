@@ -13,9 +13,9 @@ export default function HomePage() {
         <Banner
           description="Все психологи подтвердили образование,  прошли интервью и готовы оказать всю необходимую поддержку и помощь"
           imgLink={bannerImg}
-          onClick={() => {}}
           textBtn="Подобрать психолога"
           title="Подберем психолога, который вам поможет"
+          href="/catalog"
         />
       </Welcome>
       <AboutProblems />
