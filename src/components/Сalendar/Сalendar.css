@@ -65,7 +65,7 @@
 
 .calendar__date:hover {
   border: 2px solid var(--border-color-medium-violet);
-  font-weight: 700;
+  font-weight: var(--text-weight-title);
 }
 
 .calendar__cell {
