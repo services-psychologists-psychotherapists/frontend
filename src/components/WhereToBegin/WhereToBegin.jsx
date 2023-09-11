@@ -18,11 +18,7 @@ export default function WhereToBegin() {
           </li>
         ))}
       </ul>
-      <Button
-        onClick={() => {}}
-        className="where-to-begin__button"
-        variant="primary"
-      >
+      <Button onClick={() => {}} className="where-to-begin__button">
         Каталог психологов
       </Button>
     </section>
