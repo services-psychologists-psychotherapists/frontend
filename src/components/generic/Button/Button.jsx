@@ -13,6 +13,14 @@ export default function Button({
   size,
   href,
 }) {
+  const classes = `button button__${variant} button_size_${size} ${className} ${
+    disabled
+      ? `button_disabled button__${variant}_disabled`
+      : `button__${variant}_active`
+  }`;
+
+  const Tag = href !== '' ? Link : 'button';
+
   const handlerBtnClick = (e) => {
     e.preventDefault();
     onClick();
@@ -28,22 +36,8 @@ export default function Button({
     return { type, onClick: handlerBtnClick };
   }
 
-  const classes = `button button__${variant} button_size_${size} ${className} ${
-    disabled
-      ? `button_disabled button__${variant}_disabled`
-      : `button__${variant}_active`
-  }`;
-
-  const Tag = href !== '' ? Link : 'button';
-
   return (
-    <Tag
-      className={classes}
-      type={type}
-      disabled={disabled}
-      size={size}
-      {...props()}
-    >
+    <Tag className={classes} disabled={disabled} size={size} {...props()}>
       {variant === 'text-icon' ? (
         <svg>
           <path d="M7 1L1 7L7 13" />
