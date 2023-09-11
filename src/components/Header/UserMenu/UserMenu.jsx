@@ -1,9 +1,9 @@
 import React, { useContext, useRef, useState } from 'react';
 import './UserMenu.css';
-import CurrentUserContext from '../Context/CurrentUserContext';
-import NavLinksList from '../NavLinksList/NavLinksList';
-import { DROPDOWN_LINKS } from '../../constants/constants';
-import useOutsideClick from '../../hooks/useOnClickOutside';
+import CurrentUserContext from '../../../Context/CurrentUserContext';
+import NavLinksList from '../../NavLinksList/NavLinksList';
+import { DROPDOWN_LINKS } from '../../../constants/constants';
+import useOutsideClick from '../../../hooks/useOnClickOutside';
 
 export default function UserMenu() {
   const currentUser = useContext(CurrentUserContext);
@@ -14,13 +14,13 @@ export default function UserMenu() {
     setIsOpen(false);
   });
 
-  function handleOpenMenu() {
+  function handleClickMenu() {
     setIsOpen(!isOpen);
   }
 
   return (
     <div className="dropdown" ref={ref}>
-      <button type="button" className="user" onClick={handleOpenMenu}>
+      <button type="button" className="user" onClick={handleClickMenu}>
         <img
           src={currentUser.img}
           alt={currentUser.name}

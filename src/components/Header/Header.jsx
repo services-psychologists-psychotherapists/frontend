@@ -6,7 +6,7 @@ import Logo from '../generic/Logo/Logo';
 import Button from '../generic/Button/Button';
 import { NAVIGATION_LINKS } from '../../constants/constants';
 import NavLinksList from '../NavLinksList/NavLinksList';
-import UserMenu from '../UserMenu/UserMenu';
+import UserMenu from './UserMenu/UserMenu';
 
 export default function Header({ isLoggedIn }) {
   const navigate = useNavigate();

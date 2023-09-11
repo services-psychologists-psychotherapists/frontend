@@ -61,13 +61,19 @@
   gap: 16px;
   flex-direction: column;
   background-color: var(--bg-color-white);
+  visibility: hidden;
   opacity: 0;
-  transition: opacity 0.6s;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0s 0.3s;
 }
 
 .dropdown__list_opened {
+  visibility: visible;
   opacity: 1;
-  transition: opacity 0.6s;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0s;
 }
 
 .exit-btn {
