@@ -47,13 +47,13 @@
 }
 
 .where-to-begin__card_color_white {
-  background-color: #fefefe;
+  background-color: var(--text-color-white);
 }
 
 .where-to-begin__card_color_beige {
-  background-color: #f7f5ef;
+  background-color: var(--bg-color-loight-yellow);
 }
 
 .where-to-begin__card_color_light-violet {
-  background-color: #d9d9f1;
+  background-color: var(--bg-color-light-violet);
 }
