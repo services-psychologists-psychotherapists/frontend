@@ -43,19 +43,17 @@
 }
 
 .where-to-begin__button {
-  height: 56px;
-  width: 246px;
   align-self: flex-end;
 }
 
-.where-to-begin__card:first-child {
+.where-to-begin__card_color_white {
   background-color: #fefefe;
 }
 
-.where-to-begin__card:nth-child(2) {
+.where-to-begin__card_color_beige {
   background-color: #f7f5ef;
 }
 
-.where-to-begin__card:nth-child(3) {
+.where-to-begin__card_color_light-violet {
   background-color: #d9d9f1;
 }

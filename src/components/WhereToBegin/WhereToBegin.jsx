@@ -10,7 +10,10 @@ export default function WhereToBegin() {
       <Title size="m" text="С чего начать?" />
       <ul className="where-to-begin__cards">
         {CUSTOMER_STEPS.map((el) => (
-          <li className="where-to-begin__card" key={el.numberStep}>
+          <li
+            className={`where-to-begin__card where-to-begin__card_color_${el.bgColor}`}
+            key={el.numberStep}
+          >
             <span className="where-to-begin__subtitle-number">
               {el.numberStep}
             </span>
