@@ -63,43 +63,37 @@ export const CUSTOMER_PROBLEMS = [
 
 export const LIST_OF_STEPS = [
   {
-    numbKey: 1,
-    content: 'image',
-    imgPath: form,
-  },
-  {
-    numbKey: 2,
-    content: 'text',
+    id: 1,
     numberStep: '01',
     nameStep: 'Заполните заявку',
     descriptionStep:
       'От вас потребуются документы об образовании и подтверждающие квалификацию сертификаты',
+    bgColor: 'white',
+    imgPath: form,
+    bgColorImg: 'light-violet',
+    link: '',
   },
   {
-    numbKey: 3,
-    content: 'text',
+    id: 2,
     numberStep: '02',
     nameStep: 'Ожидайте подтверждения аккаунта',
     descriptionStep:
       'После проверки ваших данных, мы пришлем вам приглашение в личный кабинет',
-  },
-  {
-    numbKey: 4,
-    content: 'image',
+    bgColor: 'white',
     imgPath: clock,
+    bgColorImg: 'light-green',
+    link: '',
   },
   {
-    numbKey: 5,
-    content: 'image',
-    imgPath: girls,
-  },
-  {
-    numbKey: 6,
-    content: 'text',
+    id: 3,
     numberStep: '03',
     nameStep: 'Получайте новых клиентов',
     descriptionStep:
       'Расскажите о себе, установите ваше время работы и ожидайте записи к вам новых клиентов!',
+    bgColor: 'white',
+    imgPath: girls,
+    bgColorImg: 'light-violet',
+    link: '',
   },
 ];
 
