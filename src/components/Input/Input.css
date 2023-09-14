@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   padding: 0 20px;
+  margin-bottom: 20px;
 }
 
 .input-container__label {
@@ -24,6 +25,7 @@
 
 .input-container__input {
   padding: 12px;
+  font-family: var(--font-family-lato);
   font-weight: var(--text-weight-primary);
   font-size: 18px;
   line-height: 24px;
@@ -33,6 +35,13 @@
   max-height: 48px;
   width: 100%;
   margin-bottom: 8px;
+}
+
+.input-container__input::placeholder {
+  font-family: var(--font-family-lato);
+  font-weight: var(--text-weight-primary);
+  font-size: 18px;
+  line-height: 24px;
 }
 
 .input-container__input_disabled {

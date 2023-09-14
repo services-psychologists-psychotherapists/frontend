@@ -16,8 +16,10 @@ export default function Input({
   placeholder,
   minLength,
   maxLength,
+  required
 }) {
   const [isEyeOpened, setIsEyeOpened] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   const {
     values, handleChange, errors, isValid
@@ -48,7 +50,6 @@ export default function Input({
             value={values[name]
               || ''}
             onChange={handleChange}
-            required
             className={`input-container__input input-container__textarea-input ${
               !isValid && !disabled && 'input-container__invalid-input'
             } ${disabled && 'input-container__input_disabled'}`}
@@ -56,23 +57,28 @@ export default function Input({
             disabled={disabled}
             minLength={minLength}
             maxLength={maxLength}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            required={required}
           />
         ) : (
           <input
+            className={`input-container__input ${
+              !isValid && !disabled && 'input-container__invalid-input'
+            } ${disabled && 'input-container__input_disabled'}`}
             type={isEyeOpened ? 'text' : type}
             id={name}
             name={name}
             value={values[name]
-              || ''}
+                || ''}
             onChange={handleChange}
-            required
-            className={`input-container__input ${
-              !isValid && !disabled && 'input-container__invalid-input'
-            } ${disabled && 'input-container__input_disabled'}`}
             placeholder={placeholder}
             disabled={disabled}
             minLength={minLength}
             maxLength={maxLength}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            required={required}
           />
         )}
         {type === 'password' && (
@@ -102,7 +108,7 @@ export default function Input({
         </span>
       ))
         || (
-          prompt && !errors.name && !disabled && (
+          !isFocused && !values[name] && prompt && !errors.name && !disabled && (
           <span className="input-container__span_visible input-container__span_visible-prompt">
             {prompt}
           </span>
@@ -125,10 +131,12 @@ Input.propTypes = {
   placeholder: PropTypes.string.isRequired,
   minLength: PropTypes.string,
   maxLength: PropTypes.string,
+  required: PropTypes.bool
 };
 
 Input.defaultProps = {
   disabled: false,
   minLength: '',
   maxLength: '',
+  required: false
 };

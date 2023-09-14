@@ -24,6 +24,7 @@ export default function PsychologistProfile() {
             placeholder="********"
             maxLength="32"
             minLength="8"
+            required
           />
           <Input
             name="textarea"
