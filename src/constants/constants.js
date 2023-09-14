@@ -58,6 +58,27 @@ export const CUSTOMER_PROBLEMS = [
   },
 ];
 
+export const CUSTOMER_STEPS = [
+  {
+    numberStep: '01',
+    descriptionStep:
+      'Выберите психолога через каталог, с помощью нужных фильтров. Все психологи подтвердили образование, прошли тест и интервью.',
+    bgColor: 'white',
+  },
+  {
+    numberStep: '02',
+    descriptionStep:
+      'Запишитесь к психологу на онлайн-сессию. Терапия с нами — это безопасно и конфиденциально.',
+    bgColor: 'beige',
+  },
+  {
+    numberStep: '03',
+    descriptionStep:
+      'Управляйте своим расписанием в личном кабинете. Удобно переносить и отменять сессии при необходимости.',
+    bgColor: 'light-violet',
+  },
+];
+
 export const EMERGENCY_SERVICES = [
   {
     number: '+7 495 989-50-50',
