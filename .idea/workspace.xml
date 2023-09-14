@@ -5,22 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="107613ff-e18c-4cd9-a99f-5d66a220ba04" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Input/Input.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Input/Input.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hooks/useForm.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/Input/input-container__closed-eye.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/Input/input-container__closed-eye_error.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/Input/input-container__opened-eye.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/Input/input-container__opened-eye_error.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Banner/Banner.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Banner/Banner.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PsychologistProfile/PsychologistProfile.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PsychologistProfile/PsychologistProfile.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PsychologistProfile/PsychologistProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PsychologistProfile/PsychologistProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Input/Input.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Input/Input.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +60,7 @@
       <option name="presentableId" value="Default" />
       <updated>1694634402799</updated>
       <workItem from="1694634405398" duration="6460000" />
-      <workItem from="1694670942036" duration="15973000" />
+      <workItem from="1694670942036" duration="16691000" />
     </task>
     <servers />
   </component>
