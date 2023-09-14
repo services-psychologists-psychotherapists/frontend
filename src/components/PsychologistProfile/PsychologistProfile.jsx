@@ -1,7 +1,7 @@
 import './PsychologistProfile.css';
 import React from 'react';
 import Header from '../Header/Header';
-import Input from '../Input/Input';
+import Field from '../Field/Field';
 
 export default function PsychologistProfile() {
   return (
@@ -9,13 +9,16 @@ export default function PsychologistProfile() {
       <Header isLoggedIn={false} />
       <div className="psychologist-page">
         <form name="login" noValidate>
-          <Input
+          <Field
+            element="input"
             name="login"
             title="Логин"
             type="email"
             placeholder="irina_k@yan.ru"
+            prompt="Здесь должна быть подсказка"
           />
-          <Input
+          <Field
+            element="input"
             name="password"
             title="Пароль"
             type="password"
@@ -24,8 +27,10 @@ export default function PsychologistProfile() {
             maxLength="32"
             minLength="8"
             required
+            disabled
           />
-          <Input
+          <Field
+            element="input"
             name="textarea"
             title="Комментарий"
             type="textarea"

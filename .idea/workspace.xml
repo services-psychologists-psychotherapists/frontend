@@ -5,9 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="107613ff-e18c-4cd9-a99f-5d66a220ba04" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/Field/Field.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Field/Field.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Field/Input/Input.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Field/Input/Input.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Field/Label/Label.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Field/Label/Label.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Field/Prompt/Prompt.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Field/Prompt/Prompt.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/Input/input-container__closed-eye_disabled.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/images/Input/input-container__opened-eye_disabled.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Input/Input.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Input/Input.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierignore" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Input/Input.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Input/Input.jsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/PsychologistProfile/PsychologistProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PsychologistProfile/PsychologistProfile.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/constants.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +63,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\WORKPR\frontend\src\components\Field" />
       <recent name="C:\WORKPR\frontend\src\images\Input" />
     </key>
   </component>
@@ -61,7 +76,7 @@
       <option name="presentableId" value="Default" />
       <updated>1694634402799</updated>
       <workItem from="1694634405398" duration="6460000" />
-      <workItem from="1694670942036" duration="21127000" />
+      <workItem from="1694670942036" duration="33723000" />
     </task>
     <servers />
   </component>

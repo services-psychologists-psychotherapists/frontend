@@ -7,6 +7,11 @@ import yourself from '../images/about_problem_understand_yourself.svg';
 import career from '../images/about_problem_career.svg';
 import posttraumatic from '../images/about_problem_posttraumatic.svg';
 import badHabits from '../images/about_problem_bad_habits.svg';
+import closedEyeDisabled from '../images/Input/input-container__closed-eye_disabled.svg';
+import openedEye from '../images/Input/input-container__opened-eye.svg';
+import openedEyeError from '../images/Input/input-container__opened-eye_error.svg';
+import closedEye from '../images/Input/input-container__closed-eye.svg';
+import closedEyeError from '../images/Input/input-container__closed-eye_error.svg';
 
 export const NAVIGATION_LINKS = [
   {
@@ -95,3 +100,11 @@ export const SERVICE_DOCUMENTS = [
   'Политика конфиденциальности',
   'Условия использования сервиса',
 ];
+
+export const INPUT_ICONS = {
+  openedEye,
+  closedEye,
+  openedEyeError,
+  closedEyeError,
+  closedEyeDisabled,
+};
