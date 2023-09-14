@@ -8,11 +8,11 @@ import TermsOfCooperation from '../../components/TermsOfCooperation/TermsOfCoope
 export default function PageForPsychologists() {
   return (
     <>
-      <Welcome animated isLoggedIn={false}>
+      <Welcome animated={false} isLoggedIn={false}>
         <Banner
           description="Поможем организовать вашу удаленную работу и сделаем ее комфортнее"
           imgLink={bannerImg}
-          onClick={() => {}}
+          href="/signup-therapist"
           textBtn="Подать заявку"
           title="Присоединяйтесь к нашей команде психологов"
         />

@@ -1,12 +1,12 @@
 import instagramIcon from '../images/footer-icon-instagram.svg';
 import telegramIcon from '../images/footer-icon-telegram.svg';
 import vkIcon from '../images/footer-icon-vk.svg';
-import stress from '../images/about_problem_stress.png';
-import relationship from '../images/about_problem_relationship.png';
-import yourself from '../images/about_problem_understand_yourself.png';
-import career from '../images/about_problem_career.png';
-import posttraumatic from '../images/about_problem_posttraumatic.png';
-import badHabits from '../images/about_problem_bad_habits.png';
+import stress from '../images/about_problem_stress.svg';
+import relationship from '../images/about_problem_relationship.svg';
+import yourself from '../images/about_problem_understand_yourself.svg';
+import career from '../images/about_problem_career.svg';
+import posttraumatic from '../images/about_problem_posttraumatic.svg';
+import badHabits from '../images/about_problem_bad_habits.svg';
 
 export const NAVIGATION_LINKS = [
   {
@@ -46,7 +46,7 @@ export const CUSTOMER_PROBLEMS = [
   },
   {
     problemNumber: '5',
-    problemName: 'Справиться с эмоциями после травматических событий',
+    problemName: 'Справиться с эмоциями после травмирующих событий',
     imgPath: posttraumatic,
     imgAlt: 'posttraumatic',
   },
@@ -55,6 +55,27 @@ export const CUSTOMER_PROBLEMS = [
     problemName: 'Проработать зависимости и нежелательные привычки',
     imgPath: badHabits,
     imgAlt: 'badHabits',
+  },
+];
+
+export const CUSTOMER_STEPS = [
+  {
+    numberStep: '01',
+    descriptionStep:
+      'Выберите психолога через каталог, с помощью нужных фильтров. Все психологи подтвердили образование, прошли тест и интервью.',
+    bgColor: 'white',
+  },
+  {
+    numberStep: '02',
+    descriptionStep:
+      'Запишитесь к психологу на онлайн-сессию. Терапия с нами — это безопасно и конфиденциально.',
+    bgColor: 'beige',
+  },
+  {
+    numberStep: '03',
+    descriptionStep:
+      'Управляйте своим расписанием в личном кабинете. Удобно переносить и отменять сессии при необходимости.',
+    bgColor: 'light-violet',
   },
 ];
 
@@ -94,4 +115,11 @@ export const SOCIAL_MEDIA_ICONS = [
 export const SERVICE_DOCUMENTS = [
   'Политика конфиденциальности',
   'Условия использования сервиса',
+];
+
+export const DROPDOWN_LINKS = [
+  {
+    text: 'Личный кабинет',
+    link: '/profile',
+  },
 ];
