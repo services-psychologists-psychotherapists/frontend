@@ -8,6 +8,8 @@
   /* border color */
   --border-color-medium-violet: #8d8de9;
   --border-color-dark-violet: #6b6bc7;
+  --border-color-error: #cf3614;
+  --border-coolor-disabled: #9b9da0;
 
   /* text */
   --font-family-montsertat: 'Montserrat', Arial, sans-serif;
@@ -17,6 +19,8 @@
   --text-color-dark-blue: #272766;
   --text-color-dark-violet: #6b6bc7;
   --text-color-white: #fefefe;
+  --text-color-error: #cf3614;
+  --text-coolor-disabled: #9b9da0;
 
   /* size  */
   --text-font-size-l: 50px;

@@ -1,0 +1,100 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+}
+
+.input-container__label {
+  padding-left: 12px;
+  font-family: var(--font-family-lato);
+  font-weight: var(--text-weight-primary);
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--text-color-dark-blue);
+  margin-bottom: 12px;
+}
+
+.input-container__label_disabled {
+  color: var(--text-coolor-disabled);
+}
+
+.input-container__input-wrapper {
+  position: relative;
+}
+
+.input-container__input {
+  padding: 12px;
+  font-weight: var(--text-weight-primary);
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--text-color-dark-blue);
+  border: 1px solid var(--border-color-medium-violet);
+  border-radius: 12px;
+  max-height: 48px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.input-container__input_disabled {
+  color: var(--text-coolor-disabled);
+  border: 1px solid var(--border-coolor-disabled);
+  background-color: transparent;
+}
+
+.input-container__invalid-input {
+  border: 1px solid var(--border-color-error);
+  color: var(--text-color-error);
+}
+
+.input-container__input:focus {
+  outline: none;
+}
+
+.input-container__textarea-input {
+  min-height: 108px;
+  resize: none;
+}
+
+.input-container__input-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 48px;
+  width: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+
+.input-container__input-icon:focus {
+  outline: none;
+}
+
+.input-container__input-icon img {
+  width: 20px;
+  height: 20px;
+}
+
+.input-container__span_not-visible {
+  height: 12px;
+}
+
+.input-container__span_visible {
+  padding-left: 12px;
+  font-family: var(--font-family-lato);
+  font-weight: var(--text-weight-primary);
+  font-size: 14px;
+  line-height: 16.8px;
+  height: 12px;
+}
+
+.input-container__span_visible-error {
+  color: var(--text-color-error);
+}
+
+.input-container__span_visible-prompt {
+  color: var(--text-color-dark-blue);
+}
