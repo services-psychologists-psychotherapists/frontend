@@ -8,6 +8,7 @@ import {
   DAYS_OF_WEEK,
 } from '../../constants/constants';
 // TODO: Title
+// TODO: Сделать сброс недель по дизайну
 
 export default function Сalendar() {
   moment.locale('ru');
