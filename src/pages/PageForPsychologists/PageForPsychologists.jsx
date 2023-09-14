@@ -12,7 +12,7 @@ export default function PageForPsychologists() {
         <Banner
           description="Поможем организовать вашу удаленную работу и сделаем ее комфортнее"
           imgLink={bannerImg}
-          onClick={() => {}}
+          href="/signup-therapist"
           textBtn="Подать заявку"
           title="Присоединяйтесь к нашей команде психологов"
         />
