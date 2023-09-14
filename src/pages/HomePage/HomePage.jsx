@@ -10,7 +10,7 @@ import EmergencyHelp from '../../components/EmergencyHelp/EmergencyHelp';
 export default function HomePage() {
   return (
     <>
-      <Welcome animated isLoggedIn={false}>
+      <Welcome animated isLoggedIn>
         <Banner
           description="Все психологи подтвердили образование,  прошли интервью и готовы оказать всю необходимую поддержку и помощь"
           imgLink={bannerImg}
