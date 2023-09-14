@@ -20,9 +20,6 @@
     "import/prefer-default-export": "off",
     "react/jsx-props-no-spreading": "off",
     "comma-dangle": "off",
-    "react/button-has-type": "off",
-    "operator-linebreak": "off",
-    "object-curly-newline": "off",
-    "indent": "off"
+    "react/button-has-type": "off"
   }
 }

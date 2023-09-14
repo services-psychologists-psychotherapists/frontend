@@ -19,7 +19,9 @@ export default function Input({
 }) {
   const [isEyeOpened, setIsEyeOpened] = useState(false);
 
-  const { values, handleChange, errors, isValid } = useForm({
+  const {
+    values, handleChange, errors, isValid
+  } = useForm({
     [name]: '',
   });
 
@@ -43,7 +45,8 @@ export default function Input({
           <textarea
             id={name}
             name={name}
-            value={values[name] || ''}
+            value={values[name]
+              || ''}
             onChange={handleChange}
             required
             className={`input-container__input input-container__textarea-input ${
@@ -59,7 +62,8 @@ export default function Input({
             type={isEyeOpened ? 'text' : type}
             id={name}
             name={name}
-            value={values[name] || ''}
+            value={values[name]
+              || ''}
             onChange={handleChange}
             required
             className={`input-container__input ${
@@ -85,8 +89,8 @@ export default function Input({
                     ? openedEye
                     : openedEyeError
                   : isValid
-                  ? closedEye
-                  : closedEyeError
+                    ? closedEye
+                    : closedEyeError
               }
             />
           </button>
@@ -96,12 +100,14 @@ export default function Input({
         <span className="input-container__span_visible input-container__span_visible-error">
           {errors[name]}
         </span>
-      )) ||
-        (prompt && !errors.name && !disabled && (
+      ))
+        || (
+          prompt && !errors.name && !disabled && (
           <span className="input-container__span_visible input-container__span_visible-prompt">
             {prompt}
           </span>
-        )) || (
+          ))
+        || (
           <span className="input-container__span_not-visible">
             {errors[name]}
           </span>
