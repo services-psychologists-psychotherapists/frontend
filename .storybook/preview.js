@@ -6,7 +6,9 @@ const preview = {
         color: /(background|color)$/i,
         date: /Date$/,
       },
+      expanded: true,
     },
+    layout: 'centered',
   },
 };
 
