@@ -126,7 +126,7 @@ Input.propTypes = {
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  prompt: PropTypes.string.isRequired,
+  prompt: PropTypes.string,
   disabled: PropTypes.bool,
   placeholder: PropTypes.string.isRequired,
   minLength: PropTypes.string,
@@ -138,5 +138,6 @@ Input.defaultProps = {
   disabled: false,
   minLength: '',
   maxLength: '',
-  required: false
+  required: false,
+  prompt: ''
 };

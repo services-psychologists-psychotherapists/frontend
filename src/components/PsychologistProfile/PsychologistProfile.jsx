@@ -13,7 +13,6 @@ export default function PsychologistProfile() {
             name="login"
             title="Логин"
             type="email"
-            prompt="Здесь должна быть подсказка"
             placeholder="irina_k@yan.ru"
           />
           <Input
