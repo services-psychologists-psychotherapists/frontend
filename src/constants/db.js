@@ -1,3 +1,5 @@
+import avatar from '../images/avatar.png';
+
 export const SLOTS = [
   {
     id: '123123123123',
@@ -100,8 +102,6 @@ export const SLOTS = [
     isFree: false,
   },
 ];
-
-import avatar from '../images/avatar.png';
 
 export const USER = {
   name: 'Ирина',
