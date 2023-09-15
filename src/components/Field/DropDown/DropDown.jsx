@@ -1,7 +1,8 @@
 import './DwopDown.css';
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { radioDropDown } from '../../../constants/constants';
+import { dropDownLists, radioDropDown } from '../../../constants/constants';
+import RadioDropdown from '../RadioDropdown/RadioDropdown';
 
 export default function DropDown({
   isFocused,
@@ -9,46 +10,23 @@ export default function DropDown({
   onChange,
   element,
 }) {
+  const [dropDownList] = useState(dropDownLists.genderList);
+
   return (
     <div className={`dropdown ${isFocused ? 'dropdown_opened' : ''}`}>
       {element === radioDropDown && (
         <ul className="dropdown__list">
-          <li className="dropdown__item">
-            <label className="dropdown__radio-label">
-              <input
-                type="radio"
-                className="dropdown__radio"
-                value="женский"
-                checked={selectedValue === 'женский'}
-                onChange={onChange}
-              />
-              женский
-            </label>
-          </li>
-          <li className="dropdown__item">
-            <label className="dropdown__radio-label">
-              <input
-                type="radio"
-                className="dropdown__radio"
-                value="мужской"
-                checked={selectedValue === 'мужской'}
-                onChange={onChange}
-              />
-              мужской
-            </label>
-          </li>
-          <li className="dropdown__item">
-            <label className="dropdown__radio-label">
-              <input
-                type="radio"
-                className="dropdown__radio"
-                value="другое"
-                checked={selectedValue === 'другое'}
-                onChange={onChange}
-              />
-              другое
-            </label>
-          </li>
+          {dropDownList.map((item) => (
+            <li className="dropdown__item" key={item}>
+              {element === radioDropDown && (
+                <RadioDropdown
+                  selectedValue={selectedValue}
+                  item={item}
+                  onChange={onChange}
+                />
+              )}
+            </li>
+          ))}
         </ul>
       )}
     </div>

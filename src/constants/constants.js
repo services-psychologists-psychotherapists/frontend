@@ -117,3 +117,7 @@ export const INPUT_ICONS = {
 
 export const inputElement = 'input';
 export const radioDropDown = 'radioDropDown';
+
+export const dropDownLists = {
+  genderList: ['женский', 'мужской', 'другое'],
+};
