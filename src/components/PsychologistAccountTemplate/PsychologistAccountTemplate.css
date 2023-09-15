@@ -1,0 +1,57 @@
+.psychologist-account {
+  padding: 0 80px 100px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.psychologist-account__links-section {
+  padding-top: 88px;
+  flex: 1 1 0;
+}
+
+.psychologist-account__planner-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  flex: 2.98 2.98 0;
+}
+
+.psychologist-account__shedule-section {
+  padding-top: 88px;
+  flex: 2.31 2.31 0;
+}
+
+.psychologist-account__calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.psychologist-account__subtitle {
+  font-family: var(--font-family-montsertat);
+  font-size: 22px;
+  color: var(--text-color-dark-blue);
+  font-weight: 500;
+  line-height: 1.36;
+}
+
+.psychologist-account__subtitle-string {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.psychologist-account__info:hover {
+  cursor: pointer;
+}
+
+.psychologist-account__info_invisible {
+  display: none;
+}
+
+.psychologist-account__meetings-reminder {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}

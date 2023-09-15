@@ -5,7 +5,7 @@ import NavigationLink from '../generic/NavigationLink/NavigationLink';
 
 export default function NavLinksList({ list, navLink, direction }) {
   return (
-    <ul className={`links links_direction_${direction}`}>
+    <ul className={`links links_direction_${direction} `}>
       {list.map(({ link, text }) => (
         <li key={link}>
           <NavigationLink link={link} text={text} navLink={navLink} />
