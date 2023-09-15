@@ -12,6 +12,8 @@ import openedEye from '../images/Input/input-container__opened-eye.svg';
 import openedEyeError from '../images/Input/input-container__opened-eye_error.svg';
 import closedEye from '../images/Input/input-container__closed-eye.svg';
 import closedEyeError from '../images/Input/input-container__closed-eye_error.svg';
+import arrow from '../images/Input/input-container__arrow.svg';
+import arrowDisabled from '../images/Input/input-container__arrow_disabled.svg';
 
 export const NAVIGATION_LINKS = [
   {
@@ -107,4 +109,6 @@ export const INPUT_ICONS = {
   openedEyeError,
   closedEyeError,
   closedEyeDisabled,
+  arrow,
+  arrowDisabled,
 };

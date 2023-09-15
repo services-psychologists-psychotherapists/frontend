@@ -5,6 +5,7 @@ import { useForm } from '../../hooks/useForm';
 import Input from './Input/Input';
 import Label from './Label/Label';
 import Prompt from './Prompt/Prompt';
+import DropDown from './DropDown/DropDown';
 
 export default function Field({
   title,
@@ -19,12 +20,23 @@ export default function Field({
   element
 }) {
   const [isFocused, setIsFocused] = useState(false);
+  const [isDropDownOpened, setIsDropDownOpened] = useState(false);
+  const [selectedValue, setSelectedValue] = useState('');
+
+  const handleRadioChange = (event) => {
+    setSelectedValue(event.target.value);
+  };
 
   const {
     values, handleChange, errors, isValid
   } = useForm({
     [name]: '',
   });
+
+  const handleOpenDropDown = (e) => {
+    e.preventDefault();
+    setIsDropDownOpened(!isDropDownOpened);
+  };
 
   return (
     <div className="field-container">
@@ -48,10 +60,37 @@ export default function Field({
              maxLength={maxLength}
              required={required}
              setIsFocused={setIsFocused}
+             element={element}
            />
            )
           }
+          {
+            element === 'radio' && (
+              <Input
+                type={type}
+                name={name}
+                value={selectedValue}
+                onChange={handleChange}
+                placeholder={placeholder}
+                isValid={isValid}
+                minLength={minLength}
+                maxLength={maxLength}
+                required={required}
+                setIsFocused={setIsFocused}
+                element={element}
+                onClick={handleOpenDropDown}
+                setIsDropDownOpened={setIsDropDownOpened}
+                isDropDownOpened={isDropDownOpened}
+                disabled={disabled}
+              />
+            )
+          }
         </div>
+        <DropDown
+          onChange={handleRadioChange}
+          selectedValue={selectedValue}
+          isDropDownOpened={isDropDownOpened}
+        />
       </div>
       <Prompt
         errors={errors}

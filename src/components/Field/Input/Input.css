@@ -1,3 +1,5 @@
+/*-----------------INPUT---------------------*/
+
 .input {
   padding: 12px;
   width: 100%;
@@ -30,7 +32,7 @@
   color: var(--text-coolor-disabled);
 }
 
-.input__input-icon {
+.input__icon {
   position: absolute;
   top: 0;
   right: 0;
@@ -44,11 +46,39 @@
   background-color: transparent;
 }
 
-.input__input-icon:focus {
+.input__icon:focus {
   outline: none;
 }
 
-.input__input-icon img {
+.input__icon img {
   width: 20px;
   height: 20px;
 }
+
+/*-----------------INPUT---------------------*/
+
+/*-----------------RADIO---------------------*/
+
+.radio-input {
+  background-color: transparent;
+  color: var(--border-color-dark-blue);
+  cursor: pointer;
+  caret-color: transparent;
+}
+
+.radio-input__icon {
+  transition: transform 0.2s ease;
+  transform: rotate(0deg);
+}
+
+.radio-input__icon img {
+  width: 12px;
+  height: 6px;
+}
+
+.rotate {
+  transform: rotate(180deg);
+  transition: transform 0.2s ease;
+}
+
+/*-----------------RADIO---------------------*/

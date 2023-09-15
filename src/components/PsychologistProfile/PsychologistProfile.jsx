@@ -30,14 +30,11 @@ export default function PsychologistProfile() {
             disabled
           />
           <Field
-            element="input"
+            element="radio"
             name="textarea"
-            title="Комментарий"
-            type="textarea"
-            prompt="Здесь должна быть подсказка"
-            placeholder="Комментарий"
-            maxLength="32"
-            minLength="8"
+            title="Пол"
+            type="text"
+            placeholder="выберите пол"
           />
         </form>
       </div>
