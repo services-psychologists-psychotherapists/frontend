@@ -63,7 +63,6 @@ export const CUSTOMER_PROBLEMS = [
 
 export const LIST_OF_STEPS = [
   {
-    id: 1,
     numberStep: '01',
     nameStep: 'Заполните заявку',
     descriptionStep:
@@ -74,7 +73,6 @@ export const LIST_OF_STEPS = [
     link: '',
   },
   {
-    id: 2,
     numberStep: '02',
     nameStep: 'Ожидайте подтверждения аккаунта',
     descriptionStep:
@@ -85,7 +83,6 @@ export const LIST_OF_STEPS = [
     link: '',
   },
   {
-    id: 3,
     numberStep: '03',
     nameStep: 'Получайте новых клиентов',
     descriptionStep:
