@@ -112,3 +112,8 @@ export const INPUT_ICONS = {
   arrow,
   arrowDisabled,
 };
+
+// --------------FIELD_ELEMENTS--------------- //
+
+export const inputElement = 'input';
+export const radioDropDown = 'radioDropDown';

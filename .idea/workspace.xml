@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="107613ff-e18c-4cd9-a99f-5d66a220ba04" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Field/DropDown/DropDown.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Field/DropDown/DwopDown.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
+    <list default="true" id="080e6e00-7066-4260-ab8d-3d5208e2dcb8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/App/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/App/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Field/DropDown/DropDown.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Field/DropDown/DropDown.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Field/DropDown/DwopDown.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Field/DropDown/DwopDown.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Field/Field.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Field/Field.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Field/Input/Input.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Field/Input/Input.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Field/Input/Input.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Field/Input/Input.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/PsychologistProfile/PsychologistProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PsychologistProfile/PsychologistProfile.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/constants/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/constants.js" afterDir="false" />

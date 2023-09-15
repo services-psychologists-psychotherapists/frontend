@@ -1,7 +1,7 @@
 import './Input.css';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { INPUT_ICONS } from '../../../constants/constants';
+import { INPUT_ICONS, inputElement, radioDropDown } from '../../../constants/constants';
 
 export default function Input({
   element,
@@ -14,11 +14,9 @@ export default function Input({
   required,
   onChange,
   value,
-  setIsFocused,
   isValid,
-  onClick,
-  isDropDownOpened,
-  setIsDropDownOpened
+  isFocused,
+  onClick
 }) {
   const [isEyeOpened, setIsEyeOpened] = useState(false);
 
@@ -31,7 +29,7 @@ export default function Input({
     <>
       <input
         className={`input ${!isValid && !disabled && 'input_invalid'} ${disabled && 'input_disabled'} 
-        ${element === 'radio' && 'radio-input'}`}
+        ${element === radioDropDown && 'radio-input'}`}
         type={isEyeOpened ? 'text' : type}
         id={name}
         name={name}
@@ -42,14 +40,9 @@ export default function Input({
         minLength={minLength}
         maxLength={maxLength}
         required={required}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => {
-          setIsDropDownOpened(false);
-          setIsFocused(false);
-        }}
         onClick={onClick}
       />
-      {element === 'input' && type === 'password' && (
+      {element === inputElement && type === 'password' && (
         <button
           className="input__icon"
           onClick={showPasswordContent}
@@ -71,9 +64,9 @@ export default function Input({
           />
         </button>
       )}
-      {element === 'radio' && (
+      {element === radioDropDown && (
         <button
-          className={`input__icon radio-input__icon ${isDropDownOpened ? 'rotate' : ''}`}
+          className={`input__icon radio-input__icon ${isFocused ? 'rotate' : ''}`}
           onClick={onClick}
           disabled={disabled}
         >
@@ -99,18 +92,14 @@ Input.propTypes = {
   required: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  setIsFocused: PropTypes.func.isRequired,
   isValid: PropTypes.bool.isRequired,
-  onClick: PropTypes.func,
-  isDropDownOpened: PropTypes.bool,
-  setIsDropDownOpened: PropTypes.func
+  isFocused: PropTypes.bool,
+  onClick: PropTypes.func
 };
 
 Input.defaultProps = {
-  onClick() {
-  },
   disabled: false,
-  isDropDownOpened: false,
-  setIsDropDownOpened() {
+  isFocused: false,
+  onClick() {
   }
 };

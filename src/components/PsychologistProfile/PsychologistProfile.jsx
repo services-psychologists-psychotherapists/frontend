@@ -2,6 +2,7 @@ import './PsychologistProfile.css';
 import React from 'react';
 import Header from '../Header/Header';
 import Field from '../Field/Field';
+import { radioDropDown, inputElement } from '../../constants/constants';
 
 export default function PsychologistProfile() {
   return (
@@ -10,7 +11,7 @@ export default function PsychologistProfile() {
       <div className="psychologist-page">
         <form name="login" noValidate>
           <Field
-            element="input"
+            element={inputElement}
             name="login"
             title="Логин"
             type="email"
@@ -18,7 +19,7 @@ export default function PsychologistProfile() {
             prompt="Здесь должна быть подсказка"
           />
           <Field
-            element="input"
+            element={inputElement}
             name="password"
             title="Пароль"
             type="password"
@@ -30,8 +31,8 @@ export default function PsychologistProfile() {
             disabled
           />
           <Field
-            element="radio"
-            name="textarea"
+            element={radioDropDown}
+            name="gender"
             title="Пол"
             type="text"
             placeholder="выберите пол"
