@@ -4,14 +4,14 @@ import './Avatar.css';
 import noAvatar from '../../../images/no-avatar.svg';
 
 export default function Avatar({ src, size }) {
-  function getNoAvatarClasses(tag) {
-    if (tag === 'img') {
-      if (size === 'xs' || size === 's') {
-        return 'img__size_s';
-      }
-      return '';
-    }
+   function getNoAvatarClasses(tag) {
     if (src === noAvatar) {
+      if (tag === 'img') {
+        if (size === 'xs' || size === 's') {
+          return 'img__size_s';
+        }
+        return '';
+      }
       return `${tag}__no-avatar`;
     }
     return '';
