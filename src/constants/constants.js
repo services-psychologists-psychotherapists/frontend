@@ -97,6 +97,27 @@ export const LIST_OF_STEPS = [
   },
 ];
 
+export const CUSTOMER_STEPS = [
+  {
+    numberStep: '01',
+    descriptionStep:
+      'Выберите психолога через каталог, с помощью нужных фильтров. Все психологи подтвердили образование, прошли тест и интервью.',
+    bgColor: 'white',
+  },
+  {
+    numberStep: '02',
+    descriptionStep:
+      'Запишитесь к психологу на онлайн-сессию. Терапия с нами — это безопасно и конфиденциально.',
+    bgColor: 'beige',
+  },
+  {
+    numberStep: '03',
+    descriptionStep:
+      'Управляйте своим расписанием в личном кабинете. Удобно переносить и отменять сессии при необходимости.',
+    bgColor: 'light-violet',
+  },
+];
+
 export const EMERGENCY_SERVICES = [
   {
     number: '+7 495 989-50-50',
@@ -134,3 +155,14 @@ export const SERVICE_DOCUMENTS = [
   'Политика конфиденциальности',
   'Условия использования сервиса',
 ];
+
+export const DROPDOWN_LINKS = [
+  {
+    text: 'Личный кабинет',
+    link: '/profile',
+  },
+];
+
+export const NUMBER_OF_DAYS_DISPLAYED = 13;
+export const NUMBER_TO_SWITCH_THE_WEEKS = 14;
+export const DAYS_OF_WEEK = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];

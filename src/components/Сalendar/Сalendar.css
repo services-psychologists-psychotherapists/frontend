@@ -1,0 +1,132 @@
+.session-calendar {
+  display: flex;
+  flex-direction: column;
+  row-gap: 28px;
+  max-width: 588px;
+  width: 100%;
+  margin: auto;
+}
+
+.calendar {
+  border-radius: 12px;
+  border: 1px solid var(--border-color-medium-violet);
+  display: inline-flex;
+  padding: 32px;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* TODO настроить стили для тайтла */
+.session-calendar__title {
+  color: var(--text-color-dark-blue);
+  font-family: var(--font-family-montsertat);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+.calendar__content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.calendar__period {
+  max-width: 524px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.calendar__dates,
+.calendar__days-of-week {
+  display: grid;
+  grid-template-columns: repeat(7, 60px);
+  gap: 8px;
+}
+
+.calendar__dates {
+  grid-template-rows: repeat(2, 60px);
+}
+
+.calendar__days-of-week {
+  grid-template-rows: repeat(1, 60px);
+  list-style-type: none;
+}
+
+.calendar__date {
+  cursor: pointer;
+  border-radius: 30px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.calendar__date:hover {
+  border: 2px solid var(--border-color-medium-violet);
+  font-weight: var(--text-weight-title);
+}
+
+.calendar__cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-family-lato);
+  color: var(--text-color-dark-blue);
+}
+
+.calendar__date_today {
+  border: 1px solid var(--border-color-medium-violet);
+}
+
+.calendar__period_switch {
+  background-repeat: no-repeat;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  border: unset;
+  background-color: unset;
+}
+
+.calendar__day-of-week_day-off {
+  color: var(--border-color-medium-violet); /* изменить переменную */
+}
+
+.calendar__period_prev {
+  background-image: url('../../images/calendar_prev_weeks.svg');
+}
+
+.calendar__period_next {
+  background-image: url('../../images/calendar_next_weeks.svg');
+}
+
+.calendar__date_selected {
+  background: var(--border-color-dark-violet); /* изменить переменную */
+  color: #fff;
+}
+
+/* TODO: настроить стили если оставляем такую реализацию
+и заменить свг*/
+.calendar__period_reset {
+  background-image: url('./reset-alt-svgrepo-com.svg');
+  background-size: 20px;
+  background-position: center;
+}
+
+.calendar__current-weeks {
+  display: flex;
+  flex-direction: row;
+  column-gap: 15px;
+  font-family: var(--font-family-lato);
+  color: var(--text-color-dark-blue);
+  /* может заменить на тайтл? */
+  font-weight: var(--text-weight-title);
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.calendar__day-of-week {
+  font-size: 14px;
+  line-height: normal;
+}
