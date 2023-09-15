@@ -1,5 +1,6 @@
 .avatar {
   border-radius: 50%;
+  overflow: hidden;
 }
 
 .avatar__no-avatar {
@@ -12,6 +13,8 @@
 .img {
   object-fit: cover;
   object-position: center;
+  width: 100%;
+  height: 100%;
 }
 
 .img__size_s {
