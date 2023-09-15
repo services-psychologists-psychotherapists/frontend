@@ -1,4 +1,4 @@
-export default function getTime(time) {
-  const hours = `0${time}`.slice(-2);
+export default function getTime(date) {
+  const hours = `0${date.getHours()}`.slice(-2);
   return `${hours}:00 - ${hours}:50`;
 }

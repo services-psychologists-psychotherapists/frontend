@@ -2,12 +2,12 @@
   display: flex;
 }
 
-.buttons_size_l {
+.buttons_size_m {
   gap: 20px;
 }
-.buttons_size_m {
+.buttons_size_s {
   gap: 12px;
 }
-.buttons_size_xl {
+.buttons_size_l {
   gap: 23px;
 }
