@@ -36,11 +36,13 @@ export default function PsychologistAccountTemplate({
       <Header isLoggedIn />
       <section className="psychologist-account">
         <div className="psychologist-account__links-section">
-          <NavLinksList
-            list={PSYCHOLOGIST_ACCOUNT_LINKS}
-            direction="column"
-            variant="violet"
-          />
+          <div className="psychologist-account__style-links">
+            <NavLinksList
+              list={PSYCHOLOGIST_ACCOUNT_LINKS}
+              direction="column"
+              variant="violet"
+            />
+          </div>
         </div>
 
         <div className="psychologist-account__planner-section">
