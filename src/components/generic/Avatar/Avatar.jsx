@@ -4,11 +4,11 @@ import './Avatar.css';
 import noAvatar from '../../../images/no-avatar.svg';
 
 export default function Avatar({ src, size }) {
-   function getNoAvatarClasses(tag) {
+  function getNoAvatarClasses(tag) {
     if (src === noAvatar) {
       if (tag === 'img') {
         if (size === 'xs' || size === 's') {
-          return 'img__size_s';
+          return `${tag}__no-avatar img_size_s`;
         }
         return '';
       }
@@ -24,7 +24,7 @@ export default function Avatar({ src, size }) {
       <img
         src={src}
         alt="аватар пользователя"
-        className={`img ${getNoAvatarClasses('img')}`}
+        className={`${src !== noAvatar ? 'img' : getNoAvatarClasses('img')}`}
       />
       {size === 'xl' && (
         <button

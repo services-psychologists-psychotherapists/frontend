@@ -17,7 +17,12 @@
   height: 100%;
 }
 
-.img__size_s {
+.img__no-avatar {
+  object-fit: contain;
+  object-position: center;
+}
+
+.img_size_s {
   width: 30px;
 }
 
