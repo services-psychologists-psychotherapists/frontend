@@ -3,9 +3,8 @@ import './CardOfSession.css';
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar/Avatar';
 import PsychoName from '../PsychoName/PsychoName';
-import getTime from '../../../utils/getTime';
+import { getTime, getMonthName } from '../../../utils/helpers';
 import { DAYS_OF_WEEK, NOT_APPOINTMENT_MESSAGE } from '../../../constants/constants';
-import getMonthName from '../../../utils/getMonthName';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import Button from '../Button/Button';
 
