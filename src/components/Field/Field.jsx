@@ -88,7 +88,7 @@ export default function Field({
                     ? `Выбран ${selectedCheckBoxCount} вариант`
                     : selectedCheckBoxCount > 1 && selectedCheckBoxCount < 5
                       ? `Выбрано ${selectedCheckBoxCount} варианта`
-                      : selectedCheckBoxCount > 5
+                      : selectedCheckBoxCount >= 5
                         ? `Выбрано ${selectedCheckBoxCount} вариантов`
                         : 'Выберите подходящие варианты'}`)
           }

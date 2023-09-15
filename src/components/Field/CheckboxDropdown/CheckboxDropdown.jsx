@@ -1,12 +1,20 @@
 import './CheckboxDropdown.css';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useForm } from '../../../hooks/useForm';
 
 export default function CheckboxDropdown({
   onChange,
   selectedCheckBoxValues,
   item,
 }) {
+  const { values, handleChange } = useForm({
+    custom: '',
+  });
+
+  // eslint-disable-next-line react/prop-types
+  const isOtherChecked = selectedCheckBoxValues['Другое'] || false;
+
   return (
     <label className="dropdown__checkbox-label">
       <input
@@ -16,7 +24,18 @@ export default function CheckboxDropdown({
         checked={selectedCheckBoxValues[item] || false}
         onChange={onChange}
       />
-      {item}
+      {item === 'Другое' && (
+        <input
+          type="text"
+          name="custom"
+          className="dropdown__custom-input"
+          value={values.custom || ''}
+          onChange={handleChange}
+          placeholder="Другое"
+          disabled={!isOtherChecked}
+        />
+      )}
+      {item === 'Другое' ? '' : item}
     </label>
   );
 }

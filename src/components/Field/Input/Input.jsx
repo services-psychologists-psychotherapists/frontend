@@ -66,8 +66,8 @@ Input.propTypes = {
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  required: PropTypes.bool.isRequired,
-  isFocused: PropTypes.bool.isRequired,
+  required: PropTypes.bool,
+  isFocused: PropTypes.bool,
   disabled: PropTypes.bool,
   minLength: PropTypes.string,
   maxLength: PropTypes.string,
@@ -77,6 +77,8 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+  required: false,
+  isFocused: false,
   disabled: false,
   isValid: true,
   minLength: '',
