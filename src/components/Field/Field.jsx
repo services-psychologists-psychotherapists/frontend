@@ -6,7 +6,7 @@ import Input from './Input/Input';
 import Label from './Label/Label';
 import Prompt from './Prompt/Prompt';
 import DropDown from './DropDown/DropDown';
-import { checkboxDropDown, inputElement, radioDropDown } from '../../constants/constants';
+import { inputElement, radioDropDown } from '../../constants/constants';
 
 export default function Field({
   title,
@@ -18,7 +18,8 @@ export default function Field({
   minLength,
   maxLength,
   required,
-  element
+  element,
+  dropDownContent
 }) {
   const [isFocused, setIsFocused] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
@@ -74,84 +75,44 @@ export default function Field({
         <div
           className={`field ${!isValid && !disabled && 'field__invalid-input'} ${disabled && 'field_disabled'}`}
         >
-          {
-           element === inputElement && (
-           <Input
-             isFocused={isFocused}
-             type={type}
-             name={name}
-             value={values[name] || ''}
-             onChange={handleChange}
-             placeholder={placeholder}
-             isValid={isValid}
-             disabled={disabled}
-             minLength={minLength}
-             maxLength={maxLength}
-             required={required}
-             setIsFocused={setIsFocused}
-             element={element}
-           />
-           )
-          }
-          {
-            element === radioDropDown && (
-              <Input
-                isFocused={isFocused}
-                type={type}
-                name={name}
-                value={selectedValue}
-                placeholder={placeholder}
-                required={required}
-                setIsFocused={setIsFocused}
-                element={element}
-                onClick={handleOpenDropDown}
-                isDropDownOpened={isFocused}
-                disabled={disabled}
-              />
-            )
-          }
-          {
-            element === checkboxDropDown && (
-              <Input
-                isFocused={isFocused}
-                type={type}
-                name={name}
-                value={`${selectedCheckBoxCount === 1
-                  ? `Выбран ${selectedCheckBoxCount} вариант`
-                  : selectedCheckBoxCount > 1 && selectedCheckBoxCount < 5
-                    ? `Выбрано ${selectedCheckBoxCount} варианта`
-                    : selectedCheckBoxCount > 5
-                      ? `Выбрано ${selectedCheckBoxCount} вариантов`
-                      : 'Выберите подходящие варианты'}`}
-                placeholder={placeholder}
-                required={required}
-                setIsFocused={setIsFocused}
-                element={element}
-                onClick={handleOpenDropDown}
-                isDropDownOpened={isFocused}
-                disabled={disabled}
-              />
-            )
-          }
-        </div>
-        {element === radioDropDown
-          && (
-          <DropDown
-            element={element}
-            onChange={handleRadioChange}
-            selectedValue={selectedValue}
+          <Input
             isFocused={isFocused}
+            type={type}
+            name={name}
+            value={
+              element === inputElement
+                ? (values[name] || '')
+                : element === radioDropDown
+                  ? (selectedValue)
+                  : (`${selectedCheckBoxCount === 1
+                    ? `Выбран ${selectedCheckBoxCount} вариант`
+                    : selectedCheckBoxCount > 1 && selectedCheckBoxCount < 5
+                      ? `Выбрано ${selectedCheckBoxCount} варианта`
+                      : selectedCheckBoxCount > 5
+                        ? `Выбрано ${selectedCheckBoxCount} вариантов`
+                        : 'Выберите подходящие варианты'}`)
+          }
+            onChange={handleChange}
+            placeholder={placeholder}
+            isValid={isValid}
+            disabled={disabled}
+            minLength={minLength}
+            maxLength={maxLength}
+            required={required}
+            setIsFocused={setIsFocused}
+            element={element}
+            isDropDownOpened={isFocused}
+            onClick={handleOpenDropDown}
           />
-          )}
-        {element === checkboxDropDown
-          && (
-            <DropDown
-              onChange={handleCheckboxChange}
-              element={element}
-              isFocused={isFocused}
-              selectedCheckBoxValues={selectedCheckBoxValues}
-            />
-          )}
+        </div>
+        <DropDown
+          element={element}
+          onChange={element === radioDropDown ? handleRadioChange : handleCheckboxChange}
+          selectedValue={selectedValue}
+          isFocused={isFocused}
+          selectedCheckBoxValues={selectedCheckBoxValues}
+          dropDownContent={dropDownContent}
+        />
       </div>
       <Prompt
         errors={errors}
@@ -175,7 +136,9 @@ Field.propTypes = {
   disabled: PropTypes.bool,
   minLength: PropTypes.string,
   maxLength: PropTypes.string,
-  required: PropTypes.bool
+  required: PropTypes.bool,
+  // eslint-disable-next-line react/forbid-prop-types
+  dropDownContent: PropTypes.array
 };
 
 Field.defaultProps = {
@@ -183,5 +146,6 @@ Field.defaultProps = {
   required: true,
   minLength: '',
   maxLength: '',
-  prompt: ''
+  prompt: '',
+  dropDownContent: []
 };

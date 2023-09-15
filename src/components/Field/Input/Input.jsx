@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import {
   checkboxDropDown,
-  INPUT_ICONS,
-  inputElement,
   radioDropDown
 } from '../../../constants/constants';
+import InputIcon from '../InputIcon/InputIcon';
 
 export default function Input({
   element,
@@ -25,11 +24,6 @@ export default function Input({
 }) {
   const [isEyeOpened, setIsEyeOpened] = useState(false);
 
-  function showPasswordContent(e) {
-    e.preventDefault();
-    setIsEyeOpened(!isEyeOpened);
-  }
-
   return (
     <>
       <input
@@ -47,40 +41,20 @@ export default function Input({
         required={required}
         onClick={onClick}
       />
-      {element === inputElement && type === 'password' && (
-        <button
-          className="input__icon"
-          onClick={showPasswordContent}
+      {
+        (type === 'password' || element === radioDropDown || element === checkboxDropDown) && (
+        <InputIcon
+          element={element}
           disabled={disabled}
-        >
-          <img
-            alt="Eye-icon"
-            src={
-              disabled
-                ? INPUT_ICONS.closedEyeDisabled
-                : isEyeOpened
-                  ? isValid
-                    ? INPUT_ICONS.openedEye
-                    : INPUT_ICONS.openedEyeError
-                  : isValid
-                    ? INPUT_ICONS.closedEye
-                    : INPUT_ICONS.closedEyeError
-            }
-          />
-        </button>
-      )}
-      {(element === radioDropDown || element === checkboxDropDown) && (
-        <button
-          className={`input__icon dropdown-input__icon ${isFocused ? 'rotate' : ''}`}
+          type={type}
+          setIsEyeOpened={setIsEyeOpened}
           onClick={onClick}
-          disabled={disabled}
-        >
-          <img
-            alt="Arrow-icon"
-            src={disabled ? INPUT_ICONS.arrowDisabled : INPUT_ICONS.arrow}
-          />
-        </button>
-      )}
+          isEyeOpened={isEyeOpened}
+          isValid={isValid}
+          isFocused={isFocused}
+        />
+        )
+      }
 
     </>
   );

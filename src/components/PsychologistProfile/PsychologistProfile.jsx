@@ -1,14 +1,18 @@
 import './PsychologistProfile.css';
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../Header/Header';
 import Field from '../Field/Field';
 import {
   radioDropDown,
   inputElement,
   checkboxDropDown,
+  dropDownLists,
 } from '../../constants/constants';
 
 export default function PsychologistProfile() {
+  const [dropDownListRadio] = useState(dropDownLists.genderList);
+  const [dropDownListCheckbox] = useState(dropDownLists.approachList);
+
   return (
     <>
       <Header isLoggedIn={false} />
@@ -32,7 +36,6 @@ export default function PsychologistProfile() {
             maxLength="32"
             minLength="8"
             required
-            disabled
           />
           <Field
             element={radioDropDown}
@@ -40,6 +43,7 @@ export default function PsychologistProfile() {
             title="Пол"
             type="text"
             placeholder="выберите пол"
+            dropDownContent={dropDownListRadio}
           />
           <Field
             element={checkboxDropDown}
@@ -47,6 +51,7 @@ export default function PsychologistProfile() {
             title="Подход"
             type="text"
             placeholder="Выберите все подходящие варианты"
+            dropDownContent={dropDownListCheckbox}
           />
         </form>
       </div>

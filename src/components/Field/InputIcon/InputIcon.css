@@ -1,0 +1,18 @@
+.input__icon:focus {
+  outline: none;
+}
+
+.input__icon img {
+  width: 20px;
+  height: 20px;
+}
+
+.dropdown-input__icon {
+  transition: transform 0.2s ease;
+  transform: rotate(0deg);
+}
+
+.dropdown-input__icon img {
+  width: 12px;
+  height: 6px;
+}
