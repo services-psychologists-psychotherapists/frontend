@@ -9,8 +9,15 @@
   font-weight: var(--text-weight-primary);
   font-size: 18px;
   line-height: 24px;
-  color: var(--text-color-dark-blue);
   max-height: 48px;
+}
+
+.input_initial {
+  color: var(--text-color-dark-blue);
+}
+
+.input_focused {
+  color: var(--border-color-dark-violet);
 }
 
 .input:focus {
@@ -57,21 +64,20 @@
 
 /*-----------------INPUT---------------------*/
 
-/*-----------------RADIO---------------------*/
+/*-----------------DROPDOWN---------------------*/
 
-.radio-input {
+.dropdown-input {
   background-color: transparent;
-  color: var(--border-color-dark-blue);
   cursor: pointer;
   caret-color: transparent;
 }
 
-.radio-input__icon {
+.dropdown-input__icon {
   transition: transform 0.2s ease;
   transform: rotate(0deg);
 }
 
-.radio-input__icon img {
+.dropdown-input__icon img {
   width: 12px;
   height: 6px;
 }

@@ -2,7 +2,11 @@ import './PsychologistProfile.css';
 import React from 'react';
 import Header from '../Header/Header';
 import Field from '../Field/Field';
-import { radioDropDown, inputElement } from '../../constants/constants';
+import {
+  radioDropDown,
+  inputElement,
+  checkboxDropDown,
+} from '../../constants/constants';
 
 export default function PsychologistProfile() {
   return (
@@ -36,6 +40,13 @@ export default function PsychologistProfile() {
             title="Пол"
             type="text"
             placeholder="выберите пол"
+          />
+          <Field
+            element={checkboxDropDown}
+            name="approach"
+            title="Подход"
+            type="text"
+            placeholder="Выберите все подходящие варианты"
           />
         </form>
       </div>

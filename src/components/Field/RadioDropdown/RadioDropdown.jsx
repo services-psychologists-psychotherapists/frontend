@@ -6,7 +6,7 @@ export default function RadioDropdown({ onChange, selectedValue, item }) {
   return (
     <label className="dropdown__radio-label">
       <input
-        type="radio"
+        type="checkbox"
         className="dropdown__radio"
         value={item}
         checked={selectedValue === item}

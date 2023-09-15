@@ -117,7 +117,15 @@ export const INPUT_ICONS = {
 
 export const inputElement = 'input';
 export const radioDropDown = 'radioDropDown';
+export const checkboxDropDown = 'checkboxDropDown';
 
 export const dropDownLists = {
   genderList: ['женский', 'мужской', 'другое'],
+  approachList: [
+    'Гештальт - терапия',
+    'Экзистенциальный анализ',
+    'Телесная терапия',
+    'Панические атаки',
+    'Другое',
+  ],
 };

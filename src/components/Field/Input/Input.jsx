@@ -1,7 +1,12 @@
 import './Input.css';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { INPUT_ICONS, inputElement, radioDropDown } from '../../../constants/constants';
+import {
+  checkboxDropDown,
+  INPUT_ICONS,
+  inputElement,
+  radioDropDown
+} from '../../../constants/constants';
 
 export default function Input({
   element,
@@ -28,8 +33,8 @@ export default function Input({
   return (
     <>
       <input
-        className={`input ${!isValid && !disabled && 'input_invalid'} ${disabled && 'input_disabled'} 
-        ${element === radioDropDown && 'radio-input'}`}
+        className={`input ${isFocused ? 'input_focused' : 'input_initial'} ${!isValid && !disabled && 'input_invalid'} ${disabled && 'input_disabled'} 
+        ${(element === radioDropDown || element === checkboxDropDown) && 'dropdown-input'}`}
         type={isEyeOpened ? 'text' : type}
         id={name}
         name={name}
@@ -64,9 +69,9 @@ export default function Input({
           />
         </button>
       )}
-      {element === radioDropDown && (
+      {(element === radioDropDown || element === checkboxDropDown) && (
         <button
-          className={`input__icon radio-input__icon ${isFocused ? 'rotate' : ''}`}
+          className={`input__icon dropdown-input__icon ${isFocused ? 'rotate' : ''}`}
           onClick={onClick}
           disabled={disabled}
         >
@@ -85,21 +90,25 @@ Input.propTypes = {
   element: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  disabled: PropTypes.bool,
-  placeholder: PropTypes.string.isRequired,
-  minLength: PropTypes.string.isRequired,
-  maxLength: PropTypes.string.isRequired,
-  required: PropTypes.bool.isRequired,
-  onChange: PropTypes.func.isRequired,
   value: PropTypes.string.isRequired,
-  isValid: PropTypes.bool.isRequired,
-  isFocused: PropTypes.bool,
+  placeholder: PropTypes.string.isRequired,
+  required: PropTypes.bool.isRequired,
+  isFocused: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
+  minLength: PropTypes.string,
+  maxLength: PropTypes.string,
+  onChange: PropTypes.func,
+  isValid: PropTypes.bool,
   onClick: PropTypes.func
 };
 
 Input.defaultProps = {
   disabled: false,
-  isFocused: false,
+  isValid: true,
+  minLength: '',
+  maxLength: '',
   onClick() {
+  },
+  onChange() {
   }
 };
