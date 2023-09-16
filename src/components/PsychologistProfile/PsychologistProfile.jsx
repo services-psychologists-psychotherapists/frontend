@@ -1,7 +1,6 @@
 import './PsychologistProfile.css';
 import React, { useState } from 'react';
 import Header from '../Header/Header';
-import Field from '../Field/Field';
 import {
   radioDropDown,
   inputElement,
@@ -9,6 +8,8 @@ import {
   dropDownLists,
 } from '../../constants/constants';
 import InputField from '../InputField/InputField';
+import RadioDropdownField from '../RadioDropdownField/RadioDropdownField';
+import CheckboxDropdownField from '../CheckboxDropdownField/CheckboxDropdownField';
 
 export default function PsychologistProfile() {
   const [dropDownListRadio] = useState(dropDownLists.genderList);
@@ -27,7 +28,15 @@ export default function PsychologistProfile() {
             placeholder="irina_k@yan.ru"
             prompt="Здесь должна быть подсказка"
           />
-          <Field
+          <InputField
+            element={inputElement}
+            name="Имя"
+            placeholder="Александр"
+            title="Имя"
+            type="text"
+            disabled
+          />
+          <InputField
             element={inputElement}
             name="password"
             title="Пароль"
@@ -36,9 +45,8 @@ export default function PsychologistProfile() {
             placeholder="********"
             maxLength="32"
             minLength="8"
-            required
           />
-          <Field
+          <RadioDropdownField
             element={radioDropDown}
             name="gender"
             title="Пол"
@@ -46,7 +54,7 @@ export default function PsychologistProfile() {
             placeholder="выберите пол"
             dropDownContent={dropDownListRadio}
           />
-          <Field
+          <CheckboxDropdownField
             element={checkboxDropDown}
             name="approach"
             title="Подход"

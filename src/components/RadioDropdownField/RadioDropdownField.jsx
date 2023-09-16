@@ -1,23 +1,20 @@
-import './InputField.css';
-import React from 'react';
+import './RadioDropdownField.css';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { radioDropDown } from '../../constants/constants';
 import Field from '../Field/Field';
-import { inputElement } from '../../constants/constants';
 
-export default function InputField({
+export default function RadioDropdownField({
   title,
   type,
   name,
-  prompt,
   disabled,
   placeholder,
-  minLength,
-  maxLength,
   required,
   element,
   dropDownContent,
 }) {
-  if (!inputElement.includes(element)) {
+  if (!radioDropDown.includes(element)) {
     throw new Error(`Недопустимое значение для пропса 'element': ${element}`);
   }
 
@@ -28,36 +25,26 @@ export default function InputField({
       title={title}
       type={type}
       placeholder={placeholder}
-      prompt={prompt}
       disabled={disabled}
-      minLength={minLength}
-      maxLength={maxLength}
       required={required}
       dropDownContent={dropDownContent}
     />
   );
 }
 
-InputField.propTypes = {
-  element: PropTypes.oneOf(inputElement).isRequired,
+RadioDropdownField.propTypes = {
+  element: PropTypes.oneOf(radioDropDown).isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  prompt: PropTypes.string,
-  disabled: PropTypes.bool,
-  minLength: PropTypes.string,
-  maxLength: PropTypes.string,
-  required: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
-  dropDownContent: PropTypes.array,
+  dropDownContent: PropTypes.array.isRequired,
+  disabled: PropTypes.bool,
+  required: PropTypes.bool,
 };
 
-InputField.defaultProps = {
+RadioDropdownField.defaultProps = {
   disabled: false,
   required: false,
-  minLength: '',
-  maxLength: '',
-  prompt: '',
-  dropDownContent: [],
 };

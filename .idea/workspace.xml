@@ -5,12 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="080e6e00-7066-4260-ab8d-3d5208e2dcb8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/InputField/InputField.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/InputField/InputField.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CheckboxDropdownField/CheckboxDropdownField.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/CheckboxDropdownField/CheckboxDropdownField.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/RadioDropdownField/RadioDropdownField.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/RadioDropdownField/RadioDropdownField.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Field/DropDown/DropDown.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Field/DropDown/DropDown.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Field/Field.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Field/Field.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Field/Field.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Field/Field.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Field/InputIcon/InputIcon.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Field/InputIcon/InputIcon.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Field/InputIcon/InputIcon.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Field/InputIcon/InputIcon.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Field/Input/Input.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Field/Input/Input.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Field/Label/Label.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Field/Label/Label.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Field/Label/Label.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Field/Label/Label.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Field/Prompt/Prompt.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Field/Prompt/Prompt.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/InputField/InputField.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/InputField/InputField.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/PsychologistProfile/PsychologistProfile.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PsychologistProfile/PsychologistProfile.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

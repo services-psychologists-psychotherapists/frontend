@@ -1,9 +1,7 @@
 import './DwopDown.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-  radioDropDown
-} from '../../../constants/constants';
+import { radioDropDown } from '../../../constants/constants';
 import RadioDropdown from '../RadioDropdown/RadioDropdown';
 import CheckboxDropdown from '../CheckboxDropdown/CheckboxDropdown';
 
@@ -15,32 +13,27 @@ export default function DropDown({
   selectedCheckBoxValues,
   dropDownContent
 }) {
+  if (dropDownContent.length === 0) {
+    return null;
+  }
+
+  const DropdownItem = element === radioDropDown ? RadioDropdown : CheckboxDropdown;
+
   return (
-    dropDownContent.length > 0 && (
-      <div className={`dropdown ${isFocused ? 'dropdown_opened' : ''}`}>
-        <ul className="dropdown__list">
-          {
-            dropDownContent.map((item) => (
-              <li className="dropdown__item" key={item}>
-                {element === radioDropDown ? (
-                  <RadioDropdown
-                    selectedValue={selectedValue}
-                    item={item}
-                    onChange={onChange}
-                  />
-                ) : (
-                  <CheckboxDropdown
-                    selectedCheckBoxValues={selectedCheckBoxValues}
-                    item={item}
-                    onChange={onChange}
-                  />
-                )}
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-    )
+    <div className={`dropdown ${isFocused ? 'dropdown_opened' : ''}`}>
+      <ul className="dropdown__list">
+        {dropDownContent.map((item) => (
+          <li className="dropdown__item" key={item}>
+            <DropdownItem
+              selectedValue={selectedValue}
+              selectedCheckBoxValues={selectedCheckBoxValues}
+              item={item}
+              onChange={onChange}
+            />
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
@@ -50,8 +43,7 @@ DropDown.propTypes = {
   selectedCheckBoxValues: PropTypes.shape({}),
   isFocused: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  dropDownContent: PropTypes.array
+  dropDownContent: PropTypes.arrayOf(PropTypes.string)
 };
 
 DropDown.defaultProps = {

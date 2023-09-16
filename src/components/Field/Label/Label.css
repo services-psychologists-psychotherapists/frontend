@@ -1,0 +1,13 @@
+.label {
+  padding-left: 12px;
+  font-family: var(--font-family-lato);
+  font-weight: var(--text-weight-primary);
+  font-size: 18px;
+  line-height: 24px;
+  color: var(--text-color-dark-blue);
+  margin-bottom: 12px;
+}
+
+.label_disabled {
+  color: var(--text-coolor-disabled);
+}

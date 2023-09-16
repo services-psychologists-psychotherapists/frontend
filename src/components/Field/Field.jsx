@@ -25,6 +25,7 @@ export default function Field({
   const [selectedValue, setSelectedValue] = useState('');
   const [selectedCheckBoxValues, setSelectedCheckBoxValues] = useState({});
   const fieldRef = useRef(null);
+
   // eslint-disable-next-line max-len
   const selectedCheckBoxCount = Object.values(selectedCheckBoxValues).filter((value) => value).length;
 
@@ -34,13 +35,13 @@ export default function Field({
     [name]: '',
   });
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!fieldRef.current.contains(event.target)) {
-        setIsFocused(false);
-      }
-    };
+  const handleClickOutside = (event) => {
+    if (!fieldRef.current.contains(event.target)) {
+      setIsFocused(false);
+    }
+  };
 
+  useEffect(() => {
     document.addEventListener('click', handleClickOutside);
 
     return () => {
@@ -65,6 +66,33 @@ export default function Field({
     }));
   };
 
+  const fieldClasses = `field 
+  ${!isValid && !disabled ? 'field__invalid-input' : ''} 
+  ${disabled ? 'field_disabled' : ''}`;
+
+  let displayValue;
+
+  if (element === inputElement) {
+    displayValue = values[name] || '';
+  } else if (element === radioDropDown) {
+    displayValue = selectedValue;
+  } else {
+    switch (true) {
+      case selectedCheckBoxCount === 1:
+        displayValue = `Выбран ${selectedCheckBoxCount} вариант`;
+        break;
+      case selectedCheckBoxCount > 1 && selectedCheckBoxCount < 5:
+        displayValue = `Выбрано ${selectedCheckBoxCount} варианта`;
+        break;
+      case selectedCheckBoxCount >= 5:
+        displayValue = `Выбрано ${selectedCheckBoxCount} вариантов`;
+        break;
+      default:
+        displayValue = 'Выберите подходящие варианты';
+        break;
+    }
+  }
+
   return (
     <div className="field-container">
       <Label
@@ -72,26 +100,12 @@ export default function Field({
         disabled={disabled}
       />
       <div className="field-container__input-wrapper" ref={fieldRef}>
-        <div
-          className={`field ${!isValid && !disabled && 'field__invalid-input'} ${disabled && 'field_disabled'}`}
-        >
+        <div className={fieldClasses}>
           <Input
             isFocused={isFocused}
             type={type}
             name={name}
-            value={
-              element === inputElement
-                ? (values[name] || '')
-                : element === radioDropDown
-                  ? (selectedValue)
-                  : (`${selectedCheckBoxCount === 1
-                    ? `Выбран ${selectedCheckBoxCount} вариант`
-                    : selectedCheckBoxCount > 1 && selectedCheckBoxCount < 5
-                      ? `Выбрано ${selectedCheckBoxCount} варианта`
-                      : selectedCheckBoxCount >= 5
-                        ? `Выбрано ${selectedCheckBoxCount} вариантов`
-                        : 'Выберите подходящие варианты'}`)
-          }
+            value={displayValue}
             onChange={handleChange}
             placeholder={placeholder}
             isValid={isValid}
@@ -107,7 +121,7 @@ export default function Field({
         <DropDown
           element={element}
           onChange={element === radioDropDown ? handleRadioChange : handleCheckboxChange}
-          selectedValue={selectedValue}
+          selectedValue={displayValue}
           isFocused={isFocused}
           selectedCheckBoxValues={selectedCheckBoxValues}
           dropDownContent={dropDownContent}
@@ -142,7 +156,7 @@ Field.propTypes = {
 
 Field.defaultProps = {
   disabled: false,
-  required: true,
+  required: false,
   minLength: '',
   maxLength: '',
   prompt: '',

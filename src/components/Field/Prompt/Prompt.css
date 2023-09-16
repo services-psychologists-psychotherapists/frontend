@@ -1,0 +1,20 @@
+.field__span_not-visible {
+  height: 12px;
+}
+
+.field__span_visible {
+  padding-left: 12px;
+  font-family: var(--font-family-lato);
+  font-weight: var(--text-weight-primary);
+  font-size: 14px;
+  line-height: 16.8px;
+  height: 12px;
+}
+
+.field__span_visible-error {
+  color: var(--text-color-error);
+}
+
+.field__span_visible-prompt {
+  color: var(--text-color-dark-blue);
+}

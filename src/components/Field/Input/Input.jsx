@@ -24,11 +24,18 @@ export default function Input({
 }) {
   const [isEyeOpened, setIsEyeOpened] = useState(false);
 
+  const inputClasses = `input 
+    ${isFocused ? 'input_focused' : 'input_initial'} 
+    ${!isValid && !disabled && 'input_invalid'} 
+    ${disabled && 'input_disabled'}
+    ${(element === radioDropDown || element === checkboxDropDown)
+    && 'dropdown-input'}`;
+  const isHaveIcon = type === 'password' || element === radioDropDown || element === checkboxDropDown;
+
   return (
     <>
       <input
-        className={`input ${isFocused ? 'input_focused' : 'input_initial'} ${!isValid && !disabled && 'input_invalid'} ${disabled && 'input_disabled'} 
-        ${(element === radioDropDown || element === checkboxDropDown) && 'dropdown-input'}`}
+        className={inputClasses}
         type={isEyeOpened ? 'text' : type}
         id={name}
         name={name}
@@ -41,8 +48,7 @@ export default function Input({
         required={required}
         onClick={onClick}
       />
-      {
-        (type === 'password' || element === radioDropDown || element === checkboxDropDown) && (
+      {isHaveIcon && (
         <InputIcon
           element={element}
           disabled={disabled}
@@ -53,9 +59,7 @@ export default function Input({
           isValid={isValid}
           isFocused={isFocused}
         />
-        )
-      }
-
+      )}
     </>
   );
 }
@@ -83,8 +87,6 @@ Input.defaultProps = {
   isValid: true,
   minLength: '',
   maxLength: '',
-  onClick() {
-  },
-  onChange() {
-  }
+  onClick: () => {},
+  onChange: () => {}
 };

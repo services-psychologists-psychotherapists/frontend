@@ -1,23 +1,20 @@
-import './InputField.css';
-import React from 'react';
+import './CheckboxDropdownField.css';
 import PropTypes from 'prop-types';
+import React from 'react';
+import { checkboxDropDown } from '../../constants/constants';
 import Field from '../Field/Field';
-import { inputElement } from '../../constants/constants';
 
-export default function InputField({
+export default function CheckboxDropdownField({
   title,
   type,
   name,
-  prompt,
   disabled,
   placeholder,
-  minLength,
-  maxLength,
   required,
   element,
   dropDownContent,
 }) {
-  if (!inputElement.includes(element)) {
+  if (!checkboxDropDown.includes(element)) {
     throw new Error(`Недопустимое значение для пропса 'element': ${element}`);
   }
 
@@ -28,36 +25,26 @@ export default function InputField({
       title={title}
       type={type}
       placeholder={placeholder}
-      prompt={prompt}
       disabled={disabled}
-      minLength={minLength}
-      maxLength={maxLength}
       required={required}
       dropDownContent={dropDownContent}
     />
   );
 }
 
-InputField.propTypes = {
-  element: PropTypes.oneOf(inputElement).isRequired,
+CheckboxDropdownField.propTypes = {
+  element: PropTypes.oneOf(checkboxDropDown).isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  prompt: PropTypes.string,
-  disabled: PropTypes.bool,
-  minLength: PropTypes.string,
-  maxLength: PropTypes.string,
-  required: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
-  dropDownContent: PropTypes.array,
+  dropDownContent: PropTypes.array.isRequired,
+  disabled: PropTypes.bool,
+  required: PropTypes.bool,
 };
 
-InputField.defaultProps = {
+CheckboxDropdownField.defaultProps = {
   disabled: false,
   required: false,
-  minLength: '',
-  maxLength: '',
-  prompt: '',
-  dropDownContent: [],
 };
