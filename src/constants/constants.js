@@ -123,3 +123,7 @@ export const DROPDOWN_LINKS = [
     link: '/profile',
   },
 ];
+
+export const NUMBER_OF_DAYS_DISPLAYED = 13;
+export const NUMBER_TO_SWITCH_THE_WEEKS = 14;
+export const DAYS_OF_WEEK = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];

@@ -1,0 +1,38 @@
+import React from 'react';
+import ButtonGroup from './ButtonGroup';
+import '../../App/App.css';
+import Button from '../Button/Button';
+
+export default {
+  title: 'Buttons group',
+  component: ButtonGroup,
+  tags: ['autodocs'],
+  argTypes: {
+    size: {
+      type: 'string',
+      defaultValue: 'l',
+      options: ['l', 'm'],
+      control: {
+        type: 'inline-radio',
+      },
+    },
+  },
+};
+
+const Template = function Btn(args) {
+  return (
+    <ButtonGroup {...args}>
+      <Button {...args} variant="secondary" onClick={() => {}}>
+        Отменить
+      </Button>
+      <Button {...args} onClick={() => {}}>
+        Вернуться назад
+      </Button>
+    </ButtonGroup>
+  );
+};
+
+export const Default = Template.bind({});
+Default.args = {
+  size: 'l',
+};
