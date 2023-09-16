@@ -10,18 +10,12 @@
   font-size: 18px;
   line-height: 24px;
   max-height: 48px;
-}
-
-.input_initial {
   color: var(--text-color-dark-blue);
-}
-
-.input_focused {
-  color: var(--border-color-dark-violet);
 }
 
 .input:focus {
   outline: none;
+  color: var(--border-color-dark-violet);
 }
 
 .input::placeholder {
@@ -31,7 +25,11 @@
   line-height: 24px;
 }
 
-.input_invalid {
+.text-input:focus::placeholder {
+  opacity: 0;
+}
+
+.input_invalid:focus {
   color: var(--text-color-error);
 }
 

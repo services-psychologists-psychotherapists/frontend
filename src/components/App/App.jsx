@@ -5,7 +5,7 @@ import HomePage from '../../pages/HomePage/HomePage';
 import PageForPsychologists from '../../pages/PageForPsychologists/PageForPsychologists';
 import Footer from '../Footer/Footer';
 import NotFound from '../../pages/NotFound/NotFound';
-import PsychologistProfile from '../PsychologistProfile/PsychologistProfile';
+import PsychologistProfile from '../../pages/PsychologistProfile/PsychologistProfile';
 
 export default function App() {
   return (

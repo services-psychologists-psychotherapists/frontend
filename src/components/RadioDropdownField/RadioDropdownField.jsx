@@ -33,7 +33,7 @@ export default function RadioDropdownField({
 }
 
 RadioDropdownField.propTypes = {
-  element: PropTypes.oneOf(radioDropDown).isRequired,
+  element: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

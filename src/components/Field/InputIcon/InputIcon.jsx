@@ -23,7 +23,6 @@ export default function InputIcon({
     setIsEyeOpened(!isEyeOpened);
   }
 
-  // Определяем классы для компонента на основе условий
   let iconClasses = 'input__icon';
   if ((element === radioDropDown || element === checkboxDropDown) && !isFocused) {
     iconClasses += ' dropdown-input__icon';
@@ -32,7 +31,6 @@ export default function InputIcon({
     iconClasses += ' rotate';
   }
 
-  // Определяем иконку на основе условий
   let iconSrc;
   if (element === inputElement && type === 'password') {
     if (disabled) {

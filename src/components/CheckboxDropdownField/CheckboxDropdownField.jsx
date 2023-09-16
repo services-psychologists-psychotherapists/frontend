@@ -33,7 +33,7 @@ export default function CheckboxDropdownField({
 }
 
 CheckboxDropdownField.propTypes = {
-  element: PropTypes.oneOf(checkboxDropDown).isRequired,
+  element: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

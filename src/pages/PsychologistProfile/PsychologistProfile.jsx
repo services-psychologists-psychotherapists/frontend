@@ -1,15 +1,15 @@
 import './PsychologistProfile.css';
 import React, { useState } from 'react';
-import Header from '../Header/Header';
+import Header from '../../components/Header/Header';
 import {
   radioDropDown,
   inputElement,
   checkboxDropDown,
   dropDownLists,
 } from '../../constants/constants';
-import InputField from '../InputField/InputField';
-import RadioDropdownField from '../RadioDropdownField/RadioDropdownField';
-import CheckboxDropdownField from '../CheckboxDropdownField/CheckboxDropdownField';
+import InputField from '../../components/InputField/InputField';
+import RadioDropdownField from '../../components/RadioDropdownField/RadioDropdownField';
+import CheckboxDropdownField from '../../components/CheckboxDropdownField/CheckboxDropdownField';
 
 export default function PsychologistProfile() {
   const [dropDownListRadio] = useState(dropDownLists.genderList);

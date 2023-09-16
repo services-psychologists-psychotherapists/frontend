@@ -114,7 +114,6 @@ export default function Field({
             maxLength={maxLength}
             required={required}
             element={element}
-            isDropDownOpened={isFocused}
             onClick={handleOpenDropDown}
           />
         </div>

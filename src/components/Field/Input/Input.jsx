@@ -2,7 +2,7 @@ import './Input.css';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import {
-  checkboxDropDown,
+  checkboxDropDown, inputElement,
   radioDropDown
 } from '../../../constants/constants';
 import InputIcon from '../InputIcon/InputIcon';
@@ -25,7 +25,7 @@ export default function Input({
   const [isEyeOpened, setIsEyeOpened] = useState(false);
 
   const inputClasses = `input 
-    ${isFocused ? 'input_focused' : 'input_initial'} 
+    ${element === inputElement && 'text-input'}
     ${!isValid && !disabled && 'input_invalid'} 
     ${disabled && 'input_disabled'}
     ${(element === radioDropDown || element === checkboxDropDown)

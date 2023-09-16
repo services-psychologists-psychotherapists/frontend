@@ -39,7 +39,7 @@ export default function InputField({
 }
 
 InputField.propTypes = {
-  element: PropTypes.oneOf(inputElement).isRequired,
+  element: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

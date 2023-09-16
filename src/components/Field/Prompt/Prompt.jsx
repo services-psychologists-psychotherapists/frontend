@@ -8,7 +8,6 @@ export default function Prompt({
   disabled,
   errors,
   values,
-  isFocused,
 }) {
   return (
     // eslint-disable-next-line react/jsx-no-useless-fragment
@@ -18,8 +17,7 @@ export default function Prompt({
           {errors[name]}
         </span>
       ))
-        || (!isFocused
-          && !values[name]
+        || (!values[name]
           && prompt
           && !errors[name]
           && !disabled && (
@@ -37,5 +35,4 @@ Prompt.propTypes = {
   disabled: PropTypes.bool.isRequired,
   errors: PropTypes.shape({}).isRequired,
   values: PropTypes.shape({}).isRequired,
-  isFocused: PropTypes.bool.isRequired,
 };
