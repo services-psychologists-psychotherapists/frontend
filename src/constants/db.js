@@ -157,6 +157,25 @@ export const PSYCHO = {
   price: 4500,
 };
 
+export const SLOT = {
+  client: {
+    name: 'Ирина',
+    lastName: 'Кожевникова',
+    id: '12345678907',
+    dateOfBith: new Date(1990, 4, 23),
+    img: avatar,
+  },
+  psycho: {
+    name: 'Ирина',
+    lastName: 'Кожевникова',
+    id: '12345678907',
+    dateOfBith: new Date(1990, 4, 23),
+    img: avatar,
+  },
+  date: new Date(2023, 9, 25, 19),
+  href: '/zoom',
+};
+
 export const PSYCHOLOGIST_ACCOUNT_LINKS = [
   {
     text: 'Главная',

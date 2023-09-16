@@ -13,3 +13,15 @@
   font-size: var(--text-font-size-m);
   line-height: 48px;
 }
+
+.title_size_s {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 26.8px;
+}
+
+.title_size_xs {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 30px;
+}

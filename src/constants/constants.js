@@ -127,3 +127,30 @@ export const DROPDOWN_LINKS = [
 export const NUMBER_OF_DAYS_DISPLAYED = 13;
 export const NUMBER_TO_SWITCH_THE_WEEKS = 14;
 export const DAYS_OF_WEEK = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+
+export const MONTH_NAME = [
+  'январь',
+  'вевраль',
+  'март',
+  'апрель',
+  'май',
+  'июнь',
+  'июль',
+  'август',
+  'сентябрь',
+  'октябрь',
+  'ноябрь',
+  'декабрь',
+];
+
+export const NOT_APPOINTMENT_MESSAGE = {
+  psycho: {
+    title: 'Сегодня сессий нет',
+    description: 'Установите доступное время, чтобы клиент смог записаться',
+    textBtn: 'Добавить свободное время',
+  },
+  client: {
+    title: 'Сессий пока не запланировано',
+    description: 'Здесь будет отображаться ближайшая ваша сессия',
+  },
+};

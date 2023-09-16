@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import arrow from '../../../images/arrow_icon.svg';
 import Button from '../Button/Button';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
-import { getTime } from '../../../utils/getTime';
+import { getTime } from '../../../utils/helpers';
 
 export default function Slot({ slot, onClick, isSlotOpen }) {
   function classIsOpen(element) {
