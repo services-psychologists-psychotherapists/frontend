@@ -100,7 +100,7 @@
 
 .button__text,
 .button__text-icon {
-  padding: 0;
+  padding: 8px;
   color: var(--text-color-dark-violet);
 }
 
