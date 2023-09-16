@@ -43,7 +43,7 @@ export default function CardOfSession({ type, session, isFree }) {
             <Button href={href}>
               {type === 'client' ? 'Перейти' : 'Начать сессию'}
             </Button>
-            <Button onClick={() => {}} variant="secondary">
+            <Button onClick={() => { }} variant="secondary">
               Отменить
             </Button>
           </ButtonGroup>

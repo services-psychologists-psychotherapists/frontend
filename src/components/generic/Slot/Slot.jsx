@@ -17,7 +17,7 @@ export default function Slot({ slot, onClick, isSlotOpen }) {
   return (
     <li className={`slot ${slot.isFree && 'slot_free'}`}>
       <button onClick={onClick} className="slot__header">
-        <p className="session-time">{getTime(slot.time.getHours())}</p>
+        <p className="session-time">{getTime(slot.time)}</p>
         <p className="slot__title">
           {!slot.isFree
             ? `${slot.patient.name} ${slot.patient.lastName}`
