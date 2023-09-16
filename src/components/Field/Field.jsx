@@ -99,7 +99,6 @@ export default function Field({
             minLength={minLength}
             maxLength={maxLength}
             required={required}
-            setIsFocused={setIsFocused}
             element={element}
             isDropDownOpened={isFocused}
             onClick={handleOpenDropDown}

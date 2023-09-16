@@ -8,6 +8,7 @@ import {
   checkboxDropDown,
   dropDownLists,
 } from '../../constants/constants';
+import InputField from '../InputField/InputField';
 
 export default function PsychologistProfile() {
   const [dropDownListRadio] = useState(dropDownLists.genderList);
@@ -18,7 +19,7 @@ export default function PsychologistProfile() {
       <Header isLoggedIn={false} />
       <div className="psychologist-page">
         <form name="login" noValidate>
-          <Field
+          <InputField
             element={inputElement}
             name="login"
             title="Логин"

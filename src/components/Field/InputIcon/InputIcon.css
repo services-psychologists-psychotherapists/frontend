@@ -2,7 +2,7 @@
   outline: none;
 }
 
-.input__icon img {
+.input__icon-img {
   width: 20px;
   height: 20px;
 }
@@ -12,7 +12,7 @@
   transform: rotate(0deg);
 }
 
-.dropdown-input__icon img {
+.dropdown-input__icon-img {
   width: 12px;
   height: 6px;
 }

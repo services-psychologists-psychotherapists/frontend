@@ -9,34 +9,53 @@ import {
 } from '../../../constants/constants';
 
 export default function InputIcon({
-  element, disabled, type, onClick, isEyeOpened, setIsEyeOpened, isValid, isFocused
+  element,
+  disabled,
+  type,
+  onClick,
+  isEyeOpened,
+  setIsEyeOpened,
+  isValid,
+  isFocused
 }) {
   function showPasswordContent(e) {
     e.preventDefault();
     setIsEyeOpened(!isEyeOpened);
   }
 
+  // Определяем классы для компонента на основе условий
+  let iconClasses = 'input__icon';
+  if ((element === radioDropDown || element === checkboxDropDown) && !isFocused) {
+    iconClasses += ' dropdown-input__icon';
+  }
+  if (isFocused && type !== 'password') {
+    iconClasses += ' rotate';
+  }
+
+  // Определяем иконку на основе условий
+  let iconSrc;
+  if (element === inputElement && type === 'password') {
+    if (disabled) {
+      iconSrc = INPUT_ICONS.closedEyeDisabled;
+    } else if (isEyeOpened) {
+      iconSrc = isValid ? INPUT_ICONS.openedEye : INPUT_ICONS.openedEyeError;
+    } else {
+      iconSrc = isValid ? INPUT_ICONS.closedEye : INPUT_ICONS.closedEyeError;
+    }
+  } else {
+    iconSrc = disabled ? INPUT_ICONS.arrowDisabled : INPUT_ICONS.arrow;
+  }
+
   return (
     <button
-      className={`input__icon ${(element === radioDropDown || element === checkboxDropDown) && 'dropdown-input__icon'} ${isFocused ? 'rotate' : ''}`}
-      onClick={(element === inputElement && type === 'password') ? showPasswordContent : onClick}
+      className={iconClasses}
+      onClick={element === inputElement && type === 'password' ? showPasswordContent : onClick}
       disabled={disabled}
     >
       <img
+        className={(element === inputElement && type === 'password') ? 'input__icon-img' : 'dropdown-input__icon-img'}
         alt="Input-Icon"
-        src={
-            (element === inputElement && type === 'password') ? (
-              disabled
-                ? INPUT_ICONS.closedEyeDisabled
-                : isEyeOpened
-                  ? isValid
-                    ? INPUT_ICONS.openedEye
-                    : INPUT_ICONS.openedEyeError
-                  : isValid
-                    ? INPUT_ICONS.closedEye
-                    : INPUT_ICONS.closedEyeError
-            ) : (disabled ? INPUT_ICONS.arrowDisabled : INPUT_ICONS.arrow)
-          }
+        src={iconSrc}
       />
     </button>
   );
@@ -56,6 +75,5 @@ InputIcon.propTypes = {
 InputIcon.defaultProps = {
   disabled: false,
   isValid: true,
-  onClick() {
-  },
+  onClick() {},
 };
