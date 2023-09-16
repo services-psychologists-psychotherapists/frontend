@@ -1,0 +1,17 @@
+.client-account {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.client-account__description {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.links_direction_column {
+  background-color: var(--bg-color-light-violet);
+  padding: 32px 32px 40px;
+  border-radius: 12px;
+}

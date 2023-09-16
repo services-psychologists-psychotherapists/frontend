@@ -162,3 +162,14 @@ export const NO_PSYCHO_MESSAGE = {
   textBtn: 'Подобрать психолога',
   href: '/catalog',
 };
+
+export const CLIENT_PROFILE_NAV_LINKS = [
+  {
+    text: 'Главная',
+    link: '/client_account',
+  },
+  {
+    text: 'Прифиль',
+    link: '/client_profile',
+  },
+];

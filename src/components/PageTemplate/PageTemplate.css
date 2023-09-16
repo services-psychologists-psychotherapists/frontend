@@ -1,0 +1,34 @@
+.page-template {
+  display: grid;
+  min-height: 100vh;
+  grid-template-areas:
+    'header header header'
+    'section title title'
+    'nav children children';
+  grid-template-columns: 197px auto auto;
+  grid-template-rows: auto auto 1fr;
+  grid-column-gap: 20px;
+  padding: 40px 80px 100px;
+}
+
+.page-template > .header {
+  grid-area: header;
+  padding: 0;
+  margin-bottom: 60px;
+}
+.page-template > .title {
+  grid-area: title;
+  margin-bottom: 40px;
+}
+.page-template > .page-template__children {
+  grid-area: children;
+}
+
+.page-template > .page-template__nav {
+  grid-area: nav;
+}
+.page-template > .page-template__section {
+  grid-area: section;
+  justify-self: end;
+  margin-right: 8px;
+}

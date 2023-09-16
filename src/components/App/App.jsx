@@ -7,6 +7,7 @@ import Footer from '../Footer/Footer';
 import NotFound from '../../pages/NotFound/NotFound';
 import CurrentUserContext from '../../Context/CurrentUserContext';
 import { USER } from '../../constants/db';
+import ClientProfile from '../../pages/ClientProfile/ClientProfile';
 
 export default function App() {
   return (
@@ -16,6 +17,10 @@ export default function App() {
           <Route path="/" element={<HomePage isLoggedIn={false} />} />
           <Route path="/for_a_therapist" element={<PageForPsychologists />} />
           <Route path="/*" element={<NotFound />} />
+          <Route
+            path="/client_account"
+            element={<ClientProfile isLoggedIn={false} />}
+          />
         </Routes>
       </CurrentUserContext.Provider>
       <Footer />

@@ -116,7 +116,62 @@ export const USER = {
     timeOfSession: 40,
     img: avatar,
   },
-  sessions: [],
+  sessions: [
+    {
+      client: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      psycho: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      date: new Date(2023, 9, 25, 19),
+      href: '/zoom',
+    },
+    {
+      client: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      psycho: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      date: new Date(2023, 9, 25, 17),
+      href: '/zoom',
+    },
+    {
+      client: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      psycho: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      date: new Date(2023, 9, 25, 13),
+      href: '/zoom',
+    },
+  ],
 };
 
 export const PSYCHO = {
