@@ -1,10 +1,3 @@
-.name-container__name {
-  font-family: var(--font-family-montsertat);
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--text-color-dark-blue);
-}
-
 .name-container__description {
   display: flex;
   align-items: center;

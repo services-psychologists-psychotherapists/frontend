@@ -1,6 +1,7 @@
 import React from 'react';
 import './PsychoName.css';
 import { string } from 'prop-types';
+import Title from '../Title/Title';
 
 export default function PsychoName({
   name,
@@ -10,7 +11,7 @@ export default function PsychoName({
 }) {
   return (
     <div className="name-container">
-      <p className="name-container__name">{name}</p>
+      <Title size="s" titleLvl="4" text={name} />
       {description && (
         <div className="name-container__label">{description}</div>
       )}
