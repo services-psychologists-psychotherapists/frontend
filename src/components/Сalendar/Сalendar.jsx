@@ -95,8 +95,7 @@ export default function Сalendar() {
 
   // prettier-ignore
   const dateСellСlasses = (i) => (
-    `${i.isDayOff ? 'calendar__day-of-week_day-off' : ''} ${
-      i.date === formattedCurrentDate ? 'calendar__date_today' : ''
+    `${i.isDayOff ? 'calendar__day-of-week_day-off' : ''} ${i.date === formattedCurrentDate ? 'calendar__date_today' : ''
     } ${selectedDay === i.date ? 'calendar__date_selected' : ''}`
   );
 
@@ -108,7 +107,6 @@ export default function Сalendar() {
   return (
     <div className="session-calendar">
       {/* TODO: настроить тайтл */}
-      <h3 className="session-calendar__title">Календарь сессий</h3>
       <div className="calendar">
         <div className="calendar__period">
           <button
