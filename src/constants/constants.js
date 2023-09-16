@@ -154,3 +154,11 @@ export const NOT_APPOINTMENT_MESSAGE = {
     description: 'Здесь будет отображаться ближайшая ваша сессия',
   },
 };
+
+export const NO_PSYCHO_MESSAGE = {
+  title: 'Специалист пока не выбран',
+  description:
+    'Здесь будет отображаться последний специалист, с которым вы работали',
+  textBtn: 'Подобрать психолога',
+  href: '/catalog',
+};

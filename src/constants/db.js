@@ -108,6 +108,15 @@ export const USER = {
   lastName: 'Кожевникова',
   id: '12345678907',
   img: avatar,
+  psycho: {
+    name: 'Ирина',
+    lastName: 'Кожевникова',
+    id: '12345678907',
+    price: 4500,
+    timeOfSession: 40,
+    img: avatar,
+  },
+  sessions: [],
 };
 
 export const PSYCHO = {
