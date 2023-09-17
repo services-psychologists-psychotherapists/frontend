@@ -20,7 +20,13 @@ export default function ClientHomePage({ isLoggedIn }) {
   return (
     <PageTemplate
       title="Главная"
-      nav={<NavLinksList list={CLIENT_PROFILE_NAV_LINKS} direction="column" />}
+      // prettier-ignore
+      nav={(
+        // временная реализация
+        <div className="page__nav-links">
+          <NavLinksList list={CLIENT_PROFILE_NAV_LINKS} direction="column" />
+        </div>
+      )}
       isLoggedIn={isLoggedIn}
     >
       <>

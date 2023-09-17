@@ -19,7 +19,7 @@ export default function App() {
           <Route path="/*" element={<NotFound />} />
           <Route
             path="/client_account"
-            element={<ClientHomePage isLoggedIn={false} />}
+            element={<ClientHomePage isLoggedIn />}
           />
         </Routes>
       </CurrentUserContext.Provider>

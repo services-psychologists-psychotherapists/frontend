@@ -10,7 +10,7 @@
   margin-top: 8px;
 }
 
-.links_direction_column {
+.page__nav-links {
   background-color: var(--bg-color-light-violet);
   padding: 32px 32px 40px;
   border-radius: 12px;

@@ -120,7 +120,7 @@ export const SERVICE_DOCUMENTS = [
 export const DROPDOWN_LINKS = [
   {
     text: 'Личный кабинет',
-    link: '/profile',
+    link: '/client_account',
   },
 ];
 
@@ -169,7 +169,7 @@ export const CLIENT_PROFILE_NAV_LINKS = [
     link: '/client_account',
   },
   {
-    text: 'Прифиль',
+    text: 'Профиль',
     link: '/client_profile',
   },
 ];
