@@ -70,8 +70,7 @@
     "webpack": "^5.88.2"
   },
   "lint-staged": {
-    "*.{js,jsx}": "npm run lint",
-    "*.{js,jsx,css,md,html,json}": "npm run format"
+    "*.{js,jsx,css,md,html,json}": "npm run lint:fix"
   },
   "config": {
     "commitizen": {

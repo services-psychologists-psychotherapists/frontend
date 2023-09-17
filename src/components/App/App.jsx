@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import HomePage from '../../pages/HomePage/HomePage';
 import PageForPsychologists from '../../pages/PageForPsychologists/PageForPsychologists';
@@ -9,6 +9,9 @@ import CurrentUserContext from '../../Context/CurrentUserContext';
 import { USER } from '../../constants/db';
 
 export default function App() {
+  const location = useLocation();
+  const currentPagePath = location.pathname;
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={USER}>
@@ -18,7 +21,7 @@ export default function App() {
           <Route path="/*" element={<NotFound />} />
         </Routes>
       </CurrentUserContext.Provider>
-      <Footer />
+      <Footer currentPagePath={currentPagePath} />
     </div>
   );
 }

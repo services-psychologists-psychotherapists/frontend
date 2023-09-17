@@ -154,3 +154,5 @@ export const NOT_APPOINTMENT_MESSAGE = {
     description: 'Здесь будет отображаться ближайшая ваша сессия',
   },
 };
+
+export const PAGES_WITH_BUTTONUP = ['/', '/for_a_therapist'];

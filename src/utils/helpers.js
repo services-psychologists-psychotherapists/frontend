@@ -1,4 +1,4 @@
-import { MONTH_NAME } from '../constants/constants';
+import { MONTH_NAME, PAGES_WITH_BUTTONUP } from '../constants/constants';
 
 export const getMonthName = (date) => {
   const month = MONTH_NAME[date.getMonth() + 1];
@@ -22,3 +22,5 @@ export const getAge = (date) => {
   }
   return age;
 };
+
+export const getBtnUpPathStatus = (currentPath) => PAGES_WITH_BUTTONUP.includes(currentPath);
