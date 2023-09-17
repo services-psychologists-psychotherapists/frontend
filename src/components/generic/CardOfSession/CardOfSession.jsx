@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Avatar from '../Avatar/Avatar';
 import PsychoName from '../PsychoName/PsychoName';
 import { getTime, getMonthName } from '../../../utils/helpers';
-import { DAYS_OF_WEEK, NOT_APPOINTMENT_MESSAGE } from '../../../constants/constants';
+import { NAME_OF_DAYS, NOT_APPOINTMENT_MESSAGE } from '../../../constants/constants';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import Button from '../Button/Button';
 import EmptyCard from '../Cards/EmptyCard/EmptyCard';
@@ -41,7 +41,7 @@ export default function CardOfSession({ type, session }) {
                 <Paragraph>{`${session[type].name} ${session[type].lastName}`}</Paragraph>
               )}
               <div className="session-card__date">
-                {type === 'client' && <p>{`${session.date.getDate()} ${getMonthName(session.date)}, ${DAYS_OF_WEEK[session.date.getDay() + 1]}`}</p>}
+                {type === 'client' && <p>{`${session.date.getDate()} ${getMonthName(session.date)}, ${NAME_OF_DAYS[session.date.getDay()]}`}</p>}
                 <p>{getTime(session.date)}</p>
               </div>
             </div>

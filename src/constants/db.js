@@ -132,7 +132,7 @@ export const USER = {
         dateOfBith: new Date(1990, 4, 23),
         img: avatar,
       },
-      date: new Date(2023, 9, 25, 19),
+      date: new Date(2023, 8, 25, 19),
       href: '/zoom',
     },
     {
@@ -150,7 +150,7 @@ export const USER = {
         dateOfBith: new Date(1990, 4, 23),
         img: avatar,
       },
-      date: new Date(2023, 9, 25, 17),
+      date: new Date(2023, 9, 17, 17),
       href: '/zoom',
     },
     {
@@ -168,7 +168,7 @@ export const USER = {
         dateOfBith: new Date(1990, 4, 23),
         img: avatar,
       },
-      date: new Date(2023, 9, 25, 13),
+      date: new Date(2023, 5, 22, 13),
       href: '/zoom',
     },
   ],
