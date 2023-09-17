@@ -29,7 +29,7 @@ export default function PlannerSection({ calendar, meetingsReminder, text }) {
         <article className="psychologist-account__subtitle-string">
           <p className="psychologist-account__subtitle">{reminderText}</p>
           <img src={iconInfo} alt="справка" className={classInfoIcon} />
-          <p className="promt">
+          <p className="prompt">
             Время, бронируемое в сервисе на одну сессию - 40 мин
           </p>
         </article>

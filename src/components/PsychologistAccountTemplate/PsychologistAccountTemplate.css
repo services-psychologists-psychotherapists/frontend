@@ -57,7 +57,7 @@
   cursor: pointer;
 }
 
-.promt {
+.prompt {
   display: none;
   position: absolute;
   width: 308px;
@@ -65,13 +65,13 @@
   padding: 20px;
   background-color: white;
   top: -100%;
-  left: 110%;
+  left: 105%;
   transform: translate(-50%, -50%);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 10;
 }
 
-.psychologist-account__info:hover + .promt {
+.psychologist-account__info:hover + .prompt {
   display: block;
 }
 
