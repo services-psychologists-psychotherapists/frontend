@@ -41,12 +41,14 @@ export default function ClientHomePage({ isLoggedIn }) {
             <YourPsychoCard user={currentUser} />
           </BlockTemplate>
         </div>
-        <div className="client-account__description">
-          <Paragraph>Вы можете выбрать другого специалиста</Paragraph>
-          <Button variant="text" href="/catalog">
-            Каталог психологов
-          </Button>
-        </div>
+        {currentUser.psycho && (
+          <div className="client-account__description">
+            <Paragraph>Вы можете выбрать другого специалиста</Paragraph>
+            <Button variant="text" href="/catalog">
+              Каталог психологов
+            </Button>
+          </div>
+        )}
       </>
     </PageTemplate>
   );
