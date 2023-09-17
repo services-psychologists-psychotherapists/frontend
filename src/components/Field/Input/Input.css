@@ -1,16 +1,15 @@
 /*-----------------INPUT---------------------*/
 
 .input {
-  padding: 12px;
   width: 100%;
   border: none;
-  border-radius: 12px;
   font-family: var(--font-family-lato);
   font-weight: var(--text-weight-primary);
   font-size: 18px;
   line-height: 24px;
   max-height: 48px;
   color: var(--text-color-dark-blue);
+  background-color: transparent;
 }
 
 .input:focus {

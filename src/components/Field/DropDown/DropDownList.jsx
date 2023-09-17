@@ -1,23 +1,18 @@
 import './DwopDown.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { radioDropDown } from '../../../constants/constants';
-import RadioDropdown from '../RadioDropdown/RadioDropdown';
-import CheckboxDropdown from '../CheckboxDropdown/CheckboxDropdown';
+import DropdownItem from '../DropdownItem/DropdownItem';
 
-export default function DropDown({
+export default function DropDownList({
   isFocused,
   selectedValue,
   onChange,
   element,
-  selectedCheckBoxValues,
   dropDownContent
 }) {
   if (dropDownContent.length === 0) {
     return null;
   }
-
-  const DropdownItem = element === radioDropDown ? RadioDropdown : CheckboxDropdown;
 
   return (
     <div className={`dropdown ${isFocused ? 'dropdown_opened' : ''}`}>
@@ -25,8 +20,8 @@ export default function DropDown({
         {dropDownContent.map((item) => (
           <li className="dropdown__item" key={item}>
             <DropdownItem
+              element={element}
               selectedValue={selectedValue}
-              selectedCheckBoxValues={selectedCheckBoxValues}
               item={item}
               onChange={onChange}
             />
@@ -37,17 +32,18 @@ export default function DropDown({
   );
 }
 
-DropDown.propTypes = {
+DropDownList.propTypes = {
   element: PropTypes.string.isRequired,
-  selectedValue: PropTypes.string,
-  selectedCheckBoxValues: PropTypes.shape({}),
+  selectedValue: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
   isFocused: PropTypes.bool.isRequired,
   onChange: PropTypes.func.isRequired,
   dropDownContent: PropTypes.arrayOf(PropTypes.string)
 };
 
-DropDown.defaultProps = {
+DropDownList.defaultProps = {
   selectedValue: '',
-  selectedCheckBoxValues: {},
   dropDownContent: []
 };

@@ -5,7 +5,7 @@ import { useForm } from '../../hooks/useForm';
 import Input from './Input/Input';
 import Label from './Label/Label';
 import Prompt from './Prompt/Prompt';
-import DropDown from './DropDown/DropDown';
+import DropDownList from './DropDown/DropDownList';
 import { inputElement, radioDropDown } from '../../constants/constants';
 
 export default function Field({
@@ -117,12 +117,11 @@ export default function Field({
             onClick={handleOpenDropDown}
           />
         </div>
-        <DropDown
+        <DropDownList
           element={element}
           onChange={element === radioDropDown ? handleRadioChange : handleCheckboxChange}
-          selectedValue={displayValue}
+          selectedValue={element === radioDropDown ? displayValue : selectedCheckBoxValues}
           isFocused={isFocused}
-          selectedCheckBoxValues={selectedCheckBoxValues}
           dropDownContent={dropDownContent}
         />
       </div>

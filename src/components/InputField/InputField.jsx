@@ -14,16 +14,11 @@ export default function InputField({
   minLength,
   maxLength,
   required,
-  element,
   dropDownContent,
 }) {
-  if (!inputElement.includes(element)) {
-    throw new Error(`Недопустимое значение для пропса 'element': ${element}`);
-  }
-
   return (
     <Field
-      element={element}
+      element={inputElement}
       name={name}
       title={title}
       type={type}
@@ -39,7 +34,6 @@ export default function InputField({
 }
 
 InputField.propTypes = {
-  element: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

@@ -11,16 +11,11 @@ export default function RadioDropdownField({
   disabled,
   placeholder,
   required,
-  element,
   dropDownContent,
 }) {
-  if (!radioDropDown.includes(element)) {
-    throw new Error(`Недопустимое значение для пропса 'element': ${element}`);
-  }
-
   return (
     <Field
-      element={element}
+      element={radioDropDown}
       name={name}
       title={title}
       type={type}
@@ -33,7 +28,6 @@ export default function RadioDropdownField({
 }
 
 RadioDropdownField.propTypes = {
-  element: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

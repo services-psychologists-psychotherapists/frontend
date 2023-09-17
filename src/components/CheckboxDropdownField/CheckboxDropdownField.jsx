@@ -11,16 +11,11 @@ export default function CheckboxDropdownField({
   disabled,
   placeholder,
   required,
-  element,
   dropDownContent,
 }) {
-  if (!checkboxDropDown.includes(element)) {
-    throw new Error(`Недопустимое значение для пропса 'element': ${element}`);
-  }
-
   return (
     <Field
-      element={element}
+      element={checkboxDropDown}
       name={name}
       title={title}
       type={type}
@@ -33,7 +28,6 @@ export default function CheckboxDropdownField({
 }
 
 CheckboxDropdownField.propTypes = {
-  element: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,

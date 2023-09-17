@@ -47,6 +47,7 @@ export default function Input({
         maxLength={maxLength}
         required={required}
         onClick={onClick}
+        autoComplete="off"
       />
       {isHaveIcon && (
         <InputIcon
