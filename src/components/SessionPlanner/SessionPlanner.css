@@ -1,0 +1,122 @@
+.session-planner {
+  border: 1px solid;
+  border-color: var(--border-color-dark-violet);
+  border-radius: 12px;
+  padding: 24px 24px 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.session-planner__text {
+  font-family: var(--font-family-lato);
+  font-size: 18px;
+  font-weight: var(--text-weight-primary);
+  color: var(--text-color-dark-blue);
+}
+
+.session-planner__timing-box {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+}
+
+.session-planner__time-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.session-planner__time-colon {
+  font-family: var(--font-family-montsertat);
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.session-planner__select {
+  width: 88px;
+  height: 48px;
+  color: black;
+  border: 1px solid;
+  border-color: var(--border-color-dark-violet);
+  border-radius: 12px;
+  font-family: var(--font-family-lato);
+  font-size: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+}
+
+.session-planner__number {
+  font-family: var(--font-family-lato);
+  font-weight: var(--text-weight-primary);
+  color: var(--text-color-dark-blue);
+  font-size: 18px;
+  line-height: 1.33;
+}
+
+.session-planner__button-add {
+  align-self: flex-end;
+}
+
+.session-planner__button-drop {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 5px;
+  border: none;
+  background-color: inherit;
+}
+
+.session-planner__button-drop:hover {
+  cursor: pointer;
+}
+
+.session-planner__timing-list {
+  list-style: none;
+  /* display: none; */
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 114.5%;
+  left: 0;
+  width: 88px;
+  max-height: 152px;
+  border: none;
+  border-radius: 12px;
+  background-color: var(--bg-color-white);
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.session-planner__timing-list::-webkit-scrollbar {
+  display: none;
+}
+
+.session-planner__list_visible {
+  display: flex;
+}
+
+.session-planner__timing-item {
+  font-family: var(--font-family-lato);
+  font-size: 18px;
+  line-height: 1.33;
+  font-weight: var(--text-weight-primary);
+  display: none;
+  border: none;
+  padding: 6px 0;
+  background-color: inherit;
+}
+
+.session-planner__timing-item:hover {
+  background-color: var(--bg-color-light-violet);
+}
+
+.session-planner__item_visible {
+  display: block;
+}

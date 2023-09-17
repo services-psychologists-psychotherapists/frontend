@@ -8,9 +8,7 @@ import {
   PSYCHOLOGIST_ACCOUNT_LINKS,
   PSYCHOLOGIST_ACCOUNT_TEXT,
 } from '../../constants/db';
-import Title from '../generic/Title/Title';
-import CalendarBlock from './PlannerSection/CalendarBlock/CalendarBlock';
-import MeetingsReminderBlock from './PlannerSection/MeetingsReminderBlock/MeetingsReminderBlock';
+import PlannerSection from './PlannerSection/PlannerSection';
 import SheduleSection from './SheduleSection/SheduleSection';
 
 export default function PsychologistAccountTemplate({
@@ -19,17 +17,18 @@ export default function PsychologistAccountTemplate({
   shedule,
 }) {
   const { pathname } = useLocation();
-  const calendarText = `${
-    pathname === '/schedule'
-      ? PSYCHOLOGIST_ACCOUNT_TEXT.txtCalendarInShedule
-      : PSYCHOLOGIST_ACCOUNT_TEXT.txtCalendarInMain
-  }`;
-
-  const reminderText = `${
-    pathname === '/schedule'
-      ? PSYCHOLOGIST_ACCOUNT_TEXT.txtReminderInShedule
-      : PSYCHOLOGIST_ACCOUNT_TEXT.txtReminderInMain
-  }`;
+  const text = {
+    calendarText: `${
+      pathname === '/psychologist_account_schedule'
+        ? PSYCHOLOGIST_ACCOUNT_TEXT.txtCalendarInShedule
+        : PSYCHOLOGIST_ACCOUNT_TEXT.txtCalendarInMain
+    }`,
+    reminderText: `${
+      pathname === '/psychologist_account_schedule'
+        ? PSYCHOLOGIST_ACCOUNT_TEXT.txtReminderInShedule
+        : PSYCHOLOGIST_ACCOUNT_TEXT.txtReminderInMain
+    }`,
+  };
 
   return (
     <>
@@ -45,14 +44,11 @@ export default function PsychologistAccountTemplate({
           </div>
         </div>
 
-        <div className="psychologist-account__planner-section">
-          <Title size="m" text="Главная" />
-          <CalendarBlock text={calendarText}>{calendar}</CalendarBlock>
-
-          <MeetingsReminderBlock text={reminderText}>
-            {meetingsReminder}
-          </MeetingsReminderBlock>
-        </div>
+        <PlannerSection
+          calendar={calendar}
+          meetingsReminder={meetingsReminder}
+          text={text}
+        />
 
         <SheduleSection>{shedule}</SheduleSection>
       </section>

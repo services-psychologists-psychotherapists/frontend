@@ -6,6 +6,7 @@
 }
 
 .psychologist-account__links-section {
+  max-width: 198px;
   padding-top: 88px;
   flex: 1 1 0;
 }
@@ -17,9 +18,14 @@
   flex: 2.98 2.98 0;
 }
 
+.psychologist-account__planner_invisible {
+  display: none;
+}
+
 .psychologist-account__shedule-section {
   padding-top: 88px;
-  flex: 2.31 2.31 0;
+  flex: 2.31 5 0;
+  min-height: 60vh;
 }
 
 .psychologist-account__calendar {
@@ -40,10 +46,33 @@
   display: flex;
   flex-direction: row;
   gap: 12px;
+  position: relative;
+}
+
+.psychologist-account__info {
+  display: block;
 }
 
 .psychologist-account__info:hover {
   cursor: pointer;
+}
+
+.promt {
+  display: none;
+  position: absolute;
+  width: 308px;
+  height: 92px;
+  padding: 20px;
+  background-color: white;
+  top: -100%;
+  left: 110%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.psychologist-account__info:hover + .promt {
+  display: block;
 }
 
 .psychologist-account__info_invisible {

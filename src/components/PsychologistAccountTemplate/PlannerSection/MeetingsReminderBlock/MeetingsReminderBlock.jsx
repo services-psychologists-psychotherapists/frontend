@@ -7,7 +7,9 @@ import iconInfo from '../../../../images/icon_info.svg';
 export default function MeetingsReminderBlock({ text, children }) {
   const { pathname } = useLocation();
   const classInfoIcon = `psychologist-account__info ${
-    pathname !== '/schedule' ? 'psychologist-account__info_invisible' : ''
+    pathname !== '/psychologist_account_schedule'
+      ? 'psychologist-account__info_invisible'
+      : ''
   }`;
   return (
     <div className="psychologist-account__meetings-reminder">

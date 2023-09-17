@@ -21,7 +21,14 @@ export default function App() {
             path="/psychologist_account"
             element={<PsychologistAccount />}
           />
-          <Route path="/schedule" element={<PsychologistAccount />} />
+          <Route
+            path="/psychologist_account_schedule"
+            element={<PsychologistAccount />}
+          />
+          <Route
+            path="/psychologist_account_profile"
+            element={<PsychologistAccount />}
+          />
         </Routes>
       </CurrentUserContext.Provider>
       <Footer />
