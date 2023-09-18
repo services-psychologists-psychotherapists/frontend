@@ -59,17 +59,21 @@ export default function FieldContainer({
     displayValue = selectedValue;
   } else {
     switch (true) {
-      case selectedCheckBoxCount === 1:
-        displayValue = `Выбран ${selectedCheckBoxCount} вариант`;
+      case selectedCheckBoxCount === 0:
+        displayValue = '';
         break;
-      case selectedCheckBoxCount > 1 && selectedCheckBoxCount < 5:
-        displayValue = `Выбрано ${selectedCheckBoxCount} варианта`;
-        break;
-      case selectedCheckBoxCount >= 5:
+      case selectedCheckBoxCount === 11:
         displayValue = `Выбрано ${selectedCheckBoxCount} вариантов`;
         break;
+      case selectedCheckBoxCount % 10 === 1 && selectedCheckBoxCount !== 11:
+        displayValue = `Выбран ${selectedCheckBoxCount} вариант`;
+        break;
+      case selectedCheckBoxCount % 10 >= 2 && selectedCheckBoxCount % 10 <= 4
+      && (selectedCheckBoxCount < 12 || selectedCheckBoxCount > 14):
+        displayValue = `Выбрано ${selectedCheckBoxCount} варианта`;
+        break;
       default:
-        displayValue = 'Выберите подходящие варианты';
+        displayValue = `Выбрано ${selectedCheckBoxCount} вариантов`;
         break;
     }
   }
