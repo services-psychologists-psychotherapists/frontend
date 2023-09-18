@@ -13,6 +13,7 @@
 
   transition: 0.3s ease-in-out;
   cursor: pointer;
+  display: inline-block;
 }
 
 .button_disabled {
@@ -100,7 +101,7 @@
 
 .button__text,
 .button__text-icon {
-  padding: 0;
+  padding: 8px;
   color: var(--text-color-dark-violet);
 }
 
