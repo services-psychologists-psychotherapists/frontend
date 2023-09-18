@@ -1,4 +1,4 @@
-.dropdown {
+.dropdown-list {
   position: absolute;
   top: 92px;
   z-index: 101;
@@ -9,9 +9,13 @@
   padding: 0 12px;
   border: 0 solid var(--border-color-medium-violet);
   border-radius: 12px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.dropdown_opened {
+.dropdown-list_opened {
   width: 100%;
   background-color: white;
   position: absolute;
@@ -21,11 +25,4 @@
   border: 1px solid var(--border-color-medium-violet);
   transition: all 0.2s ease;
   border-radius: 12px;
-}
-
-.dropdown__list {
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
 }

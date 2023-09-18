@@ -2,8 +2,8 @@ import './Input.css';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  checkboxDropDown, inputElement,
-  radioDropDown
+  checkboxDropDownElement, inputElement,
+  radioDropDownElement
 } from '../../../constants/constants';
 
 export default function Input({
@@ -20,12 +20,12 @@ export default function Input({
   isValid,
   isEyeOpened
 }) {
-  const inputClasses = `input 
-    ${element === inputElement && 'text-input'}
-    ${!isValid && !disabled && 'input_invalid'} 
+  const inputClasses = `input
+    ${element === inputElement && 'input_hidden-placeholder'}
+    ${!isValid && 'input_invalid'} 
     ${disabled && 'input_disabled'}
-    ${(element === radioDropDown || element === checkboxDropDown)
-    && 'dropdown-input'}`;
+    ${(element === radioDropDownElement || element === checkboxDropDownElement)
+    && 'input_button'}`;
 
   return (
     <input
@@ -46,7 +46,7 @@ export default function Input({
 }
 
 Input.propTypes = {
-  element: PropTypes.string.isRequired,
+  element: PropTypes.string,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
@@ -61,6 +61,7 @@ Input.propTypes = {
 };
 
 Input.defaultProps = {
+  element: inputElement,
   required: false,
   isEyeOpened: false,
   disabled: false,

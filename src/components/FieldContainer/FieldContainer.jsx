@@ -5,12 +5,18 @@ import { useForm } from '../../hooks/useForm';
 import FieldTitle from './FieldTitle/FieldTitle';
 import Prompt from './Prompt/Prompt';
 import Field from './Field/Field';
-import DropDownList from './DropDown/DropDownList';
-import { inputElement, radioDropDown } from '../../constants/constants';
+import DropDownList from './DropDownList/DropDownList';
+import {
+  checkboxType,
+  inputElement,
+  radioDropDownElement,
+  radioType
+} from '../../constants/constants';
 
 export default function FieldContainer({
   title,
-  type,
+  typeForDropDown,
+  typeForInput,
   name,
   prompt,
   disabled,
@@ -38,23 +44,18 @@ export default function FieldContainer({
     setIsFocused(!isFocused);
   };
 
-  const handleRadioChange = (event) => {
-    setSelectedValue(event.target.value);
-  };
-
-  const handleCheckboxChange = (event) => {
-    const { value, checked } = event.target;
-    setSelectedCheckBoxValues((prevValues) => ({
-      ...prevValues,
-      [value]: !!checked,
-    }));
-  };
-
   let displayValue;
+  const handleDropdownItemChange = (changedItem) => {
+    if (changedItem.type === radioType) {
+      setSelectedValue(changedItem.value);
+    } else if (changedItem.type === checkboxType) {
+      setSelectedCheckBoxValues(changedItem.value);
+    }
+  };
 
   if (element === inputElement) {
     displayValue = values[name] || '';
-  } else if (element === radioDropDown) {
+  } else if (element === radioDropDownElement) {
     displayValue = selectedValue;
   } else {
     switch (true) {
@@ -80,7 +81,7 @@ export default function FieldContainer({
         disabled={disabled}
       />
       <Field
-        type={type}
+        type={typeForInput}
         name={name}
         value={displayValue}
         disabled={disabled}
@@ -95,9 +96,10 @@ export default function FieldContainer({
         isFocused={isFocused}
       />
       <DropDownList
-        type={element}
-        onChange={element === radioDropDown ? handleRadioChange : handleCheckboxChange}
-        selectedValue={element === radioDropDown ? displayValue : selectedCheckBoxValues}
+        element={element}
+        type={typeForDropDown}
+        onChange={handleDropdownItemChange}
+        selectedValue={element === radioDropDownElement ? displayValue : selectedCheckBoxValues}
         isFocused={isFocused}
         dropDownContent={dropDownContent}
       />
@@ -113,7 +115,8 @@ export default function FieldContainer({
 FieldContainer.propTypes = {
   title: PropTypes.string.isRequired,
   element: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  typeForInput: PropTypes.string.isRequired,
+  typeForDropDown: PropTypes.string,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   prompt: PropTypes.string,
@@ -121,10 +124,11 @@ FieldContainer.propTypes = {
   minLength: PropTypes.string,
   maxLength: PropTypes.string,
   required: PropTypes.bool,
-  dropDownContent: PropTypes.shape([])
+  dropDownContent: PropTypes.arrayOf(PropTypes.string)
 };
 
 FieldContainer.defaultProps = {
+  typeForDropDown: '',
   disabled: false,
   required: false,
   minLength: '',

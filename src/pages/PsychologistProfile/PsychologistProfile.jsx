@@ -2,9 +2,9 @@ import './PsychologistProfile.css';
 import React, { useState } from 'react';
 import Header from '../../components/Header/Header';
 import { dropDownLists } from '../../constants/constants';
-import InputField from '../../components/InputField/InputField';
-import RadioDropdownField from '../../components/RadioDropdownField/RadioDropdownField';
-import CheckboxDropdownField from '../../components/CheckboxDropdownField/CheckboxDropdownField';
+import InputField from '../../components/AllFields/InputField/InputField';
+import RadioDropdownField from '../../components/AllFields/RadioDropdownField/RadioDropdownField';
+import CheckboxDropdownField from '../../components/AllFields/CheckboxDropdownField/CheckboxDropdownField';
 
 export default function PsychologistProfile() {
   const [dropDownListRadio] = useState(dropDownLists.genderList);
@@ -18,7 +18,7 @@ export default function PsychologistProfile() {
           <InputField
             title="Логин"
             name="login"
-            type="email"
+            typeForInput="email"
             placeholder="irina_k@yan.ru"
             prompt="Здесь должна быть подсказка"
           />
@@ -26,13 +26,13 @@ export default function PsychologistProfile() {
             name="Имя"
             placeholder="Александр"
             title="Имя"
-            type="text"
+            typeForInput="text"
             disabled
           />
           <InputField
             name="password"
             title="Пароль"
-            type="password"
+            typeForInput="password"
             prompt="Здесь должна быть подсказка"
             placeholder="********"
             maxLength="32"

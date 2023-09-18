@@ -1,67 +1,63 @@
-import './DropdownItem.css';
 import React from 'react';
+import './DropdownItem.css';
 import PropTypes from 'prop-types';
 import {
-  checkboxDropDown,
-  inputElement,
-  radioDropDown,
+  checkboxDropDownElement,
+  radioDropDownElement,
 } from '../../../constants/constants';
-import Input from '../Input/Input';
 import { useForm } from '../../../hooks/useForm';
+import DropdownItemIcon from './DropdownItemIcon/DropdownItemIcon';
+import DropdownItemTitle from './DropdownItemTitle/DropdownItemTitle';
+import DropdownCustomInput from './DropdownCustomInput/DropdownCustomInput';
 
 export default function DropdownItem({
-  onChange, selectedValue, item, type
+  onChange,
+  selectedValue,
+  item,
+  type,
+  element
 }) {
   const { values, handleChange } = useForm({
     custom: '',
   });
 
-  const isOtherChecked = selectedValue['Другое'] || false;
-  const isRadio = type === radioDropDown;
-  const isCheckbox = type === checkboxDropDown;
-  const isOther = item === 'Другое';
-
-  const containerClassName = isRadio
-    ? 'dropdown__radio-label'
-    : 'dropdown__checkbox-label';
-
-  const isChecked = isRadio
-    ? selectedValue === item
-    : selectedValue[item] || false;
-  const shouldRenderCustomInput = isOther && isCheckbox;
+  const isCheckboxElement = element === checkboxDropDownElement;
+  const isRadioElement = element === radioDropDownElement;
+  const containerClassName = isRadioElement
+    ? 'dropdown-item__container_radio'
+    : 'dropdown-item__container_checkbox';
 
   return (
-    <label className={containerClassName}>
-      <input
+    <label
+      className={`dropdown-item__container ${containerClassName}`}
+    >
+      <DropdownItemIcon
+        element={element}
         type={type}
-        className={`dropdown__${isRadio ? 'radio' : 'checkbox'}`}
-        value={item}
-        checked={isChecked}
+        item={item}
         onChange={onChange}
+        selectedValue={selectedValue}
       />
-      {shouldRenderCustomInput && (
-        <div className="dropdown__checkbox-input">
-          <Input
-            type="text"
-            name="custom"
-            className="dropdown__custom-input"
-            value={values.custom || ''}
-            onChange={handleChange}
-            placeholder={!isOtherChecked ? 'Другое' : 'Введите свой вариант'}
-            disabled={!isOtherChecked}
-            element={inputElement}
-          />
-        </div>
-      )}
-      {!isOther && item}
+      <DropdownCustomInput
+        inputType="text"
+        isCheckboxElement={isCheckboxElement}
+        name="custom"
+        item={item}
+        value={values.custom || ''}
+        onChange={handleChange}
+        selectedValue={selectedValue}
+      />
+      <DropdownItemTitle
+        item={item}
+      />
     </label>
   );
 }
 
 DropdownItem.propTypes = {
+  element: PropTypes.string.isRequired,
   item: PropTypes.string.isRequired,
-  selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-    .isRequired,
+  selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
   onChange: PropTypes.func.isRequired,
   type: PropTypes.string.isRequired
 };

@@ -2,8 +2,7 @@ import './Field.css';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import Input from '../Input/Input';
-import { checkboxDropDown, radioDropDown } from '../../../constants/constants';
-import InputIcon from '../InputIcon/InputIcon';
+import FieldButton from '../FieldButton/FieldButton';
 
 export default function Field({
   type,
@@ -20,16 +19,12 @@ export default function Field({
   onClick,
   isFocused
 }) {
-  const fieldClasses = `field ${!isValid && !disabled && 'field__invalid-input'} ${disabled && 'field_disabled'}`;
+  const fieldClasses = `field ${!isValid && !disabled && 'field_invalid'} ${disabled && 'field_disabled'}`;
 
   const [isEyeOpened, setIsEyeOpened] = useState(false);
 
-  const isHaveIcon = type === 'password'
-      || element === radioDropDown
-      || element === checkboxDropDown;
-
   return (
-    <button className={fieldClasses} onClick={onClick}>
+    <button className={fieldClasses} onClick={onClick} disabled={disabled}>
       <Input
         value={value}
         type={type}
@@ -44,8 +39,7 @@ export default function Field({
         element={element}
         isEyeOpened={isEyeOpened}
       />
-      {isHaveIcon && (
-      <InputIcon
+      <FieldButton
         isFocused={isFocused}
         element={element}
         disabled={disabled}
@@ -54,7 +48,6 @@ export default function Field({
         isEyeOpened={isEyeOpened}
         isValid={isValid}
       />
-      )}
     </button>
   );
 }
@@ -69,7 +62,6 @@ Field.propTypes = {
   minLength: PropTypes.string,
   maxLength: PropTypes.string,
   required: PropTypes.bool,
-  // eslint-disable-next-line react/forbid-prop-types
   handleChange: PropTypes.func.isRequired,
   isValid: PropTypes.bool.isRequired,
   value: PropTypes.string.isRequired,

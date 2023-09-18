@@ -115,9 +115,15 @@ export const INPUT_ICONS = {
 
 // --------------FIELD_ELEMENTS--------------- //
 
-export const inputElement = 'input';
-export const radioDropDown = 'radio';
-export const checkboxDropDown = 'checkbox';
+export const inputElement = 'input-element';
+export const radioDropDownElement = 'radio-dropdown-element';
+export const checkboxDropDownElement = 'checkbox-dropdown-element';
+export const titlesDropDownElement = 'titles-dropdown-element';
+
+// --------------DROPDOWN_TYPES--------------- //
+
+export const radioType = 'radio';
+export const checkboxType = 'checkbox';
 
 export const dropDownLists = {
   genderList: ['женский', 'мужской', 'другое'],

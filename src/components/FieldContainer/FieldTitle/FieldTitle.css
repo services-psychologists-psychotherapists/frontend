@@ -1,4 +1,4 @@
-.field-container__title {
+.field-title {
   padding-left: 12px;
   font-family: var(--font-family-lato);
   font-weight: var(--text-weight-primary);
@@ -8,6 +8,6 @@
   margin-bottom: 12px;
 }
 
-.field-container__title_disabled {
+.field-title_disabled {
   color: var(--text-coolor-disabled);
 }

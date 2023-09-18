@@ -7,12 +7,13 @@
   width: 100%;
   margin-bottom: 8px;
   min-height: 48px;
+  cursor: pointer;
 }
 
 .field_disabled {
   border: 1px solid var(--border-coolor-disabled);
 }
 
-.field__invalid-input {
+.field_invalid {
   border: 1px solid var(--border-color-error);
 }

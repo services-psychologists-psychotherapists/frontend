@@ -1,12 +1,12 @@
 import './InputField.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import FieldContainer from '../FieldContainer/FieldContainer';
-import { inputElement } from '../../constants/constants';
+import FieldContainer from '../../FieldContainer/FieldContainer';
+import { inputElement } from '../../../constants/constants';
 
 export default function InputField({
   title,
-  type,
+  typeForInput,
   name,
   prompt,
   disabled,
@@ -21,7 +21,7 @@ export default function InputField({
       element={inputElement}
       name={name}
       title={title}
-      type={type}
+      typeForInput={typeForInput}
       placeholder={placeholder}
       prompt={prompt}
       disabled={disabled}
@@ -35,7 +35,7 @@ export default function InputField({
 
 InputField.propTypes = {
   title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  typeForInput: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   prompt: PropTypes.string,
@@ -43,7 +43,7 @@ InputField.propTypes = {
   minLength: PropTypes.string,
   maxLength: PropTypes.string,
   required: PropTypes.bool,
-  dropDownContent: PropTypes.shape([]),
+  dropDownContent: PropTypes.arrayOf(PropTypes.string),
 };
 
 InputField.defaultProps = {

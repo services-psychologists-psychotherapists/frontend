@@ -1,8 +1,9 @@
 storybook-static
 src/components/FieldContainer/FieldContainer.jsx
 src/components/FieldContainer/Input/Input.jsx
-src/components/FieldContainer/InputIcon/InputIcon.jsx
+src/components/FieldContainer/FieldButton/FieldButton.jsx
 src/components/FieldContainer/Prompt/Prompt.jsx
-src/components/FieldContainer/DropDown/DropDownList.jsx
+src/components/FieldContainer/DropDownList/DropDownList.jsx
 src/components/FieldContainer/DropdownItem/DropdownItem.jsx
+src/components/FieldContainer/DropdownItem/DropdownItemIcon/DropdownItemIcon.jsx
 src/components/FieldContainer/Field/Field.jsx

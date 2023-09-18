@@ -1,12 +1,15 @@
-import './RadioDropdownField.css';
+import './CheckboxDropdownField.css';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { radioDropDown } from '../../constants/constants';
-import FieldContainer from '../FieldContainer/FieldContainer';
+import {
+  checkboxDropDownElement,
+  checkboxType,
+} from '../../../constants/constants';
+import FieldContainer from '../../FieldContainer/FieldContainer';
 
-export default function RadioDropdownField({
+export default function CheckboxDropdownField({
   title,
-  type,
+  typeForInput,
   name,
   disabled,
   placeholder,
@@ -15,10 +18,11 @@ export default function RadioDropdownField({
 }) {
   return (
     <FieldContainer
-      element={radioDropDown}
+      element={checkboxDropDownElement}
+      typeForDropDown={checkboxType}
+      typeForInput={typeForInput}
       name={name}
       title={title}
-      type={type}
       placeholder={placeholder}
       disabled={disabled}
       required={required}
@@ -27,19 +31,18 @@ export default function RadioDropdownField({
   );
 }
 
-RadioDropdownField.propTypes = {
+CheckboxDropdownField.propTypes = {
   title: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  dropDownContent: PropTypes.array.isRequired,
-  type: PropTypes.string,
+  dropDownContent: PropTypes.arrayOf(PropTypes.string).isRequired,
+  typeForInput: PropTypes.string,
   disabled: PropTypes.bool,
   required: PropTypes.bool,
 };
 
-RadioDropdownField.defaultProps = {
-  type: 'text',
+CheckboxDropdownField.defaultProps = {
+  typeForInput: 'text',
   disabled: false,
   required: false,
 };
