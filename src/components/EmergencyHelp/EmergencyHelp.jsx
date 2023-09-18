@@ -1,6 +1,6 @@
 import React from 'react';
 import './EmergencyHelp.css';
-import HelpfulInformation from '../HelpfulInformation/HelpfulInformation';
+import HelpfulInformation from '../templates/HelpfulInformation/HelpfulInformation';
 import { EMERGENCY_SERVICES } from '../../constants/constants';
 
 export default function EmergencyHelp() {
