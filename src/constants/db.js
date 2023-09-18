@@ -1,105 +1,116 @@
+import moment from 'moment';
 import avatar from '../images/avatar.png';
 
 export const SLOTS = [
   {
     id: '123123123123',
-    time: new Date(2023, 8, 29, 9),
+    time: '23.09.2023 14:20',
     patient: {
       name: 'Полина',
       lastName: 'Коновалова',
       id: '1234567890',
     },
     isFree: false,
+    href: '/zoom',
   },
   {
     id: '123423123123',
-    time: new Date(2023, 8, 29, 10),
+    time: '23.09.2023 14:20',
     isFree: true,
   },
   {
     id: '123123123423',
-    time: new Date(2023, 8, 29, 11),
+    time: '23.09.2023 14:20',
     patient: {
       name: 'Полина',
       lastName: 'Коновалова',
       id: '1234567890',
     },
     isFree: false,
+    href: '/zoom',
   },
   {
     id: '123123123163',
-    time: new Date(2023, 8, 29, 12),
+    time: '23.09.2023 14:20',
     patient: {
       name: 'Полина',
       lastName: 'Коновалова',
       id: '1234567890',
     },
     isFree: false,
+    href: '/zoom',
   },
   {
     id: '128123123123',
-    time: new Date(2023, 8, 29, 13),
+    time: '23.09.2023 14:20',
     isFree: true,
+    href: '/zoom',
   },
   {
     id: '123122123123',
-    time: new Date(2023, 8, 29, 14),
+    time: '23.09.2023 14:20',
     patient: {
       name: 'Полина',
       lastName: 'Коновалова',
       id: '1234567890',
     },
     isFree: false,
+    href: '/zoom',
   },
   {
     id: '123123123222',
-    time: new Date(2023, 8, 29, 15),
+    time: '23.09.2023 14:20',
     patient: {
       name: 'Полина',
       lastName: 'Коновалова',
       id: '1234567890',
     },
     isFree: false,
+    href: '/zoom',
   },
   {
     id: '123333123123',
-    time: new Date(2023, 8, 29, 16),
+    time: '18.09.2023 12:20',
     patient: {
       name: 'Полина',
       lastName: 'Коновалова',
       id: '1234567890',
     },
     isFree: false,
+    href: '/zoom',
   },
   {
     id: '123123144423',
-    time: new Date(2023, 8, 29, 17),
+    time: '23.09.2023 14:20',
     patient: {
       name: 'Полина',
       lastName: 'Коновалова',
       id: '1234567890',
     },
     isFree: false,
+    href: '/zoom',
   },
   {
     id: '123126663123',
-    time: new Date(2023, 8, 29, 18),
+    time: '23.09.2023 14:20',
     patient: {
       name: 'Полина',
       lastName: 'Коновалова',
       id: '1234567890',
     },
     isFree: false,
+    href: '/zoom',
   },
   {
     id: '127777123123',
-    time: new Date(2023, 8, 29, 19),
+    time: '18.09.2023 14:20',
     patient: {
       name: 'Полина',
       lastName: 'Коновалова',
       id: '1234567890',
     },
     isFree: false,
+    href: '/zoom',
   },
 ];
 
@@ -114,15 +125,29 @@ export const PSYCHO = {
   name: 'Ирина',
   lastName: 'Кожевникова',
   id: '12345678907',
-  dateOfBith: new Date(1990, 4, 23),
+  dateOfBith: '18.09.1990',
   img: avatar,
-  freeSlots: [
-    new Date(2023, 9, 25, 19),
-    new Date(2023, 9, 28, 18),
-    new Date(2023, 9, 28, 17),
-    new Date(2023, 9, 29, 15),
-    new Date(2023, 9, 29, 14),
-    new Date(2023, 9, 29, 13),
+  slots: [
+    {
+      id: '123123123222',
+      time: '23.09.2023 14:20',
+      patient: {
+        name: 'Полина',
+        lastName: 'Коновалова',
+        id: '1234567890',
+      },
+      isFree: false,
+    },
+    {
+      id: '123333123123',
+      time: '18.09.2023 12:20',
+      patient: {
+        name: 'Полина',
+        lastName: 'Коновалова',
+        id: '1234567890',
+      },
+      isFree: false,
+    },
   ],
   about:
     'Я клинический психолог, гештальт-терапевт с 12-летним опытом работы в профессии. Помогаю людям развивать осознанность, эмоциональный интеллект и строить здоровые, счастливые отношения.',
@@ -162,16 +187,16 @@ export const SLOT = {
     name: 'Ирина',
     lastName: 'Кожевникова',
     id: '12345678907',
-    dateOfBith: new Date(1990, 4, 23),
+    dateOfBith: '18.09.1990',
     img: avatar,
   },
   psycho: {
     name: 'Ирина',
     lastName: 'Кожевникова',
     id: '12345678907',
-    dateOfBith: new Date(1990, 4, 23),
+    dateOfBith: '18.09.1990',
     img: avatar,
   },
-  date: new Date(2023, 9, 25, 19),
+  date: moment('18.09.2023 15:20', 'DD.MM.YYYY hh:mm'),
   href: '/zoom',
 };

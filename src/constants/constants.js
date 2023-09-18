@@ -127,6 +127,7 @@ export const DROPDOWN_LINKS = [
 export const NUMBER_OF_DAYS_DISPLAYED = 13;
 export const NUMBER_TO_SWITCH_THE_WEEKS = 14;
 export const DAYS_OF_WEEK = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+export const DAYS_NAME = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
 
 export const MONTH_NAME = [
   'январь',

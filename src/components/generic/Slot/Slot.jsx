@@ -1,10 +1,11 @@
 import React from 'react';
 import './Slot.css';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import arrow from '../../../images/arrow_icon.svg';
 import Button from '../Button/Button';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
-import { getTime } from '../../../utils/helpers';
+import { getSessionTime } from '../../../utils/helpers';
 
 export default function Slot({ slot, onClick, isSlotOpen }) {
   function classIsOpen(element) {
@@ -17,7 +18,7 @@ export default function Slot({ slot, onClick, isSlotOpen }) {
   return (
     <li className={`slot ${slot.isFree && 'slot_free'}`}>
       <button onClick={onClick} className="slot__header">
-        <p className="session-time">{getTime(slot.time.getHours())}</p>
+        <p className="session-time">{getSessionTime(slot.time)}</p>
         <p className="slot__title">
           {!slot.isFree
             ? `${slot.patient.name} ${slot.patient.lastName}`
@@ -36,7 +37,7 @@ export default function Slot({ slot, onClick, isSlotOpen }) {
           </Button>
         ) : (
           <ButtonGroup size="m">
-            <Button size="m" onClick={() => {}}>
+            <Button size="m" href="/zoom">
               Начать сессию
             </Button>
             <Button size="m" onClick={() => {}} variant="secondary">
@@ -51,7 +52,7 @@ export default function Slot({ slot, onClick, isSlotOpen }) {
 
 Slot.propTypes = {
   slot: PropTypes.shape({
-    time: PropTypes.instanceOf(Date).isRequired,
+    time: PropTypes.instanceOf(moment).isRequired,
     patient: PropTypes.objectOf(PropTypes.string),
     isFree: PropTypes.bool.isRequired,
     id: PropTypes.string.isRequired,

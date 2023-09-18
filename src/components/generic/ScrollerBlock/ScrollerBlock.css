@@ -1,6 +1,7 @@
 .scroller {
   width: 455px;
   height: 97vh;
+  max-height: 718px;
   display: flex;
   gap: 16px;
   flex-direction: column;

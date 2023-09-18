@@ -1,10 +1,11 @@
 import React from 'react';
+import moment from 'moment';
 import './CardOfSession.css';
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar/Avatar';
 import PsychoName from '../PsychoName/PsychoName';
-import { getTime, getMonthName } from '../../../utils/helpers';
-import { DAYS_OF_WEEK, NOT_APPOINTMENT_MESSAGE } from '../../../constants/constants';
+import { getSessionTime, getMonthName } from '../../../utils/helpers';
+import { DAYS_NAME, NOT_APPOINTMENT_MESSAGE } from '../../../constants/constants';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import Button from '../Button/Button';
 
@@ -33,9 +34,9 @@ export default function CardOfSession({ type, session, isFree }) {
               )}
               <div className="session-card__date">
                 <p>
-                  {type === 'client' && `${date.getDate()} ${getMonthName(date)}, ${DAYS_OF_WEEK[date.getDay() + 1]}`}
+                  {type === 'client' && `${date.date()} ${getMonthName(date)}, ${DAYS_NAME[date.day()]}`}
                 </p>
-                <p>{getTime(date)}</p>
+                <p>{getSessionTime(date)}</p>
               </div>
             </div>
           </div>
@@ -68,17 +69,17 @@ CardOfSession.propTypes = {
       name: PropTypes.string,
       lastName: PropTypes.string,
       id: PropTypes.string,
-      dateOfBith: PropTypes.instanceOf(Date),
+      dateOfBith: PropTypes.string,
       img: PropTypes.string,
     }),
     psycho: PropTypes.shape({
       name: PropTypes.string,
       lastName: PropTypes.string,
       id: PropTypes.string,
-      dateOfBith: PropTypes.instanceOf(Date),
+      dateOfBith: PropTypes.string,
       img: PropTypes.string,
     }),
-    date: PropTypes.instanceOf(Date),
+    date: PropTypes.instanceOf(moment),
     href: PropTypes.string,
   }).isRequired,
   isFree: PropTypes.bool,
