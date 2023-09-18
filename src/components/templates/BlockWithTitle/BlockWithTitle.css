@@ -3,3 +3,7 @@
   flex-direction: column;
   gap: 28px;
 }
+
+.block-template_size_m {
+  gap: 48px;
+}

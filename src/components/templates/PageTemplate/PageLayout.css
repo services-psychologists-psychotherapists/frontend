@@ -1,4 +1,4 @@
-.page-template {
+.page-layout {
   display: grid;
   min-height: 100vh;
   grid-template-areas:
@@ -11,23 +11,23 @@
   padding: 40px 80px 100px;
 }
 
-.page-template > .header {
+.page-layout > .header {
   grid-area: header;
   padding: 0;
   margin-bottom: 60px;
 }
-.page-template > .title {
+.page-layout > .title {
   grid-area: title;
   margin-bottom: 40px;
 }
-.page-template > .page-template__children {
+.page-layout > .page-layout__children {
   grid-area: children;
 }
 
-.page-template > .page-template__nav {
+.page-layout > .page-layout__nav {
   grid-area: nav;
 }
-.page-template > .page-template__section {
+.page-layout > .page-layout__section {
   grid-area: section;
   justify-self: end;
   margin-right: 8px;

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import { bool } from 'prop-types';
 import './ClientHomePage.css';
-import PageTemplate from '../../components/PageTemplate/PageTemplate';
+import PageLayout from '../../components/templates/PageTemplate/PageLayout';
 import NavLinksList from '../../components/NavLinksList/NavLinksList';
 import { CLIENT_PROFILE_NAV_LINKS } from '../../constants/constants';
-import BlockTemplate from '../../components/BlockTemplate/BlockTemplate';
+import BlockWithTitle from '../../components/templates/BlockWithTitle/BlockWithTitle';
 import CardOfSession from '../../components/generic/CardOfSession/CardOfSession';
 import CurrentUserContext from '../../Context/CurrentUserContext';
 import YourPsychoCard from '../../components/generic/Cards/YourPsychoCard/YourPsychoCard';
@@ -18,7 +18,7 @@ export default function ClientHomePage({ isLoggedIn }) {
   const { sessions } = currentUser;
 
   return (
-    <PageTemplate
+    <PageLayout
       title="Главная"
       // prettier-ignore
       nav={(
@@ -31,15 +31,15 @@ export default function ClientHomePage({ isLoggedIn }) {
     >
       <>
         <div className="client-account">
-          <BlockTemplate title="Следующая сессия">
+          <BlockWithTitle title="Следующая сессия">
             <CardOfSession
               type="client"
               session={getNextAppointment(sessions)}
             />
-          </BlockTemplate>
-          <BlockTemplate title="Ваш психолог">
+          </BlockWithTitle>
+          <BlockWithTitle title="Ваш психолог">
             <YourPsychoCard user={currentUser} />
-          </BlockTemplate>
+          </BlockWithTitle>
         </div>
         {currentUser.psycho && (
           <div className="client-account__description">
@@ -50,7 +50,7 @@ export default function ClientHomePage({ isLoggedIn }) {
           </div>
         )}
       </>
-    </PageTemplate>
+    </PageLayout>
   );
 }
 
