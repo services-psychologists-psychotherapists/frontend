@@ -37,7 +37,7 @@ export default function HowToStart() {
               <span className="how-to-start__subtitle-span">
                 {el.numberStep}
               </span>
-              <p className="how-to-start__subtitle">{el.nameStep}</p>
+              <Title size="s" titleLvl="2" text={el.nameStep} />
               <p className="how-to-start__description">{el.descriptionStep}</p>
               {el.numberStep === '01' && (
                 <Button

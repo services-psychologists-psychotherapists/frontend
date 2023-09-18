@@ -80,6 +80,11 @@
   align-self: center;
 }
 
+.how-to-start__card .title {
+  grid-area: name;
+  align-self: center;
+}
+
 .how-to-start__description {
   font-family: var(--font-family-lato);
   font-size: var(--text-font-size-s);
