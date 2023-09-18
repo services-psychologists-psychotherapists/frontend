@@ -16,8 +16,8 @@ export default function PsychologistProfile() {
       <div className="psychologist-page">
         <form name="login" noValidate>
           <InputField
-            name="login"
             title="Логин"
+            name="login"
             type="email"
             placeholder="irina_k@yan.ru"
             prompt="Здесь должна быть подсказка"
@@ -41,14 +41,12 @@ export default function PsychologistProfile() {
           <RadioDropdownField
             name="gender"
             title="Пол"
-            type="text"
             placeholder="выберите пол"
             dropDownContent={dropDownListRadio}
           />
           <CheckboxDropdownField
             name="approach"
             title="Подход"
-            type="text"
             placeholder="Выберите все подходящие варианты"
             dropDownContent={dropDownListCheckbox}
           />

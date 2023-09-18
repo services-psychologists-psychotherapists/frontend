@@ -2,7 +2,7 @@ import './RadioDropdownField.css';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { radioDropDown } from '../../constants/constants';
-import Field from '../Field/Field';
+import FieldContainer from '../FieldContainer/FieldContainer';
 
 export default function RadioDropdownField({
   title,
@@ -14,7 +14,7 @@ export default function RadioDropdownField({
   dropDownContent,
 }) {
   return (
-    <Field
+    <FieldContainer
       element={radioDropDown}
       name={name}
       title={title}
@@ -29,16 +29,17 @@ export default function RadioDropdownField({
 
 RadioDropdownField.propTypes = {
   title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   dropDownContent: PropTypes.array.isRequired,
+  type: PropTypes.string,
   disabled: PropTypes.bool,
   required: PropTypes.bool,
 };
 
 RadioDropdownField.defaultProps = {
+  type: 'text',
   disabled: false,
   required: false,
 };

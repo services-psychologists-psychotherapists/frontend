@@ -1,14 +1,14 @@
-import './Field.css';
-import React, { useEffect, useRef, useState } from 'react';
+import './FieldContainer.css';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useForm } from '../../hooks/useForm';
-import Input from './Input/Input';
-import Label from './Label/Label';
+import FieldTitle from './FieldTitle/FieldTitle';
 import Prompt from './Prompt/Prompt';
+import Field from './Field/Field';
 import DropDownList from './DropDown/DropDownList';
 import { inputElement, radioDropDown } from '../../constants/constants';
 
-export default function Field({
+export default function FieldContainer({
   title,
   type,
   name,
@@ -21,33 +21,17 @@ export default function Field({
   element,
   dropDownContent
 }) {
-  const [isFocused, setIsFocused] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
   const [selectedCheckBoxValues, setSelectedCheckBoxValues] = useState({});
-  const fieldRef = useRef(null);
-
-  // eslint-disable-next-line max-len
-  const selectedCheckBoxCount = Object.values(selectedCheckBoxValues).filter((value) => value).length;
-
+  const selectedCheckBoxCount = (
+    Object.values(selectedCheckBoxValues).filter((value) => value).length
+  );
+  const [isFocused, setIsFocused] = useState(false);
   const {
     values, handleChange, errors, isValid
   } = useForm({
     [name]: '',
   });
-
-  const handleClickOutside = (event) => {
-    if (!fieldRef.current.contains(event.target)) {
-      setIsFocused(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, [setIsFocused]);
 
   const handleOpenDropDown = (e) => {
     e.preventDefault();
@@ -65,10 +49,6 @@ export default function Field({
       [value]: !!checked,
     }));
   };
-
-  const fieldClasses = `field 
-  ${!isValid && !disabled ? 'field__invalid-input' : ''} 
-  ${disabled ? 'field_disabled' : ''}`;
 
   let displayValue;
 
@@ -95,41 +75,34 @@ export default function Field({
 
   return (
     <div className="field-container">
-      <Label
+      <FieldTitle
         title={title}
         disabled={disabled}
       />
-      <div className="field-container__input-wrapper" ref={fieldRef}>
-        <div className={fieldClasses}>
-          <Input
-            isFocused={isFocused}
-            type={type}
-            name={name}
-            value={displayValue}
-            onChange={handleChange}
-            placeholder={placeholder}
-            isValid={isValid}
-            disabled={disabled}
-            minLength={minLength}
-            maxLength={maxLength}
-            required={required}
-            element={element}
-            onClick={handleOpenDropDown}
-          />
-        </div>
-        <DropDownList
-          element={element}
-          onChange={element === radioDropDown ? handleRadioChange : handleCheckboxChange}
-          selectedValue={element === radioDropDown ? displayValue : selectedCheckBoxValues}
-          isFocused={isFocused}
-          dropDownContent={dropDownContent}
-        />
-      </div>
-      <Prompt
-        errors={errors}
-        isFocused={isFocused}
-        values={values}
+      <Field
+        type={type}
         name={name}
+        value={displayValue}
+        disabled={disabled}
+        placeholder={placeholder}
+        minLength={minLength}
+        maxLength={maxLength}
+        required={required}
+        element={element}
+        isValid={isValid}
+        handleChange={handleChange}
+        onClick={handleOpenDropDown}
+        isFocused={isFocused}
+      />
+      <DropDownList
+        type={element}
+        onChange={element === radioDropDown ? handleRadioChange : handleCheckboxChange}
+        selectedValue={element === radioDropDown ? displayValue : selectedCheckBoxValues}
+        isFocused={isFocused}
+        dropDownContent={dropDownContent}
+      />
+      <Prompt
+        errors={errors[name]}
         prompt={prompt}
         disabled={disabled}
       />
@@ -137,9 +110,9 @@ export default function Field({
   );
 }
 
-Field.propTypes = {
-  element: PropTypes.string.isRequired,
+FieldContainer.propTypes = {
   title: PropTypes.string.isRequired,
+  element: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
@@ -148,11 +121,10 @@ Field.propTypes = {
   minLength: PropTypes.string,
   maxLength: PropTypes.string,
   required: PropTypes.bool,
-  // eslint-disable-next-line react/forbid-prop-types
-  dropDownContent: PropTypes.array
+  dropDownContent: PropTypes.shape([])
 };
 
-Field.defaultProps = {
+FieldContainer.defaultProps = {
   disabled: false,
   required: false,
   minLength: '',

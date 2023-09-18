@@ -1,7 +1,7 @@
 import './InputField.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import Field from '../Field/Field';
+import FieldContainer from '../FieldContainer/FieldContainer';
 import { inputElement } from '../../constants/constants';
 
 export default function InputField({
@@ -17,7 +17,7 @@ export default function InputField({
   dropDownContent,
 }) {
   return (
-    <Field
+    <FieldContainer
       element={inputElement}
       name={name}
       title={title}
@@ -43,8 +43,7 @@ InputField.propTypes = {
   minLength: PropTypes.string,
   maxLength: PropTypes.string,
   required: PropTypes.bool,
-  // eslint-disable-next-line react/forbid-prop-types
-  dropDownContent: PropTypes.array,
+  dropDownContent: PropTypes.shape([]),
 };
 
 InputField.defaultProps = {

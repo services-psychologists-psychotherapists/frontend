@@ -2,7 +2,7 @@ import './CheckboxDropdownField.css';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { checkboxDropDown } from '../../constants/constants';
-import Field from '../Field/Field';
+import FieldContainer from '../FieldContainer/FieldContainer';
 
 export default function CheckboxDropdownField({
   title,
@@ -14,7 +14,7 @@ export default function CheckboxDropdownField({
   dropDownContent,
 }) {
   return (
-    <Field
+    <FieldContainer
       element={checkboxDropDown}
       name={name}
       title={title}
@@ -29,16 +29,17 @@ export default function CheckboxDropdownField({
 
 CheckboxDropdownField.propTypes = {
   title: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   dropDownContent: PropTypes.array.isRequired,
+  type: PropTypes.string,
   disabled: PropTypes.bool,
   required: PropTypes.bool,
 };
 
 CheckboxDropdownField.defaultProps = {
+  type: 'text',
   disabled: false,
   required: false,
 };

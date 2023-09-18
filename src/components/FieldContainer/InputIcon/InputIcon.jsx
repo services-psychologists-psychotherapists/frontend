@@ -18,10 +18,10 @@ export default function InputIcon({
   isValid,
   isFocused
 }) {
-  function showPasswordContent(e) {
+  const showPasswordContent = (e) => {
     e.preventDefault();
     setIsEyeOpened(!isEyeOpened);
-  }
+  };
 
   let iconClasses = 'input__icon';
   if ((element === radioDropDown || element === checkboxDropDown) && !isFocused) {

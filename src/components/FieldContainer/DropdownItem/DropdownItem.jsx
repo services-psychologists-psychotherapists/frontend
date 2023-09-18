@@ -10,24 +10,20 @@ import Input from '../Input/Input';
 import { useForm } from '../../../hooks/useForm';
 
 export default function DropdownItem({
-  onChange,
-  selectedValue,
-  item,
-  element,
+  onChange, selectedValue, item, type
 }) {
   const { values, handleChange } = useForm({
     custom: '',
   });
 
   const isOtherChecked = selectedValue['Другое'] || false;
-  const isRadio = element === radioDropDown;
-  const isCheckbox = element === checkboxDropDown;
+  const isRadio = type === radioDropDown;
+  const isCheckbox = type === checkboxDropDown;
   const isOther = item === 'Другое';
 
   const containerClassName = isRadio
     ? 'dropdown__radio-label'
     : 'dropdown__checkbox-label';
-  const inputType = isRadio ? 'radio' : 'checkbox';
 
   const isChecked = isRadio
     ? selectedValue === item
@@ -37,7 +33,7 @@ export default function DropdownItem({
   return (
     <label className={containerClassName}>
       <input
-        type={inputType}
+        type={type}
         className={`dropdown__${isRadio ? 'radio' : 'checkbox'}`}
         value={item}
         checked={isChecked}
@@ -63,9 +59,9 @@ export default function DropdownItem({
 }
 
 DropdownItem.propTypes = {
-  element: PropTypes.string.isRequired,
   item: PropTypes.string.isRequired,
   selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
     .isRequired,
   onChange: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired
 };

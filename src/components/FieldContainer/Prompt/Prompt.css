@@ -1,8 +1,8 @@
-.field__span_not-visible {
+.field-container__prompt_not-visible {
   height: 12px;
 }
 
-.field__span_visible {
+.field-container__prompt {
   padding-left: 12px;
   font-family: var(--font-family-lato);
   font-weight: var(--text-weight-primary);
@@ -11,10 +11,10 @@
   height: 12px;
 }
 
-.field__span_visible-error {
+.field-container__prompt_visible-error {
   color: var(--text-color-error);
 }
 
-.field__span_visible-prompt {
+.field-container__prompt_visible-prompt {
   color: var(--text-color-dark-blue);
 }
