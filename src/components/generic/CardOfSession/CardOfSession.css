@@ -63,7 +63,7 @@
   margin-bottom: 12px;
 }
 
-.session-card__title_type_client {
+.session-card__title_type_patient {
   font-family: var(--font-family-lato);
   font-weight: 400;
 }
@@ -75,7 +75,7 @@
   color: #9b9da0;
 }
 
-.session-card__paragraph_type_client {
+.session-card__paragraph_type_patient {
   color: var(--text-color-dark-blue);
   margin-bottom: 40px;
 }

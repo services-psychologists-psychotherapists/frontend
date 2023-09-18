@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import './CardOfSession.css';
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar/Avatar';
@@ -9,40 +8,38 @@ import { DAYS_NAME, NOT_APPOINTMENT_MESSAGE } from '../../../constants/constants
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import Button from '../Button/Button';
 
-export default function CardOfSession({ type, session, isFree }) {
-  const { date, href } = session;
-  const { name, lastName, img } = session[type];
-
+export default function CardOfSession({ type, session }) {
+  const user = type === 'psycho' ? 'patient' : 'psycho';
   return (
     <div
       className={`session-card session-card_type_${type}`}
     >
-      {!isFree ? (
+      {session.patient ? (
         <>
           <div
             className={`session-card__header session-card__header_type_${type}`}
           >
-            <Avatar size="s" src={img} />
+            <Avatar size="s" src={session[user].avatar} />
             <div className="session-card__info">
-              {type === 'client' ? (
+              {type === 'patient' ? (
                 <PsychoName
                   description="Психолог"
-                  name={`${name} ${lastName}`}
+                  name={`${session[user].name} ${session[user].lastName}`}
                 />
               ) : (
-                <p className="session-card__name">{`${name} ${lastName}`}</p>
+                <p className="session-card__name">{`${session[user].name} ${session[user].lastName}`}</p>
               )}
               <div className="session-card__date">
                 <p>
-                  {type === 'client' && `${date.date()} ${getMonthName(date)}, ${DAYS_NAME[date.day()]}`}
+                  {type === 'patient' && `${session.time.date()} ${getMonthName(session.time)}, ${DAYS_NAME[session.time.day()]}`}
                 </p>
-                <p>{getSessionTime(date)}</p>
+                <p>{getSessionTime(session.time)}</p>
               </div>
             </div>
           </div>
           <ButtonGroup size="m">
-            <Button href={href}>
-              {type === 'client' ? 'Перейти' : 'Начать сессию'}
+            <Button href={session.href}>
+              {type === 'patient' ? 'Перейти' : 'Начать сессию'}
             </Button>
             <Button onClick={() => {}} variant="secondary">
               Отменить
@@ -51,11 +48,11 @@ export default function CardOfSession({ type, session, isFree }) {
         </>
       ) : (
         <div>
-          <p className={`session-card__title ${type === 'psycho' ? 'session-card__title_type_client' : ''}`}>{NOT_APPOINTMENT_MESSAGE[type].title}</p>
-          <p className={`session-card__paragraph ${type === 'psycho' ? 'session-card__paragraph_type_client' : ''}`}>
-            {NOT_APPOINTMENT_MESSAGE[type].description}
+          <p className={`session-card__title ${type === 'psycho' ? 'session-card__title_type_patient' : ''}`}>{NOT_APPOINTMENT_MESSAGE[user].title}</p>
+          <p className={`session-card__paragraph ${type === 'psycho' ? 'session-card__paragraph_type_patient' : ''}`}>
+            {NOT_APPOINTMENT_MESSAGE[user].description}
           </p>
-          {type === 'psycho' && <Button href="/calendar">{NOT_APPOINTMENT_MESSAGE[type].textBtn}</Button>}
+          {type === 'psycho' && <Button href="/calendar">{NOT_APPOINTMENT_MESSAGE[user].textBtn}</Button>}
         </div>
       )}
     </div>
@@ -63,29 +60,25 @@ export default function CardOfSession({ type, session, isFree }) {
 }
 
 CardOfSession.propTypes = {
-  type: PropTypes.oneOf(['client', 'psycho']),
+  type: PropTypes.oneOf(['patient', 'psycho']),
   session: PropTypes.shape({
-    client: PropTypes.shape({
+    patient: PropTypes.shape({
       name: PropTypes.string,
       lastName: PropTypes.string,
       id: PropTypes.string,
-      dateOfBith: PropTypes.string,
       img: PropTypes.string,
     }),
     psycho: PropTypes.shape({
       name: PropTypes.string,
       lastName: PropTypes.string,
       id: PropTypes.string,
-      dateOfBith: PropTypes.string,
       img: PropTypes.string,
     }),
-    date: PropTypes.instanceOf(moment),
+    time: PropTypes.string, // change
     href: PropTypes.string,
   }).isRequired,
-  isFree: PropTypes.bool,
 };
 
 CardOfSession.defaultProps = {
   type: 'psycho',
-  isFree: false,
 };
