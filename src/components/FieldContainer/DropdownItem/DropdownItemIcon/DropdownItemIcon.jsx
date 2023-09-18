@@ -23,6 +23,7 @@ export default function DropdownItemIcon({
   };
 
   return (
+    type && (
     <input
       type={type}
       className={`dropdown-item__icon_${isRadio ? 'radio' : 'checkbox'}`}
@@ -30,6 +31,8 @@ export default function DropdownItemIcon({
       checked={isChecked}
       onChange={handleInputChange}
     />
+    )
+
   );
 }
 

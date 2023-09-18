@@ -48,6 +48,7 @@ export default function DropdownItem({
         selectedValue={selectedValue}
       />
       <DropdownItemTitle
+        isCheckboxElement={isCheckboxElement}
         item={item}
       />
     </label>
