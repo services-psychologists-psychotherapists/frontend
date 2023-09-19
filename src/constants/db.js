@@ -108,6 +108,70 @@ export const USER = {
   lastName: 'Кожевникова',
   id: '12345678907',
   img: avatar,
+  psycho: {
+    name: 'Ирина',
+    lastName: 'Кожевникова',
+    id: '12345678907',
+    price: 4500,
+    timeOfSession: 40,
+    img: avatar,
+  },
+  sessions: [
+    {
+      client: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      psycho: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      date: new Date(2023, 8, 25, 19),
+      href: '/zoom',
+    },
+    {
+      client: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      psycho: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      date: new Date(2023, 9, 17, 17),
+      href: '/zoom',
+    },
+    {
+      client: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      psycho: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      date: new Date(2023, 5, 22, 13),
+      href: '/zoom',
+    },
+  ],
 };
 
 export const PSYCHO = {

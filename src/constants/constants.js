@@ -156,7 +156,7 @@ export const SERVICE_DOCUMENTS = [
 export const DROPDOWN_LINKS = [
   {
     text: 'Личный кабинет',
-    link: '/profile',
+    link: '/client_account',
   },
 ];
 
@@ -190,3 +190,24 @@ export const NOT_APPOINTMENT_MESSAGE = {
     description: 'Здесь будет отображаться ближайшая ваша сессия',
   },
 };
+
+export const NO_PSYCHO_MESSAGE = {
+  title: 'Специалист пока не выбран',
+  description:
+    'Здесь будет отображаться последний специалист, с которым вы работали',
+  textBtn: 'Подобрать психолога',
+  href: '/catalog',
+};
+
+export const CLIENT_PROFILE_NAV_LINKS = [
+  {
+    text: 'Главная',
+    link: '/client_account',
+  },
+  {
+    text: 'Профиль',
+    link: '/client_profile',
+  },
+];
+
+export const NAME_OF_DAYS = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
