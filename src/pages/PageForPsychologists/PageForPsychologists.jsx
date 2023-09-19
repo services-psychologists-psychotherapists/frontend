@@ -3,6 +3,7 @@ import './PageForPsychologists.css';
 import Welcome from '../../components/Welcome/Welcome';
 import bannerImg from '../../images/for_therapist_banner.svg';
 import Banner from '../../components/Banner/Banner';
+import HowToStart from '../../components/HowToStart/HowToStart';
 import TermsOfCooperation from '../../components/TermsOfCooperation/TermsOfCooperation';
 
 export default function PageForPsychologists() {
@@ -17,6 +18,7 @@ export default function PageForPsychologists() {
           title="Присоединяйтесь к нашей команде психологов"
         />
       </Welcome>
+      <HowToStart />
       <TermsOfCooperation />
     </>
   );
