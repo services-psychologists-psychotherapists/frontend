@@ -2,6 +2,7 @@ import './DropDownList.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import DropdownItem from '../DropdownItem/DropdownItem';
+import { titlesDropDownElement } from '../../../constants/constants';
 
 export default function DropDownList({
   isFocused,
@@ -16,7 +17,7 @@ export default function DropDownList({
   }
 
   return (
-    <ul className={`dropdown-list ${isFocused && 'dropdown-list_opened'}`}>
+    <ul className={`dropdown-list ${isFocused && 'dropdown-list_opened'} ${element === titlesDropDownElement && 'dropdown-list_titles'}`}>
       {dropDownContent.map((item) => (
         <li className="dropdown-list__item" key={item}>
           <DropdownItem

@@ -36,3 +36,20 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+.dropdown-item__icon_title {
+  position: absolute;
+  appearance: none;
+  -webkit-appearance: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background-color: var(--bg-color-grey);
+  cursor: pointer;
+  width: 100%;
+  z-index: -1;
+  height: 40px;
+}
+
+.dropdown-item__icon_title:checked {
+  background-color: var(--bg-color-light-violet);
+}

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {
   checkboxDropDownElement, inputElement,
-  radioDropDownElement
+  radioDropDownElement, titlesDropDownElement
 } from '../../../constants/constants';
 
 export default function Input({
@@ -24,7 +24,7 @@ export default function Input({
     ${element === inputElement && 'input_hidden-placeholder'}
     ${!isValid && 'input_invalid'} 
     ${disabled && 'input_disabled'}
-    ${(element === radioDropDownElement || element === checkboxDropDownElement)
+    ${(element === radioDropDownElement || element === checkboxDropDownElement || element === titlesDropDownElement)
     && 'input_button'}`;
 
   return (

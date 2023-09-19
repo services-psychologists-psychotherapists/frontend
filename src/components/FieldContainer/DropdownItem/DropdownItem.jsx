@@ -21,11 +21,11 @@ export default function DropdownItem({
     custom: '',
   });
 
-  const isCheckboxElement = element === checkboxDropDownElement;
   const isRadioElement = element === radioDropDownElement;
+  const isCheckboxElement = element === checkboxDropDownElement;
   const containerClassName = isRadioElement
     ? 'dropdown-item__container_radio'
-    : 'dropdown-item__container_checkbox';
+    : isCheckboxElement ? 'dropdown-item__container_checkbox' : 'dropdown-item__container_titles';
 
   return (
     <label
@@ -38,18 +38,19 @@ export default function DropdownItem({
         onChange={onChange}
         selectedValue={selectedValue}
       />
+      <DropdownItemTitle
+        element={element}
+        item={item}
+        selectedValue={selectedValue}
+      />
       <DropdownCustomInput
         inputType="text"
-        isCheckboxElement={isCheckboxElement}
+        element={element}
         name="custom"
         item={item}
         value={values.custom || ''}
         onChange={handleChange}
         selectedValue={selectedValue}
-      />
-      <DropdownItemTitle
-        isCheckboxElement={isCheckboxElement}
-        item={item}
       />
     </label>
   );

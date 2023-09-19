@@ -6,4 +6,5 @@ src/components/FieldContainer/Prompt/Prompt.jsx
 src/components/FieldContainer/DropDownList/DropDownList.jsx
 src/components/FieldContainer/DropdownItem/DropdownItem.jsx
 src/components/FieldContainer/DropdownItem/DropdownItemIcon/DropdownItemIcon.jsx
+src/components/FieldContainer/DropdownItem/DropdownCustomInput/DropdownCustomInput.jsx
 src/components/FieldContainer/Field/Field.jsx

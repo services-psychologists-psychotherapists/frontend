@@ -5,10 +5,12 @@ import { dropDownLists } from '../../constants/constants';
 import InputField from '../../components/AllFields/InputField/InputField';
 import RadioDropdownField from '../../components/AllFields/RadioDropdownField/RadioDropdownField';
 import CheckboxDropdownField from '../../components/AllFields/CheckboxDropdownField/CheckboxDropdownField';
+import TitlesDropDownField from '../../components/AllFields/TitlesDropDownField/TitlesDropDownField';
 
 export default function PsychologistProfile() {
   const [dropDownListRadio] = useState(dropDownLists.genderList);
   const [dropDownListCheckbox] = useState(dropDownLists.approachList);
+  const [dropDownListTitles] = useState(dropDownLists.mainGoalsOfWork);
 
   return (
     <>
@@ -50,6 +52,12 @@ export default function PsychologistProfile() {
             title="Подход"
             placeholder="Выберите все подходящие варианты"
             dropDownContent={dropDownListCheckbox}
+          />
+          <TitlesDropDownField
+            name="work-goals"
+            title="Основные направления работы"
+            placeholder="Выберите все подходящие варианты"
+            dropDownContent={dropDownListTitles}
           />
         </form>
       </div>

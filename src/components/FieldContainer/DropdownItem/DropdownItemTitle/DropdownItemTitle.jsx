@@ -1,14 +1,28 @@
 import './DropdownItemTitle.css';
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  checkboxDropDownElement,
+  titlesDropDownElement,
+} from '../../../../constants/constants';
 
-export default function DropdownItemTitle({ item, isCheckboxElement }) {
-  const isOther = item === 'Другое' && isCheckboxElement;
+export default function DropdownItemTitle({ item, element }) {
+  const isOther = item === 'Другое' && element === checkboxDropDownElement;
 
-  return !isOther && <p className="dropdown-item__title">{item}</p>;
+  return (
+    !isOther && (
+      <p
+        className={`dropdown-item__title ${
+          element === titlesDropDownElement && 'dropdown-item__title_block'
+        }`}
+      >
+        {item}
+      </p>
+    )
+  );
 }
 
 DropdownItemTitle.propTypes = {
   item: PropTypes.string.isRequired,
-  isCheckboxElement: PropTypes.bool.isRequired,
+  element: PropTypes.string.isRequired,
 };

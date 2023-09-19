@@ -4,7 +4,7 @@ import React from 'react';
 import {
   checkboxDropDownElement,
   inputElement,
-  radioDropDownElement
+  radioDropDownElement, titlesDropDownElement
 } from '../../../constants/constants';
 import FieldButtonImage from './FieldButtonImage/FieldButtonImage';
 
@@ -30,7 +30,8 @@ export default function FieldButton({
 
   const isHaveIcon = type === 'password'
       || element === radioDropDownElement
-      || element === checkboxDropDownElement;
+      || element === checkboxDropDownElement
+      || element === titlesDropDownElement;
 
   return (
     isHaveIcon && (

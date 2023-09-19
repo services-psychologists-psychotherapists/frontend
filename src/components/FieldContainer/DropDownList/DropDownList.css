@@ -27,3 +27,8 @@
   transition: all 0.2s ease;
   border-radius: 12px;
 }
+
+.dropdown-list_titles {
+  flex-direction: initial;
+  flex-wrap: wrap;
+}

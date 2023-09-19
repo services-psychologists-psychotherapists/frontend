@@ -2,6 +2,7 @@ import './DropdownCustomInput.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../../Input/Input';
+import { checkboxDropDownElement } from '../../../../constants/constants';
 
 export default function DropdownCustomInput({
   item,
@@ -9,12 +10,12 @@ export default function DropdownCustomInput({
   onChange,
   selectedValue,
   value,
-  isCheckboxElement,
   name,
+  element
 }) {
-  const isOtherChecked = selectedValue['Другое'] || false;
+  const isOtherChecked = (selectedValue['Другое'] || false) && element === checkboxDropDownElement;
   const isOther = item === 'Другое';
-  const shouldRenderCustomInput = isOther && isCheckboxElement;
+  const shouldRenderCustomInput = isOther && element === checkboxDropDownElement;
 
   return (
     shouldRenderCustomInput && (
@@ -34,6 +35,7 @@ export default function DropdownCustomInput({
 }
 
 DropdownCustomInput.propTypes = {
+  element: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   item: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
@@ -41,5 +43,4 @@ DropdownCustomInput.propTypes = {
     .isRequired,
   onChange: PropTypes.func.isRequired,
   inputType: PropTypes.string.isRequired,
-  isCheckboxElement: PropTypes.bool.isRequired,
 };
