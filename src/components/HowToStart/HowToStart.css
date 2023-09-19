@@ -1,0 +1,102 @@
+.how-to-start {
+  padding: 100px 80px 120px;
+  background-color: var(--bg-color-loight-yellow);
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.how-to-start__cards-flow {
+  display: flex;
+  max-width: 1280px;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+}
+
+.how-to-start__cards {
+  display: flex;
+  gap: 20px;
+  max-height: 280px;
+}
+
+.cards_direction_row-reverse {
+  flex-direction: row-reverse;
+}
+
+.how-to-start__card {
+  border: 1px solid;
+  border-color: var(--border-color-medium-violet);
+  border-radius: 12px;
+}
+
+.how-to-start__card_type_text {
+  padding: 40px 60px 42px;
+  aspect-ratio: calc(846 / 280);
+  display: grid;
+  grid: 'number name' 46px '. description' / auto 1fr;
+  gap: 12px;
+  flex: 1 1 0;
+}
+
+.how-to-start__card_type_img {
+  padding: 20px 20px;
+  max-width: 412px;
+  aspect-ratio: calc(412 / 280);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 0;
+}
+
+.how-to-start__card_color_white {
+  background-color: var(--bg-color-white);
+}
+
+.how-to-start__card_color_light-green {
+  background-color: var(--bg-color-light-green);
+}
+
+.how-to-start__card_color_light-violet {
+  background-color: var(--bg-color-light-violet);
+}
+
+.how-to-start__subtitle-span {
+  font-family: var(--font-family-montsertat);
+  font-size: var(--text-font-size-m);
+  line-height: 1.22;
+  font-weight: 500;
+  grid-area: number;
+  color: var(--text-color-dark-blue);
+}
+
+.how-to-start__subtitle {
+  font-family: var(--font-family-montsertat);
+  font-size: 22px;
+  line-height: 1.22;
+  font-weight: 600;
+  color: var(--text-color-dark-blue);
+  grid-area: name;
+  align-self: center;
+}
+
+.how-to-start__card .title {
+  grid-area: name;
+  align-self: center;
+}
+
+.how-to-start__description {
+  font-family: var(--font-family-lato);
+  font-size: var(--text-font-size-s);
+  line-height: 1.3;
+  font-weight: var(--text-weight-primary);
+  color: var(--text-color-dark-blue);
+  vertical-align: text-top;
+  grid-area: description;
+}
+
+.how-to-start__button-apply {
+  grid-area: description;
+  justify-self: start;
+  align-self: end;
+}

@@ -95,8 +95,7 @@ export default function Сalendar() {
 
   // prettier-ignore
   const dateСellСlasses = (i) => (
-    `${i.isDayOff ? 'calendar__day-of-week_day-off' : ''} ${
-      i.date === formattedCurrentDate ? 'calendar__date_today' : ''
+    `${i.isDayOff ? 'calendar__day-of-week_day-off' : ''} ${i.date === formattedCurrentDate ? 'calendar__date_today' : ''
     } ${selectedDay === i.date ? 'calendar__date_selected' : ''}`
   );
 
