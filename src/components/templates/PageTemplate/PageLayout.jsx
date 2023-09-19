@@ -12,13 +12,15 @@ export default function PageLayout({
   section,
 }) {
   return (
-    <section className="page-layout">
+    <>
       <Header isLoggedIn={isLoggedIn} />
-      <Title text={title} />
-      {nav && <div className="page-layout__nav">{nav}</div>}
-      <div className="page-layout__children">{children}</div>
-      {section && <div className="page-layout__section">{section}</div>}
-    </section>
+      <section className="page-layout">
+        <Title text={title} />
+        {nav && <div className="page-layout__nav">{nav}</div>}
+        <div className="page-layout__children">{children}</div>
+        {section && <div className="page-layout__section">{section}</div>}
+      </section>
+    </>
   );
 }
 
