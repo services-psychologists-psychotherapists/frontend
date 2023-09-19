@@ -1,3 +1,4 @@
+import moment from 'moment';
 import avatar from '../images/avatar.png';
 import psychologistAvatar from '../images/psychologist_avatar.png';
 import clientAvatar from '../images/client_avatar.png';
@@ -59,8 +60,8 @@ const SLOT = {
 };
 
 const SLOT_2 = JSON.parse(JSON.stringify(SLOT));
-SLOT_2.datetime_from = '20.09.2023 19:20';
-SLOT_2.datetime_to = '20.09.2023 20:10';
+SLOT_2.datetime_from = moment('20.09.2023 19:20', 'DD.MM.YYYY. hh.mm');
+SLOT_2.datetime_to = moment('20.09.2023 20:10', 'DD.MM.YYYY. hh.mm');
 
 const SLOT_3 = JSON.parse(JSON.stringify(SLOT));
 SLOT_3.datetime_from = '24.09.2023 19:20';
@@ -165,4 +166,68 @@ export const USER = {
   lastName: 'Кожевникова',
   id: '12345678907',
   img: avatar,
+  psycho: {
+    name: 'Ирина',
+    lastName: 'Кожевникова',
+    id: '12345678907',
+    price: 4500,
+    timeOfSession: 40,
+    img: avatar,
+  },
+  sessions: [
+    {
+      client: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      psycho: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      date: new Date(2023, 8, 25, 19),
+      href: '/zoom',
+    },
+    {
+      client: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      psycho: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      date: new Date(2023, 9, 17, 17),
+      href: '/zoom',
+    },
+    {
+      client: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      psycho: {
+        name: 'Ирина',
+        lastName: 'Кожевникова',
+        id: '12345678907',
+        dateOfBith: new Date(1990, 4, 23),
+        img: avatar,
+      },
+      date: new Date(2023, 5, 22, 13),
+      href: '/zoom',
+    },
+  ],
 };

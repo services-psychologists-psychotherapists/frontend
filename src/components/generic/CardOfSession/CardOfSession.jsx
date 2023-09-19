@@ -8,6 +8,8 @@ import { getSessionTime, getMonthName } from '../../../utils/helpers';
 import { DAYS_NAME, NOT_APPOINTMENT_MESSAGE } from '../../../constants/constants';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import Button from '../Button/Button';
+import EmptyCard from '../Cards/EmptyCard/EmptyCard';
+import Paragraph from '../Paragraph/Paragraph';
 
 export default function CardOfSession({ type, session }) {
   let user;
@@ -21,6 +23,15 @@ export default function CardOfSession({ type, session }) {
   } else {
     user = type === 'psychologist' ? 'client' : 'psychologist';
   }
+  const emptyCardProps = () => {
+    if (type === 'psycho') {
+      return {
+        textBtn: NOT_APPOINTMENT_MESSAGE[type].textBtn,
+        href: '/calendar'
+      };
+    }
+    return '';
+  };
 
   return (
     <div
@@ -39,7 +50,7 @@ export default function CardOfSession({ type, session }) {
                   name={`${user.first_name} ${user.last_name}`}
                 />
               ) : (
-                <p className="session-card__name">{`${user.first_name} ${user.last_name}`}</p>
+                <Paragraph>{`${user.first_name} ${user.last_name}`}</Paragraph>
               )}
               <div className="session-card__date">
                 <p>
@@ -49,7 +60,7 @@ export default function CardOfSession({ type, session }) {
               </div>
             </div>
           </div>
-          <ButtonGroup size="m">
+          <ButtonGroup size="s">
             <Button href={session.href}>
               {type === 'client' ? 'Перейти' : 'Начать сессию'}
             </Button>
@@ -59,13 +70,12 @@ export default function CardOfSession({ type, session }) {
           </ButtonGroup>
         </>
       ) : (
-        <div>
-          <p className={`session-card__title ${type === 'psychologist' ? 'session-card__title_type_client' : ''}`}>{NOT_APPOINTMENT_MESSAGE[user].title}</p>
-          <p className={`session-card__paragraph ${type === 'psychologist' ? 'session-card__paragraph_type_client' : ''}`}>
-            {NOT_APPOINTMENT_MESSAGE[user].description}
-          </p>
-          {type === 'psychologist' && <Button href="/calendar">{NOT_APPOINTMENT_MESSAGE[user].textBtn}</Button>}
-        </div>
+        <EmptyCard
+          type={type}
+          title={NOT_APPOINTMENT_MESSAGE[user].title}
+          paragraph={NOT_APPOINTMENT_MESSAGE[user].description}
+          {...emptyCardProps()}
+        />
       )}
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
 import './HelpfulInformation.css';
 import PropTypes from 'prop-types';
-import Title from '../generic/Title/Title';
+import Title from '../../generic/Title/Title';
 
 export default function HelpfulInformation({
   children,

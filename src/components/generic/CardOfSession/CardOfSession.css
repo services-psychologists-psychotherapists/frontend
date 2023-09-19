@@ -30,13 +30,6 @@
   align-items: center;
 }
 
-.session-card__name {
-  font-family: var(--font-family-lato);
-  font-weight: 400;
-  font-size: 18px;
-  color: var(--text-color-dark-blue);
-}
-
 .session-card__info {
   display: flex;
   align-items: center;
@@ -50,32 +43,8 @@
   font-family: var(--font-family-lato);
   font-weight: 700;
   font-size: 18px;
+  line-height: 24px;
   align-items: flex-end;
   gap: 8px;
   color: var(--text-color-dark-blue);
-}
-
-.session-card__title {
-  font-family: var(--font-family-montsertat);
-  font-weight: 600;
-  font-size: 22px;
-  color: var(--text-color-dark-blue);
-  margin-bottom: 12px;
-}
-
-.session-card__title_type_client {
-  font-family: var(--font-family-lato);
-  font-weight: 400;
-}
-
-.session-card__paragraph {
-  font-family: var(--font-family-lato);
-  font-weight: 400;
-  font-size: 18px;
-  color: #9b9da0;
-}
-
-.session-card__paragraph_type_client {
-  color: var(--text-color-dark-blue);
-  margin-bottom: 40px;
 }
