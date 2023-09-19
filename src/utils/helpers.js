@@ -13,12 +13,10 @@ export const getMonthName = (date) => {
 
 export const getTime = (time) => `0${time}`.slice(-2);
 
-export const getSessionTime = (date) => {
-  const startTime = `${getTime(date.hour())}:${getTime(date.minute())}`;
-  const end = date.clone();
-  end.add(50, 'm');
-  const endTime = `${getTime(end.hour())}:${getTime(end.minute())}`;
-  // const hours = `0${date.hour()}`.slice(-2);
+export const getSessionTime = (startDate, endDate) => {
+  // prettier-ignore
+  const startTime = `${getTime(startDate.hour())}:${getTime(startDate.minute())}`;
+  const endTime = `${getTime(endDate.hour())}:${getTime(endDate.minute())}`;
   return `${startTime} - ${endTime}`;
 };
 

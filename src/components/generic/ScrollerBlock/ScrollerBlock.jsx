@@ -22,10 +22,11 @@ export default function ScrollerBlock({ slots, selectedDay }) {
   // компонент и сюда будет передоваться только массив
   const getSlots = () => {
     slots.map((slot) => {
-      const time = moment(slot.time, 'DD.MM.YYYY hh:mm');
+      const time = moment(slot.slot.datetime_from, 'DD.MM.YYYY hh:mm');
       if (time.month() === selectedDay.month() && time.day() === selectedDay.day()) {
-        slot.time = time; // eslint-disable-line no-param-reassign
-        return selectedSlots.push({ ...slot });
+        slot.slot.datetime_from = time; // eslint-disable-line no-param-reassign
+        slot.slot.datetime_to = moment(slot.slot.datetime_to, 'DD.MM.YYYY hh:mm'); // eslint-disable-line no-param-reassign
+        return selectedSlots.push(slot);
       }
       return null;
     });
@@ -42,13 +43,13 @@ export default function ScrollerBlock({ slots, selectedDay }) {
       <h2 className="scroller__title">{`${selectedDay.date()} ${getMonthName(selectedDay)}`}</h2>
       {selectedSlots.length > 0 ? (
         <ul className="slots">
-          {selectedSlots.map((slot) => (
+          {selectedSlots.map((session) => (
             <Slot
-              slot={slot}
-              key={slot.id}
-              id={slot.id}
-              onClick={() => handlerSlotClick(slot.id)}
-              isSlotOpen={openSlot === slot.id}
+              session={session}
+              key={session.id}
+              id={session.id}
+              onClick={() => handlerSlotClick(session.id)}
+              isSlotOpen={openSlot === session.id}
             />
           ))}
         </ul>
@@ -69,15 +70,26 @@ export default function ScrollerBlock({ slots, selectedDay }) {
 ScrollerBlock.propTypes = {
   slots: PropTypes.arrayOf(
     PropTypes.shape({
-      time: PropTypes.node.isRequired,
-      patient: PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        lastName: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
+      client: PropTypes.shape({
+        first_name: PropTypes.string,
+        last_name: PropTypes.string,
+        id: PropTypes.string,
+        avatar: PropTypes.string,
       }),
-      isFree: PropTypes.bool.isRequired,
-      id: PropTypes.string.isRequired,
-    })
+      slot: PropTypes.shape({
+        psychologist: PropTypes.shape({
+          fitst_name: PropTypes.string,
+          last_name: PropTypes.string,
+          id: PropTypes.string,
+          avatar: PropTypes.string,
+        }),
+        datetime_from: PropTypes.instanceOf(moment),
+        datetime_to: PropTypes.instanceOf(moment),
+        is_free: PropTypes.bool,
+      }),
+      status: PropTypes.string,
+      href: PropTypes.string,
+    }).isRequired,
   ).isRequired,
   selectedDay: PropTypes.instanceOf(moment).isRequired
 };

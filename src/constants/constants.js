@@ -145,12 +145,12 @@ export const MONTH_NAME = [
 ];
 
 export const NOT_APPOINTMENT_MESSAGE = {
-  patient: {
+  client: {
     title: 'Сегодня сессий нет',
     description: 'Установите доступное время, чтобы клиент смог записаться',
     textBtn: 'Добавить свободное время',
   },
-  psycho: {
+  psychologist: {
     title: 'Сессий пока не запланировано',
     description: 'Здесь будет отображаться ближайшая ваша сессия',
   },
