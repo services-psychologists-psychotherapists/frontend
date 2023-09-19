@@ -2,7 +2,7 @@ import React from 'react';
 import './PlannerSection.css';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Title from '../../generic/Title/Title';
+/* import Title from '../../generic/Title/Title'; */
 import iconInfo from '../../../images/icon_info.svg';
 
 export default function PlannerSection({ calendar, meetingsReminder, text }) {
@@ -20,7 +20,7 @@ export default function PlannerSection({ calendar, meetingsReminder, text }) {
   const { calendarText, reminderText } = text;
   return (
     <div className={classesPlannerSection}>
-      <Title size="m" text="Главная" />
+      {/*  <Title size="m" text="Главная" /> */}
       <div className="psychologist-account__calendar">
         <p className="psychologist-account__subtitle">{calendarText}</p>
         {calendar}

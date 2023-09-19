@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './PsychologistAccountTemplate.css';
-import Header from '../Header/Header';
+import PageLayout from '../templates/PageTemplate/PageLayout';
 import NavLinksList from '../NavLinksList/NavLinksList';
 import {
   PSYCHOLOGIST_ACCOUNT_LINKS,
@@ -31,19 +31,13 @@ export default function PsychologistAccountTemplate({
   };
 
   return (
-    <>
-      <Header isLoggedIn />
+    <PageLayout
+      title="Главная"
+      isLoggedIn
+      // prettier-ignore
+      nav={<NavLinksList list={PSYCHOLOGIST_ACCOUNT_LINKS} direction="column" variant="violet" />}
+    >
       <section className="psychologist-account">
-        <div className="psychologist-account__links-section">
-          <div className="psychologist-account__style-links">
-            <NavLinksList
-              list={PSYCHOLOGIST_ACCOUNT_LINKS}
-              direction="column"
-              variant="violet"
-            />
-          </div>
-        </div>
-
         <PlannerSection
           calendar={calendar}
           meetingsReminder={meetingsReminder}
@@ -52,7 +46,7 @@ export default function PsychologistAccountTemplate({
 
         <SheduleSection>{shedule}</SheduleSection>
       </section>
-    </>
+    </PageLayout>
   );
 }
 
