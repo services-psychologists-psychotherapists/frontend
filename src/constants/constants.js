@@ -7,6 +7,9 @@ import yourself from '../images/about_problem_understand_yourself.svg';
 import career from '../images/about_problem_career.svg';
 import posttraumatic from '../images/about_problem_posttraumatic.svg';
 import badHabits from '../images/about_problem_bad_habits.svg';
+import form from '../images/how_to_start_form.svg';
+import clock from '../images/how_to_start_clock.svg';
+import girls from '../images/how_to_start_talking_girls.svg';
 
 export const NAVIGATION_LINKS = [
   {
@@ -55,6 +58,39 @@ export const CUSTOMER_PROBLEMS = [
     problemName: 'Проработать зависимости и нежелательные привычки',
     imgPath: badHabits,
     imgAlt: 'badHabits',
+  },
+];
+
+export const LIST_OF_STEPS = [
+  {
+    numberStep: '01',
+    nameStep: 'Заполните заявку',
+    descriptionStep:
+      'От вас потребуются документы об образовании и подтверждающие квалификацию сертификаты',
+    bgColor: 'white',
+    imgPath: form,
+    bgColorImg: 'light-violet',
+    link: '',
+  },
+  {
+    numberStep: '02',
+    nameStep: 'Ожидайте подтверждения аккаунта',
+    descriptionStep:
+      'После проверки ваших данных, мы пришлем вам приглашение в личный кабинет',
+    bgColor: 'white',
+    imgPath: clock,
+    bgColorImg: 'light-green',
+    link: '',
+  },
+  {
+    numberStep: '03',
+    nameStep: 'Получайте новых клиентов',
+    descriptionStep:
+      'Расскажите о себе, установите ваше время работы и ожидайте записи к вам новых клиентов!',
+    bgColor: 'white',
+    imgPath: girls,
+    bgColorImg: 'light-violet',
+    link: '',
   },
 ];
 
