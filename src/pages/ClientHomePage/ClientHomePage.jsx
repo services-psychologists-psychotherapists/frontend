@@ -43,7 +43,9 @@ export default function ClientHomePage({ isLoggedIn }) {
         </div>
         {currentUser.psycho && (
           <div className="client-account__description">
-            <Paragraph>Вы можете выбрать другого специалиста</Paragraph>
+            <Paragraph>
+              Вы можете выбрать другого специалиста, перейдя в
+            </Paragraph>
             <Button variant="text" href="/catalog">
               Каталог психологов
             </Button>

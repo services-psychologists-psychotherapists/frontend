@@ -46,7 +46,7 @@ export default function CardOfSession({ type, session }) {
               </div>
             </div>
           </div>
-          <ButtonGroup size="m">
+          <ButtonGroup size="s">
             <Button href={session.href}>
               {type === 'client' ? 'Перейти' : 'Начать сессию'}
             </Button>

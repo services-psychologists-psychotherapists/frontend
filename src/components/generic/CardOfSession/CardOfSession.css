@@ -43,6 +43,7 @@
   font-family: var(--font-family-lato);
   font-weight: 700;
   font-size: 18px;
+  line-height: 24px;
   align-items: flex-end;
   gap: 8px;
   color: var(--text-color-dark-blue);
