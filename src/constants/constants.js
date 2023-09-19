@@ -200,6 +200,19 @@ export const NO_PSYCHO_MESSAGE = {
   href: '/catalog',
 };
 
+export const NO_SLOTS_MESSAGE = {
+  today: {
+    title: 'На выбранный день не установлено доступное время для сессий',
+    href: '/shedule',
+    textBtn: 'Перейти в расписание',
+  },
+  otherDay: {
+    title: 'На сегодня не установлено доступное время для сессий',
+    href: '/shedule',
+    textBtn: 'Перейти в расписание',
+  },
+};
+
 export const CLIENT_PROFILE_NAV_LINKS = [
   {
     text: 'Главная',

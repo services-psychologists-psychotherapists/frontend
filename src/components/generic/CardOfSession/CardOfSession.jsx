@@ -16,22 +16,27 @@ export default function CardOfSession({ type, session }) {
   let timeFrom;
   let timeTo;
 
-  if (session.client) {
-    user = type === 'psychologist' ? session.client : session.slot.psychologist;
-    timeFrom = session.slot.datetime_from;
-    timeTo = session.slot.datetime_to;
-  } else {
-    user = type === 'psychologist' ? 'client' : 'psychologist';
-  }
+  const setCardData = () => {
+    if (session.client) {
+      user = type === 'psychologist' ? session.client : session.slot.psychologist;
+      timeFrom = session.slot.datetime_from;
+      timeTo = session.slot.datetime_to;
+    } else {
+      user = type === 'psychologist' ? 'client' : 'psychologist';
+    }
+  };
+
   const emptyCardProps = () => {
-    if (type === 'psycho') {
+    if (type === 'psychologist') {
       return {
-        textBtn: NOT_APPOINTMENT_MESSAGE[type].textBtn,
+        textBtn: NOT_APPOINTMENT_MESSAGE[user].textBtn,
         href: '/calendar'
       };
     }
     return '';
   };
+
+  setCardData();
 
   return (
     <div
@@ -71,7 +76,7 @@ export default function CardOfSession({ type, session }) {
         </>
       ) : (
         <EmptyCard
-          type={type}
+          type={user}
           title={NOT_APPOINTMENT_MESSAGE[user].title}
           paragraph={NOT_APPOINTMENT_MESSAGE[user].description}
           {...emptyCardProps()}

@@ -1,4 +1,3 @@
-import moment from 'moment';
 import avatar from '../images/avatar.png';
 import psychologistAvatar from '../images/psychologist_avatar.png';
 import clientAvatar from '../images/client_avatar.png';
@@ -60,8 +59,8 @@ const SLOT = {
 };
 
 const SLOT_2 = JSON.parse(JSON.stringify(SLOT));
-SLOT_2.datetime_from = moment('20.09.2023 19:20', 'DD.MM.YYYY. hh.mm');
-SLOT_2.datetime_to = moment('20.09.2023 20:10', 'DD.MM.YYYY. hh.mm');
+SLOT_2.datetime_from = '20.09.2023 19:20';
+SLOT_2.datetime_to = '20.09.2023 20:10';
 
 const SLOT_3 = JSON.parse(JSON.stringify(SLOT));
 SLOT_3.datetime_from = '24.09.2023 19:20';

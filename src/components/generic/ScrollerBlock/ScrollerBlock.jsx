@@ -5,18 +5,20 @@ import './ScrollerBlock.css';
 import Button from '../Button/Button';
 import Slot from '../Slot/Slot';
 import { getMonthName } from '../../../utils/helpers';
+import { NO_SLOTS_MESSAGE } from '../../../constants/constants';
 
 export default function ScrollerBlock({ slots, selectedDay }) {
   const [openSlot, setOpenSlot] = useState(null);
   const selectedSlots = [];
+  const currentDay = selectedDay.isSame(moment(), 'day') ? 'otherDay' : 'today';
 
-  function handlerSlotClick(id) {
+  const handlerSlotClick = (id) => {
     if (id !== openSlot) {
       setOpenSlot(id);
     } else {
       setOpenSlot(null);
     }
-  }
+  };
 
   // Позже весь функционал перенесеться в родительский
   // компонент и сюда будет передоваться только массив
@@ -55,11 +57,9 @@ export default function ScrollerBlock({ slots, selectedDay }) {
         </ul>
       ) : (
         <div className="scroller__empty">
-          <p className="scroller__description">
-            {selectedSlots.length <= 0 ? 'На выбранный день не установлено доступное время для сессий' : 'На сегодня не установлено доступное время для сессий'}
-          </p>
-          <Button variant="secondary" href="/schedule">
-            Перейти в расписание
+          <p className="scroller__description">{NO_SLOTS_MESSAGE[currentDay].title}</p>
+          <Button variant="secondary" href={NO_SLOTS_MESSAGE[currentDay].href}>
+            {NO_SLOTS_MESSAGE[currentDay].textBtn}
           </Button>
         </div>
       )}

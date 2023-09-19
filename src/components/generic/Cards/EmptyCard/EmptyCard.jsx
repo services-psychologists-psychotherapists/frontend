@@ -14,7 +14,7 @@ export default function EmptyCard({
 }) {
   return (
     <div className={`empty-card empty-card_type_${type}`}>
-      {type === 'psycho'
+      {type === 'client'
         ? (
           <>
             <Paragraph size="l">{title}</Paragraph>
@@ -32,14 +32,14 @@ export default function EmptyCard({
 }
 
 EmptyCard.propTypes = {
-  type: oneOf(['client', 'psycho']),
+  type: oneOf(['client', 'psychologist']),
   title: string.isRequired,
   paragraph: string.isRequired,
   href: string,
   textBtn: string,
 };
 EmptyCard.defaultProps = {
-  type: 'psycho',
+  type: 'psychologist',
   href: '',
   textBtn: '',
 };

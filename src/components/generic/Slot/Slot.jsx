@@ -8,12 +8,12 @@ import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import { getSessionTime } from '../../../utils/helpers';
 
 export default function Slot({ session, onClick, isSlotOpen }) {
-  function classIsOpen(element) {
+  const classIsOpen = (element) => {
     if (isSlotOpen) {
       return `${element}_opened`;
     }
     return '';
-  }
+  };
 
   const startTime = session.slot.datetime_from;
   const endTime = session.slot.datetime_to;
@@ -39,7 +39,7 @@ export default function Slot({ session, onClick, isSlotOpen }) {
             Удалить из расписания
           </Button>
         ) : (
-          <ButtonGroup size="m">
+          <ButtonGroup size="s">
             <Button size="m" href={session.href}>
               Начать сессию
             </Button>
