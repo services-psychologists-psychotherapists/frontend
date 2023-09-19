@@ -196,6 +196,8 @@ export const PSYCHOLOGIST_ACCOUNT_TEXT = {
   txtReminderInMain: 'Ближайшая сессия',
   txtCalendarInShedule: '1. Выберите день',
   txtReminderInShedule: '2. Добавьте доступное время сессии',
+  txtTitleInMain: 'Главная',
+  txtTitlenShedule: 'Расписание',
 };
 
 export const TIMING_HOURS = [

@@ -4,12 +4,6 @@
   gap: 20px;
 }
 
-.psychologist-account__links-section {
-  max-width: 198px;
-  padding-top: 88px;
-  flex: 1 1 0;
-}
-
 .psychologist-account__planner-section {
   display: flex;
   flex-direction: column;
@@ -32,14 +26,6 @@
   gap: 28px;
 }
 
-.psychologist-account__subtitle {
-  font-family: var(--font-family-montsertat);
-  font-size: 22px;
-  color: var(--text-color-dark-blue);
-  font-weight: 500;
-  line-height: 1.36;
-}
-
 .psychologist-account__subtitle-string {
   display: flex;
   flex-direction: row;
@@ -51,8 +37,16 @@
   display: block;
 }
 
+.psychologist-account__info_invisible {
+  display: none;
+}
+
 .psychologist-account__info:hover {
   cursor: pointer;
+}
+
+.psychologist-account__info:hover + .prompt {
+  display: block;
 }
 
 .prompt {
@@ -67,14 +61,6 @@
   transform: translate(-50%, -50%);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   z-index: 10;
-}
-
-.psychologist-account__info:hover + .prompt {
-  display: block;
-}
-
-.psychologist-account__info_invisible {
-  display: none;
 }
 
 .psychologist-account__meetings-reminder {

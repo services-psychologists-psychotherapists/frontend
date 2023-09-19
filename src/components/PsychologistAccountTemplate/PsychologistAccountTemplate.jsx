@@ -17,6 +17,7 @@ export default function PsychologistAccountTemplate({
   shedule,
 }) {
   const { pathname } = useLocation();
+
   const text = {
     calendarText: `${
       pathname === '/psychologist_account_schedule'
@@ -28,11 +29,16 @@ export default function PsychologistAccountTemplate({
         ? PSYCHOLOGIST_ACCOUNT_TEXT.txtReminderInShedule
         : PSYCHOLOGIST_ACCOUNT_TEXT.txtReminderInMain
     }`,
+    titleText: `${
+      pathname === '/psychologist_account_schedule'
+        ? PSYCHOLOGIST_ACCOUNT_TEXT.txtTitlenShedule
+        : PSYCHOLOGIST_ACCOUNT_TEXT.txtTitleInMain
+    }`,
   };
 
   return (
     <PageLayout
-      title="Главная"
+      title={text.titleText}
       isLoggedIn
       // prettier-ignore
       nav={<NavLinksList list={PSYCHOLOGIST_ACCOUNT_LINKS} direction="column" variant="violet" />}
