@@ -27,6 +27,10 @@ export default function DropdownItem({
     ? 'dropdown-item__container_radio'
     : isCheckboxElement ? 'dropdown-item__container_checkbox' : 'dropdown-item__container_titles';
 
+  const isChecked = isRadioElement
+    ? selectedValue === item
+    : selectedValue[item] || false;
+
   return (
     <label
       className={`dropdown-item__container ${containerClassName}`}
@@ -36,9 +40,11 @@ export default function DropdownItem({
         type={type}
         item={item}
         onChange={onChange}
+        checked={isChecked}
         selectedValue={selectedValue}
       />
       <DropdownItemTitle
+        checked={isChecked}
         element={element}
         item={item}
         selectedValue={selectedValue}

@@ -4,14 +4,10 @@ import PropTypes from 'prop-types';
 import { checkboxDropDownElement, radioDropDownElement } from '../../../../constants/constants';
 
 export default function DropdownItemIcon({
-  type, onChange, selectedValue, item, element
+  type, onChange, selectedValue, item, element, checked
 }) {
   const isRadio = element === radioDropDownElement;
-  const isCheckboxDropdown = element === checkboxDropDownElement;
-
-  const isChecked = isRadio
-    ? selectedValue === item
-    : selectedValue[item] || false;
+  const isCheckbox = element === checkboxDropDownElement;
 
   const handleInputChange = (e) => {
     const newValue = isRadio
@@ -27,9 +23,9 @@ export default function DropdownItemIcon({
     type && (
       <input
         type={type}
-        className={`dropdown-item__icon_${isRadio ? 'radio' : isCheckboxDropdown ? 'checkbox' : 'title'}`}
+        className={`dropdown-item__icon_${isRadio ? 'radio' : isCheckbox ? 'checkbox' : 'title'}`}
         value={item}
-        checked={isChecked}
+        checked={checked}
         onChange={handleInputChange}
       />
     )
@@ -37,6 +33,7 @@ export default function DropdownItemIcon({
 }
 
 DropdownItemIcon.propTypes = {
+  checked: PropTypes.bool.isRequired,
   element: PropTypes.string.isRequired,
   item: PropTypes.string.isRequired,
   selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,

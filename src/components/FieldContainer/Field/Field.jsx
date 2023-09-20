@@ -64,7 +64,10 @@ Field.propTypes = {
   required: PropTypes.bool,
   handleChange: PropTypes.func.isRequired,
   isValid: PropTypes.bool.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]).isRequired,
   onClick: PropTypes.func.isRequired
 };
 

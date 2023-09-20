@@ -23,7 +23,6 @@ export default function PsychologistProfile() {
             typeForInput="email"
             placeholder="irina_k@yan.ru"
             prompt="Здесь должна быть подсказка"
-            dropDownContent={dropDownListCheckbox}
           />
           <InputField
             name="Имя"

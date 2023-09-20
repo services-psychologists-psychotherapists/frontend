@@ -5,7 +5,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  height: 48px;
+  height: 100%;
   width: 48px;
   display: flex;
   justify-content: center;

@@ -7,10 +7,9 @@ import Prompt from './Prompt/Prompt';
 import Field from './Field/Field';
 import DropDownList from './DropDownList/DropDownList';
 import {
-  checkboxType,
+  checkboxDropDownElement,
   inputElement,
   radioDropDownElement,
-  radioType
 } from '../../constants/constants';
 
 export default function FieldContainer({
@@ -27,37 +26,36 @@ export default function FieldContainer({
   element,
   dropDownContent
 }) {
-  const [selectedValue, setSelectedValue] = useState('');
-  const [selectedCheckBoxValues, setSelectedCheckBoxValues] = useState({});
-  const selectedCheckBoxCount = (
-    Object.values(selectedCheckBoxValues).filter((value) => value).length
-  );
-  const [isFocused, setIsFocused] = useState(false);
   const {
     values, handleChange, errors, isValid
   } = useForm({
     [name]: '',
   });
+  const [selectedValue, setSelectedValue] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
+
+  const selectedCheckBoxCount = (
+    Object.values(selectedValue).filter((value) => value).length
+  );
+  const selectedTitles = (
+    Object.keys(selectedValue).filter((key) => selectedValue[key])
+  );
 
   const handleOpenDropDown = (e) => {
     e.preventDefault();
     setIsFocused(!isFocused);
   };
 
-  let displayValue;
   const handleDropdownItemChange = (changedItem) => {
-    if (changedItem.type === radioType) {
-      setSelectedValue(changedItem.value);
-    } else if (changedItem.type === checkboxType) {
-      setSelectedCheckBoxValues(changedItem.value);
-    }
+    setSelectedValue(changedItem.value);
   };
 
+  let displayValue;
   if (element === inputElement) {
     displayValue = values[name] || '';
   } else if (element === radioDropDownElement) {
     displayValue = selectedValue;
-  } else {
+  } else if (element === checkboxDropDownElement) {
     switch (true) {
       case selectedCheckBoxCount === 0:
         displayValue = '';
@@ -76,6 +74,8 @@ export default function FieldContainer({
         displayValue = `Выбрано ${selectedCheckBoxCount} вариантов`;
         break;
     }
+  } else {
+    displayValue = selectedTitles;
   }
 
   return (
@@ -103,7 +103,7 @@ export default function FieldContainer({
         element={element}
         type={typeForDropDown}
         onChange={handleDropdownItemChange}
-        selectedValue={element === radioDropDownElement ? displayValue : selectedCheckBoxValues}
+        selectedValue={selectedValue}
         isFocused={isFocused}
         dropDownContent={dropDownContent}
       />

@@ -1,6 +1,4 @@
 .dropdown-list {
-  position: absolute;
-  top: 92px;
   z-index: 101;
   width: 100%;
   max-height: 0;
@@ -18,8 +16,6 @@
 .dropdown-list_opened {
   width: 100%;
   background-color: white;
-  position: absolute;
-  top: 92px;
   padding: 16px 12px;
   max-height: 300px;
   overflow-y: auto;

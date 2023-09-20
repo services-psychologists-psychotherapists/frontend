@@ -1,13 +1,16 @@
 .input {
-  width: 100%;
+  width: 90%;
   border: none;
   font-family: var(--font-family-lato);
   font-weight: var(--text-weight-primary);
   font-size: 18px;
   line-height: 24px;
-  max-height: 48px;
   color: var(--text-color-dark-blue);
   background-color: transparent;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
 .input:focus {
@@ -16,6 +19,7 @@
 }
 
 .input::placeholder {
+  color: var(--text-color-dark-grey);
   font-family: var(--font-family-lato);
   font-weight: var(--text-weight-primary);
   font-size: 18px;
@@ -38,4 +42,12 @@
   background-color: transparent;
   cursor: pointer;
   caret-color: transparent;
+}
+
+.placeholder {
+  color: var(--text-color-dark-grey);
+  font-family: var(--font-family-lato);
+  font-weight: var(--text-weight-primary);
+  font-size: 18px;
+  line-height: 24px;
 }

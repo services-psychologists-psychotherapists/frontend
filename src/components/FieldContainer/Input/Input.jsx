@@ -5,6 +5,7 @@ import {
   checkboxDropDownElement, inputElement,
   radioDropDownElement, titlesDropDownElement
 } from '../../../constants/constants';
+import TitlesContainer from '../TitlesContainer/TitlesContainer';
 
 export default function Input({
   element,
@@ -28,20 +29,31 @@ export default function Input({
     && 'input_button'}`;
 
   return (
-    <input
-      className={inputClasses}
-      type={isEyeOpened ? 'text' : type}
-      id={name}
-      name={name}
-      value={value}
-      onChange={onChange}
-      placeholder={placeholder}
-      disabled={disabled}
-      minLength={minLength}
-      maxLength={maxLength}
-      required={required}
-      autoComplete="new-password"
-    />
+    element === titlesDropDownElement ? (
+      <ul
+        className={inputClasses}
+      >
+        <TitlesContainer
+          value={value}
+          element={element}
+        />
+      </ul>
+    ) : (
+      <input
+        className={inputClasses}
+        type={isEyeOpened ? 'text' : type}
+        id={name}
+        name={name}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        disabled={disabled}
+        minLength={minLength}
+        maxLength={maxLength}
+        required={required}
+        autoComplete="new-password"
+      />
+    )
   );
 }
 
@@ -49,7 +61,10 @@ Input.propTypes = {
   element: PropTypes.string,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]).isRequired,
   placeholder: PropTypes.string.isRequired,
   required: PropTypes.bool,
   isEyeOpened: PropTypes.bool,
