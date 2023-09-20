@@ -223,5 +223,3 @@ export const CLIENT_PROFILE_NAV_LINKS = [
     link: '/client_profile',
   },
 ];
-
-export const NAME_OF_DAYS = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
