@@ -1,0 +1,19 @@
+.your-psycho {
+  padding: 32px 32px 40px;
+  border: 1px solid var(--border-color-dark-violet);
+  border-radius: 12px;
+  max-width: 846px;
+  display: flex;
+  gap: 28px;
+}
+
+.your-psycho__container {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.your-psycho__container > .button {
+  align-self: flex-end;
+}

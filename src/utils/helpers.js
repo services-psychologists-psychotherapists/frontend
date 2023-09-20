@@ -1,7 +1,7 @@
 import { MONTH_NAME } from '../constants/constants';
 
 export const getMonthName = (date) => {
-  const month = MONTH_NAME[date.getMonth() + 1];
+  const month = MONTH_NAME[date.getMonth()];
   if (month.slice(-1) === 'т') {
     return `${month}а`;
   }
@@ -21,4 +21,22 @@ export const getAge = (date) => {
     age -= 1;
   }
   return age;
+};
+
+export const getNextAppointment = (sessions) => {
+  let nextAppointment = {};
+  const today = new Date();
+
+  if (sessions.length > 0) {
+    for (let i = 0; i <= sessions.length - 1; i += 1) {
+      if (sessions[i].date > today) {
+        nextAppointment = sessions[i];
+        // prettier-ignore
+        if (sessions[i].date < today && sessions[i].date < nextAppointment.date) {
+          nextAppointment = sessions[i];
+        }
+      }
+    }
+  }
+  return nextAppointment;
 };

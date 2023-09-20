@@ -8,6 +8,7 @@ import NotFound from '../../pages/NotFound/NotFound';
 import PsychologistAccount from '../../pages/PsychologistAccount/PsychologistAccount';
 import CurrentUserContext from '../../Context/CurrentUserContext';
 import { USER } from '../../constants/db';
+import ClientHomePage from '../../pages/ClientHomePage/ClientHomePage';
 
 export default function App() {
   return (
@@ -28,6 +29,10 @@ export default function App() {
           <Route
             path="/psychologist_account_profile"
             element={<PsychologistAccount />}
+          />
+          <Route
+            path="/client_account"
+            element={<ClientHomePage isLoggedIn />}
           />
         </Routes>
       </CurrentUserContext.Provider>

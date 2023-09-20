@@ -3,3 +3,7 @@ hooks
 UserCard
 PsychoName
 CardOfSession
+EmptyCard.jsx
+YourPsychoCard.jsx
+PageTemplate.jsx
+ClientProfile.jsx
