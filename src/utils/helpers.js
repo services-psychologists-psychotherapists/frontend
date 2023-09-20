@@ -1,24 +1,55 @@
+import moment from 'moment';
 import { MONTH_NAME } from '../constants/constants';
 
+const today = moment();
+
 export const getMonthName = (date) => {
-  const month = MONTH_NAME[date.getMonth() + 1];
+  const month = MONTH_NAME[date.month()];
   if (month.slice(-1) === 'т') {
     return `${month}а`;
   }
   return `${month.slice(0, month.length - 1)}я`;
 };
 
-export const getTime = (date) => {
-  const hours = `0${date.getHours()}`.slice(-2);
-  return `${hours}:00 - ${hours}:50`;
+export const getTime = (time) => `0${time}`.slice(-2);
+
+export const getSessionTime = (startDate, endDate) => {
+  // prettier-ignore
+  const startTime = `${getTime(startDate.hour())}:${getTime(startDate.minute())}`;
+  const endTime = `${getTime(endDate.hour())}:${getTime(endDate.minute())}`;
+  return `${startTime} - ${endTime}`;
 };
 
 export const getAge = (date) => {
-  const today = new Date();
-  let age = today.getFullYear() - date.getFullYear();
-  const month = today.getMonth() - date.getMonth();
-  if (month < 0 || (month === 0 && today.getDate() < date.getDate())) {
-    age -= 1;
+  const years = today.diff(date, 'years');
+  let age = '';
+  const lastSymb = years % 10;
+
+  // prettier-ignore
+  if (lastSymb === 0 || (years > 10 && years < 20) || (lastSymb > 4 && lastSymb < 10)) {
+    age = 'лет';
+  } else if (lastSymb === 1) {
+    age = 'год';
+  } else {
+    age = 'года';
   }
-  return age;
+
+  return `${years} ${age}`;
+};
+
+export const getNextAppointment = (sessions) => {
+  let nextAppointment = {};
+
+  if (sessions.length > 0) {
+    // eslint-disable-next-line
+    nextAppointment = sessions[0];
+    for (let i = 0; i < sessions.length; i += 1) {
+      // prettier-ignore
+      if (sessions[i].time.isBefore(nextAppointment.time)) {
+        nextAppointment = sessions[i];
+      }
+    }
+  }
+
+  return nextAppointment;
 };
