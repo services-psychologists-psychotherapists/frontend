@@ -1,11 +1,11 @@
 .button-up {
   all: unset;
-  right: 18px;
-  bottom: 248px;
   position: absolute;
+  bottom: 248px;
   background-image: url('../../../images/button-up.svg');
   width: 50px;
   height: 50px;
   cursor: pointer;
   border-radius: 50%;
+  transform: translateX(-68px);
 }

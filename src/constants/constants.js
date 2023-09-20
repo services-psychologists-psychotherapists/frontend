@@ -112,10 +112,7 @@ export const SOCIAL_MEDIA_ICONS = [
   },
 ];
 
-export const SERVICE_DOCUMENTS = [
-  'Политика конфиденциальности',
-  'Условия использования сервиса',
-];
+export const SERVICE_DOCUMENTS = ['Политика конфиденциальности', 'Условия использования сервиса'];
 
 export const DROPDOWN_LINKS = [
   {
@@ -154,5 +151,3 @@ export const NOT_APPOINTMENT_MESSAGE = {
     description: 'Здесь будет отображаться ближайшая ваша сессия',
   },
 };
-
-export const PAGES_WITH_BUTTONUP = ['/', '/for_a_therapist'];

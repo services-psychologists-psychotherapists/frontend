@@ -1,31 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState } from 'react';
 import './Footer.css';
 import Logo from '../generic/Logo/Logo';
-import {
-  SOCIAL_MEDIA_ICONS,
-  SERVICE_DOCUMENTS,
-  NAVIGATION_LINKS,
-} from '../../constants/constants';
+import { SOCIAL_MEDIA_ICONS, SERVICE_DOCUMENTS, NAVIGATION_LINKS } from '../../constants/constants';
 import NavLinksList from '../NavLinksList/NavLinksList';
-import ButtonUp from '../generic/ButtonUp/ButtonUp';
-import { getBtnUpPathStatus } from '../../utils/helpers';
 
-export default function Footer({ currentPagePath }) {
+export default function Footer() {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [isPathWithBtnUp, setIsPathWithBtnUp] = useState(false);
 
   const handlePolicyClick = (el) => {
     setSelectedItem(el);
   };
 
-  useEffect(() => {
-    setIsPathWithBtnUp(getBtnUpPathStatus(currentPagePath));
-  }, [currentPagePath]);
-
   return (
     <footer className="footer">
-      {isPathWithBtnUp && <ButtonUp />}
       <div className="footer__content">
         <Logo />
         <nav>
@@ -40,11 +27,7 @@ export default function Footer({ currentPagePath }) {
                 rel="noopener noreferrer"
                 className="footer__sotial-networks_link"
               >
-                <img
-                  src={icon.path}
-                  alt={icon.alt}
-                  className="footer__sotial-networks_icon"
-                />
+                <img src={icon.path} alt={icon.alt} className="footer__sotial-networks_icon" />
               </a>
             </li>
           ))}
@@ -68,7 +51,3 @@ export default function Footer({ currentPagePath }) {
     </footer>
   );
 }
-
-Footer.propTypes = {
-  currentPagePath: PropTypes.string.isRequired,
-};
