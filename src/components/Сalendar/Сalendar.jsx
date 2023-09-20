@@ -107,7 +107,6 @@ export default function Сalendar() {
   return (
     <div className="session-calendar">
       {/* TODO: настроить тайтл */}
-      <h3 className="session-calendar__title">Календарь сессий</h3>
       <div className="calendar">
         <div className="calendar__period">
           <button
