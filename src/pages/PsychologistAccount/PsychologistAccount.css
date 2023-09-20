@@ -1,7 +1,21 @@
 .psychologist-account {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
+  display: grid;
+  grid: 'calendar shedule' 1fr 'session shedule' 1fr /1fr 1fr;
+  row-gap: 40px;
+  column-gap: 20px;
+  align-items: start;
+}
+
+.psychologist-account > .block-template > .calendar {
+  grid-area: calendar;
+}
+
+.psychologist-account > .block-template > .session-card {
+  grid-area: session;
+}
+
+.psychologist-account > .scroller {
+  grid-area: shedule;
 }
 
 .psychologist-account__planner-section {
@@ -9,10 +23,6 @@
   flex-direction: column;
   gap: 40px;
   flex: 2.98 2.98 0;
-}
-
-.psychologist-account__planner_invisible {
-  display: none;
 }
 
 .psychologist-account__shedule-section {
@@ -24,43 +34,6 @@
   display: flex;
   flex-direction: column;
   gap: 28px;
-}
-
-.psychologist-account__subtitle-string {
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  position: relative;
-}
-
-.psychologist-account__info {
-  display: block;
-}
-
-.psychologist-account__info_invisible {
-  display: none;
-}
-
-.psychologist-account__info:hover {
-  cursor: pointer;
-}
-
-.psychologist-account__info:hover + .prompt {
-  display: block;
-}
-
-.prompt {
-  display: none;
-  position: absolute;
-  width: 308px;
-  height: 92px;
-  padding: 20px;
-  background-color: white;
-  top: -100%;
-  left: 105%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  z-index: 10;
 }
 
 .psychologist-account__meetings-reminder {

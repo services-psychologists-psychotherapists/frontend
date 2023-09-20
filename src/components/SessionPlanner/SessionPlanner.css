@@ -15,20 +15,17 @@
   color: var(--text-color-dark-blue);
 }
 
-.session-planner__timing-box {
-  display: flex;
-  flex-direction: row;
-  gap: 4px;
-  align-items: center;
-}
-
 .session-planner__time-picker {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.session-planner__time-colon {
+.session-planner__timing-box {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
   font-family: var(--font-family-montsertat);
   font-size: 22px;
   font-weight: 500;
@@ -84,7 +81,6 @@
 .session-planner__timing-list {
   list-style: none;
   display: none;
-  /* display: flex; */
   flex-direction: column;
   position: absolute;
   top: 114.5%;
@@ -108,7 +104,6 @@
 }
 
 .session-planner__timing-item {
-  /* display: none; */
   font-family: var(--font-family-lato);
   font-size: 18px;
   line-height: 1.33;

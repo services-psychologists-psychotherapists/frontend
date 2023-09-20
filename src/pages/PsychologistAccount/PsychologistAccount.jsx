@@ -1,6 +1,6 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import './PsychologistAccount.css';
+import { useLocation } from 'react-router-dom';
 import PageLayout from '../../components/templates/PageTemplate/PageLayout';
 import NavLinksList from '../../components/NavLinksList/NavLinksList';
 import {
@@ -19,12 +19,6 @@ import Title from '../../components/generic/Title/Title';
 export default function PsychologistAccountTemplate() {
   const { pathname } = useLocation();
 
-  const classesPlannerSection = `${
-    pathname !== '/psychologist_account_profile'
-      ? 'psychologist-account__planner-section'
-      : 'psychologist-account__planner_invisible'
-  }`;
-
   // prettier-ignore
   const text = {
     calendarText: `${pathname === '/psychologist_account_schedule' ? PSYCHOLOGIST_ACCOUNT_TEXT.txtCalendarInShedule : PSYCHOLOGIST_ACCOUNT_TEXT.txtCalendarInMain}`,
@@ -42,19 +36,21 @@ export default function PsychologistAccountTemplate() {
       nav={<NavLinksList list={PSYCHOLOGIST_ACCOUNT_LINKS} direction="column" variant="violet" />}
     >
       <section className="psychologist-account">
-        <div className={classesPlannerSection}>
-          <BlockWithTitle size="xs" title={text.calendarText}>
-            <Calendar />
-          </BlockWithTitle>
+        {pathname !== '/psychologist_account_profile'
+          ? (
+            <>
+              <BlockWithTitle size="xs" title={text.calendarText}>
+                <Calendar />
+              </BlockWithTitle>
 
-          <BlockWithTitle size="xs" title={text.reminderText}>
-            {pathname !== '/psychologist_account_schedule' ? <CardOfSession session={SLOT} /> : <SessionPlanner />}
-          </BlockWithTitle>
-        </div>
+              <BlockWithTitle size="xs" title={text.reminderText}>
+                {pathname !== '/psychologist_account_schedule' ? <CardOfSession session={SLOT} /> : <SessionPlanner />}
+              </BlockWithTitle>
+            </>
+          ) : null}
 
-        <div className="psychologist-account__shedule-section">
-          {pathname !== '/psychologist_account_profile' ? (<ScrollerBlock slots={SLOTS} />) : (<Title text="ПРОФИЛЬ ЗДЕСЬ" />)}
-        </div>
+        {pathname !== '/psychologist_account_profile' ? (<ScrollerBlock slots={SLOTS} />) : (<Title text="ПРОФИЛЬ ЗДЕСЬ" />)}
+
       </section>
     </PageLayout>
   );
