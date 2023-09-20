@@ -163,6 +163,7 @@ export const DROPDOWN_LINKS = [
 export const NUMBER_OF_DAYS_DISPLAYED = 13;
 export const NUMBER_TO_SWITCH_THE_WEEKS = 14;
 export const DAYS_OF_WEEK = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+export const DAYS_NAME = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
 
 export const MONTH_NAME = [
   'январь',
@@ -180,12 +181,12 @@ export const MONTH_NAME = [
 ];
 
 export const NOT_APPOINTMENT_MESSAGE = {
-  psycho: {
+  client: {
     title: 'Сегодня сессий нет',
     description: 'Установите доступное время, чтобы клиент смог записаться',
     textBtn: 'Добавить свободное время',
   },
-  client: {
+  psychologist: {
     title: 'Сессий пока не запланировано',
     description: 'Здесь будет отображаться ближайшая ваша сессия',
   },
@@ -199,6 +200,19 @@ export const NO_PSYCHO_MESSAGE = {
   href: '/catalog',
 };
 
+export const NO_SLOTS_MESSAGE = {
+  today: {
+    title: 'На выбранный день не установлено доступное время для сессий',
+    href: '/shedule',
+    textBtn: 'Перейти в расписание',
+  },
+  otherDay: {
+    title: 'На сегодня не установлено доступное время для сессий',
+    href: '/shedule',
+    textBtn: 'Перейти в расписание',
+  },
+};
+
 export const CLIENT_PROFILE_NAV_LINKS = [
   {
     text: 'Главная',
@@ -209,5 +223,3 @@ export const CLIENT_PROFILE_NAV_LINKS = [
     link: '/client_profile',
   },
 ];
-
-export const NAME_OF_DAYS = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];

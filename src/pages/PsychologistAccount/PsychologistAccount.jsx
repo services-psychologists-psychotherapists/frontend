@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import './PsychologistAccount.css';
 import { useLocation } from 'react-router-dom';
 import PageLayout from '../../components/templates/PageTemplate/PageLayout';
@@ -7,7 +8,6 @@ import {
   PSYCHOLOGIST_ACCOUNT_LINKS,
   PSYCHOLOGIST_ACCOUNT_TEXT,
   SLOTS,
-  SLOT,
 } from '../../constants/db';
 import BlockWithTitle from '../../components/templates/BlockWithTitle/BlockWithTitle';
 import Calendar from '../../components/Сalendar/Сalendar';
@@ -44,12 +44,12 @@ export default function PsychologistAccountTemplate() {
               </BlockWithTitle>
 
               <BlockWithTitle size="xs" title={text.reminderText}>
-                {pathname !== '/psychologist_account_schedule' ? <CardOfSession session={SLOT} /> : <SessionPlanner />}
+                {pathname !== '/psychologist_account_schedule' ? <CardOfSession session={SLOTS[0]} /> : <SessionPlanner />}
               </BlockWithTitle>
             </>
           ) : null}
 
-        {pathname !== '/psychologist_account_profile' ? (<ScrollerBlock slots={SLOTS} />) : (<Title text="ПРОФИЛЬ ЗДЕСЬ" />)}
+        {pathname !== '/psychologist_account_profile' ? (<ScrollerBlock slots={SLOTS} selectedDay={moment()} />) : (<Title text="ПРОФИЛЬ ЗДЕСЬ" />)}
 
       </section>
     </PageLayout>

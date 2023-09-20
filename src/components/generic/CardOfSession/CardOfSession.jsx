@@ -1,25 +1,42 @@
 import React from 'react';
 import './CardOfSession.css';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import Avatar from '../Avatar/Avatar';
 import PsychoName from '../PsychoName/PsychoName';
-import { getTime, getMonthName } from '../../../utils/helpers';
-import { NAME_OF_DAYS, NOT_APPOINTMENT_MESSAGE } from '../../../constants/constants';
+import { getSessionTime, getMonthName } from '../../../utils/helpers';
+import { DAYS_NAME, NOT_APPOINTMENT_MESSAGE } from '../../../constants/constants';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import Button from '../Button/Button';
 import EmptyCard from '../Cards/EmptyCard/EmptyCard';
 import Paragraph from '../Paragraph/Paragraph';
 
 export default function CardOfSession({ type, session }) {
+  let user;
+  let timeFrom;
+  let timeTo;
+
+  const setCardData = () => {
+    if (session.client) {
+      user = type === 'psychologist' ? session.client : session.slot.psychologist;
+      timeFrom = session.slot.datetime_from;
+      timeTo = session.slot.datetime_to;
+    } else {
+      user = type === 'psychologist' ? 'client' : 'psychologist';
+    }
+  };
+
   const emptyCardProps = () => {
-    if (type === 'psycho') {
+    if (type === 'psychologist') {
       return {
-        textBtn: NOT_APPOINTMENT_MESSAGE[type].textBtn,
+        textBtn: NOT_APPOINTMENT_MESSAGE[user].textBtn,
         href: '/calendar'
       };
     }
     return '';
   };
+
+  setCardData();
 
   return (
     <div
@@ -30,19 +47,21 @@ export default function CardOfSession({ type, session }) {
           <div
             className={`session-card__header session-card__header_type_${type}`}
           >
-            <Avatar size="s" src={session[type].img} />
+            <Avatar size="s" src={user.avatar} />
             <div className="session-card__info">
               {type === 'client' ? (
                 <PsychoName
                   description="Психолог"
-                  name={`${session[type].name} ${session[type].lastName}`}
+                  name={`${user.first_name} ${user.last_name}`}
                 />
               ) : (
-                <Paragraph>{`${session[type].name} ${session[type].lastName}`}</Paragraph>
+                <Paragraph>{`${user.first_name} ${user.last_name}`}</Paragraph>
               )}
               <div className="session-card__date">
-                {type === 'client' && <p>{`${session.date.getDate()} ${getMonthName(session.date)}, ${NAME_OF_DAYS[session.date.getDay()]}`}</p>}
-                <p>{getTime(session.date)}</p>
+                <p>
+                  {type === 'client' && `${timeFrom.date()} ${getMonthName(timeFrom)}, ${DAYS_NAME[timeFrom.day()]}`}
+                </p>
+                <p>{getSessionTime(timeFrom, timeTo)}</p>
               </div>
             </div>
           </div>
@@ -57,9 +76,9 @@ export default function CardOfSession({ type, session }) {
         </>
       ) : (
         <EmptyCard
-          type={type}
-          title={NOT_APPOINTMENT_MESSAGE[type].title}
-          paragraph={NOT_APPOINTMENT_MESSAGE[type].description}
+          type={user}
+          title={NOT_APPOINTMENT_MESSAGE[user].title}
+          paragraph={NOT_APPOINTMENT_MESSAGE[user].description}
           {...emptyCardProps()}
         />
       )}
@@ -68,27 +87,30 @@ export default function CardOfSession({ type, session }) {
 }
 
 CardOfSession.propTypes = {
-  type: PropTypes.oneOf(['client', 'psycho']),
+  type: PropTypes.oneOf(['client', 'psychologist']),
   session: PropTypes.shape({
     client: PropTypes.shape({
-      name: PropTypes.string,
-      lastName: PropTypes.string,
+      first_name: PropTypes.string,
+      last_name: PropTypes.string,
       id: PropTypes.string,
-      dateOfBith: PropTypes.instanceOf(Date),
-      img: PropTypes.string,
+      avatar: PropTypes.string,
     }),
-    psycho: PropTypes.shape({
-      name: PropTypes.string,
-      lastName: PropTypes.string,
-      id: PropTypes.string,
-      dateOfBith: PropTypes.instanceOf(Date),
-      img: PropTypes.string,
+    slot: PropTypes.shape({
+      psychologist: PropTypes.shape({
+        fitst_name: PropTypes.string,
+        last_name: PropTypes.string,
+        id: PropTypes.string,
+        avatar: PropTypes.string,
+      }),
+      datetime_from: PropTypes.instanceOf(moment),
+      datetime_to: PropTypes.instanceOf(moment),
+      is_free: PropTypes.bool,
     }),
-    date: PropTypes.instanceOf(Date),
+    status: PropTypes.string,
     href: PropTypes.string,
   }).isRequired,
 };
 
 CardOfSession.defaultProps = {
-  type: 'psycho',
+  type: 'psychologist',
 };
