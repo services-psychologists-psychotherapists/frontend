@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { bool } from 'prop-types';
 import './ClientHomePage.css';
-import PageLayout from '../../components/templates/PageTemplate/PageLayout';
+import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import NavLinksList from '../../components/NavLinksList/NavLinksList';
 import { CLIENT_PROFILE_NAV_LINKS } from '../../constants/constants';
 import BlockWithTitle from '../../components/templates/BlockWithTitle/BlockWithTitle';
@@ -29,17 +29,12 @@ export default function ClientHomePage({ isLoggedIn }) {
             <CardOfSession session={nextSession} type="psychologist" />
           </BlockWithTitle>
           <BlockWithTitle title="Ваш психолог">
-            <MyPsychologist
-              psychologist={currentUser.my_psychologist}
-              nextSession={nextSession}
-            />
+            <MyPsychologist psychologist={currentUser.my_psychologist} nextSession={nextSession} />
           </BlockWithTitle>
         </div>
         {currentUser.my_psychologist && (
           <div className="client-account__description">
-            <Paragraph>
-              Вы можете выбрать другого специалиста, перейдя в
-            </Paragraph>
+            <Paragraph>Вы можете выбрать другого специалиста, перейдя в</Paragraph>
             <Button variant="text" href="/catalog">
               Каталог психологов
             </Button>

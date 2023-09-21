@@ -24,24 +24,21 @@ export default {
   },
 };
 
-const Template = function Btn(args) {
+function Template(args) {
   return <Paragraph {...args} />;
-};
+}
 
 export const Large = Template.bind({});
 export const Medium = Template.bind({});
 export const Small = Template.bind({});
 Large.args = {
-  children:
-    'Проверьте свое доступное время на другие дни, чтобы клиент смог записаться',
+  children: 'Проверьте свое доступное время на другие дни, чтобы клиент смог записаться',
   size: 'l',
 };
 Medium.args = {
-  children:
-    'Проверьте свое доступное время на другие дни, чтобы клиент смог записаться',
+  children: 'Проверьте свое доступное время на другие дни, чтобы клиент смог записаться',
   size: 'm',
 };
 Small.args = {
-  children:
-    'Проверьте свое доступное время на другие дни, чтобы клиент смог записаться',
+  children: 'Проверьте свое доступное время на другие дни, чтобы клиент смог записаться',
 };

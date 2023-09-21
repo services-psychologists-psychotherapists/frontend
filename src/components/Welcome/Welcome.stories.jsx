@@ -20,8 +20,7 @@ export default {
     },
     isLoggedIn: {
       type: 'boolean',
-      description:
-        'Отображает кнопку в header, в зависимости залогинен пользователь или нет',
+      description: 'Отображает кнопку в header, в зависимости залогинен пользователь или нет',
       defaultValue: true,
     },
     children: {
@@ -30,9 +29,9 @@ export default {
   },
 };
 
-const Template = function Btn(args) {
+function Template(args) {
   return <Welcome {...args} />;
-};
+}
 
 export const Home = Template.bind({});
 export const Therapist = Template.bind({});

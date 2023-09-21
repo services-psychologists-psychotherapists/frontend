@@ -34,9 +34,9 @@ export default {
   },
 };
 
-const Template = function Btn(args) {
+function Template(args) {
   return <Title {...args} />;
-};
+}
 
 export const Large = Template.bind({});
 export const Medium = Template.bind({});

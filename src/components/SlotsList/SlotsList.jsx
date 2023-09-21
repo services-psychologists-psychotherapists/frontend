@@ -20,12 +20,13 @@ export default function SlotsList({ sessions, selectedDay }) {
       setOpenSlot(null);
     }
   };
+  console.log(sessions);
 
   return (
     <div className="scroller">
       {/* prettier-ignore */}
       <h2 className="scroller__title">{`${selectedDay.date()} ${getMonthName(selectedDay)}`}</h2>
-      {sessions ? (
+      {sessions.length > 0 ? (
         <ul className="slots">
           {sessions.map((session) => (
             <Slot
@@ -39,14 +40,16 @@ export default function SlotsList({ sessions, selectedDay }) {
         </ul>
       ) : (
         <div className="scroller__empty">
-          <p className="scroller__description">
-            {pathname === 'psychologist_account_schedule'
-              ? NO_SLOTS_MESSAGE.noSlots.title
-              : NO_SLOTS_MESSAGE[currentDay].title}
-          </p>
-          <Button variant="secondary" href={NO_SLOTS_MESSAGE[currentDay].href}>
-            {NO_SLOTS_MESSAGE[currentDay].textBtn}
-          </Button>
+          {pathname !== '/psychologist_account_schedule' ? (
+            <>
+              <p className="scroller__description">{NO_SLOTS_MESSAGE[currentDay].title}</p>
+              <Button variant="secondary" href="/psychologist_account_schedule">
+                {NO_SLOTS_MESSAGE[currentDay].textBtn}
+              </Button>
+            </>
+          ) : (
+            <p className="scroller__description">{NO_SLOTS_MESSAGE.noSlots.title}</p>
+          )}
         </div>
       )}
     </div>

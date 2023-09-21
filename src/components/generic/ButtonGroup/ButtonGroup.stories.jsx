@@ -19,7 +19,7 @@ export default {
   },
 };
 
-const Template = function Btn(args) {
+function Template(args) {
   return (
     <ButtonGroup {...args}>
       <Button {...args} variant="secondary" onClick={() => {}}>
@@ -30,7 +30,7 @@ const Template = function Btn(args) {
       </Button>
     </ButtonGroup>
   );
-};
+}
 
 export const Default = Template.bind({});
 Default.args = {

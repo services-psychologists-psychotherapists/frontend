@@ -23,9 +23,9 @@ export default {
   },
 };
 
-const Template = function link(args) {
+function Template(args) {
   return <NavigationLink {...args} />;
-};
+}
 
 export const NavLink = Template.bind({});
 export const Link = Template.bind({});

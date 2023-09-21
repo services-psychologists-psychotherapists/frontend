@@ -29,8 +29,7 @@ export default {
       type: 'boolean',
       control: 'boolean',
       defaultValue: false,
-      description:
-        'Переключения состояние хедера для залогиненного пользователя',
+      description: 'Переключения состояние хедера для залогиненного пользователя',
     },
     children: {
       control: false,

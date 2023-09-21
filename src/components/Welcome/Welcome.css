@@ -1,5 +1,6 @@
 .welcome {
-  min-height: 100vh;
+  height: 100vh;
+  max-height: 740px;
   overflow: hidden;
   position: relative;
   padding-bottom: 50px;

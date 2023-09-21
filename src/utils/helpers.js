@@ -53,3 +53,11 @@ export const getNextAppointment = (sessions) => {
 
   return nextAppointment;
 };
+
+export const getNumArray = (num, length) => {
+  const numArray = [];
+  for (let i = 0; i <= length; i += num) {
+    numArray.push(`0${i}`.slice(-2));
+  }
+  return numArray;
+};

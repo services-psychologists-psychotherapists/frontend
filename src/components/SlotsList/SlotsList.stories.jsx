@@ -1,6 +1,4 @@
 import React from 'react';
-// eslint-disable-next-line
-import { Routes, Route } from 'react-router';
 import moment from 'moment';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import SlotsList from './SlotsList';
@@ -43,33 +41,25 @@ export default {
     },
     selectedDay: {
       type: 'object',
-      description:
-        'Выбраный день для отображения состояний, если массив слотов окажется пустым',
+      description: 'Выбраный день для отображения состояний, если массив слотов окажется пустым',
     },
   },
 };
-/*eslint-disable*/
 
-export const SelectedDay = () => {
+export function SelectedDay() {
   return (
     <div style={{ display: 'flex', gap: '40px', margin: 'auto' }}>
-      <SlotsList
-        sessions={SLOTS}
-        selectedDay={moment('18.09.2023', DATE_FORMAT)}
-      />
-      <SlotsList
-        sessions={null}
-        selectedDay={moment('18.09.2023', DATE_FORMAT)}
-      />
+      <SlotsList sessions={SLOTS} selectedDay={moment('18.09.2023', DATE_FORMAT)} />
+      <SlotsList sessions={[]} selectedDay={moment('18.09.2023', DATE_FORMAT)} />
     </div>
   );
-};
+}
 
-export const Today = () => {
+export function Today() {
   return (
     <div style={{ display: 'flex', gap: '40px', margin: 'auto' }}>
       <SlotsList sessions={SLOTS} selectedDay={moment()} />
-      <SlotsList sessions={null} selectedDay={moment()} />
+      <SlotsList sessions={[]} selectedDay={moment()} />
     </div>
   );
-};
+}

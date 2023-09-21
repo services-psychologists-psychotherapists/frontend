@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import { useArgs } from '@storybook/client-api';
 import Slot from './Slot';
@@ -43,8 +44,8 @@ export default {
     onClick: { type: 'func', description: 'Меняет значение isSlotOpen' },
   },
 };
-/*eslint-disable*/
-const Template = ({ onClick, ...args }) => {
+
+function Template({ onClick, ...args }) {
   const [{ isSlotOpen }, updateArgs] = useArgs();
   const handleOpenSlot = () => updateArgs({ isSlotOpen: !isSlotOpen });
 
@@ -53,6 +54,10 @@ const Template = ({ onClick, ...args }) => {
       <Slot onClick={handleOpenSlot} {...args} />
     </div>
   );
+}
+
+Template.propTypes = {
+  onClick: PropTypes.func.isRequired,
 };
 
 export const PsychologistsSlot = Template.bind({});

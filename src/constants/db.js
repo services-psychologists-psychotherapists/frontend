@@ -62,8 +62,8 @@ export const CLIENT = {
 
 const SLOT = {
   psychologist: PSYCHO,
-  datetime_from: '18.09.2023 19:20',
-  datetime_to: '18.09.2023 20:10',
+  datetime_from: '23.09.2023 19:20',
+  datetime_to: '23.09.2023 20:10',
   is_free: false,
 };
 
@@ -240,70 +240,3 @@ export const USER = {
     },
   ],
 };
-
-export const PSYCHOLOGIST_ACCOUNT_LINKS = [
-  {
-    text: 'Главная',
-    link: '/psychologist_account',
-  },
-  {
-    text: 'Расписание',
-    link: '/psychologist_account_schedule',
-  },
-  {
-    text: 'Профиль',
-    link: '/psychologist_account_profile',
-  },
-];
-
-export const PSYCHOLOGIST_ACCOUNT_TEXT = {
-  txtCalendarInMain: 'Календарь сессий',
-  txtReminderInMain: 'Ближайшая сессия',
-  txtCalendarInShedule: '1. Выберите день',
-  txtReminderInShedule: '2. Добавьте доступное время сессии',
-  txtTitleInMain: 'Главная',
-  txtTitlenShedule: 'Расписание',
-  txtTitleInProfile: 'Профиль',
-};
-
-export const TIMING_HOURS = [
-  '00',
-  '01',
-  '02',
-  '03',
-  '04',
-  '05',
-  '06',
-  '07',
-  '08',
-  '09',
-  '10',
-  '11',
-  '12',
-  '13',
-  '14',
-  '15',
-  '16',
-  '17',
-  '18',
-  '19',
-  '20',
-  '21',
-  '22',
-  '23',
-];
-
-export const TIMING_MINUTES = [
-  '00',
-  '05',
-  '10',
-  '15',
-  '20',
-  '25',
-  '30',
-  '35',
-  '40',
-  '45',
-  '50',
-  '55',
-];

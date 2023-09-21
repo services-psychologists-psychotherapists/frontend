@@ -30,7 +30,7 @@ NavLinksList.propTypes = {
   ).isRequired,
   navLink: PropTypes.bool,
   direction: PropTypes.oneOf(['row', 'column']),
-  variant: PropTypes.oneOf(['violet']),
+  variant: PropTypes.string,
 };
 
 NavLinksList.defaultProps = {

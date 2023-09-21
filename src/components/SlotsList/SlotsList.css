@@ -22,7 +22,7 @@
 
 .scroller__description {
   font-family: var(--font-family-lato);
-  font-size: var(--font-size-s);
+  font-size: var(--text-font-size-s);
   color: var(--text-color-dark-blue);
   padding: 0 38px;
   text-align: center;

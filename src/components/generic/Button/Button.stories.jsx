@@ -57,8 +57,7 @@ export default {
     },
     className: {
       type: 'string',
-      description:
-        'Дает возможность добавить дополнительный класс для установки месторасположения',
+      description: 'Дает возможность добавить дополнительный класс для установки месторасположения',
       control: false,
     },
     disabled: {
@@ -71,9 +70,9 @@ export default {
   },
 };
 
-const Template = function Btn(args) {
+function Template(args) {
   return <Button {...args} />;
-};
+}
 
 export const Primary = Template.bind({});
 export const Secondary = Template.bind({});
