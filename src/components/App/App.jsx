@@ -9,6 +9,7 @@ import PsychologistAccount from '../../pages/PsychologistAccount/PsychologistAcc
 import CurrentUserContext from '../../Context/CurrentUserContext';
 import { CLIENT } from '../../constants/db';
 import ClientHomePage from '../../pages/ClientHomePage/ClientHomePage';
+import ButtonUp from '../generic/ButtonUp/ButtonUp';
 
 export default function App() {
   return (
@@ -36,6 +37,7 @@ export default function App() {
           />
         </Routes>
       </CurrentUserContext.Provider>
+      <ButtonUp />
       <Footer />
     </div>
   );

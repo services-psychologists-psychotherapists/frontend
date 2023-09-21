@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+  position: relative;
 }
 
 .footer__content {
@@ -22,7 +23,12 @@
   height: 32px;
 }
 
-.footer__social-icon {
+.footer__sotial-networks_link {
+  display: block;
+}
+
+.footer__sotial-networks_link,
+.footer__sotial-networks_icon {
   width: 32px;
   height: 32px;
 }
@@ -35,7 +41,7 @@
   gap: 8px;
 }
 
-.footer__policy-item {
+.footer__policy_item {
   all: unset;
   font-family: var(--font-family-montsertat);
   color: var(--text-color-dark-violet);
@@ -44,7 +50,7 @@
   cursor: pointer;
 }
 
-.footer__policy-item:hover,
-.footer__policy-item_selected {
+.footer__policy_item:hover,
+.footer__policy_item_selected {
   color: var(--text-color-dark-blue);
 }
