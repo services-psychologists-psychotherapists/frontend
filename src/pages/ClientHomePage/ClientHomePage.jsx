@@ -5,43 +5,37 @@ import PageLayout from '../../components/templates/PageTemplate/PageLayout';
 import NavLinksList from '../../components/NavLinksList/NavLinksList';
 import { CLIENT_PROFILE_NAV_LINKS } from '../../constants/constants';
 import BlockWithTitle from '../../components/templates/BlockWithTitle/BlockWithTitle';
-import CardOfSession from '../../components/generic/CardOfSession/CardOfSession';
+import CardOfSession from '../../components/Cards/CardOfSession/CardOfSession';
 import CurrentUserContext from '../../Context/CurrentUserContext';
-import YourPsychoCard from '../../components/generic/Cards/YourPsychoCard/YourPsychoCard';
 import Paragraph from '../../components/generic/Paragraph/Paragraph';
 import Button from '../../components/generic/Button/Button';
-import { getNextAppointment } from '../../utils/helpers';
+import MyPsychologist from '../../components/Cards/MyPsychologist/MyPsychologist';
 
 export default function ClientHomePage({ isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
 
-  const { sessions } = currentUser;
+  const nextSession = currentUser.next_session;
 
   return (
     <PageLayout
       title="Главная"
       // prettier-ignore
-      nav={(
-        // временная реализация
-        <div className="page__nav-links">
-          <NavLinksList list={CLIENT_PROFILE_NAV_LINKS} direction="column" />
-        </div>
-      )}
+      nav={<NavLinksList list={CLIENT_PROFILE_NAV_LINKS} direction="column" variant="vaiolet" />}
       isLoggedIn={isLoggedIn}
     >
       <>
         <div className="client-account">
           <BlockWithTitle title="Следующая сессия">
-            <CardOfSession
-              type="client"
-              session={getNextAppointment(sessions)}
-            />
+            <CardOfSession session={nextSession} type="psychologist" />
           </BlockWithTitle>
           <BlockWithTitle title="Ваш психолог">
-            <YourPsychoCard user={currentUser} />
+            <MyPsychologist
+              psychologist={currentUser.my_psychologist}
+              nextSession={nextSession}
+            />
           </BlockWithTitle>
         </div>
-        {currentUser.psycho && (
+        {currentUser.my_psychologist && (
           <div className="client-account__description">
             <Paragraph>
               Вы можете выбрать другого специалиста, перейдя в

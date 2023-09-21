@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment/moment';
-import './ScrollerBlock.css';
-import Button from '../Button/Button';
-import Slot from '../Slot/Slot';
-import { getMonthName } from '../../../utils/helpers';
-import { NO_SLOTS_MESSAGE } from '../../../constants/constants';
+import './SlotsList.css';
+import Button from '../generic/Button/Button';
+import Slot from './Slot/Slot';
+import { getMonthName } from '../../utils/helpers';
+import { NO_SLOTS_MESSAGE } from '../../constants/constants';
 
-export default function ScrollerBlock({ slots, selectedDay }) {
+export default function SlotsList({ sessions, selectedDay }) {
   const [openSlot, setOpenSlot] = useState(null);
-  const selectedSlots = [];
   const currentDay = selectedDay.isSame(moment(), 'day') ? 'otherDay' : 'today';
 
   const handlerSlotClick = (id) => {
@@ -20,32 +19,13 @@ export default function ScrollerBlock({ slots, selectedDay }) {
     }
   };
 
-  // Позже весь функционал перенесеться в родительский
-  // компонент и сюда будет передоваться только массив
-  const getSlots = () => {
-    slots.map((slot) => {
-      const time = moment(slot.slot.datetime_from, 'DD.MM.YYYY hh:mm');
-      if (time.month() === selectedDay.month() && time.day() === selectedDay.day()) {
-        slot.slot.datetime_from = time; // eslint-disable-line no-param-reassign
-        slot.slot.datetime_to = moment(slot.slot.datetime_to, 'DD.MM.YYYY hh:mm'); // eslint-disable-line no-param-reassign
-        return selectedSlots.push(slot);
-      }
-      return null;
-    });
-  };
-
-  getSlots(); // это временно
-
-  useEffect(() => {
-    getSlots();
-  }, [selectedDay]);
-
   return (
     <div className="scroller">
+      {/* prettier-ignore */}
       <h2 className="scroller__title">{`${selectedDay.date()} ${getMonthName(selectedDay)}`}</h2>
-      {selectedSlots.length > 0 ? (
+      {sessions.length > 0 ? (
         <ul className="slots">
-          {selectedSlots.map((session) => (
+          {sessions.map((session) => (
             <Slot
               session={session}
               key={session.id}
@@ -57,7 +37,9 @@ export default function ScrollerBlock({ slots, selectedDay }) {
         </ul>
       ) : (
         <div className="scroller__empty">
-          <p className="scroller__description">{NO_SLOTS_MESSAGE[currentDay].title}</p>
+          <p className="scroller__description">
+            {NO_SLOTS_MESSAGE[currentDay].title}
+          </p>
           <Button variant="secondary" href={NO_SLOTS_MESSAGE[currentDay].href}>
             {NO_SLOTS_MESSAGE[currentDay].textBtn}
           </Button>
@@ -67,8 +49,8 @@ export default function ScrollerBlock({ slots, selectedDay }) {
   );
 }
 
-ScrollerBlock.propTypes = {
-  slots: PropTypes.arrayOf(
+SlotsList.propTypes = {
+  sessions: PropTypes.arrayOf(
     PropTypes.shape({
       client: PropTypes.shape({
         first_name: PropTypes.string,
@@ -83,13 +65,13 @@ ScrollerBlock.propTypes = {
           id: PropTypes.string,
           avatar: PropTypes.string,
         }),
-        datetime_from: PropTypes.instanceOf(moment),
-        datetime_to: PropTypes.instanceOf(moment),
+        datetime_from: PropTypes.string,
+        datetime_to: PropTypes.string,
         is_free: PropTypes.bool,
       }),
       status: PropTypes.string,
       href: PropTypes.string,
-    }).isRequired,
+    }).isRequired
   ).isRequired,
-  selectedDay: PropTypes.instanceOf(moment).isRequired
+  selectedDay: PropTypes.instanceOf(moment).isRequired,
 };

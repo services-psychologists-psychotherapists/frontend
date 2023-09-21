@@ -22,12 +22,12 @@ export default function UserMenu() {
     <div className="dropdown" ref={ref}>
       <button type="button" className="user" onClick={handleClickMenu}>
         <img
-          src={currentUser.img}
-          alt={currentUser.name}
+          src={currentUser.avatar}
+          alt={currentUser.first_name}
           className="user__avatar"
         />
         <p className={`user__name ${isOpen ? 'user__name_opened' : ''}`}>
-          {`${currentUser.name} ${currentUser.lastName.slice(0, 1)}.`}
+          {`${currentUser.first_name} ${currentUser.last_name.slice(0, 1)}.`}
         </p>
       </button>
       <ul className={`dropdown__list ${isOpen ? 'dropdown__list_opened' : ''}`}>

@@ -223,3 +223,5 @@ export const CLIENT_PROFILE_NAV_LINKS = [
     link: '/client_profile',
   },
 ];
+
+export const DATE_FORMAT = 'DD.MM.YYYY hh:mm';
