@@ -3,7 +3,7 @@ import '../../App/App.css';
 import Paragraph from './Paragraph';
 
 export default {
-  title: 'Paragraph',
+  title: 'Global components/Typography/Paragraph',
   component: Paragraph,
   controls: { sort: 'requiredFirst' },
   tags: ['autodocs'],

@@ -211,6 +211,9 @@ export const NO_SLOTS_MESSAGE = {
     href: '/shedule',
     textBtn: 'Перейти в расписание',
   },
+  noSlots: {
+    title: 'Здесь появится список доступного времени, когда вы его установите',
+  },
 };
 
 export const CLIENT_PROFILE_NAV_LINKS = [

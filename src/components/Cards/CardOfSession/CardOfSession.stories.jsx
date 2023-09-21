@@ -1,51 +1,50 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import CardOfSession from './CardOfSession';
-import avatar from '../../../images/avatar.png';
+import clientAvatar from '../../../images/client_avatar.png';
+import psychologistAvatar from '../../../images/psychologist_avatar.png';
 
 export default {
-  title: 'Card of session',
+  title: 'Global components/Cards/Card of session',
   component: CardOfSession,
   decorators: [withRouter],
-  parameters: {
-    layout: 'padded',
-  },
   tags: ['autodocs'],
   argTypes: {
     type: {
       type: 'string',
-      options: ['client', 'psycho'],
+      options: ['client', 'psychologist'],
       control: {
         type: 'radio',
       },
-      defaultValue: 'psycho',
+      defaultValue: 'client',
     },
     session: {
       control: {
         type: 'object',
+        defaultValue: null,
         keys: {
           client: {
             type: 'object',
             keys: {
-              name: { type: 'string' },
-              lastName: { type: 'string' },
+              first_name: { type: 'string' },
+              last_name: { type: 'string' },
               id: { type: 'string' },
-              img: { type: 'string' },
-              dateOfBith: { type: 'date' },
+              avatar: { type: 'string' },
             },
           },
-          psycho: {
+          psychologist: {
             type: 'object',
             keys: {
-              name: { type: 'string' },
-              lastName: { type: 'string' },
+              first_name: { type: 'string' },
+              last_name: { type: 'string' },
               id: { type: 'string' },
-              img: { type: 'string' },
-              dateOfBith: { type: 'date' },
+              avatar: { type: 'string' },
             },
           },
-          date: { type: 'date' },
+          datetime_from: { type: 'string' },
+          datetime_to: { type: 'string' },
           href: { type: 'string' },
+          status: { type: 'string' },
         },
       },
     },
@@ -53,52 +52,49 @@ export default {
   },
 };
 
-const Template = function Card(args) {
-  return <CardOfSession {...args} />;
-};
+function Template(args) {
+  return <div style={{ width: '900px' }}><CardOfSession {...args} /></div>;
+}
 
 export const Psychologist = Template.bind({});
+export const PsychologistEmpty = Template.bind({});
 export const Client = Template.bind({});
-
-Psychologist.args = {
-  session: {
-    client: {
-      name: 'Ирина',
-      lastName: 'Кожевникова',
-      id: '12345678907',
-      dateOfBith: new Date(1990, 4, 23),
-      img: avatar,
-    },
-    psycho: {
-      name: 'Ирина',
-      lastName: 'Кожевникова',
-      id: '12345678907',
-      dateOfBith: new Date(1990, 4, 23),
-      img: avatar,
-    },
-    date: new Date(2023, 9, 25, 19),
-    href: '/zoom',
-  },
-};
+export const ClientEmpty = Template.bind({});
 
 Client.args = {
   session: {
     client: {
-      name: 'Ирина',
-      lastName: 'Кожевникова',
+      first_name: 'Полина',
+      last_name: 'Коновалова',
       id: '12345678907',
-      dateOfBith: new Date(1990, 4, 23),
-      img: avatar,
+      avatar: clientAvatar,
     },
-    psycho: {
-      name: 'Ирина',
-      lastName: 'Кожевникова',
-      id: '12345678907',
-      dateOfBith: new Date(1990, 4, 23),
-      img: avatar,
-    },
-    date: new Date(2023, 9, 25, 19),
+    datetime_from: '18.09.2023 19:20',
+    datetime_to: '18.09.2023 20:10',
     href: '/zoom',
   },
-  type: 'client',
+};
+
+Psychologist.args = {
+  session: {
+    psychologist: {
+      first_name: 'Ирина',
+      last_name: 'Кожевникова',
+      id: '12345678907',
+      avatar: psychologistAvatar,
+    },
+    datetime_from: '18.09.2023 19:20',
+    datetime_to: '18.09.2023 20:10',
+    href: '/zoom',
+  },
+  type: 'psychologist',
+};
+
+PsychologistEmpty.args = {
+  session: null,
+  type: 'psychologist',
+};
+
+ClientEmpty.args = {
+  session: null,
 };

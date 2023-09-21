@@ -4,7 +4,7 @@ import '../../App/App.css';
 import Button from '../Button/Button';
 
 export default {
-  title: 'Buttons group',
+  title: 'Global components/Button/Buttons group',
   component: ButtonGroup,
   tags: ['autodocs'],
   argTypes: {

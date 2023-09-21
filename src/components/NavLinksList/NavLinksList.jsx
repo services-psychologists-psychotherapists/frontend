@@ -1,11 +1,17 @@
 import React from 'react';
 import './NavLinksList.css';
 import PropTypes from 'prop-types';
-import NavigationLink from '../generic/NavigationLink/NavigationLink';
+import NavigationLink from './NavigationLink/NavigationLink';
 
-export default function NavLinksList({ list, navLink, direction }) {
+// prettier-ignore
+export default function NavLinksList({
+  list,
+  navLink,
+  direction,
+  variant
+}) {
   return (
-    <ul className={`links links_direction_${direction}`}>
+    <ul className={`links links_direction_${direction} links_type_${variant}`}>
       {list.map(({ link, text }) => (
         <li key={link}>
           <NavigationLink link={link} text={text} navLink={navLink} />
@@ -24,9 +30,11 @@ NavLinksList.propTypes = {
   ).isRequired,
   navLink: PropTypes.bool,
   direction: PropTypes.oneOf(['row', 'column']),
+  variant: PropTypes.oneOf(['violet']),
 };
 
 NavLinksList.defaultProps = {
   navLink: true,
   direction: 'row',
+  variant: '',
 };

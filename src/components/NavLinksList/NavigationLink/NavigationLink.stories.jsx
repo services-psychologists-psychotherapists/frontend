@@ -4,7 +4,7 @@ import '../../App/App.css';
 import NavigationLink from './NavigationLink';
 
 export default {
-  title: 'Navigation/Navigation Link',
+  title: 'Global components/Navigation/Navigation Link',
   component: NavigationLink,
   decorators: [withRouter],
   tags: ['autodocs'],

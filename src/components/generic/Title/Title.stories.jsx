@@ -3,7 +3,7 @@ import '../../App/App.css';
 import Title from './Title';
 
 export default {
-  title: 'Heading',
+  title: 'Global components/Typography/Heading',
   component: Title,
   controls: { sort: 'requiredFirst' },
   tags: ['autodocs'],

@@ -20,7 +20,7 @@ export default function ClientHomePage({ isLoggedIn }) {
     <PageLayout
       title="Главная"
       // prettier-ignore
-      nav={<NavLinksList list={CLIENT_PROFILE_NAV_LINKS} direction="column" variant="vaiolet" />}
+      nav={<NavLinksList list={CLIENT_PROFILE_NAV_LINKS} direction="column" variant="violet" />}
       isLoggedIn={isLoggedIn}
     >
       <>

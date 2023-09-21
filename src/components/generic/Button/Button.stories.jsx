@@ -5,7 +5,7 @@ import '../../App/App.css';
 import './Button.css';
 
 export default {
-  title: 'Button',
+  title: 'Global components/Button/Button',
   component: Button,
   decorators: [withRouter],
 

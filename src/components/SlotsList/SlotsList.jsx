@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import moment from 'moment/moment';
 import './SlotsList.css';
@@ -10,6 +11,7 @@ import { NO_SLOTS_MESSAGE } from '../../constants/constants';
 export default function SlotsList({ sessions, selectedDay }) {
   const [openSlot, setOpenSlot] = useState(null);
   const currentDay = selectedDay.isSame(moment(), 'day') ? 'otherDay' : 'today';
+  const { pathname } = useLocation();
 
   const handlerSlotClick = (id) => {
     if (id !== openSlot) {
@@ -23,7 +25,7 @@ export default function SlotsList({ sessions, selectedDay }) {
     <div className="scroller">
       {/* prettier-ignore */}
       <h2 className="scroller__title">{`${selectedDay.date()} ${getMonthName(selectedDay)}`}</h2>
-      {sessions.length > 0 ? (
+      {sessions ? (
         <ul className="slots">
           {sessions.map((session) => (
             <Slot
@@ -38,7 +40,9 @@ export default function SlotsList({ sessions, selectedDay }) {
       ) : (
         <div className="scroller__empty">
           <p className="scroller__description">
-            {NO_SLOTS_MESSAGE[currentDay].title}
+            {pathname === 'psychologist_account_schedule'
+              ? NO_SLOTS_MESSAGE.noSlots.title
+              : NO_SLOTS_MESSAGE[currentDay].title}
           </p>
           <Button variant="secondary" href={NO_SLOTS_MESSAGE[currentDay].href}>
             {NO_SLOTS_MESSAGE[currentDay].textBtn}

@@ -41,11 +41,3 @@
   flex-direction: column;
   gap: 28px;
 }
-
-.page-layout > .page-layout__nav {
-  background-color: var(--bg-color-light-violet);
-  border-radius: 12px;
-  padding: 32px 32px 40px 32px;
-  line-height: 1.33;
-  align-self: start;
-}
