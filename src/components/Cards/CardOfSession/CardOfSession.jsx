@@ -9,7 +9,7 @@ import { DATE_FORMAT, DAYS_NAME, NOT_APPOINTMENT_MESSAGE } from '../../../consta
 import ButtonGroup from '../../generic/ButtonGroup/ButtonGroup';
 import Button from '../../generic/Button/Button';
 import EmptyCard from '../EmptyCard/EmptyCard';
-import Paragraph from '../../generic/Paragraph/Paragraph';
+import Text from '../../generic/Text/Text';
 
 export default function CardOfSession({ type, session }) {
   let user;
@@ -55,7 +55,7 @@ export default function CardOfSession({ type, session }) {
                   name={`${user.first_name} ${user.last_name}`}
                 />
               ) : (
-                <Paragraph>{`${user.first_name} ${user.last_name}`}</Paragraph>
+                <Text>{`${user.first_name} ${user.last_name}`}</Text>
               )}
               <div className="session-card__date">
                 {type === 'psychologist' && <p>{`${timeFrom.date()} ${getMonthName(timeFrom)}, ${DAYS_NAME[timeFrom.day()]}`}</p>}

@@ -7,7 +7,7 @@ import { CLIENT_PROFILE_NAV_LINKS } from '../../constants/constants';
 import BlockWithTitle from '../../components/templates/BlockWithTitle/BlockWithTitle';
 import CardOfSession from '../../components/Cards/CardOfSession/CardOfSession';
 import CurrentUserContext from '../../Context/CurrentUserContext';
-import Paragraph from '../../components/generic/Paragraph/Paragraph';
+import Text from '../../components/generic/Text/Text';
 import Button from '../../components/generic/Button/Button';
 import MyPsychologist from '../../components/Cards/MyPsychologist/MyPsychologist';
 
@@ -34,7 +34,7 @@ export default function ClientHomePage({ isLoggedIn }) {
         </div>
         {currentUser.my_psychologist && (
           <div className="client-account__description">
-            <Paragraph>Вы можете выбрать другого специалиста, перейдя в</Paragraph>
+            <Text>Вы можете выбрать другого специалиста, перейдя в</Text>
             <Button variant="text" href="/catalog">
               Каталог психологов
             </Button>
