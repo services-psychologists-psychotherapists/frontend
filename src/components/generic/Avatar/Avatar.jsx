@@ -20,19 +20,14 @@ export default function Avatar({ src, size }) {
   }
 
   return (
-    <div
-      className={`avatar avatar_size_${size} ${getNoAvatarClasses('avatar')}`}
-    >
+    <div className={`avatar avatar_size_${size} ${getNoAvatarClasses('avatar')}`}>
       <img
         src={avatar}
         alt="аватар пользователя"
         className={`${avatar !== noAvatar ? 'img' : getNoAvatarClasses('img')}`}
       />
       {size === 'xl' && (
-        <button
-          type="button"
-          className={`camera-icon ${getNoAvatarClasses('camera-icon')}`}
-        />
+        <button type="button" className={`camera-icon ${getNoAvatarClasses('camera-icon')}`} />
       )}
     </div>
   );

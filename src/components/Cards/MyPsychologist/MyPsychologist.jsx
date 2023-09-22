@@ -20,9 +20,7 @@ export default function MyPsychologist({ psychologist, nextSession }) {
               rightText={`${psychologist.price} руб.`}
               description="Психолог"
             />
-            <Button variant={nextSession ? 'secondary' : 'primary'}>
-              Записаться повторно
-            </Button>
+            <Button variant={nextSession ? 'secondary' : 'primary'}>Записаться повторно</Button>
           </div>
         </>
       ) : (

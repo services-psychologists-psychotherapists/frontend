@@ -28,11 +28,7 @@ export default function Slot({ session, onClick, isSlotOpen }) {
             ? `${session.client.first_name} ${session.client.last_name}`
             : 'Свободное время'}
         </p>
-        <img
-          src={arrow}
-          alt="arrow"
-          className={`slot__icon ${classIsOpen('slot__icon')}`}
-        />
+        <img src={arrow} alt="arrow" className={`slot__icon ${classIsOpen('slot__icon')}`} />
       </button>
       <div className={`slot__content ${classIsOpen('slot__content')}`}>
         {!session.client ? (

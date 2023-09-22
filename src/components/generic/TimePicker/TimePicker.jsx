@@ -32,23 +32,11 @@ export default function TimePicker({ timingList }) {
   return (
     <div className={`session-planner__select ${classOpen}`}>
       <p className={`session-planner__number ${classOpen}`}>{titleValue}</p>
-      <button
-        className="session-planner__button-drop"
-        type="submit"
-        onClick={handleButtonClick}
-      >
+      <button className="session-planner__button-drop" type="submit" onClick={handleButtonClick}>
         {!isShowDropdown ? (
-          <img
-            className="session-planner__vector-icon"
-            src={vectorClosed}
-            alt="arrow"
-          />
+          <img className="session-planner__vector-icon" src={vectorClosed} alt="arrow" />
         ) : (
-          <img
-            className="session-planner__vector-icon"
-            src={vectorOpened}
-            alt="arrow"
-          />
+          <img className="session-planner__vector-icon" src={vectorOpened} alt="arrow" />
         )}
       </button>
       <div className={classesItems}>

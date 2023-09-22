@@ -19,22 +19,10 @@ export default function App() {
           <Route path="/" element={<HomePage isLoggedIn={false} />} />
           <Route path="/for_a_therapist" element={<PageForPsychologists />} />
           <Route path="/*" element={<NotFound />} />
-          <Route
-            path="/psychologist_account"
-            element={<PsychologistAccount />}
-          />
-          <Route
-            path="/psychologist_account_schedule"
-            element={<PsychologistAccount />}
-          />
-          <Route
-            path="/psychologist_account_profile"
-            element={<PsychologistAccount />}
-          />
-          <Route
-            path="/client_account"
-            element={<ClientHomePage isLoggedIn />}
-          />
+          <Route path="/psychologist_account" element={<PsychologistAccount />} />
+          <Route path="/psychologist_account_schedule" element={<PsychologistAccount />} />
+          <Route path="/psychologist_account_profile" element={<PsychologistAccount />} />
+          <Route path="/client_account" element={<ClientHomePage isLoggedIn />} />
         </Routes>
       </CurrentUserContext.Provider>
       <ButtonUp />

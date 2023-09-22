@@ -32,8 +32,7 @@ export default {
     },
     size: {
       type: 'string',
-      description:
-        'Устантанавливает размер шрифта и отступ между блоком и заголовком',
+      description: 'Устантанавливает размер шрифта и отступ между блоком и заголовком',
       control: 'inline-radio',
       options: ['xs', 'm'],
       defaultValue: 'xs',
