@@ -75,8 +75,7 @@ export const LIST_OF_STEPS = [
   {
     numberStep: '02',
     nameStep: 'Ожидайте подтверждения аккаунта',
-    descriptionStep:
-      'После проверки ваших данных, мы пришлем вам приглашение в личный кабинет',
+    descriptionStep: 'После проверки ваших данных, мы пришлем вам приглашение в личный кабинет',
     bgColor: 'white',
     imgPath: clock,
     bgColorImg: 'light-green',
@@ -191,8 +190,7 @@ export const NOT_APPOINTMENT_MESSAGE = {
 
 export const NO_PSYCHO_MESSAGE = {
   title: 'Специалист пока не выбран',
-  description:
-    'Здесь будет отображаться последний специалист, с которым вы работали',
+  description: 'Здесь будет отображаться последний специалист, с которым вы работали',
   textBtn: 'Подобрать психолога',
   href: '/catalog',
 };
@@ -208,6 +206,9 @@ export const NO_SLOTS_MESSAGE = {
     href: '/shedule',
     textBtn: 'Перейти в расписание',
   },
+  noSlots: {
+    title: 'Здесь появится список доступного времени, когда вы его установите',
+  },
 };
 
 export const CLIENT_PROFILE_NAV_LINKS = [
@@ -220,3 +221,36 @@ export const CLIENT_PROFILE_NAV_LINKS = [
     link: '/client_profile',
   },
 ];
+
+export const DATE_FORMAT = 'DD.MM.YYYY hh:mm';
+
+export const PSYCHOLOGIST_ACCOUNT_LINKS = [
+  {
+    text: 'Главная',
+    link: '/psychologist_account',
+  },
+  {
+    text: 'Расписание',
+    link: '/psychologist_account_schedule',
+  },
+  {
+    text: 'Профиль',
+    link: '/psychologist_account_profile',
+  },
+];
+
+export const PSYCHOLOGIST_ACCOUNT_TITLES = {
+  account: {
+    pageTitle: 'Главная',
+    calendarTitle: 'Календарь сессий',
+    reminderTitle: 'Ближайшая сессия',
+  },
+  schedule: {
+    pageTitle: 'Расписание',
+    calendarTitle: '1. Выберите день',
+    reminderTitle: '2. Добавьте доступное время сессии',
+  },
+  profile: {
+    pageTitle: 'Профиль',
+  },
+};

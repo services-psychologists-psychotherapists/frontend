@@ -14,9 +14,7 @@ export default function WhereToBegin() {
             className={`where-to-begin__card where-to-begin__card_color_${el.bgColor}`}
             key={el.numberStep}
           >
-            <span className="where-to-begin__subtitle-number">
-              {el.numberStep}
-            </span>
+            <span className="where-to-begin__subtitle-number">{el.numberStep}</span>
             <p className="where-to-begin__description">{el.descriptionStep}</p>
           </li>
         ))}

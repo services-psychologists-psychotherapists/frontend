@@ -8,7 +8,6 @@ import {
   NUMBER_TO_SWITCH_THE_WEEKS,
   DAYS_OF_WEEK,
 } from '../../constants/constants';
-import Title from '../generic/Title/Title';
 // TODO: Сделать сброс недель по дизайну
 
 export default function Сalendar({ onDateCellClick }) {
@@ -75,6 +74,7 @@ export default function Сalendar({ onDateCellClick }) {
       setDates(newDates);
     };
 
+    // prettier-ignore
     const handleChangeWeeks = () => {
       if (
         currentDate.isSameOrAfter(startDay, 'week')
@@ -90,64 +90,59 @@ export default function Сalendar({ onDateCellClick }) {
     handleChangeWeeks();
   }, [startDay, lastDay]);
 
+  // prettier-ignore
   const dateСellСlasses = (i) => `${i.isDayOff ? 'calendar__day-of-week_day-off' : ''} ${
     i.date === formattedCurrentDate ? 'calendar__date_today' : ''
   } ${selectedDay === i.date ? 'calendar__date_selected' : ''}`;
 
-  const daysOfWeekClasses = (i) => `${(i === 'сб' || i === 'вс') && 'calendar__day-of-week_day-off'}`;
+  const daysOfWeekClasses = (i) => `${(i === 'сб' || i === 'вс') && 'calendar__day-of-week_day-off'}`; // prettier-ignore
 
   return (
-    <div className="session-calendar">
-      <Title size="xs" text="Календарь сессий" titleLvl="3" />
-      <div className="calendar">
-        <div className="calendar__period">
-          <button
-            type="button"
-            className="calendar__period_switch calendar__period_prev"
-            onClick={switchToPrevWeeks}
-          />
-          <div className="calendar__current-weeks">
-            {`${formattedStartDate} - ${formattedlastDay}`}
-            {isChangedWeeks && (
-              <button
-                type="button"
-                className="calendar__period_switch calendar__period_reset"
-                onClick={resetDates}
-              />
-            )}
-          </div>
-          <button
-            type="button"
-            className="calendar__period_switch calendar__period_next"
-            onClick={switchToNextWeeks}
-          />
+    <div className="calendar">
+      <div className="calendar__period">
+        <button
+          type="button"
+          className="calendar__period_switch calendar__period_prev"
+          onClick={switchToPrevWeeks}
+        />
+        <div className="calendar__current-weeks">
+          {`${formattedStartDate} - ${formattedlastDay}`}
+          {isChangedWeeks && (
+            <button
+              type="button"
+              className="calendar__period_switch calendar__period_reset"
+              onClick={resetDates}
+            />
+          )}
         </div>
-        <div className="calendar__content">
-          <ul className="calendar__days-of-week">
-            {DAYS_OF_WEEK.map((i) => (
-              <li
-                className={`calendar__cell calendar__day-of-week ${daysOfWeekClasses(i)}`}
-                key={i}
-              >
-                {i}
-              </li>
-            ))}
-          </ul>
-          <div className="calendar__dates">
-            {dates.map((i) => (
-              <div
-                className={`calendar__cell calendar__date ${dateСellСlasses(i)}`}
-                key={i.date}
-                id={i.date}
-                onClick={handleSelectDay}
-                onKeyDown={handleSelectDay}
-                tabIndex={0}
-                role="button"
-              >
-                {i.day}
-              </div>
-            ))}
-          </div>
+        <button
+          type="button"
+          className="calendar__period_switch calendar__period_next"
+          onClick={switchToNextWeeks}
+        />
+      </div>
+      <div className="calendar__content">
+        <ul className="calendar__days-of-week">
+          {DAYS_OF_WEEK.map((i) => (
+            <li className={`calendar__cell calendar__day-of-week ${daysOfWeekClasses(i)}`} key={i}>
+              {i}
+            </li>
+          ))}
+        </ul>
+        <div className="calendar__dates">
+          {dates.map((i) => (
+            <div
+              className={`calendar__cell calendar__date ${dateСellСlasses(i)}`}
+              key={i.date}
+              id={i.date}
+              onClick={handleSelectDay}
+              onKeyDown={handleSelectDay}
+              tabIndex={0}
+              role="button"
+            >
+              {i.day}
+            </div>
+          ))}
         </div>
       </div>
     </div>

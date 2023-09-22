@@ -13,11 +13,7 @@ export default function HelpfulInformation({
   return (
     <section className={`helpful-information ${sectionClassName || ''}`}>
       <Title size={size} text={text} />
-      <div
-        className={`helpful-information__container ${containerClassName || ''}`}
-      >
-        {children}
-      </div>
+      <div className={`helpful-information__container ${containerClassName || ''}`}>{children}</div>
     </section>
   );
 }

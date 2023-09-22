@@ -1,9 +1,9 @@
 import React from 'react';
 import './EmptyCard.css';
 import { oneOf, string } from 'prop-types';
-import Paragraph from '../../Paragraph/Paragraph';
-import Title from '../../Title/Title';
-import Button from '../../Button/Button';
+import Paragraph from '../../generic/Paragraph/Paragraph';
+import Title from '../../generic/Title/Title';
+import Button from '../../generic/Button/Button';
 
 export default function EmptyCard({
   type,

@@ -5,11 +5,7 @@ import Title from '../../generic/Title/Title';
 import Header from '../../Header/Header';
 
 export default function PageLayout({
-  children,
-  title,
-  isLoggedIn,
-  nav,
-  section,
+  children, title, isLoggedIn, nav, section
 }) {
   return (
     <>

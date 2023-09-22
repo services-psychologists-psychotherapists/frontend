@@ -1,4 +1,3 @@
-import moment from 'moment';
 import avatar from '../images/avatar.png';
 import psychologistAvatar from '../images/psychologist_avatar.png';
 import clientAvatar from '../images/client_avatar.png';
@@ -41,6 +40,7 @@ export const PSYCHO = {
       document: '/media/user...',
     },
   ],
+  duration: 50,
 };
 
 export const CLIENT = {
@@ -50,22 +50,30 @@ export const CLIENT = {
   birthday: '10.01.1988',
   phone_number: '+79100000000',
   avatar: clientAvatar,
+  next_session: {
+    id: 121,
+    psychologist: PSYCHO,
+    datetime_from: '18.09.2023 19:20',
+    datetime_to: '18.09.2023 20:10',
+    client_link: '/zoom',
+  },
+  my_psychologist: PSYCHO,
 };
 
 const SLOT = {
   psychologist: PSYCHO,
-  datetime_from: '18.09.2023 19:20',
-  datetime_to: '18.09.2023 20:10',
+  datetime_from: '23.09.2023 19:20',
+  datetime_to: '23.09.2023 20:10',
   is_free: false,
 };
 
 const SLOT_2 = JSON.parse(JSON.stringify(SLOT));
-SLOT_2.datetime_from = moment('20.09.2023 19:20', 'DD.MM.YYYY hh:mm');
-SLOT_2.datetime_to = moment('20.09.2023 20:10', 'DD.MM.YYYY hh:mm');
+SLOT_2.datetime_from = '20.09.2023 19:20';
+SLOT_2.datetime_to = '20.09.2023 20:10';
 
 const SLOT_3 = JSON.parse(JSON.stringify(SLOT));
-SLOT_3.datetime_from = '24.09.2023 19:20';
-SLOT_3.datetime_to = '24.09.2023 20:10';
+SLOT_3.datetime_from = '24.09.2023 17:00';
+SLOT_3.datetime_to = '24.09.2023 17:50';
 
 export const SLOTS = [
   {
@@ -92,14 +100,24 @@ export const SLOTS = [
   {
     id: '127774545422',
     client: CLIENT,
-    slot: SLOT,
+    slot: {
+      psychologist: PSYCHO,
+      datetime_from: '18.09.2023 14:20',
+      datetime_to: '18.09.2023 15:10',
+      is_free: true,
+    },
     status: 'Оплаченный',
     href: '/zoom',
   },
   {
     id: '1213512422',
-    client: CLIENT,
-    slot: SLOT,
+    client: null,
+    slot: {
+      psychologist: PSYCHO,
+      datetime_from: '18.09.2023 00:20',
+      datetime_to: '18.09.2023 16:40',
+      is_free: false,
+    },
     status: 'Оплаченный',
     href: '/zoom',
   },
@@ -112,22 +130,13 @@ export const SLOTS = [
   },
   {
     id: '1273452422',
-    client: CLIENT,
-    slot: SLOT,
-    status: 'Оплаченный',
-    href: '/zoom',
-  },
-  {
-    id: '12775542422',
-    client: CLIENT,
-    slot: SLOT,
-    status: 'Оплаченный',
-    href: '/zoom',
-  },
-  {
-    id: '12777756422',
-    client: CLIENT,
-    slot: SLOT,
+    client: null,
+    slot: {
+      psychologist: PSYCHO,
+      datetime_from: '18.09.2023 8:20',
+      datetime_to: '18.09.2023 9:10',
+      is_free: true,
+    },
     status: 'Оплаченный',
     href: '/zoom',
   },
@@ -163,7 +172,7 @@ export const SLOTS = [
 
 export const USER = {
   name: 'Ирина',
-  lastName: 'Кожевникова',
+  last_name: 'Кожевникова',
   id: '12345678907',
   img: avatar,
   psycho: {
@@ -231,70 +240,3 @@ export const USER = {
     },
   ],
 };
-
-export const PSYCHOLOGIST_ACCOUNT_LINKS = [
-  {
-    text: 'Главная',
-    link: '/psychologist_account',
-  },
-  {
-    text: 'Расписание',
-    link: '/psychologist_account_schedule',
-  },
-  {
-    text: 'Профиль',
-    link: '/psychologist_account_profile',
-  },
-];
-
-export const PSYCHOLOGIST_ACCOUNT_TEXT = {
-  txtCalendarInMain: 'Календарь сессий',
-  txtReminderInMain: 'Ближайшая сессия',
-  txtCalendarInShedule: '1. Выберите день',
-  txtReminderInShedule: '2. Добавьте доступное время сессии',
-  txtTitleInMain: 'Главная',
-  txtTitlenShedule: 'Расписание',
-  txtTitleInProfile: 'Профиль',
-};
-
-export const TIMING_HOURS = [
-  '00',
-  '01',
-  '02',
-  '03',
-  '04',
-  '05',
-  '06',
-  '07',
-  '08',
-  '09',
-  '10',
-  '11',
-  '12',
-  '13',
-  '14',
-  '15',
-  '16',
-  '17',
-  '18',
-  '19',
-  '20',
-  '21',
-  '22',
-  '23',
-];
-
-export const TIMING_MINUTES = [
-  '00',
-  '05',
-  '10',
-  '15',
-  '20',
-  '25',
-  '30',
-  '35',
-  '40',
-  '45',
-  '50',
-  '55',
-];

@@ -27,24 +27,14 @@ export default function HowToStart() {
             key={el.numberStep}
           >
             <div className={classes.imageBlock(el)}>
-              <img
-                src={el.imgPath}
-                className="how-to-start__img"
-                alt={el.imgPath}
-              />
+              <img src={el.imgPath} className="how-to-start__img" alt={el.imgPath} />
             </div>
             <div className={classes.textBlock(el)}>
-              <span className="how-to-start__subtitle-span">
-                {el.numberStep}
-              </span>
+              <span className="how-to-start__subtitle-span">{el.numberStep}</span>
               <Title size="s" titleLvl="2" text={el.nameStep} />
               <p className="how-to-start__description">{el.descriptionStep}</p>
               {el.numberStep === '01' && (
-                <Button
-                  href={el.link}
-                  className="how-to-start__button-apply"
-                  variant="primary"
-                >
+                <Button href={el.link} className="how-to-start__button-apply" variant="primary">
                   Подать заявку
                 </Button>
               )}

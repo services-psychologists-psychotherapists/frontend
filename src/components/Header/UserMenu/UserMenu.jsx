@@ -4,6 +4,7 @@ import CurrentUserContext from '../../../Context/CurrentUserContext';
 import NavLinksList from '../../NavLinksList/NavLinksList';
 import { DROPDOWN_LINKS } from '../../../constants/constants';
 import useOutsideClick from '../../../hooks/useOnClickOutside';
+import Avatar from '../../generic/Avatar/Avatar';
 
 export default function UserMenu() {
   const currentUser = useContext(CurrentUserContext);
@@ -21,13 +22,9 @@ export default function UserMenu() {
   return (
     <div className="dropdown" ref={ref}>
       <button type="button" className="user" onClick={handleClickMenu}>
-        <img
-          src={currentUser.img}
-          alt={currentUser.name}
-          className="user__avatar"
-        />
+        <Avatar src={currentUser.avatar} size="xs" />
         <p className={`user__name ${isOpen ? 'user__name_opened' : ''}`}>
-          {`${currentUser.name} ${currentUser.lastName.slice(0, 1)}.`}
+          {`${currentUser.first_name} ${currentUser.last_name.slice(0, 1)}.`}
         </p>
       </button>
       <ul className={`dropdown__list ${isOpen ? 'dropdown__list_opened' : ''}`}>

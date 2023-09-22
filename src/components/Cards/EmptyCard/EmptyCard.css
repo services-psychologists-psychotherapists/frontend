@@ -13,12 +13,12 @@
   width: 100%;
 }
 
-.empty-card_type_client > .button {
+.empty-card_type_psychologist > .button {
   margin-top: 4px;
   align-self: flex-end;
 }
 
-.empty-card_type_psycho > .button {
+.empty-card_type_client > .button {
   margin-top: 28px;
   align-self: flex-start;
 }

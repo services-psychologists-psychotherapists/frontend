@@ -37,19 +37,10 @@ export const getAge = (date) => {
   return `${years} ${age}`;
 };
 
-export const getNextAppointment = (sessions) => {
-  let nextAppointment = {};
-
-  if (sessions.length > 0) {
-    // eslint-disable-next-line
-    nextAppointment = sessions[0];
-    for (let i = 0; i < sessions.length; i += 1) {
-      // prettier-ignore
-      if (sessions[i].time.isBefore(nextAppointment.time)) {
-        nextAppointment = sessions[i];
-      }
-    }
+export const getNumArray = (num, length) => {
+  const numArray = [];
+  for (let i = 0; i <= length; i += num) {
+    numArray.push(`0${i}`.slice(-2));
   }
-
-  return nextAppointment;
+  return numArray;
 };

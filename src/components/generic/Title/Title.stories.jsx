@@ -3,7 +3,7 @@ import '../../App/App.css';
 import Title from './Title';
 
 export default {
-  title: 'Heading',
+  title: 'Global components/Typography/Heading',
   component: Title,
   controls: { sort: 'requiredFirst' },
   tags: ['autodocs'],
@@ -34,9 +34,9 @@ export default {
   },
 };
 
-const Template = function Btn(args) {
+function Template(args) {
   return <Title {...args} />;
-};
+}
 
 export const Large = Template.bind({});
 export const Medium = Template.bind({});
