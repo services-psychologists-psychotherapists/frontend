@@ -1,6 +1,5 @@
 import React from 'react';
 import ButtonGroup from './ButtonGroup';
-import '../../App/App.css';
 import Button from '../Button/Button';
 
 export default {
