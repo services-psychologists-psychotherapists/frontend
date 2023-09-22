@@ -1,16 +1,16 @@
 import React from 'react';
 import '../../App/App.css';
-import Paragraph from './Paragraph';
+import Text from './Text';
 
 export default {
-  title: 'Global components/Typography/Paragraph',
-  component: Paragraph,
+  title: 'Global components/Typography/Text',
+  component: Text,
   controls: { sort: 'requiredFirst' },
   tags: ['autodocs'],
   argTypes: {
     size: {
       type: 'string',
-      description: 'Размер параграфа',
+      description: 'Размер шрифта',
       options: ['l', 'm', 's'],
       control: {
         type: 'inline-radio',
@@ -19,18 +19,27 @@ export default {
     },
     children: {
       type: 'string',
-      description: 'Текст параграфа',
+      description: 'Текст',
+    },
+    type: {
+      type: 'string',
+      option: ['span', 'p', 'tag'],
+      description: 'Исходя из типа меняется тег компонента',
+      control: 'radio',
+      defaultValue: 'p',
     },
   },
 };
 
 function Template(args) {
-  return <Paragraph {...args} />;
+  return <Text {...args} />;
 }
 
 export const Large = Template.bind({});
 export const Medium = Template.bind({});
 export const Small = Template.bind({});
+export const Tag = Template.bind({});
+
 Large.args = {
   children: 'Проверьте свое доступное время на другие дни, чтобы клиент смог записаться',
   size: 'l',
@@ -41,4 +50,9 @@ Medium.args = {
 };
 Small.args = {
   children: 'Проверьте свое доступное время на другие дни, чтобы клиент смог записаться',
+};
+
+Tag.args = {
+  children: 'Разобраться в себе',
+  type: 'tag',
 };
