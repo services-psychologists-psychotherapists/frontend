@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../App/App.css';
 import Paragraph from './Paragraph';
 
 export default {

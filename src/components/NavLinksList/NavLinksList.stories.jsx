@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import '../App/App.css';
 import NavLinksList from './NavLinksList';
 import { CLIENT_PROFILE_NAV_LINKS, NAVIGATION_LINKS } from '../../constants/constants';
 

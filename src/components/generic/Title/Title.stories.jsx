@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../App/App.css';
 import Title from './Title';
 
 export default {
