@@ -1,5 +1,4 @@
 import React from 'react';
-import '../App/App.css';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import Welcome from './Welcome';
 import homePageImg from '../../images/home_banner.svg';

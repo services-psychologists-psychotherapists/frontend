@@ -1,7 +1,6 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import Button from './Button';
-import '../../App/App.css';
 import './Button.css';
 
 export default {

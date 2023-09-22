@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../App/App.css';
 import Text from './Text';
 
 export default {
