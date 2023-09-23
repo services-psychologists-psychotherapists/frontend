@@ -1,10 +1,11 @@
 import React from 'react';
 import './SessionPlanner.css';
+import PropTypes from 'prop-types';
 import Button from '../generic/Button/Button';
 import { TIMING_HOURS, TIMING_MINUTES } from '../../constants/db';
 import TimePicker from '../generic/TimePicker/TimePicker';
 
-export default function SessionPlanner() {
+export default function SessionPlanner({ onClick }) {
   return (
     <div className="session-planner">
       <div className="session-planner__time-picker">
@@ -17,9 +18,21 @@ export default function SessionPlanner() {
         </div>
       </div>
 
-      <Button type="submit" className="session-planner__button-add">
+      <Button
+        onClick={onClick}
+        type="submit"
+        className="session-planner__button-add"
+      >
         + Добавить
       </Button>
     </div>
   );
 }
+
+SessionPlanner.propTypes = {
+  onClick: PropTypes.func,
+};
+
+SessionPlanner.defaultProps = {
+  onClick: () => {},
+};
