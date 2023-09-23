@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Avatar from '../../generic/Avatar/Avatar';
 import PsychoName from '../../generic/PsychoName/PsychoName';
 import { getSessionTime, getMonthName } from '../../../utils/helpers';
-import { DATE_FORMAT, DAYS_NAME, NOT_APPOINTMENT_MESSAGE } from '../../../constants/constants';
+import { DATE_FORMAT, DAYS_NAME, CARD_OF_SESSION_MESSAGE } from '../../../constants/constants';
 import ButtonGroup from '../../generic/ButtonGroup/ButtonGroup';
 import Button from '../../generic/Button/Button';
 import EmptyCard from '../EmptyCard/EmptyCard';
@@ -29,7 +29,7 @@ export default function CardOfSession({ type, session }) {
   const emptyCardProps = () => {
     if (type === 'client') {
       return {
-        textBtn: NOT_APPOINTMENT_MESSAGE[user].textBtn,
+        textBtn: CARD_OF_SESSION_MESSAGE[user].textBtn,
         href: '/calendar'
       };
     }
@@ -58,7 +58,7 @@ export default function CardOfSession({ type, session }) {
                 <Text>{`${user.first_name} ${user.last_name}`}</Text>
               )}
               <div className="session-card__date">
-                {type === 'psychologist' && <p>{`${timeFrom.date()} ${getMonthName(timeFrom)}, ${DAYS_NAME[timeFrom.day()]}`}</p>}
+                {type === 'psychologist' && <p>{`${getMonthName(timeFrom)}, ${DAYS_NAME[timeFrom.day()]}`}</p>}
                 <p>{getSessionTime(timeFrom, timeTo)}</p>
               </div>
             </div>
@@ -75,8 +75,8 @@ export default function CardOfSession({ type, session }) {
       ) : (
         <EmptyCard
           type={user}
-          title={NOT_APPOINTMENT_MESSAGE[user].title}
-          paragraph={NOT_APPOINTMENT_MESSAGE[user].description}
+          title={CARD_OF_SESSION_MESSAGE[user].title}
+          paragraph={CARD_OF_SESSION_MESSAGE[user].description}
           {...emptyCardProps()}
         />
       )}
@@ -101,7 +101,6 @@ CardOfSession.propTypes = {
     }),
     datetime_from: PropTypes.string,
     datetime_to: PropTypes.string,
-    status: PropTypes.string,
     href: PropTypes.string,
   }),
 };

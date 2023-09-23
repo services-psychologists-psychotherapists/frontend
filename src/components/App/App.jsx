@@ -7,9 +7,10 @@ import Footer from '../Footer/Footer';
 import NotFound from '../../pages/NotFound/NotFound';
 import PsychologistAccount from '../../pages/PsychologistAccount/PsychologistAccount';
 import CurrentUserContext from '../../Context/CurrentUserContext';
-import { CLIENT } from '../../constants/db';
+import { CLIENT, PSYCHO } from '../../constants/db';
 import ClientHomePage from '../../pages/ClientHomePage/ClientHomePage';
 import ButtonUp from '../generic/ButtonUp/ButtonUp';
+import PsychologistCardPage from '../../pages/PsychologistsCardPage/PsychologistsCardPage';
 
 export default function App() {
   return (
@@ -23,6 +24,10 @@ export default function App() {
           <Route path="/psychologist_account_schedule" element={<PsychologistAccount />} />
           <Route path="/psychologist_account_profile" element={<PsychologistAccount />} />
           <Route path="/client_account" element={<ClientHomePage isLoggedIn />} />
+          <Route
+            path="/psychologist"
+            element={<PsychologistCardPage psychologist={PSYCHO} isLoggedIn />}
+          />
         </Routes>
       </CurrentUserContext.Provider>
       <ButtonUp />

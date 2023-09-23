@@ -19,8 +19,8 @@ export default {
       defaultValue: 'client',
     },
     session: {
+      type: 'object',
       control: {
-        type: 'object',
         defaultValue: null,
         keys: {
           client: {
@@ -44,11 +44,9 @@ export default {
           datetime_from: { type: 'string' },
           datetime_to: { type: 'string' },
           href: { type: 'string' },
-          status: { type: 'string' },
         },
       },
     },
-    isFree: { type: 'boolean' },
   },
 };
 

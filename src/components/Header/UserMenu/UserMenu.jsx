@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import './UserMenu.css';
 import CurrentUserContext from '../../../Context/CurrentUserContext';
 import NavLinksList from '../../NavLinksList/NavLinksList';
-import { DROPDOWN_LINKS } from '../../../constants/constants';
+import { HEADER_DROPDOWN_LINKS } from '../../../constants/constants';
 import useOutsideClick from '../../../hooks/useOnClickOutside';
 import Avatar from '../../generic/Avatar/Avatar';
 
@@ -28,7 +28,7 @@ export default function UserMenu() {
         </p>
       </button>
       <ul className={`dropdown__list ${isOpen ? 'dropdown__list_opened' : ''}`}>
-        <NavLinksList list={DROPDOWN_LINKS} direction="column" />
+        <NavLinksList list={HEADER_DROPDOWN_LINKS} direction="column" />
         <li>
           <button className="exit-btn" onClick={() => console.log('exit')}>
             Выйти
