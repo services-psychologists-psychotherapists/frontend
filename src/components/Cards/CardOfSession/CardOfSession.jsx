@@ -10,8 +10,10 @@ import ButtonGroup from '../../generic/ButtonGroup/ButtonGroup';
 import Button from '../../generic/Button/Button';
 import EmptyCard from '../EmptyCard/EmptyCard';
 import Text from '../../generic/Text/Text';
+import { useResize } from '../../../hooks/useResize';
 
 export default function CardOfSession({ type, session }) {
+  const { isScreenSm } = useResize();
   let user;
   let timeFrom;
   let timeTo;
@@ -64,10 +66,10 @@ export default function CardOfSession({ type, session }) {
             </div>
           </div>
           <ButtonGroup size="s">
-            <Button href={session.href}>
+            <Button href={session.href} size={!isScreenSm ? 'm' : 'l'}>
               {type === 'psychologist' ? 'Перейти' : 'Начать сессию'}
             </Button>
-            <Button onClick={() => { }} variant="secondary">
+            <Button onClick={() => { }} variant="secondary" size={!isScreenSm ? 'm' : 'l'}>
               Отменить
             </Button>
           </ButtonGroup>

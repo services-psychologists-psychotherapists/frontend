@@ -12,3 +12,28 @@
   gap: 40px;
   align-items: center;
 }
+
+@media screen and (max-width: 1024px) {
+  .header {
+    padding: 30px 40px 40px;
+  }
+
+  .header__nav {
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    padding: 30px;
+  }
+  .header__nav > .links {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    padding: 30px 20px;
+  }
+}

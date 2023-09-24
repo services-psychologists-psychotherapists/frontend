@@ -4,14 +4,23 @@
   gap: 40px;
 }
 
-.client-account__description {
-  display: flex;
-  align-items: center;
-  margin-top: 8px;
-}
-
 .page__nav-links {
   background-color: var(--bg-color-light-violet);
   padding: 32px 32px 40px;
   border-radius: 12px;
+}
+
+.client-account__description {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 480px) {
+  .client-account {
+    gap: 20px;
+  }
+  .client-account__description > .text > .button {
+    font-size: 12px;
+  }
 }

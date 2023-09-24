@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import NavLinksList from './NavLinksList';
-import { CLIENT_PROFILE_NAV_LINKS, NAVIGATION_LINKS } from '../../constants/constants';
+import { CLIENT_PROFILE_NAV_LINKS, HEADER_NAV_LINKS } from '../../constants/constants';
 
 export default {
   title: 'Global components/Navigation/Navigation links list',
@@ -42,7 +42,7 @@ export const Violet = Template.bind({});
 
 Column.args = {
   direction: 'column',
-  list: NAVIGATION_LINKS,
+  list: HEADER_NAV_LINKS,
 };
 Violet.args = {
   direction: 'column',
@@ -51,5 +51,5 @@ Violet.args = {
 };
 
 Row.args = {
-  list: NAVIGATION_LINKS,
+  list: HEADER_NAV_LINKS,
 };

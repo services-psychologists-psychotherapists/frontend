@@ -2,12 +2,16 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-family-lato);
-  font-size: 18px;
-  font-weight: 400;
   color: var(--text-color-dark-blue);
   margin-top: 12px;
-  line-height: 25px;
+}
+
+.name-container__description,
+.name-container__label {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  font-family: var(--font-family-lato);
 }
 
 .elipse {
@@ -20,8 +24,17 @@
 
 .name-container__label {
   margin-top: 4px;
-  font-family: var(--font-family-lato);
-  font-size: 18px;
-  font-weight: 400;
   color: var(--text-color-dark-violet);
+}
+
+@media screen and (max-width: 480px) {
+  .name-container__label,
+  .name-container__description {
+    font-size: 16px;
+    line-height: 20px;
+  }
+
+  .name-container__description {
+    margin-top: 8px;
+  }
 }
