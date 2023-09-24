@@ -30,6 +30,10 @@
   padding-top: 28px;
 }
 
+.popup__container > .button {
+  margin-top: 40px;
+}
+
 .popup__container > .buttons {
   margin-top: 40px;
 }

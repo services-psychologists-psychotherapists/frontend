@@ -18,7 +18,6 @@ export default function Button({
       ? `button_disabled button__${variant}_disabled`
       : `button__${variant}_active`
   }`;
-
   const Tag = href !== '' ? Link : 'button';
 
   const handlerBtnClick = (e) => {

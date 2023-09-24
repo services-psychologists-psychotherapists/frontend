@@ -1,66 +1,87 @@
 // prettier-ignore
-import React, { useRef } from 'react';
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useContext
+} from 'react';
 import './Popup.css';
-import { PropTypes, node } from 'prop-types';
+import { /* PropTypes, */ node } from 'prop-types';
 import Button from '../Button/Button';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import Title from '../Title/Title';
 import useOutsideClick from '../../../hooks/useOnClickOutside';
+import PopupProvider from '../../../hooks/useOpenPopup';
 
-export default function Popup({
-  isOpen,
-  onClose,
-  titleText,
-  children,
-  buttonsQuantity,
-  buttonText,
-  buttonTextAdd,
-  ...props
-}) {
-  const additionalButtonProps = {
-    className: props.classNameAdd,
-    onClick: props.onClickAdd,
-    type: props.typeAdd,
-    disabled: props.disabledAdd,
-    variant: props.variantAdd,
-    size: props.sizeAdd,
-    href: props.hrefAdd,
-  };
-
+export default function Popup({ children }) {
   const ref = useRef();
+  const popupData = useContext(PopupProvider);
+  console.log(popupData);
+  const [isOpenPopup, setIsOpenPopup] = useState(false);
 
   useOutsideClick(ref, () => {
-    onClose();
+    setIsOpenPopup(false);
   });
 
-  // prettier-ignore
-  const classesPopup = `popup ${isOpen ? 'popup-visible' : ''}`;
+  useEffect(() => {
+    if (popupData) {
+      console.log('данные переданы, попап открывается', popupData);
+      setIsOpenPopup(true);
+    } else {
+      console.log('данных нет попап закрыт');
+      setIsOpenPopup(false);
+    }
+  }, [popupData]);
+
+  const { title } = popupData ? popupData.data : {};
+  const { buttons } = popupData ? popupData.data : [];
+  const buttonsQuantity = buttons ? buttons.length : 0;
+
+  const classesPopup = `popup ${isOpenPopup ? 'popup-visible' : ''}`;
   // prettier-ignore
   return (
     <div className={classesPopup}>
       <div className="popup__container" ref={ref}>
 
-        <button onClick={onClose} type="button" className="popup__button-close" />
-        <Title size="s" text={titleText} />
+        <button type="button" className="popup__button-close" />
+        <Title size="s" text={title} />
         <div className="popup__content">
           {children}
         </div>
 
         {
-          (buttonsQuantity === 1 && <Button {...props}>{buttonText}</Button>)
-          || (buttonsQuantity === 2 && (
+          (buttonsQuantity === 1
+            && (
+              <Button
+                onClick={buttons.onClick}
+                type={buttons.type}
+                size={buttons.size}
+                variant={buttons.variant}
+              >
+                {buttons[0].label}
+              </Button>
+            )
+          )// prettier-ignore
+          || (buttonsQuantity >= 2 && (
+
             <ButtonGroup>
-              <Button {...props} variant="secondary">
-                {buttonText}
-              </Button>
-              <Button {...additionalButtonProps}>
-                {buttonTextAdd}
-              </Button>
+              {
+                buttons.map((button) => (
+                  <Button
+                    key={button.label}
+                    onClick={button.onClick}
+                    type={button.type}
+                    size={button.size}
+                    variant={button.variant}
+                  >
+                    {button.label}
+                  </Button>
+                ))
+              }
             </ButtonGroup>
-          ))
-          || (
-            buttonsQuantity === 0 && null
-          )
+
+          ))// prettier-ignore
+          || (buttonsQuantity === 0 && null)
         }
       </div>
     </div>
@@ -68,32 +89,9 @@ export default function Popup({
 }
 
 Popup.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onClose: PropTypes.func.isRequired,
-  titleText: PropTypes.string.isRequired,
   children: node,
-  buttonsQuantity: PropTypes.number,
-  buttonText: PropTypes.string.isRequired,
-  buttonTextAdd: PropTypes.string,
-
-  classNameAdd: PropTypes.string,
-  onClickAdd: PropTypes.func,
-  typeAdd: PropTypes.oneOf(['button', 'submit']),
-  disabledAdd: PropTypes.bool,
-  variantAdd: PropTypes.oneOf(['primary', 'secondary', 'text', 'text-icon']),
-  sizeAdd: PropTypes.oneOf(['l', 'm']),
-  hrefAdd: PropTypes.string,
 };
 
 Popup.defaultProps = {
   children: null,
-  buttonsQuantity: 0,
-  buttonTextAdd: '',
-  classNameAdd: '',
-  onClickAdd: () => {},
-  typeAdd: 'button',
-  disabledAdd: false,
-  variantAdd: 'primary',
-  sizeAdd: 'l',
-  hrefAdd: '',
 };

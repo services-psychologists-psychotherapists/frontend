@@ -1,38 +1,40 @@
 import React from 'react';
 import './SessionPlanner.css';
-import PropTypes from 'prop-types';
 import Button from '../generic/Button/Button';
-import { TIMING_HOURS, TIMING_MINUTES } from '../../constants/db';
+import { TIMING_HOURS, TIMING_MINUTES, POPUP_DATA } from '../../constants/db';
 import TimePicker from '../generic/TimePicker/TimePicker';
+import Popup from '../generic/Popup/Popup';
+import PopupProvider, { usePopup } from '../../hooks/useOpenPopup';
 
-export default function SessionPlanner({ onClick }) {
+export default function SessionPlanner(/* { onClick } */) {
+  usePopup(POPUP_DATA.ConfirmDeletePopup);
   return (
     <div className="session-planner">
-      <div className="session-planner__time-picker">
-        <h2 className="session-planner__text">Время начала сессии</h2>
+      <PopupProvider>
+        <div className="session-planner__time-picker">
+          <h2 className="session-planner__text">Время начала сессии</h2>
 
-        <div className="session-planner__timing-box">
-          <TimePicker id={1} timingList={TIMING_HOURS} />
-          :
-          <TimePicker id={2} timingList={TIMING_MINUTES} />
+          <Popup
+            buttonsQuantity={2}
+            buttonText="Отменить"
+            buttonTextAdd="Вернуться назад"
+          />
+
+          <div className="session-planner__timing-box">
+            <TimePicker id={1} timingList={TIMING_HOURS} />
+            :
+            <TimePicker id={2} timingList={TIMING_MINUTES} />
+          </div>
         </div>
-      </div>
 
-      <Button
-        onClick={onClick}
-        type="submit"
-        className="session-planner__button-add"
-      >
-        + Добавить
-      </Button>
+        <Button
+          /* onClick={handleButtonClick} */
+          type="submit"
+          className="session-planner__button-add"
+        >
+          + Добавить
+        </Button>
+      </PopupProvider>
     </div>
   );
 }
-
-SessionPlanner.propTypes = {
-  onClick: PropTypes.func,
-};
-
-SessionPlanner.defaultProps = {
-  onClick: () => {},
-};

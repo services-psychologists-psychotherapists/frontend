@@ -298,3 +298,48 @@ export const TIMING_MINUTES = [
   '50',
   '55',
 ];
+
+export const POPUP_DATA = {
+  ConfirmDeletePopup: {
+    data: {
+      title: 'Удалить?',
+      buttons: [
+        {
+          label: 'Нет',
+          onClick: () => console.log('Нажали Нет'),
+          type: 'button',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Да',
+          onClick: () => console.log('Нажали Да'),
+          type: 'button',
+          size: 'l',
+          variant: 'primary',
+        },
+      ],
+    },
+  },
+  SomeDiffrentPopup: {
+    data: {
+      title: 'Вы уверены?',
+      buttons: [
+        {
+          label: 'Отменить',
+          onClick: () => console.log('Нажали Отменить'),
+          type: 'secondary',
+          size: 's',
+          variant: 'secondary',
+        },
+        {
+          label: 'Добавить',
+          onClick: console.log('Нажали Добавить'),
+          type: 'secondary',
+          size: 's',
+          variant: 'secondary',
+        },
+      ],
+    },
+  },
+};
