@@ -6,6 +6,7 @@ export default function Prompt({
   prompt,
   disabled,
   errors,
+  values
 }) {
   return (
     (errors && (
@@ -15,15 +16,18 @@ export default function Prompt({
     ))
       || (prompt
         && !errors
-        && !disabled && (
+        && !disabled
+        && !values
+        && (
           <span className="field-container__prompt field-container__prompt_visible-prompt">
             {prompt}
           </span>
-      )) || <span className="field-container__prompt_not-visible" />
+        )) || <span className="field-container__prompt_not-visible" />
   );
 }
 
 Prompt.propTypes = {
+  values: PropTypes.string.isRequired,
   disabled: PropTypes.bool.isRequired,
   errors: PropTypes.string,
   prompt: PropTypes.string,

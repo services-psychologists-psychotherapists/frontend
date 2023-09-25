@@ -112,6 +112,7 @@ export default function FieldContainer({
         errors={errors[name]}
         prompt={prompt}
         disabled={disabled}
+        values={values[name]}
       />
     </div>
   );
