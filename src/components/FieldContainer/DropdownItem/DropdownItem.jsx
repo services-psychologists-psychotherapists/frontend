@@ -3,7 +3,7 @@ import './DropdownItem.css';
 import PropTypes from 'prop-types';
 import {
   checkboxDropDownElement,
-  radioDropDownElement,
+  radioDropDownElement, titlesDropDownElement,
 } from '../../../constants/constants';
 import { useForm } from '../../../hooks/useForm';
 import DropdownItemIcon from './DropdownItemIcon/DropdownItemIcon';
@@ -23,17 +23,38 @@ export default function DropdownItem({
 
   const isRadioElement = element === radioDropDownElement;
   const isCheckboxElement = element === checkboxDropDownElement;
-  const containerClassName = isRadioElement
-    ? 'dropdown-item__container_radio'
-    : isCheckboxElement ? 'dropdown-item__container_checkbox' : 'dropdown-item__container_titles';
+  const isTitlesElement = element === titlesDropDownElement;
 
-  const isChecked = isRadioElement
-    ? selectedValue === item
-    : selectedValue[item] || false;
+  const getContainerClassName = () => {
+    if (isRadioElement) {
+      return ' dropdown-item__container_radio';
+    }
+    if (isCheckboxElement) {
+      return ' dropdown-item__container_checkbox';
+    }
+    if (isTitlesElement) {
+      return ' dropdown-item__container_titles';
+    }
+    return '';
+  };
+
+  const containerClassName = getContainerClassName();
+
+  const checkIsChecked = () => {
+    if (isRadioElement) {
+      return selectedValue === item;
+    }
+    if (isCheckboxElement || isTitlesElement) {
+      return selectedValue[item] || false;
+    }
+    return false;
+  };
+
+  const isChecked = checkIsChecked();
 
   return (
     <label
-      className={`dropdown-item__container ${containerClassName}`}
+      className={`dropdown-item__container${containerClassName}`}
     >
       <DropdownItemIcon
         element={element}

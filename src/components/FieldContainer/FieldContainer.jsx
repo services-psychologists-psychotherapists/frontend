@@ -56,6 +56,7 @@ export default function FieldContainer({
   } else if (element === radioDropDownElement) {
     displayValue = selectedValue;
   } else if (element === checkboxDropDownElement) {
+    const lastDigit = selectedCheckBoxCount % 10;
     switch (true) {
       case selectedCheckBoxCount === 0:
         displayValue = '';
@@ -63,10 +64,10 @@ export default function FieldContainer({
       case selectedCheckBoxCount === 11:
         displayValue = `Выбрано ${selectedCheckBoxCount} вариантов`;
         break;
-      case selectedCheckBoxCount % 10 === 1 && selectedCheckBoxCount !== 11:
+      case lastDigit === 1 && selectedCheckBoxCount !== 11:
         displayValue = `Выбран ${selectedCheckBoxCount} вариант`;
         break;
-      case selectedCheckBoxCount % 10 >= 2 && selectedCheckBoxCount % 10 <= 4
+      case lastDigit >= 2 && lastDigit <= 4
       && (selectedCheckBoxCount < 12 || selectedCheckBoxCount > 14):
         displayValue = `Выбрано ${selectedCheckBoxCount} варианта`;
         break;

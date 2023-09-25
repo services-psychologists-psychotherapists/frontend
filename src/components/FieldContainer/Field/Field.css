@@ -11,8 +11,9 @@
   display: flex;
 }
 
-.field_disabled {
+.field:disabled {
   border: 1px solid var(--border-coolor-disabled);
+  cursor: initial;
 }
 
 .field_invalid {

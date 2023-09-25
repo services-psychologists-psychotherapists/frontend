@@ -22,7 +22,7 @@
 
 .dropdown-item__input:disabled {
   background-color: transparent;
-  color: var(--text-coolor-disabled);
+  color: var(--text-color-disabled);
   border-bottom: 1px solid var(--border-coolor-disabled);
 }
 

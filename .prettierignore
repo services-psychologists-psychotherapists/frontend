@@ -9,3 +9,4 @@ src/components/FieldContainer/DropdownItem/DropdownItemIcon/DropdownItemIcon.jsx
 src/components/FieldContainer/DropdownItem/DropdownCustomInput/DropdownCustomInput.jsx
 src/components/FieldContainer/DropdownItem/DropdownItemTitle/DropdownItemTitle.jsx
 src/components/FieldContainer/Field/Field.jsx
+src/components/FieldContainer/FieldButton/FieldButtonImage/FieldButtonImage.jsx

@@ -13,9 +13,10 @@ export default function DropdownCustomInput({
   name,
   element
 }) {
-  const isOtherChecked = (selectedValue['Другое'] || false) && element === checkboxDropDownElement;
+  const isCheckboxElement = element === checkboxDropDownElement;
+  const isOtherChecked = (selectedValue['Другое'] || false) && isCheckboxElement;
   const isOther = item === 'Другое';
-  const shouldRenderCustomInput = isOther && element === checkboxDropDownElement;
+  const shouldRenderCustomInput = isOther && isCheckboxElement;
 
   return (
     shouldRenderCustomInput && (

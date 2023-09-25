@@ -34,8 +34,8 @@
   color: var(--text-color-error);
 }
 
-.input_disabled {
-  color: var(--text-coolor-disabled);
+.input:disabled {
+  color: var(--text-color-disabled);
 }
 
 .input_button {

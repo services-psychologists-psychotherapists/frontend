@@ -16,8 +16,14 @@ export default function DropDownList({
     return null;
   }
 
+  const dropdownListClasses = `dropdown-list${
+    isFocused ? ' dropdown-list_opened' : ''
+  }${
+    element === titlesDropDownElement ? ' dropdown-list_titles' : ''
+  }`;
+
   return (
-    <ul className={`dropdown-list ${isFocused && 'dropdown-list_opened'} ${element === titlesDropDownElement && 'dropdown-list_titles'}`}>
+    <ul className={dropdownListClasses}>
       {dropDownContent.map((item) => (
         <li className="dropdown-list__item" key={item}>
           <DropdownItem

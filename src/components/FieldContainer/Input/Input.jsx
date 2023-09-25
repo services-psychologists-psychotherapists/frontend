@@ -21,18 +21,17 @@ export default function Input({
   isValid,
   isEyeOpened
 }) {
-  const inputClasses = `input
-    ${element === inputElement && 'input_hidden-placeholder'}
-    ${!isValid && 'input_invalid'} 
-    ${disabled && 'input_disabled'}
-    ${(element === radioDropDownElement || element === checkboxDropDownElement || element === titlesDropDownElement)
-    && 'input_button'}`;
+  const inputClasses = `input${
+    element === inputElement ? ' input_hidden-placeholder' : ''
+  }${
+    !isValid ? ' input_invalid' : ''
+  }${
+    (element === radioDropDownElement || element === checkboxDropDownElement || element === titlesDropDownElement) ? ' input_button' : ''
+  }`;
 
   return (
     element === titlesDropDownElement ? (
-      <ul
-        className={inputClasses}
-      >
+      <ul className={inputClasses}>
         <TitlesContainer
           value={value}
           element={element}

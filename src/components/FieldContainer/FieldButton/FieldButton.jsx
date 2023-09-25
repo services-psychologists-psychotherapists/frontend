@@ -11,43 +11,48 @@ import FieldButtonImage from './FieldButtonImage/FieldButtonImage';
 export default function FieldButton({
   element,
   disabled,
-  type,
+  inputType,
   onClick,
   isEyeOpened,
   setIsEyeOpened,
   isValid,
   isFocused
 }) {
+  const isRadioElement = element === radioDropDownElement;
+  const isCheckboxElement = element === checkboxDropDownElement;
+  const isTitlesElement = element === titlesDropDownElement;
+  const isInputElement = element === inputElement;
+  const isInputPasswordType = inputType === 'password';
   const showPasswordContent = (e) => {
     e.preventDefault();
     setIsEyeOpened(!isEyeOpened);
   };
 
-  let iconClasses = 'field-button';
-  if (isFocused && type !== 'password') {
-    iconClasses += ' rotate';
-  }
+  const iconClasses = `field-button${(isFocused && !isInputPasswordType) ? ' rotate' : ''}`;
 
-  const isHaveIcon = type === 'password'
-      || element === radioDropDownElement
-      || element === checkboxDropDownElement
-      || element === titlesDropDownElement;
+  const isHaveIcon = isInputPasswordType
+      || isRadioElement
+      || isCheckboxElement
+      || isTitlesElement;
+
+  const handleClickOnButton = (e) => {
+    if (isInputElement && isInputPasswordType) {
+      return showPasswordContent(e);
+    }
+    return onClick;
+  };
 
   return (
     isHaveIcon && (
       <div
         className={iconClasses}
-        onClick={element === inputElement && type === 'password' ? showPasswordContent : onClick}
+        onClick={handleClickOnButton}
         disabled={disabled}
-        /* Поясняю нижние два тега: Если диву ставить onClick, он ругается.
-        Решения два: див поменять на button, или применить нижеуказанные теги.
-        Так как этот блок лежит в Field, который тоже является button,
-        пришлось использовать второй вариант. Если что-то придумаете будет супер) */
         role="presentation"
-        onKeyDown={element === inputElement && type === 'password' ? showPasswordContent : onClick}
+        onKeyDown={handleClickOnButton}
       >
         <FieldButtonImage
-          type={type}
+          inputType={inputType}
           isValid={isValid}
           disabled={disabled}
           element={element}
@@ -60,7 +65,7 @@ export default function FieldButton({
 
 FieldButton.propTypes = {
   element: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  inputType: PropTypes.string.isRequired,
   isFocused: PropTypes.bool.isRequired,
   disabled: PropTypes.bool,
   isValid: PropTypes.bool,

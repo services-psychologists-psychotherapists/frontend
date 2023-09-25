@@ -4,7 +4,7 @@ import React from 'react';
 
 export default function FieldTitle({ disabled, title }) {
   return (
-    <p className={`field-title ${disabled && 'field-title_disabled'}`}>
+    <p className={`field-title${disabled ? ' field-title_disabled' : ''}`}>
       {title}
     </p>
   );

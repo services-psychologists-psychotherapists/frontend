@@ -1,4 +1,3 @@
-import './RadioDropdownField.css';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { radioDropDownElement, radioType } from '../../../constants/constants';

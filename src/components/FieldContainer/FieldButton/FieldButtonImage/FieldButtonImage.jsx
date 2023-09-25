@@ -6,30 +6,40 @@ import { INPUT_ICONS, inputElement } from '../../../../constants/constants';
 export default function FieldButtonImage({
   element,
   disabled,
-  type,
+  inputType,
   isEyeOpened,
   isValid,
 }) {
-  let iconSrc;
-  if (element === inputElement && type === 'password') {
+  const isPasswordInputElement = element === inputElement && inputType === 'password';
+
+  const fieldButtonImgClass = isPasswordInputElement
+    ? 'field-button__img_password'
+    : 'field-button__img_arrow';
+
+  const getPasswordIconState = () => {
     if (disabled) {
-      iconSrc = INPUT_ICONS.closedEyeDisabled;
-    } else if (isEyeOpened) {
-      iconSrc = isValid ? INPUT_ICONS.openedEye : INPUT_ICONS.openedEyeError;
-    } else {
-      iconSrc = isValid ? INPUT_ICONS.closedEye : INPUT_ICONS.closedEyeError;
+      return INPUT_ICONS.closedEyeDisabled;
     }
-  } else {
-    iconSrc = disabled ? INPUT_ICONS.arrowDisabled : INPUT_ICONS.arrow;
-  }
+    if (isEyeOpened) {
+      return isValid ? INPUT_ICONS.openedEye : INPUT_ICONS.openedEyeError;
+    }
+    return isValid ? INPUT_ICONS.closedEye : INPUT_ICONS.closedEyeError;
+  };
+
+  const getArrowIconState = () => (disabled ? INPUT_ICONS.arrowDisabled : INPUT_ICONS.arrow);
+
+  const getIconSrc = () => {
+    if (isPasswordInputElement) {
+      return getPasswordIconState();
+    }
+    return getArrowIconState();
+  };
+
+  const iconSrc = getIconSrc();
 
   return (
     <img
-      className={
-        element === inputElement && type === 'password'
-          ? 'field-button__img_password'
-          : 'field-button__img_arrow'
-      }
+      className={fieldButtonImgClass}
       alt="Field-Icon"
       src={iconSrc}
     />
@@ -38,7 +48,7 @@ export default function FieldButtonImage({
 
 FieldButtonImage.propTypes = {
   element: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  inputType: PropTypes.string.isRequired,
   disabled: PropTypes.bool,
   isValid: PropTypes.bool,
   isEyeOpened: PropTypes.bool.isRequired,

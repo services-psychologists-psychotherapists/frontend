@@ -19,7 +19,9 @@ export default function Field({
   onClick,
   isFocused
 }) {
-  const fieldClasses = `field ${!isValid && !disabled && 'field_invalid'} ${disabled && 'field_disabled'}`;
+  const fieldClasses = `field${
+    (!isValid && !disabled) ? ' field_invalid' : ''
+  }`;
 
   const [isEyeOpened, setIsEyeOpened] = useState(false);
 
@@ -43,7 +45,7 @@ export default function Field({
         isFocused={isFocused}
         element={element}
         disabled={disabled}
-        type={type}
+        inputType={type}
         setIsEyeOpened={setIsEyeOpened}
         isEyeOpened={isEyeOpened}
         isValid={isValid}

@@ -1,4 +1,3 @@
-import './TitlesDropDownField.css';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {

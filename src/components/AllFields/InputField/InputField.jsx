@@ -1,4 +1,3 @@
-import './InputField.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import FieldContainer from '../../FieldContainer/FieldContainer';

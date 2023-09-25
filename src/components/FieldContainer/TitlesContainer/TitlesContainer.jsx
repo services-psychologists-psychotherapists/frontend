@@ -1,4 +1,3 @@
-import './TitlesContainer.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import DropdownItemTitle from '../DropdownItem/DropdownItemTitle/DropdownItemTitle';
@@ -9,11 +8,7 @@ export default function TitlesContainer({ value, element }) {
   ) : (
     value.map((displayValue) => (
       <li key={displayValue}>
-        <DropdownItemTitle
-          item={displayValue}
-          checked="true"
-          element={element}
-        />
+        <DropdownItemTitle item={displayValue} checked element={element} />
       </li>
     ))
   );

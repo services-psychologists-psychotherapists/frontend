@@ -7,15 +7,27 @@ import {
 } from '../../../../constants/constants';
 
 export default function DropdownItemTitle({ item, element, checked }) {
-  const isOther = item === 'Другое' && element === checkboxDropDownElement;
+  const isCheckboxElement = element === checkboxDropDownElement;
+  const isTitlesElement = element === titlesDropDownElement;
+
+  const isOther = item === 'Другое' && isCheckboxElement;
+
+  const geTitleStateClassName = () => {
+    if (isTitlesElement && checked) {
+      return ' dropdown-item__title-titles_checked';
+    }
+    if (isTitlesElement && !checked) {
+      return ' dropdown-item__title-titles';
+    }
+    return '';
+  };
+
+  const dropdownItemTitleClasses = geTitleStateClassName();
 
   return (
     !isOther && (
       <p
-        className={`dropdown-item__title ${
-          element === titlesDropDownElement
-          && `${checked ? 'dropdown-item__title-titles_checked' : 'dropdown-item__title-titles'}`
-        }`}
+        className={dropdownItemTitleClasses}
       >
         {item}
       </p>
