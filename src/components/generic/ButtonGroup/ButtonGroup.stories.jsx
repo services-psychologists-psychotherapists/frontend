@@ -1,10 +1,9 @@
 import React from 'react';
 import ButtonGroup from './ButtonGroup';
-import '../../App/App.css';
 import Button from '../Button/Button';
 
 export default {
-  title: 'Buttons group',
+  title: 'Global components/Button/Buttons group',
   component: ButtonGroup,
   tags: ['autodocs'],
   argTypes: {
@@ -19,7 +18,7 @@ export default {
   },
 };
 
-const Template = function Btn(args) {
+function Template(args) {
   return (
     <ButtonGroup {...args}>
       <Button {...args} variant="secondary" onClick={() => {}}>
@@ -30,7 +29,7 @@ const Template = function Btn(args) {
       </Button>
     </ButtonGroup>
   );
-};
+}
 
 export const Default = Template.bind({});
 Default.args = {

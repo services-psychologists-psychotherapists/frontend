@@ -4,9 +4,7 @@ import './Background.css';
 
 export default function Background({ animated }) {
   function circleClassName(size) {
-    return `circle circle_size_${size} circle__${size}_${
-      animated && 'animated'
-    }`;
+    return `circle circle_size_${size} circle__${size}_${animated && 'animated'}`;
   }
   return (
     <div className="background">

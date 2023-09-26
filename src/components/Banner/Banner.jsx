@@ -5,13 +5,7 @@ import Button from '../generic/Button/Button';
 import Title from '../generic/Title/Title';
 
 export default function Banner({
-  imgLink,
-  textBtn,
-  title,
-  description,
-  imgSize,
-  imgAlt,
-  href,
+  imgLink, textBtn, title, description, imgSize, imgAlt, href
 }) {
   return (
     <div className={`banner banner_size_${imgSize}`}>
@@ -20,11 +14,7 @@ export default function Banner({
         <p className="banner__description">{description}</p>
         <Button href={href}>{textBtn}</Button>
       </div>
-      <img
-        className={`banner__img banner__img_size_${imgSize}`}
-        src={imgLink}
-        alt={imgAlt}
-      />
+      <img className={`banner__img banner__img_size_${imgSize}`} src={imgLink} alt={imgAlt} />
     </div>
   );
 }

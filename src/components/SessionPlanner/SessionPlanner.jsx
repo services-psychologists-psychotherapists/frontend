@@ -6,19 +6,15 @@ import TimePicker from '../generic/TimePicker/TimePicker';
 import Popup from '../generic/Popup/Popup';
 import PopupProvider, { usePopup } from '../../hooks/useOpenPopup';
 
-export default function SessionPlanner(/* { onClick } */) {
-  usePopup(POPUP_DATA.ConfirmDeletePopup);
+export default function SessionPlanner() {
+  const { setValue } = usePopup();
   return (
     <div className="session-planner">
       <PopupProvider>
         <div className="session-planner__time-picker">
           <h2 className="session-planner__text">Время начала сессии</h2>
 
-          <Popup
-            buttonsQuantity={2}
-            buttonText="Отменить"
-            buttonTextAdd="Вернуться назад"
-          />
+          <Popup buttonsQuantity={2} buttonText="Отменить" buttonTextAdd="Вернуться назад" />
 
           <div className="session-planner__timing-box">
             <TimePicker id={1} timingList={TIMING_HOURS} />
@@ -28,7 +24,7 @@ export default function SessionPlanner(/* { onClick } */) {
         </div>
 
         <Button
-          /* onClick={handleButtonClick} */
+          onClick={() => setValue(POPUP_DATA.ConfirmDeletePopup)}
           type="submit"
           className="session-planner__button-add"
         >

@@ -3,9 +3,10 @@ import './Slot.css';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import arrow from '../../../images/arrow_icon.svg';
-import Button from '../Button/Button';
-import ButtonGroup from '../ButtonGroup/ButtonGroup';
+import Button from '../../generic/Button/Button';
+import ButtonGroup from '../../generic/ButtonGroup/ButtonGroup';
 import { getSessionTime } from '../../../utils/helpers';
+import { DATE_FORMAT } from '../../../constants/constants';
 
 export default function Slot({ session, onClick, isSlotOpen }) {
   const classIsOpen = (element) => {
@@ -15,26 +16,22 @@ export default function Slot({ session, onClick, isSlotOpen }) {
     return '';
   };
 
-  const startTime = session.slot.datetime_from;
-  const endTime = session.slot.datetime_to;
+  const startTime = moment(session.slot.datetime_from, DATE_FORMAT);
+  const endTime = moment(session.slot.datetime_to, DATE_FORMAT);
 
   return (
-    <li className={`slot ${session.slot.is_free && 'slot_free'}`}>
+    <li className={`slot ${!session.client && 'slot_free'}`}>
       <button onClick={onClick} className="slot__header">
         <p className="session-time">{getSessionTime(startTime, endTime)}</p>
         <p className="slot__title">
-          {!session.slot.is_free
+          {session.client
             ? `${session.client.first_name} ${session.client.last_name}`
             : 'Свободное время'}
         </p>
-        <img
-          src={arrow}
-          alt="arrow"
-          className={`slot__icon ${classIsOpen('slot__icon')}`}
-        />
+        <img src={arrow} alt="arrow" className={`slot__icon ${classIsOpen('slot__icon')}`} />
       </button>
       <div className={`slot__content ${classIsOpen('slot__content')}`}>
-        {session.slot.is_free ? (
+        {!session.client ? (
           <Button size="m" onClick={() => {}} variant="secondary">
             Удалить из расписания
           </Button>
@@ -68,8 +65,8 @@ Slot.propTypes = {
         id: PropTypes.string,
         avatar: PropTypes.string,
       }),
-      datetime_from: PropTypes.instanceOf(moment),
-      datetime_to: PropTypes.instanceOf(moment),
+      datetime_from: PropTypes.string,
+      datetime_to: PropTypes.string,
       is_free: PropTypes.bool,
     }),
     status: PropTypes.string,

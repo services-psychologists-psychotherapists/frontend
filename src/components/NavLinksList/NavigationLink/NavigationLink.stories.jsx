@@ -1,10 +1,9 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import '../../App/App.css';
 import NavigationLink from './NavigationLink';
 
 export default {
-  title: 'Navigation/Navigation Link',
+  title: 'Global components/Navigation/Navigation Link',
   component: NavigationLink,
   decorators: [withRouter],
   tags: ['autodocs'],
@@ -23,9 +22,9 @@ export default {
   },
 };
 
-const Template = function link(args) {
+function Template(args) {
   return <NavigationLink {...args} />;
-};
+}
 
 export const NavLink = Template.bind({});
 export const Link = Template.bind({});

@@ -1,20 +1,27 @@
-.paragraph {
+.text {
   font-family: var(--font-family-lato);
   font-weight: var(--text-weight-primary);
   color: var(--text-color-dark-blue);
 }
 
-.paragraph_size_l {
+.text_size_l {
   font-size: 22px;
   line-height: 28px;
 }
 
-.paragraph_size_m {
+.text_size_m {
   font-size: 20px;
   line-height: 26px;
 }
 
-.paragraph_size_s {
+.text_size_s {
   font-size: 18px;
   line-height: 24px;
+}
+
+.text_type_tag {
+  display: inline-block;
+  background-color: var(--bg-color-light-violet);
+  padding: 8px 16px;
+  border-radius: 20px;
 }

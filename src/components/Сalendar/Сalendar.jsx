@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './Сalendar.css';
 import moment from 'moment';
 import 'moment/locale/ru';
@@ -7,22 +8,19 @@ import {
   NUMBER_TO_SWITCH_THE_WEEKS,
   DAYS_OF_WEEK,
 } from '../../constants/constants';
-// TODO: Title
 // TODO: Сделать сброс недель по дизайну
 
-export default function Сalendar() {
+export default function Сalendar({ onDateCellClick }) {
   moment.locale('ru');
 
   const currentDate = moment();
 
-  const [selectedDay, setSelectedDay] = useState({});
+  const [selectedDay, setSelectedDay] = useState('');
   const [dates, setDates] = useState([]);
   const [isChangedWeeks, setIsChangedWeeks] = useState(false);
 
   const [startDay, setStartDay] = useState(currentDate.clone().startOf('week'));
-  const [lastDay, setLastDay] = useState(
-    moment(startDay).add(NUMBER_OF_DAYS_DISPLAYED, 'days')
-  );
+  const [lastDay, setLastDay] = useState(moment(startDay).add(NUMBER_OF_DAYS_DISPLAYED, 'days'));
 
   const formattedCurrentDate = currentDate.format('D-MM-YYYY');
   const formattedStartDate = startDay.format('D MMMM');
@@ -35,6 +33,8 @@ export default function Сalendar() {
     if (e.type === 'click') {
       setSelectedDay(e.target.id);
     }
+
+    onDateCellClick(moment(e.target.id, 'DD-MM-YYYY'));
   };
 
   const switchToNextWeeks = () => {
@@ -49,10 +49,7 @@ export default function Сalendar() {
 
   const resetDates = () => {
     const resetStartDay = currentDate.clone().startOf('week');
-    const resetLastDay = moment(resetStartDay).add(
-      NUMBER_OF_DAYS_DISPLAYED,
-      'days'
-    );
+    const resetLastDay = moment(resetStartDay).add(NUMBER_OF_DAYS_DISPLAYED, 'days');
 
     setStartDay(resetStartDay);
     setLastDay(resetLastDay);
@@ -94,74 +91,64 @@ export default function Сalendar() {
   }, [startDay, lastDay]);
 
   // prettier-ignore
-  const dateСellСlasses = (i) => (
-    `${i.isDayOff ? 'calendar__day-of-week_day-off' : ''} ${i.date === formattedCurrentDate ? 'calendar__date_today' : ''
-    } ${selectedDay === i.date ? 'calendar__date_selected' : ''}`
-  );
+  const dateСellСlasses = (i) => `${i.isDayOff ? 'calendar__day-of-week_day-off' : ''} ${
+    i.date === formattedCurrentDate ? 'calendar__date_today' : ''
+  } ${selectedDay === i.date ? 'calendar__date_selected' : ''}`;
 
-  // prettier-ignore
-  const daysOfWeekClasses = (i) => (
-    `${(i === 'сб' || i === 'вс') && 'calendar__day-of-week_day-off'}`
-  );
+  const daysOfWeekClasses = (i) => `${(i === 'сб' || i === 'вс') && 'calendar__day-of-week_day-off'}`; // prettier-ignore
 
   return (
-    <div className="session-calendar">
-      {/* TODO: настроить тайтл */}
-      <div className="calendar">
-        <div className="calendar__period">
-          <button
-            type="button"
-            className="calendar__period_switch calendar__period_prev"
-            onClick={switchToPrevWeeks}
-          />
-          <div className="calendar__current-weeks">
-            {`${formattedStartDate} - ${formattedlastDay}`}
-            {isChangedWeeks && (
-              <button
-                type="button"
-                className="calendar__period_switch calendar__period_reset"
-                onClick={resetDates}
-              />
-            )}
-          </div>
-          <button
-            type="button"
-            className="calendar__period_switch calendar__period_next"
-            onClick={switchToNextWeeks}
-          />
+    <div className="calendar">
+      <div className="calendar__period">
+        <button
+          type="button"
+          className="calendar__period_switch calendar__period_prev"
+          onClick={switchToPrevWeeks}
+        />
+        <div className="calendar__current-weeks">
+          {`${formattedStartDate} - ${formattedlastDay}`}
+          {isChangedWeeks && (
+            <button
+              type="button"
+              className="calendar__period_switch calendar__period_reset"
+              onClick={resetDates}
+            />
+          )}
         </div>
-        <div className="calendar__content">
-          <ul className="calendar__days-of-week">
-            {DAYS_OF_WEEK.map((i) => (
-              <li
-                className={`calendar__cell calendar__day-of-week ${daysOfWeekClasses(
-                  i
-                )}`}
-                key={i}
-              >
-                {i}
-              </li>
-            ))}
-          </ul>
-          <div className="calendar__dates">
-            {dates.map((i) => (
-              <div
-                className={`calendar__cell calendar__date ${dateСellСlasses(
-                  i
-                )}`}
-                key={i.date}
-                id={i.date}
-                onClick={handleSelectDay}
-                onKeyDown={handleSelectDay}
-                tabIndex={0}
-                role="button"
-              >
-                {i.day}
-              </div>
-            ))}
-          </div>
+        <button
+          type="button"
+          className="calendar__period_switch calendar__period_next"
+          onClick={switchToNextWeeks}
+        />
+      </div>
+      <div className="calendar__content">
+        <ul className="calendar__days-of-week">
+          {DAYS_OF_WEEK.map((i) => (
+            <li className={`calendar__cell calendar__day-of-week ${daysOfWeekClasses(i)}`} key={i}>
+              {i}
+            </li>
+          ))}
+        </ul>
+        <div className="calendar__dates">
+          {dates.map((i) => (
+            <div
+              className={`calendar__cell calendar__date ${dateСellСlasses(i)}`}
+              key={i.date}
+              id={i.date}
+              onClick={handleSelectDay}
+              onKeyDown={handleSelectDay}
+              tabIndex={0}
+              role="button"
+            >
+              {i.day}
+            </div>
+          ))}
         </div>
       </div>
     </div>
   );
 }
+
+Сalendar.propTypes = {
+  onDateCellClick: PropTypes.func.isRequired,
+};

@@ -22,7 +22,7 @@
 
 .scroller__description {
   font-family: var(--font-family-lato);
-  font-size: var(--font-size-s);
+  font-size: var(--text-font-size-s);
   color: var(--text-color-dark-blue);
   padding: 0 38px;
   text-align: center;
@@ -35,8 +35,9 @@
   gap: 16px;
   flex-direction: column;
   overflow-y: auto;
-  padding: 0 14px;
+  padding: 0 10px 0 14px;
   align-self: stretch;
+  scrollbar-gutter: stable;
 }
 
 .scroller__title {

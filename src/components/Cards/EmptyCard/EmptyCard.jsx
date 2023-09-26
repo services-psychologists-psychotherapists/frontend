@@ -1,9 +1,9 @@
 import React from 'react';
 import './EmptyCard.css';
 import { oneOf, string } from 'prop-types';
-import Paragraph from '../../Paragraph/Paragraph';
-import Title from '../../Title/Title';
-import Button from '../../Button/Button';
+import Text from '../../generic/Text/Text';
+import Title from '../../generic/Title/Title';
+import Button from '../../generic/Button/Button';
 
 export default function EmptyCard({
   type,
@@ -17,8 +17,8 @@ export default function EmptyCard({
       {type === 'client'
         ? (
           <>
-            <Paragraph size="l">{title}</Paragraph>
-            <Paragraph>{paragraph}</Paragraph>
+            <Text size="l">{title}</Text>
+            <Text>{paragraph}</Text>
           </>
         ) : (
           <>

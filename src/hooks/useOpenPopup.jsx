@@ -1,20 +1,26 @@
-import React, { createContext/* , useState */ } from 'react';
+import React, {
+  createContext,
+  useState,
+} from 'react';
+
 import PropTypes from 'prop-types';
 
 const PopupContext = createContext();
 
-export const usePopup = (data) => {
-  if (data) {
-    /*  setValue(data); */
-  }
-  return null;
+let dataPopup;
+const usePopup = () => {
+  const [value, setValue] = useState();
+  dataPopup = value;
+  console.log(dataPopup);
+  return {
+    setValue,
+  };
 };
 
-export default function PopupProvider({ children }) {
-  /* const [value, setValue] = useState({}); */
+export default function PopupProvider({ children, value = dataPopup }) {
   return (
-    <PopupContext.Provider>
-      {/* value={value} */}
+    <PopupContext.Provider value={value}>
+      {console.log('внутри контекста', value)}
       {children}
     </PopupContext.Provider>
   );
@@ -22,4 +28,7 @@ export default function PopupProvider({ children }) {
 
 PopupProvider.propTypes = {
   children: PropTypes.node.isRequired,
+  value: PropTypes.node.isRequired,
 };
+
+export { PopupContext, usePopup };

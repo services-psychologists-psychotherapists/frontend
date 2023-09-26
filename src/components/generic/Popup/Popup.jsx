@@ -6,22 +6,26 @@ import React, {
   useContext
 } from 'react';
 import './Popup.css';
-import { /* PropTypes, */ node } from 'prop-types';
+import { node } from 'prop-types';
 import Button from '../Button/Button';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import Title from '../Title/Title';
 import useOutsideClick from '../../../hooks/useOnClickOutside';
-import PopupProvider from '../../../hooks/useOpenPopup';
+import { PopupContext } from '../../../hooks/useOpenPopup';
 
 export default function Popup({ children }) {
   const ref = useRef();
-  const popupData = useContext(PopupProvider);
-  console.log(popupData);
+  const popupData = useContext(PopupContext);
+  console.log('это в попапе', popupData);
   const [isOpenPopup, setIsOpenPopup] = useState(false);
 
   useOutsideClick(ref, () => {
     setIsOpenPopup(false);
   });
+
+  const closePopup = () => {
+    setIsOpenPopup(false);
+  };
 
   useEffect(() => {
     if (popupData) {
@@ -33,7 +37,7 @@ export default function Popup({ children }) {
     }
   }, [popupData]);
 
-  const { title } = popupData ? popupData.data : {};
+  const title = popupData ? popupData.data.title : null;
   const { buttons } = popupData ? popupData.data : [];
   const buttonsQuantity = buttons ? buttons.length : 0;
 
@@ -43,7 +47,7 @@ export default function Popup({ children }) {
     <div className={classesPopup}>
       <div className="popup__container" ref={ref}>
 
-        <button type="button" className="popup__button-close" />
+        <button type="button" className="popup__button-close" onClick={closePopup} />
         <Title size="s" text={title} />
         <div className="popup__content">
           {children}
