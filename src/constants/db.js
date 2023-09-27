@@ -99,11 +99,11 @@ export const SLOTS = [
   },
   {
     id: '127774545422',
-    client: CLIENT,
+    client: null,
     slot: {
       psychologist: PSYCHO,
-      datetime_from: '18.09.2023 14:20',
-      datetime_to: '18.09.2023 15:10',
+      datetime_from: '29.09.2023 14:20',
+      datetime_to: '29.09.2023 15:10',
       is_free: true,
     },
     status: 'Оплаченный',
@@ -330,23 +330,23 @@ export const POPUP_DATA = {
       ],
     },
   },
-  SomeDiffrentPopup: {
+  deleteFreeSlot: {
     data: {
-      title: 'Вы уверены?',
+      title: 'Вы уверены, что хотите удалить из расписания свободное время?',
       buttons: [
         {
-          label: 'Отменить',
+          label: 'Удалить',
           onClick: () => console.log('Нажали Отменить'),
           type: 'secondary',
-          size: 's',
+          size: 'l',
           variant: 'secondary',
         },
         {
-          label: 'Добавить',
+          label: 'Отмена',
           onClick: console.log('Нажали Добавить'),
-          type: 'secondary',
-          size: 's',
-          variant: 'secondary',
+          type: 'primary',
+          size: 'l',
+          variant: 'primary',
         },
       ],
     },

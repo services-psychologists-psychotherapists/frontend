@@ -1,47 +1,30 @@
 // prettier-ignore
-import React, {
-  useRef,
-  useState,
-  useEffect,
-  useContext
-} from 'react';
+import React, { useRef } from 'react';
 import './Popup.css';
 import { node } from 'prop-types';
 import Button from '../Button/Button';
 import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import Title from '../Title/Title';
 import useOutsideClick from '../../../hooks/useOnClickOutside';
-import { PopupContext } from '../../../hooks/useOpenPopup';
+import { usePopup } from '../../../hooks/usePopup';
 
 export default function Popup({ children }) {
   const ref = useRef();
-  const popupData = useContext(PopupContext);
-  console.log('это в попапе', popupData);
-  const [isOpenPopup, setIsOpenPopup] = useState(false);
+  const { value, setValue } = usePopup();
 
   useOutsideClick(ref, () => {
-    setIsOpenPopup(false);
+    setValue(null);
   });
 
   const closePopup = () => {
-    setIsOpenPopup(false);
+    setValue(null);
   };
 
-  useEffect(() => {
-    if (popupData) {
-      console.log('данные переданы, попап открывается', popupData);
-      setIsOpenPopup(true);
-    } else {
-      console.log('данных нет попап закрыт');
-      setIsOpenPopup(false);
-    }
-  }, [popupData]);
-
-  const title = popupData ? popupData.data.title : null;
-  const { buttons } = popupData ? popupData.data : [];
+  const title = value ? value.data.title : null;
+  const { buttons } = value ? value.data : [];
   const buttonsQuantity = buttons ? buttons.length : 0;
 
-  const classesPopup = `popup ${isOpenPopup ? 'popup-visible' : ''}`;
+  const classesPopup = `popup ${value ? 'popup-visible' : ''}`;
   // prettier-ignore
   return (
     <div className={classesPopup}>
