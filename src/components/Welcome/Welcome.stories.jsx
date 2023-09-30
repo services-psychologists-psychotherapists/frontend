@@ -20,8 +20,7 @@ export default {
     },
     isLoggedIn: {
       type: 'boolean',
-      description:
-        'Отображает кнопку в header, в зависимости залогинен пользователь или нет',
+      description: 'Отображает кнопку в header, в зависимости залогинен пользователь или нет',
       defaultValue: true,
     },
     children: {

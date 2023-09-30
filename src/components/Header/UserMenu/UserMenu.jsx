@@ -21,11 +21,7 @@ export default function UserMenu() {
   return (
     <div className="dropdown" ref={ref}>
       <button type="button" className="user" onClick={handleClickMenu}>
-        <img
-          src={currentUser.img}
-          alt={currentUser.name}
-          className="user__avatar"
-        />
+        <img src={currentUser.img} alt={currentUser.name} className="user__avatar" />
         <p className={`user__name ${isOpen ? 'user__name_opened' : ''}`}>
           {`${currentUser.name} ${currentUser.lastName.slice(0, 1)}.`}
         </p>

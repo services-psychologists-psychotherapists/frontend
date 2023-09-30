@@ -32,10 +32,7 @@ export default function ClientHomePage({ isLoggedIn }) {
       <>
         <div className="client-account">
           <BlockWithTitle title="Следующая сессия">
-            <CardOfSession
-              type="client"
-              session={getNextAppointment(sessions)}
-            />
+            <CardOfSession type="client" session={getNextAppointment(sessions)} />
           </BlockWithTitle>
           <BlockWithTitle title="Ваш психолог">
             <YourPsychoCard user={currentUser} />
@@ -43,9 +40,7 @@ export default function ClientHomePage({ isLoggedIn }) {
         </div>
         {currentUser.psycho && (
           <div className="client-account__description">
-            <Paragraph>
-              Вы можете выбрать другого специалиста, перейдя в
-            </Paragraph>
+            <Paragraph>Вы можете выбрать другого специалиста, перейдя в</Paragraph>
             <Button variant="text" href="/catalog">
               Каталог психологов
             </Button>
