@@ -5,7 +5,7 @@ import { SOCIAL_MEDIA_ICONS, SERVICE_DOCUMENTS, NAVIGATION_LINKS } from '../../c
 import NavLinksList from '../NavLinksList/NavLinksList';
 
 export default function Footer() {
-  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedItem, setSelectedItem] = useState('');
 
   const handlePolicyClick = (el) => {
     setSelectedItem(el);
@@ -38,8 +38,8 @@ export default function Footer() {
         {SERVICE_DOCUMENTS.map((el) => (
           <li key={el}>
             <button
-              className={`footer__policy_item ${
-                selectedItem === el ? 'footer__policy_item_selected' : ''
+              className={`footer__policy_item${
+                selectedItem === el ? ' footer__policy_item_selected' : ''
               }`}
               onClick={() => handlePolicyClick(el)}
             >

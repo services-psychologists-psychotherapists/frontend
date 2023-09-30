@@ -1,7 +1,11 @@
 import moment from 'moment';
+import timezone from 'moment-timezone';
 import { MONTH_NAME } from '../constants/constants';
+import 'moment/locale/ru';
 
-const today = moment();
+moment.locale('ru');
+export const today = moment();
+export const formattedToday = today.format('DD.MM.YYYY');
 
 export const getMonthName = (date) => {
   const month = MONTH_NAME[date.month()];
@@ -37,6 +41,8 @@ export const getAge = (date) => {
   return `${years} ${age}`;
 };
 
+export const getDurationOfYears = (num) => moment.duration(num, 'years').humanize();
+
 export const getNextAppointment = (sessions) => {
   let nextAppointment = {};
 
@@ -53,3 +59,76 @@ export const getNextAppointment = (sessions) => {
 
   return nextAppointment;
 };
+
+export const binarySearchDateIndex = (slots, date) => {
+  let start = 0;
+  let end = slots.length - 1;
+  const formattedDate = moment(date, 'DD.MM.YYYY');
+
+  while (start <= end) {
+    const mid = Math.floor((start + end) / 2);
+    const midDate = moment(slots[mid].date, 'DD.MM.YYYY');
+
+    if (midDate.isSame(formattedDate)) {
+      return mid;
+    }
+
+    if (midDate.isBefore(formattedDate)) {
+      start = mid + 1;
+    } else {
+      end = mid - 1;
+    }
+  }
+
+  return false;
+};
+
+const currentTimezone = timezone.tz.guess();
+
+export const convertUtcToLocal = (utcDateTime, format) => {
+  const utcMoment = timezone.utc(utcDateTime, format);
+  const localDateTime = utcMoment.tz(currentTimezone).format(format);
+
+  return localDateTime;
+};
+
+// TODO: нам нужно такое преобразование?
+export const convertLocalToUtc = (localDateTime, format) => {
+  const localMoment = timezone.tz(localDateTime, format, currentTimezone);
+  const utcDateTime = localMoment.utc().format(format);
+
+  return utcDateTime;
+};
+
+export const getFormattedLocalTimeArr = (arr) => {
+  const formattedDates = {};
+
+  arr.forEach((slot) => {
+    const formattedDate = convertUtcToLocal(slot.time, 'DD.MM.YYYY HH:mm');
+    const date = formattedDate.split(' ')[0];
+    const time = formattedDate.split(' ')[1];
+
+    if (!formattedDates[date]) {
+      formattedDates[date] = {
+        date,
+        times: [],
+      };
+    }
+
+    formattedDates[date].times.push({
+      id: slot.id,
+      time,
+    });
+  });
+
+  const sortedDates = Object.values(formattedDates).sort((a, b) => {
+    const dateA = moment(a.date, 'DD.MM.YYYY');
+    const dateB = moment(b.date, 'DD.MM.YYYY');
+
+    return dateA - dateB;
+  });
+
+  return sortedDates;
+};
+
+export const getPriceWithSpace = (price) => price.toLocaleString();

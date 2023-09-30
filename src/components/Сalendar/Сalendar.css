@@ -1,28 +1,12 @@
-.session-calendar {
-  display: flex;
-  flex-direction: column;
-  row-gap: 28px;
-  max-width: 588px;
-  width: 100%;
-  margin: auto;
-}
-
 .calendar {
   border-radius: 12px;
-  border: 1px solid var(--border-color-medium-violet);
+  box-shadow: inset 0 0 0 1px var(--border-color-medium-violet);
   display: inline-flex;
   padding: 32px;
   flex-direction: column;
   align-items: center;
-}
-
-/* TODO настроить стили для тайтла */
-.session-calendar__title {
-  color: var(--text-color-dark-blue);
-  font-family: var(--font-family-montsertat);
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 30px;
+  max-width: 588px;
+  width: 100%;
 }
 
 .calendar__content {
@@ -57,6 +41,7 @@
 }
 
 .calendar__date {
+  all: unset;
   cursor: pointer;
   border-radius: 30px;
   font-size: 18px;
@@ -64,7 +49,7 @@
 }
 
 .calendar__date:hover {
-  border: 2px solid var(--border-color-medium-violet);
+  box-shadow: inset 0 0 0 2px var(--border-color-medium-violet);
   font-weight: var(--text-weight-title);
 }
 
@@ -97,6 +82,12 @@
   background-image: url('../../images/calendar_prev_weeks.svg');
 }
 
+.calendar__period_prev-disabled,
+.calendar__date_disabled {
+  opacity: 0.3;
+  cursor: unset;
+}
+
 .calendar__period_next {
   background-image: url('../../images/calendar_next_weeks.svg');
 }
@@ -120,7 +111,6 @@
   column-gap: 15px;
   font-family: var(--font-family-lato);
   color: var(--text-color-dark-blue);
-  /* может заменить на тайтл? */
   font-weight: var(--text-weight-title);
   font-size: 18px;
   line-height: 24px;
@@ -129,4 +119,9 @@
 .calendar__day-of-week {
   font-size: 14px;
   line-height: normal;
+}
+
+.calendar__date_disabled:hover {
+  box-shadow: unset;
+  font-weight: unset;
 }

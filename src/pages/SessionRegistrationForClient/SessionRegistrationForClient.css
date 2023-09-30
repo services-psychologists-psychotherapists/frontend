@@ -1,0 +1,23 @@
+.session-registration {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+}
+
+.session-registration__time-container {
+  max-width: 520px;
+}
+
+.session-registration__time {
+  display: flex;
+  flex-direction: row;
+  column-gap: 28px;
+}
+
+.session-registration__time_calendar {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  max-width: 588px;
+  width: 100%;
+}

@@ -75,8 +75,7 @@ export const LIST_OF_STEPS = [
   {
     numberStep: '02',
     nameStep: 'Ожидайте подтверждения аккаунта',
-    descriptionStep:
-      'После проверки ваших данных, мы пришлем вам приглашение в личный кабинет',
+    descriptionStep: 'После проверки ваших данных, мы пришлем вам приглашение в личный кабинет',
     bgColor: 'white',
     imgPath: clock,
     bgColorImg: 'light-green',
@@ -191,8 +190,7 @@ export const NOT_APPOINTMENT_MESSAGE = {
 
 export const NO_PSYCHO_MESSAGE = {
   title: 'Специалист пока не выбран',
-  description:
-    'Здесь будет отображаться последний специалист, с которым вы работали',
+  description: 'Здесь будет отображаться последний специалист, с которым вы работали',
   textBtn: 'Подобрать психолога',
   href: '/catalog',
 };
@@ -220,3 +218,6 @@ export const CLIENT_PROFILE_NAV_LINKS = [
     link: '/client_profile',
   },
 ];
+
+export const SCROLL_SPEED = 1;
+export const LENGTH_TO_START_SCROLLING = 5;
