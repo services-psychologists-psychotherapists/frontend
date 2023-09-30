@@ -5,7 +5,7 @@ import SessionInformation from './SessionInformation';
 import { getPriceWithSpace } from '../../utils/helpers';
 
 export default {
-  title: 'SessionInformation',
+  title: 'Global components/Session information/SessionInformation',
   component: SessionInformation,
   tags: ['autodocs'],
   decorators: [

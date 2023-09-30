@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { func } from 'prop-types';
 import './SessionRegistrationForClient.css';
-import PageLayout from '../../components/templates/PageTemplate/PageLayout';
+import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import Button from '../../components/generic/Button/Button';
 import Calendar from '../../components/Сalendar/Сalendar';
-import MiniPsychoCard from '../../components/MiniPsychoCard/MiniPsychoCard';
+import MiniPsychoCard from '../../components/Cards/MiniPsychoCard/MiniPsychoCard';
 import SessionInformation from '../../components/SessionInformation/SessionInformation';
 import { FREE_SLOTS, FULL_PSYCHO_CARD } from '../../constants/db';
 import TimeContainer from '../../components/generic/TimeBtn/TimeContainer/TimeContainer';

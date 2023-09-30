@@ -1,7 +1,7 @@
 import React from 'react';
-import './TermsOfCooperation.css';
 import HelpfulInformation from '../templates/HelpfulInformation/HelpfulInformation';
 import Button from '../generic/Button/Button';
+import './TermsOfCooperation.css';
 
 export default function TermsOfCooperation() {
   return (

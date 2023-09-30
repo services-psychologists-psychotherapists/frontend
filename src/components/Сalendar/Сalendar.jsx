@@ -78,6 +78,7 @@ export default function Сalendar({
       setDates(newDates);
     };
 
+    // prettier-ignore
     const handleChangeWeeks = () => {
       if (today.isSameOrAfter(startDay, 'week') && today.isSameOrBefore(lastDay, 'week')) {
         setIsChangedWeeks(false);

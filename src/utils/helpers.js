@@ -9,18 +9,20 @@ export const formattedToday = today.format('DD.MM.YYYY');
 
 export const getMonthName = (date) => {
   const month = MONTH_NAME[date.month()];
+
   if (month.slice(-1) === 'т') {
     return `${month}а`;
   }
+
   return `${month.slice(0, month.length - 1)}я`;
 };
 
 export const getTime = (time) => `0${time}`.slice(-2);
 
 export const getSessionTime = (startDate, endDate) => {
-  // prettier-ignore
   const startTime = `${getTime(startDate.hour())}:${getTime(startDate.minute())}`;
   const endTime = `${getTime(endDate.hour())}:${getTime(endDate.minute())}`;
+
   return `${startTime} - ${endTime}`;
 };
 
@@ -29,7 +31,6 @@ export const getAge = (date) => {
   let age = '';
   const lastSymb = years % 10;
 
-  // prettier-ignore
   if (lastSymb === 0 || (years > 10 && years < 20) || (lastSymb > 4 && lastSymb < 10)) {
     age = 'лет';
   } else if (lastSymb === 1) {
@@ -41,24 +42,15 @@ export const getAge = (date) => {
   return `${years} ${age}`;
 };
 
-export const getDurationOfYears = (num) => moment.duration(num, 'years').humanize();
-
-export const getNextAppointment = (sessions) => {
-  let nextAppointment = {};
-
-  if (sessions.length > 0) {
-    // eslint-disable-next-line
-    nextAppointment = sessions[0];
-    for (let i = 0; i < sessions.length; i += 1) {
-      // prettier-ignore
-      if (sessions[i].time.isBefore(nextAppointment.time)) {
-        nextAppointment = sessions[i];
-      }
-    }
+export const getNumArray = (num, length) => {
+  const numArray = [];
+  for (let i = 0; i <= length; i += num) {
+    numArray.push(`0${i}`.slice(-2));
   }
-
-  return nextAppointment;
+  return numArray;
 };
+
+export const getDurationOfYears = (num) => moment.duration(num, 'years').humanize();
 
 export const binarySearchDateIndex = (slots, date) => {
   let start = 0;

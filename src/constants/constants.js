@@ -206,6 +206,9 @@ export const NO_SLOTS_MESSAGE = {
     href: '/shedule',
     textBtn: 'Перейти в расписание',
   },
+  noSlots: {
+    title: 'Здесь появится список доступного времени, когда вы его установите',
+  },
 };
 
 export const CLIENT_PROFILE_NAV_LINKS = [
@@ -218,6 +221,39 @@ export const CLIENT_PROFILE_NAV_LINKS = [
     link: '/client_profile',
   },
 ];
+
+export const DATE_FORMAT = 'DD.MM.YYYY hh:mm';
+
+export const PSYCHOLOGIST_ACCOUNT_LINKS = [
+  {
+    text: 'Главная',
+    link: '/psychologist_account',
+  },
+  {
+    text: 'Расписание',
+    link: '/psychologist_account_schedule',
+  },
+  {
+    text: 'Профиль',
+    link: '/psychologist_account_profile',
+  },
+];
+
+export const PSYCHOLOGIST_ACCOUNT_TITLES = {
+  account: {
+    pageTitle: 'Главная',
+    calendarTitle: 'Календарь сессий',
+    reminderTitle: 'Ближайшая сессия',
+  },
+  schedule: {
+    pageTitle: 'Расписание',
+    calendarTitle: '1. Выберите день',
+    reminderTitle: '2. Добавьте доступное время сессии',
+  },
+  profile: {
+    pageTitle: 'Профиль',
+  },
+};
 
 export const SCROLL_SPEED = 1;
 export const LENGTH_TO_START_SCROLLING = 5;

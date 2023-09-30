@@ -1,16 +1,26 @@
 import React from 'react';
-import '../App/App.css';
+import '../../App/App.css';
 import './MiniPsychoCard.css';
 import MiniPsychoCard from './MiniPsychoCard';
-import avatar from '../../images/avatar.png';
+import avatar from '../../../images/avatar.png';
 
 export default {
-  title: 'MiniPsychoCard',
+  title: 'Global components/Cards/MiniPsychoCard',
   component: MiniPsychoCard,
   tags: ['autodocs'],
+  parameters: {
+    layout: 'fullscreen',
+  },
   decorators: [
     (Story) => (
-      <div style={{ width: '588px', height: '192px', margin: '0 150px 100px' }}>
+      <div
+        style={{
+          maxWidth: '588px',
+          width: '100%',
+          height: '350px',
+          margin: '50px auto',
+        }}
+      >
         <Story />
       </div>
     ),

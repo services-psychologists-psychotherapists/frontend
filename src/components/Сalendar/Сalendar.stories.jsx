@@ -6,12 +6,19 @@ import Calendar from './Сalendar';
 import { formattedToday } from '../../utils/helpers';
 
 export default {
-  title: 'Calendar',
+  title: 'Global components/Calendar/Calendar',
   component: Calendar,
   tags: ['autodocs'],
   decorators: [
     (Story) => (
-      <div style={{ width: '588px', height: '304px', margin: '0 150px 100px' }}>
+      <div
+        style={{
+          maxWidth: '588px',
+          width: '100%',
+          height: '304px',
+          margin: '0 150px 100px',
+        }}
+      >
         <Story />
       </div>
     ),

@@ -5,7 +5,7 @@ import './Footer.css';
 import Footer from './Footer';
 
 export default {
-  title: 'Footer',
+  title: 'Global components/Footer/Footer',
   component: Footer,
   decorators: [withRouter],
   parameters: {

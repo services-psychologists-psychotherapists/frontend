@@ -1,11 +1,10 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import Button from './Button';
-import '../../App/App.css';
 import './Button.css';
 
 export default {
-  title: 'Button',
+  title: 'Global components/Button/Button',
   component: Button,
   decorators: [withRouter],
 
@@ -70,9 +69,9 @@ export default {
   },
 };
 
-const Template = function Btn(args) {
+function Template(args) {
   return <Button {...args} />;
-};
+}
 
 export const Primary = Template.bind({});
 export const Secondary = Template.bind({});

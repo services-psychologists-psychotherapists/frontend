@@ -5,7 +5,7 @@ import '../../../../pages/SessionRegistrationForClient/SessionRegistrationForCli
 import TimeContainer from './TimeContainer';
 
 export default {
-  title: 'TimeContainer',
+  title: 'Global components/Time button/TimeContainer',
   component: TimeContainer,
   tags: ['autodocs'],
   argTypes: {

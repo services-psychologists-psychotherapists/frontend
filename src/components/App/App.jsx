@@ -7,7 +7,7 @@ import Footer from '../Footer/Footer';
 import NotFound from '../../pages/NotFound/NotFound';
 import PsychologistAccount from '../../pages/PsychologistAccount/PsychologistAccount';
 import CurrentUserContext from '../../Context/CurrentUserContext';
-import { USER } from '../../constants/db';
+import { CLIENT } from '../../constants/db';
 import ClientHomePage from '../../pages/ClientHomePage/ClientHomePage';
 import ButtonUp from '../generic/ButtonUp/ButtonUp';
 import SessionRegistrationForClient from '../../pages/SessionRegistrationForClient/SessionRegistrationForClient';
@@ -17,7 +17,7 @@ export default function App() {
 
   return (
     <div className="page">
-      <CurrentUserContext.Provider value={USER}>
+      <CurrentUserContext.Provider value={CLIENT}>
         {/* TODO: настроить все роуты и внутренние роуты */}
         <Routes>
           <Route path="/" element={<HomePage isLoggedIn={false} />} />

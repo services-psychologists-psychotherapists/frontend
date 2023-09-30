@@ -4,7 +4,7 @@ import './TimeCellBtn.css';
 import TimeCellBtn from './TimeCellBtn';
 
 export default {
-  title: 'TimeCellBtn',
+  title: 'Global components/Time button/TimeCellBtn',
   component: TimeCellBtn,
   tags: ['autodocs'],
   argTypes: {
