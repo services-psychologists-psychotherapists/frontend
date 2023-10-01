@@ -1,17 +1,22 @@
 import './DropdownItemIcon.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { checkboxDropDownElement, radioDropDownElement, titlesDropDownElement } from '../../../../constants/constants';
+import {
+  checkboxType,
+  radioType,
+  titlesDropDownElement
+} from '../../../../constants/constants';
 
 export default function DropdownItemIcon({
   type, onChange, selectedValue, item, element, checked
 }) {
-  const isRadioElement = element === radioDropDownElement;
-  const isCheckboxElement = element === checkboxDropDownElement;
   const isTitlesElement = element === titlesDropDownElement;
 
+  const isRadioType = type === radioType;
+  const isCheckboxType = type === checkboxType;
+
   const handleInputChange = (e) => {
-    const newValue = isRadioElement
+    const newValue = isRadioType
       ? e.target.value
       : {
         ...selectedValue,
@@ -21,13 +26,16 @@ export default function DropdownItemIcon({
   };
 
   const getDropdownItemIconClassName = () => {
-    if (isRadioElement) {
+    if (isRadioType && isTitlesElement) {
+      return 'title';
+    }
+    if (isRadioType) {
       return 'radio';
     }
-    if (isCheckboxElement) {
+    if (isCheckboxType && !isTitlesElement) {
       return 'checkbox';
     }
-    if (isTitlesElement) {
+    if (isCheckboxType && isTitlesElement) {
       return 'title';
     }
     return '';

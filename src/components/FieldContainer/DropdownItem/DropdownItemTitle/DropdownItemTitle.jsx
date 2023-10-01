@@ -6,7 +6,9 @@ import {
   titlesDropDownElement,
 } from '../../../../constants/constants';
 
-export default function DropdownItemTitle({ item, element, checked }) {
+export default function DropdownItemTitle({
+  item, element, checked
+}) {
   const isCheckboxElement = element === checkboxDropDownElement;
   const isTitlesElement = element === titlesDropDownElement;
 

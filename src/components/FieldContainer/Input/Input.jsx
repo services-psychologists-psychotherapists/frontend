@@ -33,6 +33,7 @@ export default function Input({
     element === titlesDropDownElement ? (
       <ul className={inputClasses}>
         <TitlesContainer
+          placeholder={placeholder}
           value={value}
           element={element}
         />
@@ -46,7 +47,7 @@ export default function Input({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        disabled={disabled}
+        disabled={!inputElement ? true : disabled}
         minLength={minLength}
         maxLength={maxLength}
         required={required}
@@ -60,11 +61,11 @@ Input.propTypes = {
   element: PropTypes.string,
   type: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.arrayOf(PropTypes.string)
   ]).isRequired,
-  placeholder: PropTypes.string.isRequired,
   required: PropTypes.bool,
   isEyeOpened: PropTypes.bool,
   disabled: PropTypes.bool,

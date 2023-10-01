@@ -2,8 +2,8 @@ import React from 'react';
 import './DropdownItem.css';
 import PropTypes from 'prop-types';
 import {
-  checkboxDropDownElement,
-  radioDropDownElement, titlesDropDownElement,
+  checkboxType,
+  radioType, titlesDropDownElement,
 } from '../../../constants/constants';
 import { useForm } from '../../../hooks/useForm';
 import DropdownItemIcon from './DropdownItemIcon/DropdownItemIcon';
@@ -21,15 +21,16 @@ export default function DropdownItem({
     custom: '',
   });
 
-  const isRadioElement = element === radioDropDownElement;
-  const isCheckboxElement = element === checkboxDropDownElement;
   const isTitlesElement = element === titlesDropDownElement;
 
+  const isRadioType = type === radioType;
+  const isCheckboxType = type === checkboxType;
+
   const getContainerClassName = () => {
-    if (isRadioElement) {
+    if (isRadioType) {
       return ' dropdown-item__container_radio';
     }
-    if (isCheckboxElement) {
+    if (isCheckboxType) {
       return ' dropdown-item__container_checkbox';
     }
     if (isTitlesElement) {
@@ -41,10 +42,10 @@ export default function DropdownItem({
   const containerClassName = getContainerClassName();
 
   const checkIsChecked = () => {
-    if (isRadioElement) {
+    if (isRadioType) {
       return selectedValue === item;
     }
-    if (isCheckboxElement || isTitlesElement) {
+    if (isCheckboxType) {
       return selectedValue[item] || false;
     }
     return false;
@@ -66,6 +67,7 @@ export default function DropdownItem({
       />
       <DropdownItemTitle
         checked={isChecked}
+        type={type}
         element={element}
         item={item}
         selectedValue={selectedValue}

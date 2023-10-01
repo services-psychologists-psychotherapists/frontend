@@ -7,7 +7,7 @@ import Prompt from './Prompt/Prompt';
 import Field from './Field/Field';
 import DropDownList from './DropDownList/DropDownList';
 import {
-  checkboxDropDownElement,
+  checkboxDropDownElement, checkboxType,
   inputElement,
   radioDropDownElement,
 } from '../../constants/constants';
@@ -53,6 +53,8 @@ export default function FieldContainer({
   let displayValue;
   if (element === inputElement) {
     displayValue = values[name] || '';
+  } else if (element === radioDropDownElement && typeForDropDown === checkboxType) {
+    displayValue = selectedTitles;
   } else if (element === radioDropDownElement) {
     displayValue = selectedValue;
   } else if (element === checkboxDropDownElement) {
@@ -119,12 +121,12 @@ export default function FieldContainer({
 }
 
 FieldContainer.propTypes = {
-  title: PropTypes.string.isRequired,
   element: PropTypes.string.isRequired,
-  typeForInput: PropTypes.string.isRequired,
-  typeForDropDown: PropTypes.string,
-  name: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
+  typeForInput: PropTypes.string,
+  typeForDropDown: PropTypes.string,
+  name: PropTypes.string,
   prompt: PropTypes.string,
   disabled: PropTypes.bool,
   minLength: PropTypes.string,
@@ -134,6 +136,8 @@ FieldContainer.propTypes = {
 };
 
 FieldContainer.defaultProps = {
+  typeForInput: '',
+  name: '',
   typeForDropDown: '',
   disabled: false,
   required: false,

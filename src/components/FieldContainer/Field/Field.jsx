@@ -57,8 +57,8 @@ export default function Field({
 Field.propTypes = {
   element: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
+  name: PropTypes.string,
   isFocused: PropTypes.bool,
   disabled: PropTypes.bool,
   minLength: PropTypes.string,
@@ -74,6 +74,7 @@ Field.propTypes = {
 };
 
 Field.defaultProps = {
+  name: '',
   isFocused: false,
   disabled: false,
   required: false,
