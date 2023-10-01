@@ -1,4 +1,3 @@
-// prettier-ignore
 import React, { useRef } from 'react';
 import './Popup.css';
 import { node } from 'prop-types';
@@ -20,56 +19,44 @@ export default function Popup({ children }) {
     setValue(null);
   };
 
-  const title = value ? value.data.title : null;
+  const title = value ? value.data.title : '';
   const { buttons } = value ? value.data : [];
   const buttonsQuantity = buttons ? buttons.length : 0;
 
   const classesPopup = `popup ${value ? 'popup-visible' : ''}`;
-  // prettier-ignore
   return (
     <div className={classesPopup}>
       <div className="popup__container" ref={ref}>
-
         <button type="button" className="popup__button-close" onClick={closePopup} />
         <Title size="s" text={title} />
-        <div className="popup__content">
-          {children}
-        </div>
+        <div className="popup__content">{children}</div>
 
-        {
-          (buttonsQuantity === 1
-            && (
-              <Button
-                onClick={buttons.onClick}
-                type={buttons.type}
-                size={buttons.size}
-                variant={buttons.variant}
-              >
-                {buttons[0].label}
-              </Button>
-            )
-          )// prettier-ignore
+        {(buttonsQuantity === 1 && (
+          <Button
+            onClick={buttons.onClick}
+            type={buttons.type}
+            size={buttons.size}
+            variant={buttons.variant}
+          >
+            {buttons[0].label}
+          </Button>
+        ))
           || (buttonsQuantity >= 2 && (
-
             <ButtonGroup>
-              {
-                buttons.map((button) => (
-                  <Button
-                    key={button.label}
-                    onClick={button.onClick}
-                    type={button.type}
-                    size={button.size}
-                    variant={button.variant}
-                  >
-                    {button.label}
-                  </Button>
-                ))
-              }
+              {buttons.map((button) => (
+                <Button
+                  key={button.label}
+                  onClick={button.onClick}
+                  type={button.type}
+                  size={button.size}
+                  variant={button.variant}
+                >
+                  {button.label}
+                </Button>
+              ))}
             </ButtonGroup>
-
-          ))// prettier-ignore
-          || (buttonsQuantity === 0 && null)
-        }
+          ))
+          || (buttonsQuantity === 0 && null)}
       </div>
     </div>
   );
