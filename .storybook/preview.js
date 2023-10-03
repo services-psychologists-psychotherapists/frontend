@@ -1,3 +1,5 @@
+import '../src/components/App/App.css';
+
 const preview = {
   parameters: {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -6,7 +8,9 @@ const preview = {
         color: /(background|color)$/i,
         date: /Date$/,
       },
+      expanded: true,
     },
+    layout: 'centered',
   },
 };
 

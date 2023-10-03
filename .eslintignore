@@ -3,3 +3,4 @@ build
 storybook-static
 dist
 public
+# **/*.stories.jsx

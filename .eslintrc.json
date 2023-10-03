@@ -3,13 +3,7 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "react-app",
-    "react-app/jest",
-    "prettier",
-    "airbnb",
-    "plugin:jsx-a11y/recommended"
-  ],
+  "extends": ["react-app", "react-app/jest", "prettier", "airbnb", "plugin:jsx-a11y/recommended"],
   "overrides": [],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -22,6 +16,12 @@
     "comma-dangle": "off",
     "react/button-has-type": "off",
     "no-nested-ternary": "off",
-    "jsx-a11y/label-has-associated-control": "off"
+    "jsx-a11y/label-has-associated-control": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/*.stories.jsx"]
+      }
+    ]
   }
 }

@@ -3,6 +3,7 @@
   background-color: inherit;
   border: none;
   padding: 0;
+  text-decoration: none;
 
   border-radius: 20px;
 
@@ -12,74 +13,12 @@
 
   transition: 0.3s ease-in-out;
   cursor: pointer;
-}
-
-.button:disabled {
-  cursor: default;
-}
-
-/* Стили для кнопки Primary */
-
-.button__primary {
-  color: var(--text-color-white);
-  background-color: var(--border-color-dark-violet);
-}
-
-.button__primary:active,
-.button__primary:hover {
-  background-color: var(--border-color-medium-violet);
-}
-
-.button__primary:disabled {
-  background-color: var(--bg-color-light-violet);
-}
-
-/* Стили для кнопки Secondary */
-.button__secondary {
-  box-shadow: inset 0 0 0 2px var(--border-color-dark-violet);
-  color: var(--text-color-dark-blue);
-  position: relative;
-  overflow: hidden;
-}
-
-.button__secondary::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: var(--border-color-medium-violet);
   display: inline-block;
-  top: 0;
-  left: -100%;
-  z-index: -1;
-  transition: 0.3s ease-in-out;
 }
 
-.button__secondary:hover {
-  box-shadow: inset 0 0 0 2px var(--border-color-medium-violet);
-  transition: 0.3s ease-in-out;
-  color: var(--bg-color-white);
-}
-
-.button__secondary:hover::after {
-  left: 0;
-}
-
-.button__secondary:active::after {
-  background-color: var(--border-color-dark-violet);
-}
-
-.button__secondary:active {
-  box-shadow: inset 0 0 0 2px var(--border-color-dark-violet);
-}
-
-.button__secondary:disabled {
-  box-shadow: inset 0 0 0 2px var(--bg-color-light-violet);
-  color: var(--bg-color-light-violet);
-}
-
-.btn-secondary:disabled::after {
-  display: none;
+.button_disabled {
+  cursor: default;
+  pointer-events: none;
 }
 
 /* Установка размеров кнопки */
@@ -92,4 +31,119 @@
 .button_size_l {
   padding: 16px 40px;
   font-size: 18px;
+}
+
+/* Стили для кнопки Primary */
+
+.button__primary {
+  color: var(--text-color-white);
+  background-color: var(--border-color-dark-violet);
+}
+
+.button__primary_active:active,
+.button__primary_active:hover {
+  background-color: var(--border-color-medium-violet);
+}
+
+.button__primary_disabled {
+  background-color: var(--bg-color-light-violet);
+}
+
+/* Стили для кнопки Secondary */
+.button__secondary {
+  box-shadow: inset 0 0 0 2px var(--border-color-dark-violet);
+  color: var(--text-color-dark-blue);
+  position: relative;
+  overflow: hidden;
+}
+
+.button__secondary span {
+  position: relative;
+  z-index: 2;
+}
+
+.button__secondary_active::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: var(--border-color-medium-violet);
+  display: inline-block;
+  top: 0;
+  left: -100%;
+  transition: 0.3s ease-in-out;
+}
+
+.button__secondary_active:hover {
+  box-shadow: inset 0 0 0 2px var(--border-color-medium-violet);
+  transition: 0.3s ease-in-out;
+  color: var(--bg-color-white);
+}
+
+.button__secondary_active:hover::after {
+  left: 0;
+}
+
+.button__secondary_active:active::after {
+  background-color: var(--border-color-dark-violet);
+}
+
+.button__secondary_active:active {
+  box-shadow: inset 0 0 0 2px var(--border-color-dark-violet);
+}
+
+.button__secondary_disabled {
+  box-shadow: inset 0 0 0 2px var(--bg-color-light-violet);
+  color: var(--bg-color-light-violet);
+}
+
+/* Стили для кнопки Text */
+
+.button__text,
+.button__text-icon {
+  padding: 8px;
+  color: var(--text-color-dark-violet);
+}
+
+.button__text_active:hover,
+.button__text-icon:hover {
+  color: var(--border-color-medium-violet);
+}
+.button__text_disabled,
+.button__text-icon_disabled {
+  color: #9b9da0;
+}
+
+/* Стили для кнопки c иконкой */
+
+.button__text-icon {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.button__text-icon svg {
+  width: 8px;
+  height: 14px;
+  fill: none;
+  transition: 0.3s;
+}
+
+.button__text-icon_active:hover svg {
+  transform: translateX(-3px);
+  transition: 0.3s;
+}
+
+.button__text-icon svg path {
+  stroke: var(--text-color-dark-violet);
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.button__text-icon_active:hover svg path {
+  stroke: var(--border-color-medium-violet);
+}
+.button__text-icon_disabled svg path {
+  stroke: #9b9da0;
 }

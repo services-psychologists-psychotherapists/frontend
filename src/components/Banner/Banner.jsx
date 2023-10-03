@@ -5,26 +5,16 @@ import Button from '../generic/Button/Button';
 import Title from '../generic/Title/Title';
 
 export default function Banner({
-  imgLink,
-  onClick,
-  textBtn,
-  title,
-  description,
-  imgSize,
-  imgAlt,
+  imgLink, textBtn, title, description, imgSize, imgAlt, href
 }) {
   return (
     <div className={`banner banner_size_${imgSize}`}>
       <div className="banner__text">
         <Title size="l" text={title} titleLvl="1" />
         <p className="banner__description">{description}</p>
-        <Button onClick={onClick}>{textBtn}</Button>
+        <Button href={href}>{textBtn}</Button>
       </div>
-      <img
-        className={`banner__img banner__img_size_${imgSize}`}
-        src={imgLink}
-        alt={imgAlt}
-      />
+      <img className={`banner__img banner__img_size_${imgSize}`} src={imgLink} alt={imgAlt} />
     </div>
   );
 }
@@ -36,7 +26,7 @@ Banner.propTypes = {
   title: PropTypes.string.isRequired,
   imgLink: PropTypes.string.isRequired,
   textBtn: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  href: PropTypes.string.isRequired,
 };
 
 Banner.defaultProps = {

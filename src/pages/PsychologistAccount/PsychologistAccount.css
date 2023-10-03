@@ -1,0 +1,43 @@
+.psychologist-account {
+  display: grid;
+  grid: 'calendar shedule' 1fr 'session shedule' 1fr /1fr 1fr;
+  row-gap: 40px;
+  column-gap: 20px;
+  align-items: start;
+}
+
+.psychologist-account > .block-template > .calendar {
+  grid-area: calendar;
+}
+
+.psychologist-account > .block-template > .session-card {
+  grid-area: session;
+}
+
+.psychologist-account > .scroller {
+  grid-area: shedule;
+}
+
+.psychologist-account__planner-section {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  flex: 2.98 2.98 0;
+}
+
+.psychologist-account__shedule-section {
+  flex: 2.31 5 0;
+  min-height: 60vh;
+}
+
+.psychologist-account__calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.psychologist-account__meetings-reminder {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}

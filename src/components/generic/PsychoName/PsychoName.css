@@ -1,0 +1,27 @@
+.name-container__description {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family-lato);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-color-dark-blue);
+  margin-top: 12px;
+  line-height: 25px;
+}
+
+.elipse {
+  display: block;
+  background-color: var(--border-color-dark-violet);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.name-container__label {
+  margin-top: 4px;
+  font-family: var(--font-family-lato);
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--text-color-dark-violet);
+}

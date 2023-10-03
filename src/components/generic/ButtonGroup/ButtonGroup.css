@@ -1,0 +1,13 @@
+.buttons {
+  display: flex;
+}
+
+.buttons_size_m {
+  gap: 20px;
+}
+.buttons_size_s {
+  gap: 12px;
+}
+.buttons_size_l {
+  gap: 23px;
+}

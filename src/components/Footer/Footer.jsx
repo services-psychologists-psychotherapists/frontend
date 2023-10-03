@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import './Footer.css';
 import Logo from '../generic/Logo/Logo';
-import {
-  SOCIAL_MEDIA_ICONS,
-  SERVICE_DOCUMENTS,
-  NAVIGATION_LINKS,
-} from '../../constants/constants';
+import { SOCIAL_MEDIA_ICONS, SERVICE_DOCUMENTS, NAVIGATION_LINKS } from '../../constants/constants';
 import NavLinksList from '../NavLinksList/NavLinksList';
 
 export default function Footer() {
@@ -25,12 +21,13 @@ export default function Footer() {
         <ul className="footer__sotial-networks">
           {SOCIAL_MEDIA_ICONS.map((icon) => (
             <li key={icon.alt}>
-              <a href={icon.href} target="_blank" rel="noopener noreferrer">
-                <img
-                  src={icon.path}
-                  alt={icon.alt}
-                  className="footer__social-icon"
-                />
+              <a
+                href={icon.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer__sotial-networks_link"
+              >
+                <img src={icon.path} alt={icon.alt} className="footer__sotial-networks_icon" />
               </a>
             </li>
           ))}
@@ -41,8 +38,8 @@ export default function Footer() {
         {SERVICE_DOCUMENTS.map((el) => (
           <li key={el}>
             <button
-              className={`footer__policy-item ${
-                selectedItem === el ? 'footer__policy-item_selected' : ''
+              className={`footer__policy_item ${
+                selectedItem === el ? 'footer__policy_item_selected' : ''
               }`}
               onClick={() => handlePolicyClick(el)}
             >

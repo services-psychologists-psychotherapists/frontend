@@ -14,6 +14,9 @@ import closedEye from '../images/Input/input-container__closed-eye.svg';
 import closedEyeError from '../images/Input/input-container__closed-eye_error.svg';
 import arrow from '../images/Input/input-container__arrow.svg';
 import arrowDisabled from '../images/Input/input-container__arrow_disabled.svg';
+import form from '../images/how_to_start_form.svg';
+import clock from '../images/how_to_start_clock.svg';
+import girls from '../images/how_to_start_talking_girls.svg';
 
 export const NAVIGATION_LINKS = [
   {
@@ -65,6 +68,59 @@ export const CUSTOMER_PROBLEMS = [
   },
 ];
 
+export const LIST_OF_STEPS = [
+  {
+    numberStep: '01',
+    nameStep: 'Заполните заявку',
+    descriptionStep:
+      'От вас потребуются документы об образовании и подтверждающие квалификацию сертификаты',
+    bgColor: 'white',
+    imgPath: form,
+    bgColorImg: 'light-violet',
+    link: '',
+  },
+  {
+    numberStep: '02',
+    nameStep: 'Ожидайте подтверждения аккаунта',
+    descriptionStep: 'После проверки ваших данных, мы пришлем вам приглашение в личный кабинет',
+    bgColor: 'white',
+    imgPath: clock,
+    bgColorImg: 'light-green',
+    link: '',
+  },
+  {
+    numberStep: '03',
+    nameStep: 'Получайте новых клиентов',
+    descriptionStep:
+      'Расскажите о себе, установите ваше время работы и ожидайте записи к вам новых клиентов!',
+    bgColor: 'white',
+    imgPath: girls,
+    bgColorImg: 'light-violet',
+    link: '',
+  },
+];
+
+export const CUSTOMER_STEPS = [
+  {
+    numberStep: '01',
+    descriptionStep:
+      'Выберите психолога через каталог, с помощью нужных фильтров. Все психологи подтвердили образование, прошли тест и интервью.',
+    bgColor: 'white',
+  },
+  {
+    numberStep: '02',
+    descriptionStep:
+      'Запишитесь к психологу на онлайн-сессию. Терапия с нами — это безопасно и конфиденциально.',
+    bgColor: 'beige',
+  },
+  {
+    numberStep: '03',
+    descriptionStep:
+      'Управляйте своим расписанием в личном кабинете. Удобно переносить и отменять сессии при необходимости.',
+    bgColor: 'light-violet',
+  },
+];
+
 export const EMERGENCY_SERVICES = [
   {
     number: '+7 495 989-50-50',
@@ -98,9 +154,13 @@ export const SOCIAL_MEDIA_ICONS = [
   },
 ];
 
-export const SERVICE_DOCUMENTS = [
-  'Политика конфиденциальности',
-  'Условия использования сервиса',
+export const SERVICE_DOCUMENTS = ['Политика конфиденциальности', 'Условия использования сервиса'];
+
+export const DROPDOWN_LINKS = [
+  {
+    text: 'Личный кабинет',
+    link: '/client_account',
+  },
 ];
 
 export const INPUT_ICONS = {
@@ -148,4 +208,102 @@ export const dropDownLists = {
     'Карьера',
     'Другое',
   ],
+};
+export const NUMBER_OF_DAYS_DISPLAYED = 13;
+export const NUMBER_TO_SWITCH_THE_WEEKS = 14;
+export const DAYS_OF_WEEK = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+export const DAYS_NAME = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+
+export const MONTH_NAME = [
+  'январь',
+  'вевраль',
+  'март',
+  'апрель',
+  'май',
+  'июнь',
+  'июль',
+  'август',
+  'сентябрь',
+  'октябрь',
+  'ноябрь',
+  'декабрь',
+];
+
+export const NOT_APPOINTMENT_MESSAGE = {
+  client: {
+    title: 'Сегодня сессий нет',
+    description: 'Установите доступное время, чтобы клиент смог записаться',
+    textBtn: 'Добавить свободное время',
+  },
+  psychologist: {
+    title: 'Сессий пока не запланировано',
+    description: 'Здесь будет отображаться ближайшая ваша сессия',
+  },
+};
+
+export const NO_PSYCHO_MESSAGE = {
+  title: 'Специалист пока не выбран',
+  description: 'Здесь будет отображаться последний специалист, с которым вы работали',
+  textBtn: 'Подобрать психолога',
+  href: '/catalog',
+};
+
+export const NO_SLOTS_MESSAGE = {
+  today: {
+    title: 'На выбранный день не установлено доступное время для сессий',
+    href: '/shedule',
+    textBtn: 'Перейти в расписание',
+  },
+  otherDay: {
+    title: 'На сегодня не установлено доступное время для сессий',
+    href: '/shedule',
+    textBtn: 'Перейти в расписание',
+  },
+  noSlots: {
+    title: 'Здесь появится список доступного времени, когда вы его установите',
+  },
+};
+
+export const CLIENT_PROFILE_NAV_LINKS = [
+  {
+    text: 'Главная',
+    link: '/client_account',
+  },
+  {
+    text: 'Профиль',
+    link: '/client_profile',
+  },
+];
+
+export const DATE_FORMAT = 'DD.MM.YYYY hh:mm';
+
+export const PSYCHOLOGIST_ACCOUNT_LINKS = [
+  {
+    text: 'Главная',
+    link: '/psychologist_account',
+  },
+  {
+    text: 'Расписание',
+    link: '/psychologist_account_schedule',
+  },
+  {
+    text: 'Профиль',
+    link: '/psychologist_account_profile',
+  },
+];
+
+export const PSYCHOLOGIST_ACCOUNT_TITLES = {
+  account: {
+    pageTitle: 'Главная',
+    calendarTitle: 'Календарь сессий',
+    reminderTitle: 'Ближайшая сессия',
+  },
+  schedule: {
+    pageTitle: 'Расписание',
+    calendarTitle: '1. Выберите день',
+    reminderTitle: '2. Добавьте доступное время сессии',
+  },
+  profile: {
+    pageTitle: 'Профиль',
+  },
 };

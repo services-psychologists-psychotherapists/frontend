@@ -1,0 +1,50 @@
+.session-card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 32px 40px;
+  align-items: start;
+  border: 1px solid var(--border-color-dark-violet);
+  border-radius: 12px;
+  gap: 24px;
+  max-width: 846px;
+}
+
+.session-card_type_client {
+  padding: 24px 24px 32px;
+  gap: 16px;
+  max-width: 588px;
+}
+
+.session-card > .buttons {
+  align-self: flex-end;
+}
+
+.session-card__header {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.session-card__header_type_client {
+  align-items: center;
+}
+
+.session-card__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.session-card__date {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family-lato);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  align-items: flex-end;
+  gap: 8px;
+  color: var(--text-color-dark-blue);
+}
