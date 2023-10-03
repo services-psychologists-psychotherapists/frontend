@@ -42,7 +42,6 @@ export default function Input({
       <input
         className={inputClasses}
         type={isEyeOpened ? 'text' : type}
-        id={name}
         name={name}
         value={value}
         onChange={onChange}

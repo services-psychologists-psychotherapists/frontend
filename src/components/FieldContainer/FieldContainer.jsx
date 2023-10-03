@@ -9,7 +9,7 @@ import DropDownList from './DropDownList/DropDownList';
 import {
   checkboxDropDownElement, checkboxType,
   inputElement,
-  radioDropDownElement,
+  radioDropDownElement, radioType,
 } from '../../constants/constants';
 
 export default function FieldContainer({
@@ -57,6 +57,15 @@ export default function FieldContainer({
     displayValue = selectedTitles;
   } else if (element === radioDropDownElement) {
     displayValue = selectedValue;
+  } else if (element === checkboxDropDownElement && typeForDropDown === radioType) {
+    switch (true) {
+      case selectedCheckBoxCount === 0:
+        displayValue = '';
+        break;
+      default:
+        displayValue = 'Выбран 1 вариант';
+        break;
+    }
   } else if (element === checkboxDropDownElement) {
     const lastDigit = selectedCheckBoxCount % 10;
     switch (true) {

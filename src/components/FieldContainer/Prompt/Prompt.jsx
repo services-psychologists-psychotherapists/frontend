@@ -27,13 +27,14 @@ export default function Prompt({
 }
 
 Prompt.propTypes = {
-  values: PropTypes.string.isRequired,
+  values: PropTypes.string,
   disabled: PropTypes.bool.isRequired,
   errors: PropTypes.string,
   prompt: PropTypes.string,
 };
 
 Prompt.defaultProps = {
+  values: '',
   prompt: '',
   errors: ''
 };
