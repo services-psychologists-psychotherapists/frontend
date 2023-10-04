@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withRouter } from 'storybook-addon-react-router-v6';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import { useArgs } from '@storybook/client-api';
 import Slot from './Slot';
 
