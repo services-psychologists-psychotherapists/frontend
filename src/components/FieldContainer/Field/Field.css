@@ -1,0 +1,21 @@
+.field {
+  position: relative;
+  border: 1px solid var(--border-color-medium-violet);
+  background-color: transparent;
+  padding: 12px;
+  border-radius: 12px;
+  width: 100%;
+  margin-bottom: 8px;
+  min-height: 48px;
+  cursor: pointer;
+  display: flex;
+}
+
+.field:disabled {
+  border: 1px solid var(--border-coolor-disabled);
+  cursor: initial;
+}
+
+.field_invalid {
+  border: 1px solid var(--border-color-error);
+}
