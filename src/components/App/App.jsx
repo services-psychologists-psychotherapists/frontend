@@ -11,6 +11,7 @@ import { CLIENT } from '../../constants/db';
 import ClientHomePage from '../../pages/ClientHomePage/ClientHomePage';
 import ButtonUp from '../generic/ButtonUp/ButtonUp';
 import SessionRegistrationForClient from '../../pages/SessionRegistrationForClient/SessionRegistrationForClient';
+import Auth from '../../pages/Auth/Auth';
 
 export default function App() {
   const navigate = useNavigate();
@@ -31,6 +32,7 @@ export default function App() {
             path="/client_account_session-registration"
             element={<SessionRegistrationForClient navigate={navigate} />}
           />
+          <Route path="/auth" element={<Auth />} />
         </Routes>
       </CurrentUserContext.Provider>
       <ButtonUp />

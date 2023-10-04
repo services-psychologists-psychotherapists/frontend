@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import './Footer.css';
 import Logo from '../generic/Logo/Logo';
-import { SOCIAL_MEDIA_ICONS, SERVICE_DOCUMENTS, NAVIGATION_LINKS } from '../../constants/constants';
+import { SOCIAL_MEDIA_ICONS, NAVIGATION_LINKS } from '../../constants/constants';
 import NavLinksList from '../NavLinksList/NavLinksList';
+import ServiceDocuments from '../generic/ServiceDocuments/ServiceDocuments';
 
 export default function Footer() {
   const [selectedItem, setSelectedItem] = useState('');
 
   const handlePolicyClick = (el) => {
-    setSelectedItem(el);
+    if (selectedItem) {
+      setSelectedItem('');
+    } else {
+      setSelectedItem(el);
+    }
   };
 
   return (
@@ -33,21 +38,11 @@ export default function Footer() {
           ))}
         </ul>
       </div>
-      {/* TODO: правильно подобрать элементы списка */}
-      <ul className="footer__policy">
-        {SERVICE_DOCUMENTS.map((el) => (
-          <li key={el}>
-            <button
-              className={`footer__policy_item${
-                selectedItem === el ? ' footer__policy_item_selected' : ''
-              }`}
-              onClick={() => handlePolicyClick(el)}
-            >
-              {el}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <ServiceDocuments
+        selectedItem={selectedItem}
+        onClick={handlePolicyClick}
+        className="footer__service-documents"
+      />
     </footer>
   );
 }
