@@ -17,8 +17,5 @@ export default function TitlesContainer({ value, element, placeholder }) {
 TitlesContainer.propTypes = {
   placeholder: PropTypes.string.isRequired,
   element: PropTypes.string.isRequired,
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
 };
