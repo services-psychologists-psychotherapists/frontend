@@ -1,7 +1,6 @@
 import './Fieldset.css';
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { useForm } from '../../hooks/useForm';
 import Prompt from './Prompt/Prompt';
 import Field from './Field/Field';
 import DropDownList from './DropDownList/DropDownList';
@@ -26,10 +25,11 @@ export default function Fieldset({
   required,
   element,
   dropDownContent,
+  values,
+  handleChange,
+  errors,
+  isValid
 }) {
-  const {
-    values, handleChange, errors, isValid
-  } = useForm();
   const [selectedValue, setSelectedValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
 
@@ -130,9 +130,14 @@ Fieldset.propTypes = {
   maxLength: PropTypes.string,
   typeForDropDown: PropTypes.string,
   dropDownContent: PropTypes.arrayOf(PropTypes.string),
+  values: PropTypes.objectOf,
+  handleChange: PropTypes.func,
+  errors: PropTypes.string,
+  isValid: PropTypes.bool
 };
 
 Fieldset.defaultProps = {
+  values: null,
   required: false,
   disabled: false,
   placeholder: null,
@@ -143,4 +148,7 @@ Fieldset.defaultProps = {
   maxLength: null,
   typeForDropDown: null,
   dropDownContent: [],
+  errors: null,
+  isValid: true,
+  handleChange: () => {}
 };
