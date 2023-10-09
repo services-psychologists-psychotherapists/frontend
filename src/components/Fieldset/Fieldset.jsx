@@ -28,7 +28,8 @@ export default function Fieldset({
   values,
   handleChange,
   errors,
-  isValid
+  isValid,
+  promptClasses,
 }) {
   const [selectedValue, setSelectedValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
@@ -112,7 +113,13 @@ export default function Fieldset({
         isFocused={isFocused}
         dropDownContent={dropDownContent}
       />
-      <Prompt errors={errors[name]} prompt={prompt} disabled={disabled} values={values[name]} />
+      <Prompt
+        errors={errors[name]}
+        prompt={prompt}
+        disabled={disabled}
+        values={values[name]}
+        promptClasses={promptClasses}
+      />
     </fieldset>
   );
 }
@@ -133,7 +140,8 @@ Fieldset.propTypes = {
   values: PropTypes.objectOf(PropTypes.string),
   handleChange: PropTypes.func,
   errors: PropTypes.objectOf(PropTypes.string),
-  isValid: PropTypes.bool
+  isValid: PropTypes.bool,
+  promptClasses: PropTypes.string,
 };
 
 Fieldset.defaultProps = {
@@ -150,5 +158,6 @@ Fieldset.defaultProps = {
   dropDownContent: [],
   errors: null,
   isValid: true,
-  handleChange: () => {}
+  handleChange: () => {},
+  promptClasses: '',
 };
