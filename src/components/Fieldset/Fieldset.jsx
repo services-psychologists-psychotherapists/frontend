@@ -130,9 +130,9 @@ Fieldset.propTypes = {
   maxLength: PropTypes.string,
   typeForDropDown: PropTypes.string,
   dropDownContent: PropTypes.arrayOf(PropTypes.string),
-  values: PropTypes.objectOf,
+  values: PropTypes.objectOf(PropTypes.string),
   handleChange: PropTypes.func,
-  errors: PropTypes.string,
+  errors: PropTypes.objectOf(PropTypes.string),
   isValid: PropTypes.bool
 };
 
