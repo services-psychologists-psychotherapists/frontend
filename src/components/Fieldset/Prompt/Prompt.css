@@ -1,4 +1,8 @@
-.field-container__prompt_not-visible {
+/* .field-container__prompt_not-visible {
+  height: 12px;
+} */
+
+.field-container__prompt-height {
   height: 12px;
 }
 
@@ -8,7 +12,6 @@
   font-weight: var(--text-weight-primary);
   font-size: 14px;
   line-height: 16.8px;
-  height: 12px;
 }
 
 .field-container__prompt_visible-error {
