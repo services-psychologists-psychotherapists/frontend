@@ -6,7 +6,7 @@
   min-width: 240px;
 }
 
-.field__title {
+.field__label {
   font-family: var(--font-family-lato);
   font-weight: var(--text-weight-primary);
   font-size: 18px;
@@ -14,11 +14,11 @@
   color: var(--text-color-dark-blue);
 }
 
-.field__title_disabled {
+.field__label_disabled {
   color: var(--text-color-disabled);
 }
 
-.field__title-text {
+.field__label-text {
   padding-left: 12px;
 }
 
@@ -28,6 +28,14 @@
   border: 1px solid var(--border-color-medium-violet);
   border-radius: 12px;
   margin-bottom: 8px;
+}
+
+.field__input-container_disabled {
+  border: 1px solid var(--border-coolor-disabled);
+}
+
+.field__input-container_invalid {
+  border: 1px solid var(--border-color-error);
 }
 
 .field__input {
@@ -40,12 +48,4 @@
 
 .field__input_button {
   cursor: pointer;
-}
-
-.field__input:disabled {
-  border: 1px solid var(--border-coolor-disabled);
-}
-
-.field__input_invalid {
-  border: 1px solid var(--border-color-error);
 }

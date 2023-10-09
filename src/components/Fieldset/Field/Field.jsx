@@ -39,9 +39,13 @@ export default function Field({
   };
 
   return (
-    <div className={`field field__title${disabled ? ' field__title_disabled' : ''}`}>
-      <span className="field__title-text">{title}</span>
-      <div className="field__input-container">
+    <div className={`field field__label${disabled ? ' field__title_disabled' : ''}`}>
+      <span className="field__label-text">{title}</span>
+      <div
+        className={`field__input-container ${
+          !isValid && !disabled ? ' field__input-container_invalid' : ''
+        } ${disabled ? ' field__input-container_disabled' : ''}`}
+      >
         <Input
           element={element}
           onClick={onClick}
@@ -56,7 +60,7 @@ export default function Field({
           maxLength={maxLength}
           required={required}
           isEyeOpened={isEyeOpened}
-          ownClasses={`${fieldClasses}${!isValid && !disabled ? ' field__input_invalid' : ''}`}
+          ownClasses={fieldClasses}
         />
         <FieldButton
           onClick={handleClickOnButton}

@@ -30,7 +30,7 @@ export default function CardOfSession({ type, session }) {
     if (type === 'client') {
       return {
         textBtn: NOT_APPOINTMENT_MESSAGE[user].textBtn,
-        href: '/calendar'
+        href: '/calendar',
       };
     }
     return '';
@@ -39,26 +39,23 @@ export default function CardOfSession({ type, session }) {
   setCardData();
 
   return (
-    <div
-      className={`session-card session-card_type_${type}`}
-    >
+    <div className={`session-card session-card_type_${type}`}>
       {session ? (
         <>
-          <div
-            className={`session-card__header session-card__header_type_${type}`}
-          >
+          <div className={`session-card__header session-card__header_type_${type}`}>
             <Avatar size="s" src={user.avatar} />
             <div className="session-card__info">
               {type === 'psychologist' ? (
-                <PsychoName
-                  description="Психолог"
-                  name={`${user.first_name} ${user.last_name}`}
-                />
+                <PsychoName description="Психолог" name={`${user.first_name} ${user.last_name}`} />
               ) : (
                 <Text>{`${user.first_name} ${user.last_name}`}</Text>
               )}
               <div className="session-card__date">
-                {type === 'psychologist' && <p>{`${timeFrom.date()} ${getMonthName(timeFrom)}, ${DAYS_NAME[timeFrom.day()]}`}</p>}
+                {type === 'psychologist' && (
+                  <p>
+                    {`${timeFrom.date()} ${getMonthName(timeFrom)}, ${DAYS_NAME[timeFrom.day()]}`}
+                  </p>
+                )}
                 <p>{getSessionTime(timeFrom, timeTo)}</p>
               </div>
             </div>
@@ -67,7 +64,7 @@ export default function CardOfSession({ type, session }) {
             <Button href={session.href}>
               {type === 'psychologist' ? 'Перейти' : 'Начать сессию'}
             </Button>
-            <Button onClick={() => { }} variant="secondary">
+            <Button onClick={() => {}} variant="secondary">
               Отменить
             </Button>
           </ButtonGroup>
@@ -108,5 +105,5 @@ CardOfSession.propTypes = {
 
 CardOfSession.defaultProps = {
   type: 'client',
-  session: null
+  session: null,
 };

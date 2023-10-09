@@ -53,7 +53,11 @@ export default {
 };
 
 function Template(args) {
-  return <div style={{ width: '900px' }}><CardOfSession {...args} /></div>;
+  return (
+    <div style={{ width: '900px' }}>
+      <CardOfSession {...args} />
+    </div>
+  );
 }
 
 export const Psychologist = Template.bind({});
