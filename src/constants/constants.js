@@ -7,6 +7,13 @@ import yourself from '../images/about_problem_understand_yourself.svg';
 import career from '../images/about_problem_career.svg';
 import posttraumatic from '../images/about_problem_posttraumatic.svg';
 import badHabits from '../images/about_problem_bad_habits.svg';
+import closedEyeDisabled from '../images/Input/input-container__closed-eye_disabled.svg';
+import openedEye from '../images/Input/input-container__opened-eye.svg';
+import openedEyeError from '../images/Input/input-container__opened-eye_error.svg';
+import closedEye from '../images/Input/input-container__closed-eye.svg';
+import closedEyeError from '../images/Input/input-container__closed-eye_error.svg';
+import arrow from '../images/Input/input-container__arrow.svg';
+import arrowDisabled from '../images/Input/input-container__arrow_disabled.svg';
 import form from '../images/how_to_start_form.svg';
 import clock from '../images/how_to_start_clock.svg';
 import girls from '../images/how_to_start_talking_girls.svg';
@@ -147,7 +154,24 @@ export const SOCIAL_MEDIA_ICONS = [
   },
 ];
 
-export const SERVICE_DOCUMENTS = ['Политика конфиденциальности', 'Условия использования сервиса'];
+export const SERVICE_DOCUMENTS = {
+  default: [
+    {
+      text: 'Политика конфиденциальности',
+    },
+    {
+      text: 'Условия использования сервиса',
+    },
+  ],
+  whereby: [
+    {
+      text: 'Политикой конфиденциальности',
+    },
+    {
+      text: 'Условиями использования сервиса',
+    },
+  ],
+};
 
 export const DROPDOWN_LINKS = [
   {
@@ -156,6 +180,52 @@ export const DROPDOWN_LINKS = [
   },
 ];
 
+export const INPUT_ICONS = {
+  openedEye,
+  closedEye,
+  openedEyeError,
+  closedEyeError,
+  closedEyeDisabled,
+  arrow,
+  arrowDisabled,
+};
+
+// --------------FIELD_ELEMENTS--------------- //
+
+export const inputElement = 'input-element';
+export const radioDropDownElement = 'radio-dropdown-element';
+export const checkboxDropDownElement = 'checkbox-dropdown-element';
+export const titlesDropDownElement = 'titles-dropdown-element';
+
+// --------------DROPDOWN_TYPES--------------- //
+
+export const radioType = 'radio';
+export const checkboxType = 'checkbox';
+
+export const dropDownLists = {
+  genderList: ['женский', 'мужской', 'другое'],
+  approachList: [
+    'Гештальт - терапия',
+    'Экзистенциальный анализ',
+    'Телесная терапия',
+    'Панические атаки',
+    'Другое',
+  ],
+  mainGoalsOfWork: [
+    'Отношения с партнером',
+    'Утрата',
+    'Панические атаки',
+    'Травмы и потери',
+    'Разобраться в себе',
+    'Депрессия',
+    'Зависимости',
+    'Самооценка',
+    'Непонятные мысли',
+    'Стресс',
+    'Карьера',
+    'Другое',
+  ],
+};
 export const NUMBER_OF_DAYS_DISPLAYED = 13;
 export const NUMBER_TO_SWITCH_THE_WEEKS = 14;
 export const DAYS_OF_WEEK = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
@@ -257,3 +327,76 @@ export const PSYCHOLOGIST_ACCOUNT_TITLES = {
 
 export const SCROLL_SPEED = 1;
 export const LENGTH_TO_START_SCROLLING = 5;
+
+export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
+  {
+    element: inputElement,
+    title: 'Имя (псевдоним)',
+    name: 'name_regit',
+    typeForInput: 'text',
+    required: true,
+  },
+  {
+    element: inputElement,
+    title: 'Email',
+    name: 'email_regit',
+    typeForInput: 'email',
+    required: true,
+  },
+  {
+    element: inputElement,
+    title: 'Телефон',
+    name: 'phone_regit',
+    typeForInput: 'text',
+    required: false,
+    placeholder: '+7 921 123 45 67',
+  },
+  {
+    element: inputElement,
+    title: 'Дата рождения',
+    name: 'birthday_regit',
+    typeForInput: 'text',
+    required: true,
+    placeholder: '23.04.1990',
+  },
+  {
+    element: inputElement,
+    title: 'Пароль',
+    name: 'passowrd_regit',
+    typeForInput: 'password',
+    required: true,
+    prompt:
+      'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ',
+  },
+  {
+    element: inputElement,
+    title: 'Пароль',
+    name: 'passowrd2_regit',
+    typeForInput: 'password',
+    required: true,
+  },
+];
+
+export const AUTH_BTNS = {
+  login: 'Войти в Личный кабинет',
+  registration: 'Зарегистрироваться',
+};
+
+export const LOGIN_INPUT_PARAMS_FOR_CLIENT = [
+  {
+    element: inputElement,
+    title: 'Email',
+    name: 'email_login',
+    typeForInput: 'email',
+    required: true,
+    minLength: '1',
+  },
+  {
+    element: inputElement,
+    title: 'Пароль',
+    name: 'password_login',
+    typeForInput: 'password',
+    required: true,
+    minLength: '1',
+  },
+];

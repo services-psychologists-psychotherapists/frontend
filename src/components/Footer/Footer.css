@@ -35,4 +35,5 @@
 
 .footer__service-documents {
   flex-direction: column;
+  font-family: var(--font-family-montsertat);
 }

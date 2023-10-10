@@ -21,19 +21,37 @@ export default {
     },
     className: {
       type: 'string',
-      description: 'Дополнительный класс для роботы с окружением и направлением элементов',
+      description:
+        'Дополнительный класс для роботы с окружением, направлением элементов и шрифтом текста',
       control: false,
+    },
+    textVariant: {
+      type: 'select',
+      description:
+        'Варианты отображения окончания текстов документов, смотреть в constants SERVICE_DOCUMENTS',
+      options: ['default', 'whereby'],
+      control: {
+        type: 'select',
+      },
     },
   },
 };
 
-function Template() {
+function Template(args) {
   const [selectedItem, setSelectedItem] = useState('');
   const onClick = (e) => {
-    setSelectedItem(e);
+    if (selectedItem) {
+      setSelectedItem('');
+    } else {
+      setSelectedItem(e);
+    }
   };
 
-  return <ServiceDocuments selectedItem={selectedItem} onClick={onClick} />;
+  return <ServiceDocuments selectedItem={selectedItem} onClick={onClick} {...args} />;
 }
 
 export const Default = Template.bind({});
+
+Default.args = {
+  textVariant: 'default',
+};

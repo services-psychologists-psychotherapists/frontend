@@ -42,6 +42,7 @@ export default function Footer() {
         selectedItem={selectedItem}
         onClick={handlePolicyClick}
         className="footer__service-documents"
+        textVariant="default"
       />
     </footer>
   );

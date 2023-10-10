@@ -20,7 +20,7 @@
   font-family: var(--font-family-lato);
   font-size: 22px;
   color: var(--text-color-dark-blue);
-  font-weight: var(--font-weight-primary);
+  font-weight: var(--text-weight-primary);
   line-height: 28px;
   padding-bottom: 12px;
 }

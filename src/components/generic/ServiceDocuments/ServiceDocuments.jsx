@@ -4,16 +4,19 @@ import './ServiceDocuments.css';
 import ServiceDocumentsBtn from './ServiceDocumentsBtn/ServiceDocumentsBtn';
 import { SERVICE_DOCUMENTS } from '../../../constants/constants';
 
-export default function ServiceDocuments({ onClick, selectedItem, className }) {
+export default function ServiceDocuments({
+  onClick, selectedItem, className, textVariant
+}) {
   // TODO: Возможно убрать отдельный компонент кнопки и сделать ее тут
+  // TODO: Добавить ссылки для объектов?
   return (
-    <ul className={`policy-container${className ? ` ${className}` : ''}`}>
-      {SERVICE_DOCUMENTS.map((el) => (
-        <li key={el}>
+    <ul className={`policy-container${className ? ` ${className}` : ' policy-container_text'}`}>
+      {SERVICE_DOCUMENTS[textVariant].map((el) => (
+        <li key={el.text}>
           <ServiceDocumentsBtn
             selectedItem={selectedItem}
-            onClick={() => onClick(el)}
-            el={el}
+            onClick={() => onClick(el.text)}
+            el={el.text}
             className={className}
           />
         </li>
@@ -23,6 +26,7 @@ export default function ServiceDocuments({ onClick, selectedItem, className }) {
 }
 
 ServiceDocuments.propTypes = {
+  textVariant: string,
   selectedItem: string,
   onClick: func,
   className: string,
@@ -32,4 +36,5 @@ ServiceDocuments.defaultProps = {
   onClick: () => {},
   selectedItem: '',
   className: '',
+  textVariant: 'default',
 };
