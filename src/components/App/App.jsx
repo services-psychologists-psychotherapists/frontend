@@ -61,6 +61,8 @@ export default function App() {
             <Route
               path="/signin"
               element={<Auth isLoggedIn={isLoggedIn} getJwt={getJwt} signUp={signUp} />}
+            />
+            <Route
               path="/psychologist"
               element={<PsychologistCardPage psychologist={PSYCHO} isLoggedIn />}
             />
