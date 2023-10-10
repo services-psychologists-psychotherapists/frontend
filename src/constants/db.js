@@ -343,7 +343,7 @@ export const POPUP_DATA = {
         },
         {
           label: 'Отмена',
-          onClick: console.log('Нажали Добавить'),
+          onClick: () => console.log('Нажали Добавить'),
           type: 'primary',
           size: 'l',
           variant: 'primary',
