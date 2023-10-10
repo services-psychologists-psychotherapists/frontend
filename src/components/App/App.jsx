@@ -10,20 +10,25 @@ import CurrentUserContext from '../../Context/CurrentUserContext';
 import { CLIENT } from '../../constants/db';
 import ClientHomePage from '../../pages/ClientHomePage/ClientHomePage';
 import ButtonUp from '../generic/ButtonUp/ButtonUp';
+import { PopupProvider } from '../../hooks/usePopup';
+import Popup from '../generic/Popup/Popup';
 
 export default function App() {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={CLIENT}>
-        <Routes>
-          <Route path="/" element={<HomePage isLoggedIn={false} />} />
-          <Route path="/for_a_therapist" element={<PageForPsychologists />} />
-          <Route path="/*" element={<NotFound />} />
-          <Route path="/psychologist_account" element={<PsychologistAccount />} />
-          <Route path="/psychologist_account_schedule" element={<PsychologistAccount />} />
-          <Route path="/psychologist_account_profile" element={<PsychologistAccount />} />
-          <Route path="/client_account" element={<ClientHomePage isLoggedIn />} />
-        </Routes>
+        <PopupProvider>
+          <Routes>
+            <Route path="/" element={<HomePage isLoggedIn={false} />} />
+            <Route path="/for_a_therapist" element={<PageForPsychologists />} />
+            <Route path="/*" element={<NotFound />} />
+            <Route path="/psychologist_account" element={<PsychologistAccount />} />
+            <Route path="/psychologist_account_schedule" element={<PsychologistAccount />} />
+            <Route path="/psychologist_account_profile" element={<PsychologistAccount />} />
+            <Route path="/client_account" element={<ClientHomePage isLoggedIn />} />
+          </Routes>
+          <Popup />
+        </PopupProvider>
       </CurrentUserContext.Provider>
       <ButtonUp />
       <Footer />
