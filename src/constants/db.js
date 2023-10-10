@@ -237,3 +237,115 @@ export const USER = {
     },
   ],
 };
+
+export const PSYCHOLOGIST_ACCOUNT_LINKS = [
+  {
+    text: 'Главная',
+    link: '/psychologist_account',
+  },
+  {
+    text: 'Расписание',
+    link: '/psychologist_account_schedule',
+  },
+  {
+    text: 'Профиль',
+    link: '/psychologist_account_profile',
+  },
+];
+
+export const PSYCHOLOGIST_ACCOUNT_TEXT = {
+  txtCalendarInMain: 'Календарь сессий',
+  txtReminderInMain: 'Ближайшая сессия',
+  txtCalendarInShedule: '1. Выберите день',
+  txtReminderInShedule: '2. Добавьте доступное время сессии',
+  txtTitleInMain: 'Главная',
+  txtTitlenShedule: 'Расписание',
+  txtTitleInProfile: 'Профиль',
+};
+
+export const TIMING_HOURS = [
+  '00',
+  '01',
+  '02',
+  '03',
+  '04',
+  '05',
+  '06',
+  '07',
+  '08',
+  '09',
+  '10',
+  '11',
+  '12',
+  '13',
+  '14',
+  '15',
+  '16',
+  '17',
+  '18',
+  '19',
+  '20',
+  '21',
+  '22',
+  '23',
+];
+
+export const TIMING_MINUTES = [
+  '00',
+  '05',
+  '10',
+  '15',
+  '20',
+  '25',
+  '30',
+  '35',
+  '40',
+  '45',
+  '50',
+  '55',
+];
+
+export const POPUP_DATA = {
+  ConfirmDeletePopup: {
+    data: {
+      title: 'Удалить?',
+      buttons: [
+        {
+          label: 'Нет',
+          onClick: () => console.log('Нажали Нет'),
+          type: 'button',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Да',
+          onClick: () => console.log('Нажали Да'),
+          type: 'button',
+          size: 'l',
+          variant: 'primary',
+        },
+      ],
+    },
+  },
+  deleteFreeSlot: {
+    data: {
+      title: 'Вы уверены, что хотите удалить из расписания свободное время?',
+      buttons: [
+        {
+          label: 'Удалить',
+          onClick: () => console.log('Нажали Отменить'),
+          type: 'secondary',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Отмена',
+          onClick: () => console.log('Нажали Добавить'),
+          type: 'primary',
+          size: 'l',
+          variant: 'primary',
+        },
+      ],
+    },
+  },
+};

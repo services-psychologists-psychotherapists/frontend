@@ -7,6 +7,13 @@ import yourself from '../images/about_problem_understand_yourself.svg';
 import career from '../images/about_problem_career.svg';
 import posttraumatic from '../images/about_problem_posttraumatic.svg';
 import badHabits from '../images/about_problem_bad_habits.svg';
+import closedEyeDisabled from '../images/Input/input-container__closed-eye_disabled.svg';
+import openedEye from '../images/Input/input-container__opened-eye.svg';
+import openedEyeError from '../images/Input/input-container__opened-eye_error.svg';
+import closedEye from '../images/Input/input-container__closed-eye.svg';
+import closedEyeError from '../images/Input/input-container__closed-eye_error.svg';
+import arrow from '../images/Input/input-container__arrow.svg';
+import arrowDisabled from '../images/Input/input-container__arrow_disabled.svg';
 import form from '../images/how_to_start_form.svg';
 import clock from '../images/how_to_start_clock.svg';
 import girls from '../images/how_to_start_talking_girls.svg';
@@ -156,6 +163,52 @@ export const HEADER_DROPDOWN_LINKS = [
   },
 ];
 
+export const INPUT_ICONS = {
+  openedEye,
+  closedEye,
+  openedEyeError,
+  closedEyeError,
+  closedEyeDisabled,
+  arrow,
+  arrowDisabled,
+};
+
+// --------------FIELD_ELEMENTS--------------- //
+
+export const inputElement = 'input-element';
+export const radioDropDownElement = 'radio-dropdown-element';
+export const checkboxDropDownElement = 'checkbox-dropdown-element';
+export const titlesDropDownElement = 'titles-dropdown-element';
+
+// --------------DROPDOWN_TYPES--------------- //
+
+export const radioType = 'radio';
+export const checkboxType = 'checkbox';
+
+export const dropDownLists = {
+  genderList: ['женский', 'мужской', 'другое'],
+  approachList: [
+    'Гештальт - терапия',
+    'Экзистенциальный анализ',
+    'Телесная терапия',
+    'Панические атаки',
+    'Другое',
+  ],
+  mainGoalsOfWork: [
+    'Отношения с партнером',
+    'Утрата',
+    'Панические атаки',
+    'Травмы и потери',
+    'Разобраться в себе',
+    'Депрессия',
+    'Зависимости',
+    'Самооценка',
+    'Непонятные мысли',
+    'Стресс',
+    'Карьера',
+    'Другое',
+  ],
+};
 export const NUMBER_OF_DAYS_DISPLAYED = 13;
 export const NUMBER_TO_SWITCH_THE_WEEKS = 14;
 export const DAYS_OF_WEEK = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
