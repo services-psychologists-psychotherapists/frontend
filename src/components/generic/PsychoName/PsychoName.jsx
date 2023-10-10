@@ -4,17 +4,12 @@ import { string } from 'prop-types';
 import Title from '../Title/Title';
 
 export default function PsychoName({
-  name,
-  description,
-  leftText,
-  rightText
+  name, description, leftText, rightText
 }) {
   return (
     <div className="name-container">
       <Title size="s" titleLvl="4" text={name} />
-      {description && (
-        <div className="name-container__label">{description}</div>
-      )}
+      {description && <div className="name-container__label">{description}</div>}
       {leftText && (
         <div className="name-container__description">
           <p>{leftText}</p>
