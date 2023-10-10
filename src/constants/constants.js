@@ -173,7 +173,7 @@ export const SERVICE_DOCUMENTS = {
   ],
 };
 
-export const DROPDOWN_LINKS = [
+export const HEADER_DROPDOWN_LINKS = [
   {
     text: 'Личный кабинет',
     link: '/client_account',
@@ -246,7 +246,7 @@ export const MONTH_NAME = [
   'декабрь',
 ];
 
-export const NOT_APPOINTMENT_MESSAGE = {
+export const CARD_OF_SESSION_MESSAGE = {
   client: {
     title: 'Сегодня сессий нет',
     description: 'Установите доступное время, чтобы клиент смог записаться',
@@ -400,3 +400,13 @@ export const LOGIN_INPUT_PARAMS_FOR_CLIENT = [
     minLength: '1',
   },
 ];
+
+export const PSYCHOLOGIST_INFO_TITLES = {
+  about: 'О себе',
+  experience: 'Опыт работы',
+  themes: 'С чем работает',
+  aproaches: 'Подход в работе',
+  institutes: 'Высшее образование',
+  courses: 'Повышение квалификации',
+};
+

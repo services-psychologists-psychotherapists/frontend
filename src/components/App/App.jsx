@@ -7,9 +7,10 @@ import Footer from '../Footer/Footer';
 import NotFound from '../../pages/NotFound/NotFound';
 import PsychologistAccount from '../../pages/PsychologistAccount/PsychologistAccount';
 import CurrentUserContext from '../../Context/CurrentUserContext';
-import { CLIENT } from '../../constants/db';
+import { CLIENT, PSYCHO } from '../../constants/db';
 import ClientHomePage from '../../pages/ClientHomePage/ClientHomePage';
 import ButtonUp from '../generic/ButtonUp/ButtonUp';
+import PsychologistCardPage from '../../pages/PsychologistsCardPage/PsychologistsCardPage';
 import { PopupProvider } from '../../hooks/usePopup';
 import Popup from '../generic/Popup/Popup';
 import SessionRegistrationForClient from '../../pages/SessionRegistrationForClient/SessionRegistrationForClient';
@@ -58,12 +59,14 @@ export default function App() {
             <Route path="/psychologist_account_profile" element={<PsychologistAccount />} />
             <Route path="/client_account" element={<ClientHomePage isLoggedIn />} />
             <Route
-              path="/client_account_session-registration"
-              element={<SessionRegistrationForClient navigate={navigate} />}
-            />
-            <Route
               path="/signin"
               element={<Auth isLoggedIn={isLoggedIn} getJwt={getJwt} signUp={signUp} />}
+              path="/psychologist"
+              element={<PsychologistCardPage psychologist={PSYCHO} isLoggedIn />}
+            />
+            <Route
+              path="/client_account_session-registration"
+              element={<SessionRegistrationForClient navigate={navigate} />}
             />
           </Routes>
           <Popup />

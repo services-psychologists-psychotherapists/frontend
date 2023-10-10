@@ -16,8 +16,8 @@ export default function Slot({ session, onClick, isSlotOpen }) {
     return '';
   };
 
-  const startTime = moment(session.slot.datetime_from, DATE_FORMAT);
-  const endTime = moment(session.slot.datetime_to, DATE_FORMAT);
+  const startTime = moment(session.datetime_from, DATE_FORMAT);
+  const endTime = moment(session.datetime_to, DATE_FORMAT);
 
   return (
     <li className={`slot ${!session.client && 'slot_free'}`}>
@@ -56,20 +56,9 @@ Slot.propTypes = {
       first_name: PropTypes.string,
       last_name: PropTypes.string,
       id: PropTypes.string,
-      avatar: PropTypes.string,
     }),
-    slot: PropTypes.shape({
-      psychologist: PropTypes.shape({
-        fitst_name: PropTypes.string,
-        last_name: PropTypes.string,
-        id: PropTypes.string,
-        avatar: PropTypes.string,
-      }),
-      datetime_from: PropTypes.string,
-      datetime_to: PropTypes.string,
-      is_free: PropTypes.bool,
-    }),
-    status: PropTypes.string,
+    datetime_from: PropTypes.string,
+    datetime_to: PropTypes.string,
     href: PropTypes.string,
   }).isRequired,
   onClick: PropTypes.func.isRequired,
