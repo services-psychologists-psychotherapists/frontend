@@ -332,21 +332,21 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
   {
     element: inputElement,
     title: 'Имя (псевдоним)',
-    name: 'name_regit',
+    name: 'name_regist',
     typeForInput: 'text',
     required: true,
   },
   {
     element: inputElement,
     title: 'Email',
-    name: 'email_regit',
+    name: 'email_regist',
     typeForInput: 'email',
     required: true,
   },
   {
     element: inputElement,
     title: 'Телефон',
-    name: 'phone_regit',
+    name: 'phone_regist',
     typeForInput: 'text',
     required: false,
     placeholder: '+7 921 123 45 67',
@@ -354,7 +354,7 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
   {
     element: inputElement,
     title: 'Дата рождения',
-    name: 'birthday_regit',
+    name: 'birthday_regist',
     typeForInput: 'text',
     required: true,
     placeholder: '23.04.1990',
@@ -362,7 +362,7 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
   {
     element: inputElement,
     title: 'Пароль',
-    name: 'passowrd_regit',
+    name: 'passowrd_regist',
     typeForInput: 'password',
     required: true,
     prompt:
@@ -371,7 +371,7 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
   {
     element: inputElement,
     title: 'Пароль',
-    name: 'passowrd2_regit',
+    name: 'passowrd2_regist',
     typeForInput: 'password',
     required: true,
   },

@@ -28,7 +28,7 @@ export default function FieldButton({
 
   return (
     isHaveIcon && (
-      <button className={iconClasses} onClick={onClick} disabled={disabled}>
+      <button className={iconClasses} onClick={onClick} disabled={disabled} type="button">
         <FieldButtonImage
           inputType={inputType}
           isValid={isValid}
@@ -57,5 +57,5 @@ FieldButton.defaultProps = {
   inputType: null,
   disabled: false,
   isValid: true,
-  onClick() {},
+  onClick: () => {},
 };

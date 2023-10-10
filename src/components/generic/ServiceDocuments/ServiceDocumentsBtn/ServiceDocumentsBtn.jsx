@@ -9,6 +9,7 @@ export default function ServiceDocumentsBtn({ selectedItem, onClick, el }) {
     <button
       className={`policy-btn${selectedItem === el ? ' policy-btn_selected' : ''}`}
       onClick={onClick}
+      type="button"
     >
       {el}
     </button>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import HomePage from '../../pages/HomePage/HomePage';
@@ -12,21 +12,13 @@ import ClientHomePage from '../../pages/ClientHomePage/ClientHomePage';
 import ButtonUp from '../generic/ButtonUp/ButtonUp';
 import SessionRegistrationForClient from '../../pages/SessionRegistrationForClient/SessionRegistrationForClient';
 import Auth from '../../pages/Auth/Auth';
-import { authUser } from '../../utils/Api';
+import { authUser, createUser } from '../../utils/Api';
 
 export default function App() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // TODO: убрать
-  useEffect(() => {
-    setIsLoggedIn(isLoggedIn);
-    console.log(isLoggedIn);
-  }, [isLoggedIn]);
-
-  // TODO: подумать про расположение запросов
   const getJwt = async (data) => {
-    console.log(1);
     try {
       const jwt = await authUser(data);
 
@@ -35,8 +27,16 @@ export default function App() {
       } else {
         setIsLoggedIn(false);
       }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-      console.log(jwt);
+  const signIn = async (data) => {
+    try {
+      const user = await createUser(data);
+
+      console.log(user); // убрать
     } catch (err) {
       console.log(err);
     }
@@ -58,7 +58,10 @@ export default function App() {
             path="/client_account_session-registration"
             element={<SessionRegistrationForClient navigate={navigate} />}
           />
-          <Route path="/signin" element={<Auth isLoggedIn={isLoggedIn} getJwt={getJwt} />} />
+          <Route
+            path="/signin"
+            element={<Auth isLoggedIn={isLoggedIn} getJwt={getJwt} signIn={signIn} />}
+          />
         </Routes>
       </CurrentUserContext.Provider>
       <ButtonUp />

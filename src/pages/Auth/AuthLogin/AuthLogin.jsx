@@ -16,21 +16,15 @@ export default function AuthLogin({
   inputValidStatus,
   getInvalidInput,
 }) {
-  const handleSubmitLogin = (e) => {
-    e.preventDefault();
-    // console.log(getJwt);
-    // console.log({
-    //   email: values.email,
-    //   password: values.password,
-    // });
+  const handleSubmitLogin = () => {
     getJwt({
-      email: values.email,
-      password: values.password,
+      email: values.email_login,
+      password: values.password_login,
     });
   };
 
   return (
-    <form className="auth__form-login" name="login" onSubmit={handleSubmitLogin} noValidate>
+    <form className="auth__form-login" name="login" noValidate>
       <ul className="auth__form-login_fields">
         {LOGIN_INPUT_PARAMS_FOR_CLIENT.map((i) => (
           <li key={i.name}>
@@ -44,14 +38,14 @@ export default function AuthLogin({
               values={values}
               handleChange={handleChange}
               errors={errors}
-              isValid={getInvalidInput(inputValidStatus.email)}
+              isValid={getInvalidInput(inputValidStatus[i.name])}
               promptClasses="auth__prompt"
             />
           </li>
         ))}
       </ul>
       {/* Не могу использовать ButtonsGroup так как у меня больше gap */}
-      <div className="auth__form-login_buttons">
+      <ul className="auth__form-login_buttons">
         <Button variant="text" size="l" type="button">
           Не помню пароль
         </Button>
@@ -60,11 +54,11 @@ export default function AuthLogin({
           variant="primary"
           size="l"
           onClick={handleSubmitLogin}
-          disabled={isValidForm === false}
+          disabled={!isValidForm}
         >
           Войти
         </Button>
-      </div>
+      </ul>
     </form>
   );
 }

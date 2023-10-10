@@ -16,7 +16,19 @@ export default function AuthRegistration({
   isValidForm,
   inputValidStatus,
   getInvalidInput,
+  signIn,
 }) {
+  const handleSubmitRegister = () => {
+    // signIn({
+    //   first_name: 'qqqqq',
+    //   birthday: '30.09.1990',
+    //   email: 'qqqqq@mail.ru',
+    //   password: 'Qqqqq1234555'
+    // });
+    console.log(signIn);
+    console.log(values);
+  };
+
   return (
     <>
       <div className="auth__psycho">
@@ -33,7 +45,7 @@ export default function AuthRegistration({
           Нажми здесь
         </Button>
       </div>
-      <form className="auth__form-registration" name="registration">
+      <form className="auth__form-registration" name="registration" noValidate>
         <ul className="auth__form-registration_field-container">
           {REGISTRATION_INPUT_PARAMS_FOR_CLIENT.map((i) => (
             <li key={i.name}>
@@ -66,7 +78,8 @@ export default function AuthRegistration({
           type="submit"
           variant="primary"
           size="l"
-          disabled={isValidForm === false}
+          disabled={!isValidForm}
+          onClick={handleSubmitRegister}
         >
           Зарегистрироваться
         </Button>
@@ -82,4 +95,5 @@ AuthRegistration.propTypes = {
   values: objectOf(string).isRequired,
   handleChange: func.isRequired,
   errors: objectOf(string).isRequired,
+  signIn: func.isRequired,
 };

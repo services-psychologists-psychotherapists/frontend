@@ -7,7 +7,7 @@ import { useForm } from '../../hooks/useForm';
 import AuthLogin from './AuthLogin/AuthLogin';
 import AuthRegistration from './AuthRegistration/AuthRegistration';
 
-export default function Auth({ getJwt }) {
+export default function Auth({ getJwt, signIn }) {
   const [isLogin, setIsLogin] = useState(true);
   const [isRegister, setIsRegister] = useState(false);
   const {
@@ -43,6 +43,7 @@ export default function Auth({ getJwt }) {
     // TODO: написать стори
     // TODO: может не сбрасывать значения инпутов при переключении форм?
     // TODO: Везде где promptClasses="auth__prompt" временная реализация, переделать
+    // TODO: настроить поля паролей
     <>
       <Header isLoggedIn={false} />
       <section className="auth">
@@ -83,6 +84,7 @@ export default function Auth({ getJwt }) {
             isValidForm={isValidForm}
             inputValidStatus={inputValidStatus}
             getInvalidInput={getInvalidInput}
+            signIn={signIn}
           />
         )}
       </section>
@@ -92,4 +94,5 @@ export default function Auth({ getJwt }) {
 
 Auth.propTypes = {
   getJwt: func.isRequired,
+  signIn: func.isRequired,
 };
