@@ -1,0 +1,11 @@
+.psycho-mini {
+  display: flex;
+  flex-direction: row;
+  max-width: 588px;
+  width: 100%;
+  align-items: center;
+  gap: 24px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px var(--border-color-medium-violet);
+  padding: 32px 32px 40px;
+}

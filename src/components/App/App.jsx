@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import HomePage from '../../pages/HomePage/HomePage';
 import PageForPsychologists from '../../pages/PageForPsychologists/PageForPsychologists';
@@ -10,11 +10,14 @@ import CurrentUserContext from '../../Context/CurrentUserContext';
 import { CLIENT, PSYCHO } from '../../constants/db';
 import ClientHomePage from '../../pages/ClientHomePage/ClientHomePage';
 import ButtonUp from '../generic/ButtonUp/ButtonUp';
+import SessionRegistrationForClient from '../../pages/SessionRegistrationForClient/SessionRegistrationForClient';
 import PsychologistCardPage from '../../pages/PsychologistsCardPage/PsychologistsCardPage';
 import { PopupProvider } from '../../hooks/usePopup';
 import Popup from '../generic/Popup/Popup';
 
 export default function App() {
+  const navigate = useNavigate();
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={CLIENT}>
@@ -30,6 +33,10 @@ export default function App() {
             <Route
               path="/psychologist"
               element={<PsychologistCardPage psychologist={PSYCHO} isLoggedIn />}
+            />
+            <Route
+              path="/client_account_session-registration"
+              element={<SessionRegistrationForClient navigate={navigate} />}
             />
           </Routes>
           <Popup />

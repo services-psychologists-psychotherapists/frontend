@@ -23,7 +23,7 @@ export default function Avatar({ src, size }) {
     <div className={`avatar avatar_size_${size} ${getNoAvatarClasses('avatar')}`}>
       <img
         src={avatar}
-        alt="аватар пользователя"
+        alt="аватар пользователя" // Не только для пользователя. Настроить стили отображения
         className={`${avatar !== noAvatar ? 'img' : getNoAvatarClasses('img')}`}
       />
       {size === 'xl' && (

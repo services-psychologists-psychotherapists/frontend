@@ -308,6 +308,9 @@ export const PSYCHOLOGIST_ACCOUNT_TITLES = {
   },
 };
 
+export const SCROLL_SPEED = 1;
+export const LENGTH_TO_START_SCROLLING = 5;
+
 export const PSYCHOLOGIST_INFO_TITLES = {
   about: 'О себе',
   experience: 'Опыт работы',

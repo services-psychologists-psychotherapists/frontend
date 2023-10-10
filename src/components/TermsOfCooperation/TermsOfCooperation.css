@@ -6,7 +6,6 @@
   padding: 32px;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
 }
 
 .terms-cooperation__text {
@@ -29,4 +28,8 @@
   color: var(--text-color-dark-violet);
   font-size: var(--text-font-size-s);
   line-height: 26px;
+}
+
+.terms-cooperation__button {
+  align-self: end;
 }
