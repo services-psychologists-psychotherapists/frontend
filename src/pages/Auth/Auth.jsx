@@ -7,7 +7,7 @@ import { useForm } from '../../hooks/useForm';
 import AuthLogin from './AuthLogin/AuthLogin';
 import AuthRegistration from './AuthRegistration/AuthRegistration';
 
-export default function Auth({ getJwt, signIn }) {
+export default function Auth({ getJwt, signUp }) {
   const [isLogin, setIsLogin] = useState(true);
   const [isRegister, setIsRegister] = useState(false);
   const {
@@ -84,7 +84,7 @@ export default function Auth({ getJwt, signIn }) {
             isValidForm={isValidForm}
             inputValidStatus={inputValidStatus}
             getInvalidInput={getInvalidInput}
-            signIn={signIn}
+            signUp={signUp}
           />
         )}
       </section>
@@ -94,5 +94,5 @@ export default function Auth({ getJwt, signIn }) {
 
 Auth.propTypes = {
   getJwt: func.isRequired,
-  signIn: func.isRequired,
+  signUp: func.isRequired,
 };

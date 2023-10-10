@@ -10,6 +10,8 @@ import CurrentUserContext from '../../Context/CurrentUserContext';
 import { CLIENT } from '../../constants/db';
 import ClientHomePage from '../../pages/ClientHomePage/ClientHomePage';
 import ButtonUp from '../generic/ButtonUp/ButtonUp';
+import { PopupProvider } from '../../hooks/usePopup';
+import Popup from '../generic/Popup/Popup';
 import SessionRegistrationForClient from '../../pages/SessionRegistrationForClient/SessionRegistrationForClient';
 import Auth from '../../pages/Auth/Auth';
 import { authUser, createUser } from '../../utils/Api';
@@ -32,7 +34,7 @@ export default function App() {
     }
   };
 
-  const signIn = async (data) => {
+  const signUp = async (data) => {
     try {
       const user = await createUser(data);
 
@@ -45,24 +47,27 @@ export default function App() {
   return (
     <div className="page">
       <CurrentUserContext.Provider value={CLIENT}>
-        {/* TODO: настроить все роуты и внутренние роуты */}
-        <Routes>
-          <Route path="/" element={<HomePage isLoggedIn={false} />} />
-          <Route path="/for_a_therapist" element={<PageForPsychologists />} />
-          <Route path="/*" element={<NotFound />} />
-          <Route path="/psychologist_account" element={<PsychologistAccount />} />
-          <Route path="/psychologist_account_schedule" element={<PsychologistAccount />} />
-          <Route path="/psychologist_account_profile" element={<PsychologistAccount />} />
-          <Route path="/client_account" element={<ClientHomePage isLoggedIn />} />
-          <Route
-            path="/client_account_session-registration"
-            element={<SessionRegistrationForClient navigate={navigate} />}
-          />
-          <Route
-            path="/signin"
-            element={<Auth isLoggedIn={isLoggedIn} getJwt={getJwt} signIn={signIn} />}
-          />
-        </Routes>
+        <PopupProvider>
+          {/* TODO: настроить все роуты и внутренние роуты */}
+          <Routes>
+            <Route path="/" element={<HomePage isLoggedIn={false} />} />
+            <Route path="/for_a_therapist" element={<PageForPsychologists />} />
+            <Route path="/*" element={<NotFound />} />
+            <Route path="/psychologist_account" element={<PsychologistAccount />} />
+            <Route path="/psychologist_account_schedule" element={<PsychologistAccount />} />
+            <Route path="/psychologist_account_profile" element={<PsychologistAccount />} />
+            <Route path="/client_account" element={<ClientHomePage isLoggedIn />} />
+            <Route
+              path="/client_account_session-registration"
+              element={<SessionRegistrationForClient navigate={navigate} />}
+            />
+            <Route
+              path="/signin"
+              element={<Auth isLoggedIn={isLoggedIn} getJwt={getJwt} signUp={signUp} />}
+            />
+          </Routes>
+          <Popup />
+        </PopupProvider>
       </CurrentUserContext.Provider>
       <ButtonUp />
       <Footer />

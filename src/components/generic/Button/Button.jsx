@@ -16,7 +16,6 @@ export default function Button({
   const classes = `button button__${variant} button_size_${size} ${className} ${
     disabled ? `button_disabled button__${variant}_disabled` : `button__${variant}_active`
   }`;
-
   const Tag = href !== '' ? Link : 'button';
 
   const handlerBtnClick = (e) => {

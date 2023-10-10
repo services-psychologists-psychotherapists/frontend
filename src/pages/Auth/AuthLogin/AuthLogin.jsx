@@ -44,7 +44,8 @@ export default function AuthLogin({
           </li>
         ))}
       </ul>
-      {/* Не могу использовать ButtonsGroup так как у меня больше gap */}
+      {/* Не могу использовать ButtonsGroup так как у меня больше gap,
+      а изменить или перназначить нельзя */}
       <ul className="auth__form-login_buttons">
         <Button variant="text" size="l" type="button">
           Не помню пароль

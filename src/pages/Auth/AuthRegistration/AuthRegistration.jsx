@@ -8,6 +8,7 @@ import Button from '../../../components/generic/Button/Button';
 import Text from '../../../components/generic/Text/Text';
 import { REGISTRATION_INPUT_PARAMS_FOR_CLIENT } from '../../../constants/constants';
 import ServiceDocuments from '../../../components/generic/ServiceDocuments/ServiceDocuments';
+import { usePopup } from '../../../hooks/usePopup';
 
 export default function AuthRegistration({
   values,
@@ -16,17 +17,32 @@ export default function AuthRegistration({
   isValidForm,
   inputValidStatus,
   getInvalidInput,
-  signIn,
+  signUp,
 }) {
+  const { setValue } = usePopup();
+
+  const getPasswordErr = (firstPass, secondPass) => firstPass !== secondPass;
+
+  const showPopupWithPassErr = () => {
+    setValue({
+      data: {
+        title: 'Пароли не совпадают',
+      },
+    });
+  };
+
   const handleSubmitRegister = () => {
-    // signIn({
-    //   first_name: 'qqqqq',
-    //   birthday: '30.09.1990',
-    //   email: 'qqqqq@mail.ru',
-    //   password: 'Qqqqq1234555'
-    // });
-    console.log(signIn);
-    console.log(values);
+    if (getPasswordErr(values.passowrd_regist, values.passowrd2_regist)) {
+      showPopupWithPassErr();
+    } else {
+      signUp({
+        first_name: values.name_regist,
+        birthday: values.birthday_regist,
+        phone_number: values.phone_regist || '',
+        email: values.email_regist,
+        password: values.passowrd_regist,
+      });
+    }
   };
 
   return (
@@ -72,7 +88,6 @@ export default function AuthRegistration({
           </Text>
           <ServiceDocuments textVariant="whereby" className="auth__service-documents_text" />
         </div>
-        {/* TODO: настроить кнопку */}
         <Button
           className="auth__form-registration_button"
           type="submit"
@@ -95,5 +110,5 @@ AuthRegistration.propTypes = {
   values: objectOf(string).isRequired,
   handleChange: func.isRequired,
   errors: objectOf(string).isRequired,
-  signIn: func.isRequired,
+  signUp: func.isRequired,
 };

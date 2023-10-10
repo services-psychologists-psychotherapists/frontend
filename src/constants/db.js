@@ -99,11 +99,11 @@ export const SLOTS = [
   },
   {
     id: '127774545422',
-    client: CLIENT,
+    client: null,
     slot: {
       psychologist: PSYCHO,
-      datetime_from: '18.09.2023 14:20',
-      datetime_to: '18.09.2023 15:10',
+      datetime_from: '29.09.2023 14:20',
+      datetime_to: '29.09.2023 15:10',
       is_free: true,
     },
     status: 'Оплаченный',
@@ -241,142 +241,254 @@ export const USER = {
   ],
 };
 
+export const PSYCHOLOGIST_ACCOUNT_LINKS = [
+  {
+    text: 'Главная',
+    link: '/psychologist_account',
+  },
+  {
+    text: 'Расписание',
+    link: '/psychologist_account_schedule',
+  },
+  {
+    text: 'Профиль',
+    link: '/psychologist_account_profile',
+  },
+];
+
+export const PSYCHOLOGIST_ACCOUNT_TEXT = {
+  txtCalendarInMain: 'Календарь сессий',
+  txtReminderInMain: 'Ближайшая сессия',
+  txtCalendarInShedule: '1. Выберите день',
+  txtReminderInShedule: '2. Добавьте доступное время сессии',
+  txtTitleInMain: 'Главная',
+  txtTitlenShedule: 'Расписание',
+  txtTitleInProfile: 'Профиль',
+};
+
+export const TIMING_HOURS = [
+  '00',
+  '01',
+  '02',
+  '03',
+  '04',
+  '05',
+  '06',
+  '07',
+  '08',
+  '09',
+  '10',
+  '11',
+  '12',
+  '13',
+  '14',
+  '15',
+  '16',
+  '17',
+  '18',
+  '19',
+  '20',
+  '21',
+  '22',
+  '23',
+];
+
+export const TIMING_MINUTES = [
+  '00',
+  '05',
+  '10',
+  '15',
+  '20',
+  '25',
+  '30',
+  '35',
+  '40',
+  '45',
+  '50',
+  '55',
+];
+
+export const POPUP_DATA = {
+  ConfirmDeletePopup: {
+    data: {
+      title: 'Удалить?',
+      buttons: [
+        {
+          label: 'Нет',
+          onClick: () => console.log('Нажали Нет'),
+          type: 'button',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Да',
+          onClick: () => console.log('Нажали Да'),
+          type: 'button',
+          size: 'l',
+          variant: 'primary',
+        },
+      ],
+    },
+  },
+  deleteFreeSlot: {
+    data: {
+      title: 'Вы уверены, что хотите удалить из расписания свободное время?',
+      buttons: [
+        {
+          label: 'Удалить',
+          onClick: () => console.log('Нажали Отменить'),
+          type: 'secondary',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Отмена',
+          onClick: () => console.log('Нажали Добавить'),
+          type: 'primary',
+          size: 'l',
+          variant: 'primary',
+        },
+      ],
+    },
+  },
+};
+
 export const FREE_SLOTS = [
   {
     id: 1,
-    time: '29.09.2023 23:00',
+    time: '10.10.2023 23:00',
   },
   {
     id: 2,
-    time: '29.09.2023 11:00',
+    time: '10.10.2023 11:00',
   },
   {
     id: 3,
-    time: '29.09.2023 12:00',
+    time: '10.10.2023 12:00',
   },
   {
     id: 4,
-    time: '29.09.2023 13:00',
+    time: '10.10.2023 13:00',
   },
   {
     id: 5,
-    time: '29.09.2023 14:00',
+    time: '10.10.2023 14:00',
   },
   {
     id: 6,
-    time: '29.09.2023 15:00',
+    time: '10.10.2023 15:00',
   },
   {
     id: 7,
-    time: '29.09.2023 16:00',
+    time: '10.10.2023 16:00',
   },
   {
     id: 8,
-    time: '29.09.2023 17:00',
+    time: '10.10.2023 17:00',
   },
   {
     id: 9,
-    time: '30.09.2023 11:00',
+    time: '11.10.2023 11:00',
   },
   {
     id: 10,
-    time: '30.09.2023 12:00',
+    time: '11.10.2023 12:00',
   },
   {
     id: 11,
-    time: '30.09.2023 13:00',
+    time: '11.10.2023 13:00',
   },
   {
     id: 12,
-    time: '30.09.2023 14:00',
+    time: '11.10.2023 14:00',
   },
   {
     id: 13,
-    time: '01.09.2023 11:00',
+    time: '12.10.2023 11:00',
   },
   {
     id: 14,
-    time: '01.09.2023 12:00',
+    time: '12.10.2023 12:00',
   },
   {
     id: 15,
-    time: '01.09.2023 13:00',
+    time: '12.10.2023 13:00',
   },
   {
     id: 16,
-    time: '01.09.2023 14:00',
+    time: '12.10.2023 14:00',
   },
   {
     id: 17,
-    time: '01.09.2023 15:00',
+    time: '12.10.2023 15:00',
   },
   {
     id: 18,
-    time: '02.09.2023 11:00',
+    time: '13.10.2023 11:00',
   },
   {
     id: 19,
-    time: '02.09.2023 12:00',
+    time: '13.10.2023 12:00',
   },
   {
     id: 20,
-    time: '02.09.2023 13:00',
+    time: '13.10.2023 13:00',
   },
   {
     id: 21,
-    time: '03.10.2023 11:00',
+    time: '14.10.2023 11:00',
   },
   {
     id: 22,
-    time: '03.10.2023 12:00',
+    time: '14.10.2023 12:00',
   },
   {
     id: 23,
-    time: '03.10.2023 13:00',
+    time: '14.10.2023 13:00',
   },
   {
     id: 24,
-    time: '04.10.2023 11:00',
+    time: '15.10.2023 11:00',
   },
   {
     id: 25,
-    time: '04.10.2023 12:00',
+    time: '15.10.2023 12:00',
   },
   {
     id: 26,
-    time: '04.10.2023 13:00',
+    time: '15.10.2023 13:00',
   },
   {
     id: 27,
-    time: '04.10.2023 14:00',
+    time: '15.10.2023 14:00',
   },
   {
     id: 28,
-    time: '04.10.2023 15:00',
+    time: '15.10.2023 15:00',
   },
   {
     id: 29,
-    time: '04.10.2023 16:00',
+    time: '15.10.2023 16:00',
   },
   {
     id: 30,
-    time: '04.10.2023 17:00',
+    time: '15.10.2023 17:00',
   },
   {
     id: 31,
-    time: '04.10.2023 18:00',
+    time: '15.10.2023 18:00',
   },
   {
     id: 32,
-    time: '07.10.2023 11:00',
+    time: '18.10.2023 11:00',
   },
   {
     id: 33,
-    time: '07.10.2023 12:00',
+    time: '18.10.2023 12:00',
   },
   {
     id: 34,
-    time: '10.10.2023 11:00',
+    time: '19.10.2023 11:00',
   },
 ];
 
