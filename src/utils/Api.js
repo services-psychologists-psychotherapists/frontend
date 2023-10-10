@@ -1,6 +1,6 @@
 import axios from 'axios';
 // TODO: перенести в const
-const API_URL = 'https://sharewithme.acceleratorpracticum.ru';
+const API_URL = 'https://sharewithme.acceleratorpracticum.ru/api/v1';
 
 const checkResponse = (res) => {
   if (res.ok) {
