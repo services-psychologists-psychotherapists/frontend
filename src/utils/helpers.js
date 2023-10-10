@@ -13,25 +13,26 @@ export const getMonthName = (date) => {
   if (month.slice(-1) === 'т') {
     return `${month}а`;
   }
-
-  return `${month.slice(0, month.length - 1)}я`;
+  return `${date.date()} ${month.slice(0, month.length - 1)}я`;
 };
 
 export const getTime = (time) => `0${time}`.slice(-2);
 
 export const getSessionTime = (startDate, endDate) => {
   const startTime = `${getTime(startDate.hour())}:${getTime(startDate.minute())}`;
-  const endTime = `${getTime(endDate.hour())}:${getTime(endDate.minute())}`;
 
-  return `${startTime} - ${endTime}`;
+  if (endDate) {
+    const endTime = `${getTime(endDate.hour())}:${getTime(endDate.minute())}`;
+    return `${startTime} - ${endTime}`;
+  }
+  return startTime;
 };
 
 export const getAge = (date) => {
-  const years = today.diff(date, 'years');
   let age = '';
-  const lastSymb = years % 10;
+  const lastSymb = date % 10;
 
-  if (lastSymb === 0 || (years > 10 && years < 20) || (lastSymb > 4 && lastSymb < 10)) {
+  if (lastSymb === 0 || (date > 10 && date < 20) || (lastSymb > 4 && lastSymb < 10)) {
     age = 'лет';
   } else if (lastSymb === 1) {
     age = 'год';
@@ -39,7 +40,7 @@ export const getAge = (date) => {
     age = 'года';
   }
 
-  return `${years} ${age}`;
+  return `${date} ${age}`;
 };
 
 export const getNumArray = (num, length) => {

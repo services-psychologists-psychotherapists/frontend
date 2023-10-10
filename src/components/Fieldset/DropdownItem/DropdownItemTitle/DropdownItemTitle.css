@@ -1,0 +1,15 @@
+.dropdown-item__title-titles {
+  padding: 8px 16px;
+  background-color: var(--bg-color-grey);
+  border-radius: 20px;
+}
+
+.dropdown-item__title-titles_checked {
+  background-color: var(--bg-color-light-violet);
+  padding: 8px 16px;
+  border-radius: 20px;
+}
+
+.dropdown-item__title:focus {
+  outline: none;
+}
