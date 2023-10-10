@@ -409,4 +409,3 @@ export const PSYCHOLOGIST_INFO_TITLES = {
   institutes: 'Высшее образование',
   courses: 'Повышение квалификации',
 };
-
