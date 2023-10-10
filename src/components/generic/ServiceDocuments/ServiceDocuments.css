@@ -1,0 +1,10 @@
+.policy-container {
+  list-style-type: none;
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.policy-container_text {
+  font-family: var(--font-family-montsertat);
+}

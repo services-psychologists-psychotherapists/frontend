@@ -33,24 +33,7 @@
   height: 32px;
 }
 
-.footer__policy {
-  list-style-type: none;
-  display: flex;
+.footer__service-documents {
   flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
-}
-
-.footer__policy_item {
-  all: unset;
   font-family: var(--font-family-montsertat);
-  color: var(--text-color-dark-violet);
-  font-size: 18px;
-  line-height: 24px;
-  cursor: pointer;
-}
-
-.footer__policy_item:hover,
-.footer__policy_item_selected {
-  color: var(--text-color-dark-blue);
 }

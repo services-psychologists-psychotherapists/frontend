@@ -8,9 +8,7 @@ export function PopupProvider({ children }) {
 
   return (
     // eslint-disable-next-line
-    <PopupContext.Provider value={{ value, setValue }}>
-      {children}
-    </PopupContext.Provider>
+    <PopupContext.Provider value={{ value, setValue }}>{children}</PopupContext.Provider>
   );
 }
 

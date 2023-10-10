@@ -13,6 +13,7 @@ export const getMonthName = (date) => {
   if (month.slice(-1) === 'т') {
     return `${month}а`;
   }
+
   return `${date.date()} ${month.slice(0, month.length - 1)}я`;
 };
 

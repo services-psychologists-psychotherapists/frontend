@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import HomePage from '../../pages/HomePage/HomePage';
@@ -10,18 +10,46 @@ import CurrentUserContext from '../../Context/CurrentUserContext';
 import { CLIENT, PSYCHO } from '../../constants/db';
 import ClientHomePage from '../../pages/ClientHomePage/ClientHomePage';
 import ButtonUp from '../generic/ButtonUp/ButtonUp';
-import SessionRegistrationForClient from '../../pages/SessionRegistrationForClient/SessionRegistrationForClient';
 import PsychologistCardPage from '../../pages/PsychologistsCardPage/PsychologistsCardPage';
 import { PopupProvider } from '../../hooks/usePopup';
 import Popup from '../generic/Popup/Popup';
+import SessionRegistrationForClient from '../../pages/SessionRegistrationForClient/SessionRegistrationForClient';
+import Auth from '../../pages/Auth/Auth';
+import { authUser, createUser } from '../../utils/Api';
 
 export default function App() {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const getJwt = async (data) => {
+    try {
+      const jwt = await authUser(data);
+
+      if (jwt) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const signUp = async (data) => {
+    try {
+      const user = await createUser(data);
+
+      console.log(user); // убрать
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <div className="page">
       <CurrentUserContext.Provider value={CLIENT}>
         <PopupProvider>
+          {/* TODO: настроить все роуты и внутренние роуты */}
           <Routes>
             <Route path="/" element={<HomePage isLoggedIn={false} />} />
             <Route path="/for_a_therapist" element={<PageForPsychologists />} />
@@ -31,6 +59,8 @@ export default function App() {
             <Route path="/psychologist_account_profile" element={<PsychologistAccount />} />
             <Route path="/client_account" element={<ClientHomePage isLoggedIn />} />
             <Route
+              path="/signin"
+              element={<Auth isLoggedIn={isLoggedIn} getJwt={getJwt} signUp={signUp} />}
               path="/psychologist"
               element={<PsychologistCardPage psychologist={PSYCHO} isLoggedIn />}
             />

@@ -154,7 +154,24 @@ export const SOCIAL_MEDIA_ICONS = [
   },
 ];
 
-export const SERVICE_DOCUMENTS = ['Политика конфиденциальности', 'Условия использования сервиса'];
+export const SERVICE_DOCUMENTS = {
+  default: [
+    {
+      text: 'Политика конфиденциальности',
+    },
+    {
+      text: 'Условия использования сервиса',
+    },
+  ],
+  whereby: [
+    {
+      text: 'Политикой конфиденциальности',
+    },
+    {
+      text: 'Условиями использования сервиса',
+    },
+  ],
+};
 
 export const HEADER_DROPDOWN_LINKS = [
   {
@@ -310,6 +327,79 @@ export const PSYCHOLOGIST_ACCOUNT_TITLES = {
 
 export const SCROLL_SPEED = 1;
 export const LENGTH_TO_START_SCROLLING = 5;
+
+export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
+  {
+    element: inputElement,
+    title: 'Имя (псевдоним)',
+    name: 'name_regist',
+    typeForInput: 'text',
+    required: true,
+  },
+  {
+    element: inputElement,
+    title: 'Email',
+    name: 'email_regist',
+    typeForInput: 'email',
+    required: true,
+  },
+  {
+    element: inputElement,
+    title: 'Телефон',
+    name: 'phone_regist',
+    typeForInput: 'text',
+    required: false,
+    placeholder: '+7 921 123 45 67',
+  },
+  {
+    element: inputElement,
+    title: 'Дата рождения',
+    name: 'birthday_regist',
+    typeForInput: 'text',
+    required: true,
+    placeholder: '23.04.1990',
+  },
+  {
+    element: inputElement,
+    title: 'Пароль',
+    name: 'passowrd_regist',
+    typeForInput: 'password',
+    required: true,
+    prompt:
+      'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ',
+  },
+  {
+    element: inputElement,
+    title: 'Пароль',
+    name: 'passowrd2_regist',
+    typeForInput: 'password',
+    required: true,
+  },
+];
+
+export const AUTH_BTNS = {
+  login: 'Войти в Личный кабинет',
+  registration: 'Зарегистрироваться',
+};
+
+export const LOGIN_INPUT_PARAMS_FOR_CLIENT = [
+  {
+    element: inputElement,
+    title: 'Email',
+    name: 'email_login',
+    typeForInput: 'email',
+    required: true,
+    minLength: '1',
+  },
+  {
+    element: inputElement,
+    title: 'Пароль',
+    name: 'password_login',
+    typeForInput: 'password',
+    required: true,
+    minLength: '1',
+  },
+];
 
 export const PSYCHOLOGIST_INFO_TITLES = {
   about: 'О себе',

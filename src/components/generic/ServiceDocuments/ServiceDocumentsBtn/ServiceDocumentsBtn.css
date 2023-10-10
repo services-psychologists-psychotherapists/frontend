@@ -1,0 +1,12 @@
+.policy-btn {
+  all: unset;
+  color: var(--text-color-dark-violet);
+  font-size: 18px;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.policy-btn:hover,
+.policy-btn_selected {
+  color: var(--text-color-dark-blue);
+}
