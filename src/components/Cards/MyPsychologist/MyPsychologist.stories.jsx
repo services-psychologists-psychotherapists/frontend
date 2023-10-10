@@ -14,7 +14,15 @@ export default {
   argTypes: {
     psychologist: {
       description: 'Объект с данными выбранного психолога клиента',
-      control: false,
+      type: 'object',
+      control: {
+        first_name: { type: 'string' },
+        last_name: { type: 'string' },
+        id: { type: 'string' },
+        avatar: { type: 'string' },
+        price: { type: 'string' },
+        duration: { type: 'string' },
+      },
     },
     nextSession: {
       type: 'object',

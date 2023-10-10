@@ -1,4 +1,5 @@
 import '../src/components/App/App.css';
+import '../src/vendor/fonts/fonts.css';
 
 const preview = {
   parameters: {

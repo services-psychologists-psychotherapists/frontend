@@ -156,7 +156,7 @@ export const SOCIAL_MEDIA_ICONS = [
 
 export const SERVICE_DOCUMENTS = ['Политика конфиденциальности', 'Условия использования сервиса'];
 
-export const DROPDOWN_LINKS = [
+export const HEADER_DROPDOWN_LINKS = [
   {
     text: 'Личный кабинет',
     link: '/client_account',
@@ -229,7 +229,7 @@ export const MONTH_NAME = [
   'декабрь',
 ];
 
-export const NOT_APPOINTMENT_MESSAGE = {
+export const CARD_OF_SESSION_MESSAGE = {
   client: {
     title: 'Сегодня сессий нет',
     description: 'Установите доступное время, чтобы клиент смог записаться',
@@ -306,4 +306,13 @@ export const PSYCHOLOGIST_ACCOUNT_TITLES = {
   profile: {
     pageTitle: 'Профиль',
   },
+};
+
+export const PSYCHOLOGIST_INFO_TITLES = {
+  about: 'О себе',
+  experience: 'Опыт работы',
+  themes: 'С чем работает',
+  aproaches: 'Подход в работе',
+  institutes: 'Высшее образование',
+  courses: 'Повышение квалификации',
 };

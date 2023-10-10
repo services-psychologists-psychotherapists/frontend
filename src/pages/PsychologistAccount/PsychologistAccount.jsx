@@ -21,35 +21,32 @@ export default function PsychologistAccount() {
   const [currentDay, setCurrentDay] = useState(moment());
   let nextAppointment = null;
   const selectedSlots = [];
+  const slotsWithSessions = [];
   const path = useLocation().pathname.split('_').pop();
 
   const getNextSession = () => {
-    if (selectedSlots.length > 0) {
-      nextAppointment = selectedSlots.reduce((acc, cur) => {
-        if (
-          moment(cur.slot.datetime_from, DATE_FORMAT).isBefore(
-            moment(acc.slot.datetime_from, DATE_FORMAT)
-          ) && selectedSlots.client // prettier-ignore
-        ) {
-          return cur;
-        }
-        return acc;
-      });
-
-      nextAppointment.datetime_from = nextAppointment.slot.datetime_from;
-      nextAppointment.datetime_to = nextAppointment.slot.datetime_to;
-    }
+    nextAppointment = slotsWithSessions.reduce((acc, cur) => {
+      if (moment(cur.datetime_from, DATE_FORMAT).isBefore(moment(acc.datetime_from, DATE_FORMAT))) {
+        return cur;
+      }
+      return acc;
+    });
   };
 
   const getSheduleCurrentDay = () => {
     if (SLOTS.length > 0) {
       for (let i = 0; i < SLOTS.length; i += 1) {
-        const timeSession = moment(SLOTS[i].slot.datetime_from, DATE_FORMAT);
+        const timeSession = moment(SLOTS[i].datetime_from, DATE_FORMAT);
         if (timeSession.isSame(currentDay, 'day') && timeSession.isAfter(moment())) {
           selectedSlots.push(SLOTS[i]);
+          if (SLOTS[i].client) {
+            slotsWithSessions.push(SLOTS[i]);
+          }
         }
       }
-      getNextSession();
+      if (slotsWithSessions.length > 0) {
+        getNextSession();
+      }
     }
   };
 

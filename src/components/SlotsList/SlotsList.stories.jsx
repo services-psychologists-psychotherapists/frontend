@@ -14,31 +14,25 @@ export default {
   },
   tags: ['autodocs'],
   argTypes: {
-    sessions: {
-      type: [
-        {
+    sessions: [
+      {
+        type: 'object',
+        keys: {
           client: {
             type: 'object',
             keys: {
               first_name: { type: 'string' },
               last_name: { type: 'string' },
               id: { type: 'string' },
-              avatar: { type: 'string' },
             },
           },
-          slot: {
-            type: 'object',
-            keys: {
-              datetime_from: { type: 'string' },
-              datetime_to: { type: 'string' },
-              id: { type: 'string' },
-            },
-          },
+          datetime_from: { type: 'string' },
+          datetime_to: { type: 'string' },
+          id: { type: 'string' },
           href: { type: 'string' },
         },
-      ],
-      description: 'Отфильтрованный массив по выбранному дню',
-    },
+      },
+    ],
     selectedDay: {
       type: 'object',
       description: 'Выбраный день для отображения состояний, если массив слотов окажется пустым',

@@ -8,6 +8,7 @@
   color: var(--text-color-dark-blue);
   margin-top: 12px;
   line-height: 25px;
+  white-space: nowrap;
 }
 
 .elipse {

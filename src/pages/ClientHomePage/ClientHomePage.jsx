@@ -19,7 +19,6 @@ export default function ClientHomePage({ isLoggedIn }) {
   return (
     <PageLayout
       title="Главная"
-      // prettier-ignore
       nav={<NavLinksList list={CLIENT_PROFILE_NAV_LINKS} direction="column" variant="violet" />}
       isLoggedIn={isLoggedIn}
     >

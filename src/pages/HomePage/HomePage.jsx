@@ -1,5 +1,4 @@
 import React from 'react';
-import './HomePage.css';
 import Welcome from '../../components/Welcome/Welcome';
 import bannerImg from '../../images/home_banner.svg';
 import Banner from '../../components/Banner/Banner';
