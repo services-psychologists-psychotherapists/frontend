@@ -35,7 +35,6 @@ export default function Auth({ getJwt, signUp }) {
   const getClassesForActiveBtn = (authVariat) => (authVariat ? ' auth__variants_item-active' : ' auth__variants_item-inactive');
 
   return (
-    // TODO: Подключить сервер
     // TODO: убрать Header (должен быть в app)
     // TODO: проверить классы
     // TODO: Повторяются компоненты в Typografy Text Teg и FieldContainer Title Dropdown Field
@@ -43,7 +42,7 @@ export default function Auth({ getJwt, signUp }) {
     // TODO: написать стори
     // TODO: может не сбрасывать значения инпутов при переключении форм?
     // TODO: Везде где promptClasses="auth__prompt" временная реализация, переделать
-    // TODO: настроить поля паролей
+    // TODO: добавить прелоадер
     <>
       <Header isLoggedIn={false} />
       <section className="auth">
