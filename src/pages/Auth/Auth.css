@@ -104,6 +104,6 @@
 }
 
 .auth__prompt {
-  min-height: 12px;
+  min-height: 17px;
   max-height: min-content;
 }
