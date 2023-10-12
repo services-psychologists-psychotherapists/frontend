@@ -24,6 +24,7 @@ export default function Input({
   isEyeOpened,
   ownClasses,
   onClick,
+  id,
 }) {
   const inputClasses = `input${element === inputElement ? ' input_hidden-placeholder' : ''}${
     !isValid ? ' input_invalid' : ''
@@ -50,7 +51,7 @@ export default function Input({
       className={`${inputClasses} ${ownClasses}`}
       type={isEyeOpened ? 'text' : type}
       name={name}
-      id={name}
+      id={id}
       value={value}
       onChange={onChange}
       placeholder={placeholder}
@@ -77,6 +78,7 @@ Input.propTypes = {
   isValid: PropTypes.bool,
   ownClasses: PropTypes.string,
   onClick: PropTypes.func,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Input.defaultProps = {
@@ -94,4 +96,5 @@ Input.defaultProps = {
   maxLength: null,
   onChange: () => {},
   onClick: () => {},
+  id: null,
 };

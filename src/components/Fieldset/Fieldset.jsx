@@ -31,6 +31,7 @@ export default function Fieldset({
   promptClasses,
   inputContainerClasses,
   selectedDropdownItems,
+  id,
 }) {
   const [isFocused, setIsFocused] = useState(false);
   const [displayValue, setDisplayValue] = useState('');
@@ -95,6 +96,7 @@ export default function Fieldset({
         onClick={handleOpenDropDown}
         isFocused={isFocused}
         inputContainerClasses={inputContainerClasses}
+        id={id}
       />
       <DropDownList
         element={element}
@@ -140,6 +142,7 @@ Fieldset.propTypes = {
   selectedDropdownItems: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.array, PropTypes.string])
   ),
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Fieldset.defaultProps = {
@@ -160,4 +163,5 @@ Fieldset.defaultProps = {
   promptClasses: '',
   inputContainerClasses: '',
   selectedDropdownItems: {},
+  id: null,
 };

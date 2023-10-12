@@ -21,6 +21,7 @@ export default function Field({
   isFocused,
   title,
   inputContainerClasses,
+  id,
 }) {
   const fieldClasses = `field__input${element !== inputElement ? ' field__input_button' : ''}`;
 
@@ -62,6 +63,7 @@ export default function Field({
           required={required}
           isEyeOpened={isEyeOpened}
           ownClasses={fieldClasses}
+          id={id}
         />
         <FieldButton
           onClick={handleClickOnButton}
@@ -93,6 +95,7 @@ Field.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
   onClick: PropTypes.func,
   inputContainerClasses: PropTypes.string,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Field.defaultProps = {
@@ -109,4 +112,5 @@ Field.defaultProps = {
   onClick: () => {},
   inputContainerClasses: '',
   value: '',
+  id: null,
 };
