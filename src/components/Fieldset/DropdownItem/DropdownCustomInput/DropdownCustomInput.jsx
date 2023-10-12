@@ -8,13 +8,14 @@ export default function DropdownCustomInput({
   item,
   inputType,
   onChange,
-  selectedValue,
-  value,
+  selectedDropdownItems,
+  values,
   name,
   element,
 }) {
   const isCheckboxElement = element === checkboxDropDownElement;
-  const isOtherChecked = (selectedValue['Другое'] || false) && isCheckboxElement;
+  const isOtherChecked = ((selectedDropdownItems[name] && selectedDropdownItems[name].includes('Другое')) || false)
+    && isCheckboxElement;
   const isOther = item === 'Другое';
   const shouldRenderCustomInput = isOther && isCheckboxElement;
 
@@ -24,8 +25,8 @@ export default function DropdownCustomInput({
         <Input
           ownClasses="dropdown-item__input"
           type={inputType}
-          name={name}
-          value={value}
+          name="custom"
+          value={values.custom || ''}
           onChange={onChange}
           placeholder={!isOtherChecked ? 'Другое' : 'Введите свой вариант'}
           disabled={!isOtherChecked}
@@ -39,17 +40,19 @@ DropdownCustomInput.propTypes = {
   element: PropTypes.string.isRequired,
   name: PropTypes.string,
   item: PropTypes.string,
-  value: PropTypes.string,
-  selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  values: PropTypes.objectOf(PropTypes.string),
   onChange: PropTypes.func,
   inputType: PropTypes.string,
+  selectedDropdownItems: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.array, PropTypes.string])
+  ),
 };
 
 DropdownCustomInput.defaultProps = {
   name: null,
   item: null,
-  value: null,
-  selectedValue: null,
+  values: null,
   onChange: () => {},
   inputType: null,
+  selectedDropdownItems: {},
 };

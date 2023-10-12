@@ -1,0 +1,61 @@
+.psycho-filters {
+  display: flex;
+  flex-direction: column;
+  max-width: 425px;
+  width: 100%;
+  padding: 24px 24px 28px;
+  gap: 20px;
+  border-radius: 12px;
+  background: var(--bg-color-light-violet);
+}
+
+.psycho-filters__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.psycho-filters__header-title {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.psycho-filters__header-icon {
+  background-image: url('./filter.svg');
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+}
+
+.psycho-filters__header-text {
+  color: var(--text-color-dark-blue);
+  font-family: var(--font-family-montsertat);
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 30px;
+}
+
+.psycho-filters__header-button {
+  /* line-height: 24px; */
+}
+
+.psycho-filters__filter {
+  background-color: #fff;
+}
+
+.psycho-filters__filters {
+  list-style-type: none;
+}
+
+.psycho-filters__prompt {
+  height: 8px;
+}
+
+.psycho-filters__submit-button {
+  max-width: 190px;
+  width: 100%;
+  align-self: center;
+}

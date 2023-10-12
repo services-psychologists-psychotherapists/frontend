@@ -30,7 +30,7 @@ export default function CardOfSession({ type, session }) {
     if (type === 'client') {
       return {
         textBtn: CARD_OF_SESSION_MESSAGE[user].textBtn,
-        href: '/calendar'
+        href: '/calendar',
       };
     }
     return '';
@@ -51,7 +51,9 @@ export default function CardOfSession({ type, session }) {
                 <Text>{`${user.first_name} ${user.last_name}`}</Text>
               )}
               <div className="session-card__date">
-                {type === 'psychologist' && <p>{`${getMonthName(timeFrom)}, ${DAYS_NAME[timeFrom.day()]}`}</p>}
+                {type === 'psychologist' && (
+                  <p>{`${getMonthName(timeFrom)}, ${DAYS_NAME[timeFrom.day()]}`}</p>
+                )}
                 <p>{getSessionTime(timeFrom, timeTo)}</p>
               </div>
             </div>

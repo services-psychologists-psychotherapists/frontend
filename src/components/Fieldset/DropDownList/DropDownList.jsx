@@ -6,11 +6,14 @@ import { titlesDropDownElement } from '../../../constants/constants';
 
 export default function DropDownList({
   isFocused,
-  selectedValue,
   onChange,
   type,
   dropDownContent,
   element,
+  name,
+  selectedDropdownItems,
+  handleChange,
+  values,
 }) {
   if (dropDownContent.length === 0) {
     return null;
@@ -28,8 +31,11 @@ export default function DropDownList({
             item={item}
             type={type}
             element={element}
-            selectedValue={selectedValue}
             onChange={onChange}
+            name={name}
+            selectedDropdownItems={selectedDropdownItems}
+            values={values}
+            handleChange={handleChange}
           />
         </li>
       ))}
@@ -40,10 +46,16 @@ export default function DropDownList({
 DropDownList.propTypes = {
   element: PropTypes.string.isRequired,
   type: PropTypes.string,
-  selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.shape({})]).isRequired,
   isFocused: PropTypes.bool,
   onChange: PropTypes.func,
   dropDownContent: PropTypes.arrayOf(PropTypes.string),
+  name: PropTypes.string,
+
+  handleChange: PropTypes.func,
+  values: PropTypes.objectOf(PropTypes.string),
+  selectedDropdownItems: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.array, PropTypes.string])
+  ),
 };
 
 DropDownList.defaultProps = {
@@ -51,4 +63,8 @@ DropDownList.defaultProps = {
   onChange: () => {},
   type: null,
   dropDownContent: [],
+  name: null,
+  values: null,
+  handleChange: () => {},
+  selectedDropdownItems: {},
 };

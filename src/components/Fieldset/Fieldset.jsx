@@ -1,15 +1,14 @@
 import './Fieldset.css';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Prompt from './Prompt/Prompt';
 import Field from './Field/Field';
 import DropDownList from './DropDownList/DropDownList';
 import {
   checkboxDropDownElement,
-  checkboxType,
-  inputElement,
   radioDropDownElement,
-  radioType,
+  titlesDropDownElement,
+  inputElement,
 } from '../../constants/constants';
 
 export default function Fieldset({
@@ -30,62 +29,53 @@ export default function Fieldset({
   errors,
   isValid,
   promptClasses,
+  inputContainerClasses,
+  selectedDropdownItems,
 }) {
-  const [selectedValue, setSelectedValue] = useState('');
   const [isFocused, setIsFocused] = useState(false);
+  const [displayValue, setDisplayValue] = useState('');
 
-  const selectedCheckBoxCount = Object.values(selectedValue).filter((value) => value).length;
-  const selectedTitles = Object.keys(selectedValue).filter((key) => selectedValue[key]);
+  const selectedCheckBoxCount = selectedDropdownItems[name]
+    ? selectedDropdownItems[name].length
+    : 0;
+  const selectedTitles = selectedDropdownItems[name] || [];
 
   const handleOpenDropDown = (e) => {
     e.preventDefault();
     setIsFocused(!isFocused);
   };
 
-  const handleDropdownItemChange = (changedItem) => {
-    setSelectedValue(changedItem.value);
-  };
+  const getInputValue = () => (element === inputElement ? values[name] : displayValue);
 
-  let displayValue;
-  if (element === inputElement) {
-    displayValue = values[name] || '';
-  } else if (element === radioDropDownElement && typeForDropDown === checkboxType) {
-    displayValue = selectedTitles;
-  } else if (element === radioDropDownElement) {
-    displayValue = selectedValue;
-  } else if (element === checkboxDropDownElement && typeForDropDown === radioType) {
-    switch (true) {
-      case selectedCheckBoxCount === 0:
-        displayValue = '';
-        break;
-      default:
-        displayValue = 'Выбран 1 вариант';
-        break;
+  useEffect(() => {
+    const getDescrSelectedElements = (countElements) => {
+      if (countElements === 0) {
+        return setDisplayValue('');
+      }
+
+      if (countElements === 1) {
+        return setDisplayValue('Выбран 1 вариант');
+      }
+
+      if (countElements < 5 && countElements >= 2) {
+        return setDisplayValue(`Выбрано ${countElements} варианта`);
+      }
+
+      return setDisplayValue(`Выбрано ${countElements} вариантов`);
+    };
+
+    if (element === radioDropDownElement) {
+      setDisplayValue(selectedDropdownItems[name]);
     }
-  } else if (element === checkboxDropDownElement) {
-    const lastDigit = selectedCheckBoxCount % 10;
-    switch (true) {
-      case selectedCheckBoxCount === 0:
-        displayValue = '';
-        break;
-      case selectedCheckBoxCount === 11:
-        displayValue = `Выбрано ${selectedCheckBoxCount} вариантов`;
-        break;
-      case lastDigit === 1 && selectedCheckBoxCount !== 11:
-        displayValue = `Выбран ${selectedCheckBoxCount} вариант`;
-        break;
-      case lastDigit >= 2
-        && lastDigit <= 4
-        && (selectedCheckBoxCount < 12 || selectedCheckBoxCount > 14):
-        displayValue = `Выбрано ${selectedCheckBoxCount} варианта`;
-        break;
-      default:
-        displayValue = `Выбрано ${selectedCheckBoxCount} вариантов`;
-        break;
+
+    if (element === checkboxDropDownElement) {
+      getDescrSelectedElements(selectedCheckBoxCount);
     }
-  } else {
-    displayValue = selectedTitles;
-  }
+
+    if (element === titlesDropDownElement) {
+      setDisplayValue(selectedTitles);
+    }
+  }, [selectedDropdownItems]);
 
   return (
     <fieldset className="fieldset">
@@ -94,7 +84,7 @@ export default function Fieldset({
         title={title}
         type={typeForInput}
         name={name}
-        value={displayValue}
+        value={getInputValue()}
         disabled={disabled}
         placeholder={placeholder}
         minLength={minLength}
@@ -104,14 +94,18 @@ export default function Fieldset({
         handleChange={handleChange}
         onClick={handleOpenDropDown}
         isFocused={isFocused}
+        inputContainerClasses={inputContainerClasses}
       />
       <DropDownList
         element={element}
         type={typeForDropDown}
-        onChange={handleDropdownItemChange}
-        selectedValue={selectedValue}
+        onChange={handleChange}
         isFocused={isFocused}
         dropDownContent={dropDownContent}
+        name={name}
+        selectedDropdownItems={selectedDropdownItems}
+        handleChange={handleChange}
+        values={values}
       />
       <Prompt
         errors={errors[name]}
@@ -142,6 +136,10 @@ Fieldset.propTypes = {
   errors: PropTypes.objectOf(PropTypes.string),
   isValid: PropTypes.bool,
   promptClasses: PropTypes.string,
+  inputContainerClasses: PropTypes.string,
+  selectedDropdownItems: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.array, PropTypes.string])
+  ),
 };
 
 Fieldset.defaultProps = {
@@ -160,4 +158,6 @@ Fieldset.defaultProps = {
   isValid: true,
   handleChange: () => {},
   promptClasses: '',
+  inputContainerClasses: '',
+  selectedDropdownItems: {},
 };

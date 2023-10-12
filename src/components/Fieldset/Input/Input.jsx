@@ -81,7 +81,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   element: inputElement,
-  value: null,
+  value: '',
   placeholder: null,
   name: null,
   type: null,

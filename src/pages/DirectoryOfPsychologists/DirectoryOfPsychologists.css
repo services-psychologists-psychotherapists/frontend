@@ -1,0 +1,6 @@
+.directory-psychologists {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 80px 0;
+  row-gap: 60px;
+}
