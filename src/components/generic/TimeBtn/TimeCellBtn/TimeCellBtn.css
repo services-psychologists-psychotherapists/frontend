@@ -1,0 +1,19 @@
+.time-cell {
+  border: unset;
+  display: flex;
+  width: 88px;
+  padding: 10px 0px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  background-color: var(--bg-color-light-violet);
+  cursor: pointer;
+  font-family: var(--font-family-lato);
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.time-cell_active {
+  background-color: var(--border-color-dark-violet); /* поменять переменную */
+  color: #fff;
+}

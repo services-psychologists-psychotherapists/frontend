@@ -19,7 +19,7 @@ export default function MyPsychologist({ psychologist, nextSession }) {
             <PsychoName
               name={`${psychologist.first_name} ${psychologist.last_name}`}
               leftText={`Cессия ${psychologist.duration} мин.`}
-              rightText={`${psychologist.price} руб.`}
+              rightText={`${Number(psychologist.price).toLocaleString()} руб.`}
               description="Психолог"
             />
             <Button variant={nextSession ? 'secondary' : 'primary'} size={!isScreenSm ? 'm' : 'l'}>

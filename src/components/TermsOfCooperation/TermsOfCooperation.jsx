@@ -1,7 +1,7 @@
 import React from 'react';
-import './TermsOfCooperation.css';
 import HelpfulInformation from '../templates/HelpfulInformation/HelpfulInformation';
 import Button from '../generic/Button/Button';
+import './TermsOfCooperation.css';
 
 export default function TermsOfCooperation() {
   return (
@@ -22,6 +22,7 @@ export default function TermsOfCooperation() {
       <Button
         type="button"
         variant="secondary"
+        className="terms-cooperation__button"
         // TODO: настроить действие клика
         onClick={() => console.log('click')}
       >

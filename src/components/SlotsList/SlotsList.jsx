@@ -20,12 +20,10 @@ export default function SlotsList({ sessions, selectedDay }) {
       setOpenSlot(null);
     }
   };
-  console.log(sessions);
 
   return (
     <div className="scroller">
-      {/* prettier-ignore */}
-      <h2 className="scroller__title">{`${selectedDay.date()} ${getMonthName(selectedDay)}`}</h2>
+      <h2 className="scroller__title">{getMonthName(selectedDay)}</h2>
       {sessions.length > 0 ? (
         <ul className="slots">
           {sessions.map((session) => (
@@ -63,20 +61,9 @@ SlotsList.propTypes = {
         first_name: PropTypes.string,
         last_name: PropTypes.string,
         id: PropTypes.string,
-        avatar: PropTypes.string,
       }),
-      slot: PropTypes.shape({
-        psychologist: PropTypes.shape({
-          fitst_name: PropTypes.string,
-          last_name: PropTypes.string,
-          id: PropTypes.string,
-          avatar: PropTypes.string,
-        }),
-        datetime_from: PropTypes.string,
-        datetime_to: PropTypes.string,
-        is_free: PropTypes.bool,
-      }),
-      status: PropTypes.string,
+      datetime_from: PropTypes.string,
+      datetime_to: PropTypes.string,
       href: PropTypes.string,
     }).isRequired
   ).isRequired,

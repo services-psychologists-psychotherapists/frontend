@@ -11,7 +11,8 @@ export default function PageLayout({
   title,
   isLoggedIn,
   nav,
-  section
+  section,
+  type
 }) {
   const [isNavOpen, setIsNavOpen] = useState(false);
   const ref = useRef();
@@ -25,7 +26,9 @@ export default function PageLayout({
   return (
     <>
       <Header isLoggedIn={isLoggedIn} />
-      <section className="page-layout">
+      <section
+        className={`page-layout ${type === 'psychologist' ? `page-layout_type_${type}` : ''}`}
+      >
         <Title text={title} />
         {nav && (
           <>
@@ -46,9 +49,11 @@ PageLayout.propTypes = {
   isLoggedIn: bool.isRequired,
   nav: node,
   section: node,
+  type: string,
 };
 
 PageLayout.defaultProps = {
   nav: '',
   section: '',
+  type: '',
 };

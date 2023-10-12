@@ -19,8 +19,8 @@ export default {
       defaultValue: 'client',
     },
     session: {
+      type: 'object',
       control: {
-        type: 'object',
         defaultValue: null,
         keys: {
           client: {
@@ -44,16 +44,18 @@ export default {
           datetime_from: { type: 'string' },
           datetime_to: { type: 'string' },
           href: { type: 'string' },
-          status: { type: 'string' },
         },
       },
     },
-    isFree: { type: 'boolean' },
   },
 };
 
 function Template(args) {
-  return <div style={{ width: '900px' }}><CardOfSession {...args} /></div>;
+  return (
+    <div style={{ width: '900px' }}>
+      <CardOfSession {...args} />
+    </div>
+  );
 }
 
 export const Psychologist = Template.bind({});

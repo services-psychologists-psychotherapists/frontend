@@ -1,5 +1,4 @@
 import React from 'react';
-import './PageForPsychologists.css';
 import Welcome from '../../components/Welcome/Welcome';
 import bannerImg from '../../images/for_therapist_banner.svg';
 import Banner from '../../components/Banner/Banner';

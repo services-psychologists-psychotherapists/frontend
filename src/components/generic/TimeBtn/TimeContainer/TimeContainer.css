@@ -1,0 +1,30 @@
+.time-container {
+  width: 100%;
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  list-style-type: none;
+  padding-bottom: 12px;
+}
+
+.time-container::-webkit-scrollbar {
+  /* Стили повторяются, подумать */
+  background-color: var(--bg-color-white);
+  height: 4px;
+  border-radius: 4px;
+}
+
+.time-container::-webkit-scrollbar-thumb {
+  /* Стили повторяются, подумать */
+  background-color: var(--border-color-dark-violet);
+  border-radius: 4px;
+}
+
+/* TODO: Настроить когда будет дизайн */
+.time-container__not-found {
+  font-family: var(--font-family-lato);
+  font-size: 18px;
+  line-height: 24px;
+  height: 48px;
+}
