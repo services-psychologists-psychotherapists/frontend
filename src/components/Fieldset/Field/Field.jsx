@@ -20,6 +20,8 @@ export default function Field({
   onClick,
   isFocused,
   title,
+  inputContainerClasses,
+  id,
 }) {
   const fieldClasses = `field__input${element !== inputElement ? ' field__input_button' : ''}`;
 
@@ -42,7 +44,7 @@ export default function Field({
     <div className={`field field__label${disabled ? ' field__title_disabled' : ''}`}>
       <span className="field__label-text">{title}</span>
       <div
-        className={`field__input-container ${
+        className={`field__input-container${` ${inputContainerClasses}`} ${
           !isValid && !disabled ? ' field__input-container_invalid' : ''
         } ${disabled ? ' field__input-container_disabled' : ''}`}
       >
@@ -61,6 +63,7 @@ export default function Field({
           required={required}
           isEyeOpened={isEyeOpened}
           ownClasses={fieldClasses}
+          id={id}
         />
         <FieldButton
           onClick={handleClickOnButton}
@@ -89,8 +92,10 @@ Field.propTypes = {
   name: PropTypes.string,
   minLength: PropTypes.string,
   maxLength: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]).isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
   onClick: PropTypes.func,
+  inputContainerClasses: PropTypes.string,
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 Field.defaultProps = {
@@ -105,4 +110,7 @@ Field.defaultProps = {
   minLength: null,
   maxLength: null,
   onClick: () => {},
+  inputContainerClasses: '',
+  value: '',
+  id: null,
 };

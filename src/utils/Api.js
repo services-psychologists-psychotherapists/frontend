@@ -3,6 +3,7 @@ import axios from 'axios';
 const API_URL = 'https://sharewithme.acceleratorpracticum.ru/api/v1';
 
 const checkResponse = async (res) => {
+  // TODO: подумать про варианты
   if (res.status >= 200 && res.status < 300) {
     return res.data;
   }

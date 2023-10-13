@@ -2,18 +2,20 @@ import React from 'react';
 import './DropdownItem.css';
 import PropTypes from 'prop-types';
 import { checkboxType, radioType, titlesDropDownElement } from '../../../constants/constants';
-import { useForm } from '../../../hooks/useForm';
 import DropdownItemIcon from './DropdownItemIcon/DropdownItemIcon';
 import DropdownItemTitle from './DropdownItemTitle/DropdownItemTitle';
 import DropdownCustomInput from './DropdownCustomInput/DropdownCustomInput';
 
 export default function DropdownItem({
-  onChange, selectedValue, item, type, element
+  onChange,
+  item,
+  type,
+  element,
+  name,
+  selectedDropdownItems,
+  values,
+  handleChange,
 }) {
-  const { values, handleChange } = useForm({
-    custom: '',
-  });
-
   const isTitlesElement = element === titlesDropDownElement;
 
   const isRadioType = type === radioType;
@@ -23,12 +25,15 @@ export default function DropdownItem({
     if (isRadioType) {
       return ' dropdown-item__container_radio';
     }
+
     if (isCheckboxType) {
       return ' dropdown-item__container_checkbox';
     }
+
     if (isTitlesElement) {
       return ' dropdown-item__container_titles';
     }
+
     return '';
   };
 
@@ -36,11 +41,13 @@ export default function DropdownItem({
 
   const checkIsChecked = () => {
     if (isRadioType) {
-      return selectedValue === item;
+      return selectedDropdownItems[name] === item;
     }
+
     if (isCheckboxType) {
-      return selectedValue[item] || false;
+      return (selectedDropdownItems[name] && selectedDropdownItems[name].includes(item)) || false;
     }
+
     return false;
   };
 
@@ -54,23 +61,22 @@ export default function DropdownItem({
         item={item}
         onChange={onChange}
         checked={isChecked}
-        selectedValue={selectedValue}
+        name={name}
       />
       <DropdownItemTitle
         checked={isChecked}
         type={type}
         element={element}
         item={item}
-        selectedValue={selectedValue}
       />
       <DropdownCustomInput
         inputType="text"
         element={element}
-        name="custom"
+        name={name}
         item={item}
-        value={values.custom || ''}
+        values={values}
         onChange={handleChange}
-        selectedValue={selectedValue}
+        selectedDropdownItems={selectedDropdownItems}
       />
     </label>
   );
@@ -79,14 +85,22 @@ export default function DropdownItem({
 DropdownItem.propTypes = {
   element: PropTypes.string.isRequired,
   item: PropTypes.string,
-  selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   onChange: PropTypes.func,
   type: PropTypes.string,
+  name: PropTypes.string,
+  handleChange: PropTypes.func,
+  values: PropTypes.objectOf(PropTypes.string),
+  selectedDropdownItems: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.array, PropTypes.string])
+  ),
 };
 
 DropdownItem.defaultProps = {
   item: null,
-  selectedValue: null,
   onChange: () => {},
   type: null,
+  name: null,
+  values: null,
+  handleChange: () => {},
+  selectedDropdownItems: {},
 };
