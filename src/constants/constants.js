@@ -327,7 +327,7 @@ export const PSYCHOLOGIST_ACCOUNT_TITLES = {
     pageTitle: 'Профиль',
   },
 };
-export const HEADER_BURGER_MENU_LINKS = [...DROPDOWN_LINKS, ...HEADER_NAV_LINKS];
+export const HEADER_BURGER_MENU_LINKS = [...HEADER_DROPDOWN_LINKS, ...HEADER_NAV_LINKS];
 
 export const SCREEN_SM = 480;
 export const SCREEN_MD = 768;

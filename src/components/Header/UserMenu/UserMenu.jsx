@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from 'react';
 import './UserMenu.css';
 import CurrentUserContext from '../../../Context/CurrentUserContext';
 import NavLinksList from '../../NavLinksList/NavLinksList';
-import { DROPDOWN_LINKS, HEADER_BURGER_MENU_LINKS } from '../../../constants/constants';
+import { HEADER_DROPDOWN_LINKS, HEADER_BURGER_MENU_LINKS } from '../../../constants/constants';
 import useOutsideClick from '../../../hooks/useOnClickOutside';
 import Avatar from '../../generic/Avatar/Avatar';
 import { useResize } from '../../../hooks/useResize';
@@ -13,7 +13,7 @@ export default function UserMenu() {
   const ref = useRef();
   const { isScreenMd } = useResize();
 
-  const navLinks = isScreenMd ? DROPDOWN_LINKS : HEADER_BURGER_MENU_LINKS;
+  const navLinks = isScreenMd ? HEADER_DROPDOWN_LINKS : HEADER_BURGER_MENU_LINKS;
 
   useOutsideClick(ref, () => {
     setIsOpen(false);
