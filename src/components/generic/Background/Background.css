@@ -1,10 +1,16 @@
-.background {
+.background-container {
+  overflow: hidden;
+  position: absolute;
   top: 0;
-  bottom: 0;
   right: 0;
   left: 0;
-  position: absolute;
+  bottom: 0;
+  max-height: 740px;
   z-index: -100;
+}
+
+.background {
+  position: relative;
 }
 
 .circle {

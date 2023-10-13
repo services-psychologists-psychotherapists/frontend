@@ -1,6 +1,6 @@
 .page-layout {
   display: grid;
-  min-height: calc(100vh - 156px);
+  min-height: 584px;
   grid-template-areas:
     'section title'
     'nav children';

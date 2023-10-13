@@ -4,17 +4,20 @@ import './Banner.css';
 import Button from '../generic/Button/Button';
 import Title from '../generic/Title/Title';
 
+// prettier-ignore
 export default function Banner({
   imgLink, textBtn, title, description, imgSize, imgAlt, href
 }) {
   return (
-    <div className={`banner banner_size_${imgSize}`}>
-      <div className="banner__text">
-        <Title size="l" text={title} titleLvl="1" />
-        <p className="banner__description">{description}</p>
-        <Button href={href}>{textBtn}</Button>
+    <div className="banner-container">
+      <div className={`banner banner_size_${imgSize}`}>
+        <div className="banner__text">
+          <Title size="l" text={title} titleLvl="1" />
+          <p className="banner__description">{description}</p>
+          <Button href={href}>{textBtn}</Button>
+        </div>
+        <img className={`banner__img banner__img_size_${imgSize}`} src={imgLink} alt={imgAlt} />
       </div>
-      <img className={`banner__img banner__img_size_${imgSize}`} src={imgLink} alt={imgAlt} />
     </div>
   );
 }

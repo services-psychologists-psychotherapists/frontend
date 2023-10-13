@@ -1,3 +1,8 @@
+.banner-container {
+  height: calc(100vh - 156px);
+  max-height: 584px;
+}
+
 .banner {
   display: flex;
   gap: 20px;
