@@ -16,6 +16,8 @@ import Popup from '../generic/Popup/Popup';
 import SessionRegistrationForClient from '../../pages/SessionRegistrationForClient/SessionRegistrationForClient';
 import Auth from '../../pages/Auth/Auth';
 import { authUser, createUser } from '../../utils/Api';
+import DirectoryOfPsychologists from '../../pages/DirectoryOfPsychologists/DirectoryOfPsychologists';
+import Header from '../Header/Header';
 
 export default function App() {
   const navigate = useNavigate();
@@ -60,10 +62,10 @@ export default function App() {
   // };
 
   return (
-    // TODO: перенести хедер в app
     <div className="page">
       <CurrentUserContext.Provider value={CLIENT}>
         <PopupProvider>
+          <Header isLoggedIn />
           {/* TODO: настроить все роуты и внутренние роуты */}
           <Routes>
             <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
@@ -84,6 +86,10 @@ export default function App() {
             <Route
               path="/client_account_session-registration"
               element={<SessionRegistrationForClient navigate={navigate} />}
+            />
+            <Route
+              path="/directory_psychologists"
+              element={<DirectoryOfPsychologists isLoggedIn={isLoggedIn} />}
             />
           </Routes>
           <Popup />

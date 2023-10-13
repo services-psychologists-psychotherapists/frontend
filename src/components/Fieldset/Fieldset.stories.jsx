@@ -11,6 +11,7 @@ import {
   radioType,
   titlesDropDownElement,
 } from '../../constants/constants';
+import { useForm } from '../../hooks/useForm';
 
 export default {
   title: 'Global Components/Fieldset/Fieldset',
@@ -99,11 +100,46 @@ export default {
       type: 'boolean',
       description: 'Обазательное поле или нет',
     },
+    promptClasses: {
+      type: 'string',
+      description: 'Дополнительный класс промпта для изменения размера и работы с окружением',
+    },
+    values: {
+      type: 'object',
+      description: 'Значения инпутов из хука useForm',
+    },
+    handleChange: {
+      type: 'func',
+      description: 'Функция работающая с изменениями в инпутах из хука useForm',
+    },
+    errors: {
+      type: 'object',
+      description: 'Значения ошибок из хука useForm',
+    },
+    selectedDropdownItems: {
+      type: 'object',
+      description:
+        'Объект со значениями выпадающих списков (в основном значения это массивы) из хука useForm',
+    },
   },
 };
 
 const Template = function Field(args) {
-  return <Fieldset {...args} />;
+  const {
+    values, errors, handleChange, selectedDropdownItems
+  } = useForm();
+
+  return (
+    <form>
+      <Fieldset
+        handleChange={handleChange}
+        selectedDropdownItems={selectedDropdownItems}
+        values={values}
+        errors={errors}
+        {...args}
+      />
+    </form>
+  );
 };
 
 export const InputField = Template.bind({});

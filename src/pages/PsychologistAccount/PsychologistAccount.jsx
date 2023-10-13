@@ -61,9 +61,10 @@ export default function PsychologistAccount() {
       <section className="psychologist-account">
         {path !== 'profile' ? (
           <>
-            <BlockWithTitle title={PSYCHOLOGIST_ACCOUNT_TITLES[path].calendarTitle}>
-              <Calendar onDateCellClick={setCurrentDay} />
-            </BlockWithTitle>
+            <Calendar
+              titleText={PSYCHOLOGIST_ACCOUNT_TITLES[path].calendarTitle}
+              onDateCellClick={setCurrentDay}
+            />
 
             <BlockWithTitle title={PSYCHOLOGIST_ACCOUNT_TITLES[path].reminderTitle}>
               {path !== 'schedule' ? (

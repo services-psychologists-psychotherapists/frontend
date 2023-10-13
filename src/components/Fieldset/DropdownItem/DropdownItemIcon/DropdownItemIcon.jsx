@@ -4,27 +4,12 @@ import PropTypes from 'prop-types';
 import { checkboxType, radioType, titlesDropDownElement } from '../../../../constants/constants';
 
 export default function DropdownItemIcon({
-  type,
-  onChange,
-  selectedValue,
-  item,
-  element,
-  checked,
+  type, onChange, item, element, checked, name
 }) {
   const isTitlesElement = element === titlesDropDownElement;
 
   const isRadioType = type === radioType;
   const isCheckboxType = type === checkboxType;
-
-  const handleInputChange = (e) => {
-    const newValue = isRadioType
-      ? e.target.value
-      : {
-        ...selectedValue,
-        [item]: e.target.checked,
-      };
-    onChange({ value: newValue, type });
-  };
 
   const getDropdownItemIconClassName = () => {
     if (isRadioType && isTitlesElement) {
@@ -46,12 +31,14 @@ export default function DropdownItemIcon({
 
   return (
     type && (
+      // TODO: не инпуты?
       <input
         type={type}
         className={`dropdown-item__icon_${dropdownItemIconClassName}`}
         value={item}
         checked={checked}
-        onChange={handleInputChange}
+        onChange={onChange}
+        name={name}
       />
     )
   );
@@ -61,15 +48,15 @@ DropdownItemIcon.propTypes = {
   element: PropTypes.string.isRequired,
   checked: PropTypes.bool,
   item: PropTypes.string,
-  selectedValue: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   onChange: PropTypes.func,
   type: PropTypes.string,
+  name: PropTypes.string,
 };
 
 DropdownItemIcon.defaultProps = {
   checked: false,
   item: null,
-  selectedValue: null,
   onChange: () => {},
   type: null,
+  name: null,
 };
