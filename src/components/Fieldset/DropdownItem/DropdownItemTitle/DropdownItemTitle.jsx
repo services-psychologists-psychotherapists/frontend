@@ -9,7 +9,7 @@ export default function DropdownItemTitle({ item, element, checked }) {
 
   const isOther = item === 'Другое' && isCheckboxElement;
 
-  const geTitleStateClassName = () => {
+  const getTitleStateClassName = () => {
     if (isTitlesElement && checked) {
       return ' dropdown-item__title-titles_checked';
     }
@@ -19,7 +19,7 @@ export default function DropdownItemTitle({ item, element, checked }) {
     return '';
   };
 
-  const dropdownItemTitleClasses = geTitleStateClassName();
+  const dropdownItemTitleClasses = getTitleStateClassName();
 
   return !isOther && <p className={dropdownItemTitleClasses}>{item}</p>;
 }

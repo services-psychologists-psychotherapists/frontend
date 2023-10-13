@@ -21,7 +21,7 @@ import girls from '../images/how_to_start_talking_girls.svg';
 export const HEADER_NAV_LINKS = [
   {
     text: 'Каталог психологов',
-    link: '/catalog',
+    link: '/directory_psychologists',
   },
   {
     text: 'Психологам',
@@ -204,6 +204,9 @@ export const checkboxType = 'checkbox';
 
 export const dropDownLists = {
   genderList: ['женский', 'мужской', 'другое'],
+  genderForFilter: ['женский', 'мужской', 'не важно'],
+  experience: ['1-3 года', '4-6 лет', '7-10 лет', '10 и более'],
+  ageForFilter: ['25-30 лет', '31-40 лет', '41-50 лет', '51-60 лет', '60 лет и более'],
   approachList: [
     'Гештальт - терапия',
     'Экзистенциальный анализ',
@@ -413,3 +416,51 @@ export const PSYCHOLOGIST_INFO_TITLES = {
   institutes: 'Высшее образование',
   courses: 'Повышение квалификации',
 };
+
+export const PSYCHO_FILTER_DATA = [
+  {
+    element: checkboxDropDownElement,
+    name: 'experience',
+    placeholder: 'Выберите опыт работы',
+    title: 'Опыт работы',
+    dropDownContent: dropDownLists.experience,
+    typeForDropDown: 'checkbox',
+    required: true,
+  },
+  {
+    element: radioDropDownElement,
+    name: 'gender',
+    placeholder: 'Выберите пол',
+    title: 'Пол',
+    dropDownContent: dropDownLists.genderForFilter,
+    typeForDropDown: 'radio',
+    required: true,
+  },
+  {
+    element: checkboxDropDownElement,
+    name: 'age',
+    placeholder: 'Выберите возраст психолога',
+    title: 'Возраст',
+    dropDownContent: dropDownLists.ageForFilter,
+    typeForDropDown: 'checkbox',
+    required: true,
+  },
+  {
+    element: titlesDropDownElement,
+    name: 'themes',
+    placeholder: 'Выберите все подходящие варианты',
+    title: 'О чем хотите поговорить?',
+    dropDownContent: dropDownLists.mainGoalsOfWork,
+    typeForDropDown: 'checkbox',
+    required: true,
+  },
+  {
+    element: titlesDropDownElement,
+    name: 'themes2',
+    placeholder: 'Выберите все подходящие варианты',
+    title: 'Основные направления работы',
+    dropDownContent: dropDownLists.mainGoalsOfWork,
+    typeForDropDown: 'checkbox',
+    required: true,
+  },
+];

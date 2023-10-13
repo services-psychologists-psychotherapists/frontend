@@ -16,6 +16,7 @@ import Popup from '../generic/Popup/Popup';
 import SessionRegistrationForClient from '../../pages/SessionRegistrationForClient/SessionRegistrationForClient';
 import Auth from '../../pages/Auth/Auth';
 import { authUser, createUser } from '../../utils/Api';
+import DirectoryOfPsychologists from '../../pages/DirectoryOfPsychologists/DirectoryOfPsychologists';
 
 export default function App() {
   const navigate = useNavigate();
@@ -84,6 +85,10 @@ export default function App() {
             <Route
               path="/client_account_session-registration"
               element={<SessionRegistrationForClient navigate={navigate} />}
+            />
+            <Route
+              path="/directory_psychologists"
+              element={<DirectoryOfPsychologists isLoggedIn={isLoggedIn} />}
             />
           </Routes>
           <Popup />

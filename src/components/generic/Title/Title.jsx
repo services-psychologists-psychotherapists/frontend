@@ -3,6 +3,7 @@ import './Title.css';
 import PropTypes from 'prop-types';
 
 export default function Title({ size, text, titleLvl }) {
+  // Heading Title ?
   const Heading = `h${titleLvl}`;
   return <Heading className={`title title_size_${size}`}>{text}</Heading>;
 }
