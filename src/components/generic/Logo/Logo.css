@@ -19,3 +19,13 @@
   width: 32px;
   height: 32px;
 }
+
+@media screen and (max-width: 1024px) {
+  .logo__title {
+    font-size: 20px;
+  }
+  .logo__icon {
+    width: 25px;
+    height: 25px;
+  }
+}

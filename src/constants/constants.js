@@ -18,7 +18,7 @@ import form from '../images/how_to_start_form.svg';
 import clock from '../images/how_to_start_clock.svg';
 import girls from '../images/how_to_start_talking_girls.svg';
 
-export const NAVIGATION_LINKS = [
+export const HEADER_NAV_LINKS = [
   {
     text: 'Каталог психологов',
     link: '/directory_psychologists',
@@ -327,6 +327,10 @@ export const PSYCHOLOGIST_ACCOUNT_TITLES = {
     pageTitle: 'Профиль',
   },
 };
+export const HEADER_BURGER_MENU_LINKS = [...HEADER_DROPDOWN_LINKS, ...HEADER_NAV_LINKS];
+
+export const SCREEN_SM = 480;
+export const SCREEN_MD = 768;
 
 export const SCROLL_SPEED = 1;
 export const LENGTH_TO_START_SCROLLING = 5;
