@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Footer.css';
 import Logo from '../generic/Logo/Logo';
-import { SOCIAL_MEDIA_ICONS, NAVIGATION_LINKS } from '../../constants/constants';
+import { SOCIAL_MEDIA_ICONS, HEADER_NAV_LINKS } from '../../constants/constants';
 import NavLinksList from '../NavLinksList/NavLinksList';
 import ServiceDocuments from '../generic/ServiceDocuments/ServiceDocuments';
 
@@ -21,7 +21,7 @@ export default function Footer() {
       <div className="footer__content">
         <Logo />
         <nav>
-          <NavLinksList list={NAVIGATION_LINKS} navLink={false} />
+          <NavLinksList list={HEADER_NAV_LINKS} navLink={false} />
         </nav>
         <ul className="footer__sotial-networks">
           {SOCIAL_MEDIA_ICONS.map((icon) => (

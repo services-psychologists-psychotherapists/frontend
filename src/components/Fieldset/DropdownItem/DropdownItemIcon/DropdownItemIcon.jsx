@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import { checkboxType, radioType, titlesDropDownElement } from '../../../../constants/constants';
 
 export default function DropdownItemIcon({
-  type, onChange, item, element, checked, name
+  type, onChange, item,
+  element, checked, name,
 }) {
   const isTitlesElement = element === titlesDropDownElement;
 

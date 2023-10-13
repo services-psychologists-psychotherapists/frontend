@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import './PageLayout.css';
 import { node, string } from 'prop-types';
 import Title from '../../generic/Title/Title';
+import useOutsideClick from '../../../hooks/useOnClickOutside';
+
 // prettier-ignore
 export default function PageLayout({
   children,
@@ -10,6 +12,15 @@ export default function PageLayout({
   section,
   type
 }) {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+  const ref = useRef();
+
+  const handleClickMenu = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
+  useOutsideClick(ref, () => setIsNavOpen(false));
+
   return (
     <section
       className={`page-layout ${type === 'psychologist' ? `page-layout_type_${type}` : ''}`}
