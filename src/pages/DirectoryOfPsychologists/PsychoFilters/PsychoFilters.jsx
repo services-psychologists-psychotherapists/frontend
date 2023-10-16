@@ -6,9 +6,7 @@ import { PSYCHO_FILTER_DATA } from '../../../constants/constants';
 import { useForm } from '../../../hooks/useForm';
 
 export default function PsychoFilters() {
-  const {
-    values, handleChange, errors, resetForm, selectedDropdownItems
-  } = useForm(true);
+  const { values, handleChange, errors, resetForm, selectedDropdownItems } = useForm(true);
 
   const handleSubmit = () => {
     console.log({

@@ -12,7 +12,7 @@ export default function MyPsychologist({ psychologist, nextSession }) {
   const { isScreenSm } = useResize();
   return (
     <div className="your-psycho">
-      {psychologist ? (
+      {psychologist.id ? (
         <>
           <Avatar size="l" src={psychologist.avatar} />
           <div className="your-psycho__container">
