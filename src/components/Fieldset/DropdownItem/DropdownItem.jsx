@@ -63,12 +63,7 @@ export default function DropdownItem({
         checked={isChecked}
         name={name}
       />
-      <DropdownItemTitle
-        checked={isChecked}
-        type={type}
-        element={element}
-        item={item}
-      />
+      <DropdownItemTitle checked={isChecked} type={type} element={element} item={item} />
       <DropdownItemTitle checked={isChecked} type={type} element={element} item={item} />
       <DropdownCustomInput
         inputType="text"

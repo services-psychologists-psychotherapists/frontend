@@ -19,7 +19,7 @@ export default function CardOfSession({ type, session }) {
   let timeTo;
 
   const setCardData = () => {
-    if (session) {
+    if (session.datetime_from) {
       user = session.psychologist ? session.psychologist : session.client;
       timeFrom = moment(session.datetime_from, DATE_FORMAT);
       timeTo = moment(session.datetime_to, DATE_FORMAT);
@@ -42,7 +42,7 @@ export default function CardOfSession({ type, session }) {
 
   return (
     <div className={`session-card session-card_type_${type}`}>
-      {session ? (
+      {session.datetime_from ? (
         <>
           <div className={`session-card__header session-card__header_type_${type}`}>
             <Avatar size="s" src={user.avatar} />
@@ -64,7 +64,7 @@ export default function CardOfSession({ type, session }) {
             <Button href={session.href} size={!isScreenSm ? 'm' : 'l'}>
               {type === 'psychologist' ? 'Перейти' : 'Начать сессию'}
             </Button>
-            <Button onClick={() => { }} variant="secondary" size={!isScreenSm ? 'm' : 'l'}>
+            <Button onClick={() => {}} variant="secondary" size={!isScreenSm ? 'm' : 'l'}>
               Отменить
             </Button>
           </ButtonGroup>

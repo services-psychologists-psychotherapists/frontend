@@ -4,14 +4,13 @@ import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import PsychologistCard from '../../components/Cards/PsychologistCard/PsychologistCard';
 import Button from '../../components/generic/Button/Button';
 
-export default function PsychologistCardPage({ psychologist, isLoggedIn }) {
+export default function PsychologistCardPage({ psychologist }) {
   const { first_name: firstName, last_name: lastName } = psychologist;
 
   return (
     <PageLayout
       section={<Button variant="text-icon">Назад</Button>}
       title={`Психолог ${firstName} ${lastName}`}
-      isLoggedIn={isLoggedIn}
       type="psychologist"
     >
       <PsychologistCard psychologist={psychologist} type="full" />
@@ -65,5 +64,4 @@ PsychologistCardPage.propTypes = {
       })
     ),
   }).isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
 };

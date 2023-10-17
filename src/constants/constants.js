@@ -464,3 +464,5 @@ export const PSYCHO_FILTER_DATA = [
     required: true,
   },
 ];
+
+export const API_URL = 'https://sharewithme.acceleratorpracticum.ru/api/v1';

@@ -2,9 +2,7 @@ import './Prompt.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Prompt({
-  prompt, disabled, errors, values, promptClasses
-}) {
+export default function Prompt({ prompt, disabled, errors, values, promptClasses }) {
   const errorClassName = errors ? 'field-container__prompt_visible-error' : '';
   const promptClassName = prompt && !errors && !disabled && !values ? 'field-container__prompt_visible-prompt' : '';
 
