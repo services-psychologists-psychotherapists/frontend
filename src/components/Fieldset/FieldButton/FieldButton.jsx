@@ -2,9 +2,9 @@ import './FieldButton.css';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  checkboxDropDownElement,
-  radioDropDownElement,
-  titlesDropDownElement,
+  checkboxDropdownElement,
+  radioDropdownElement,
+  titlesDropdownElement,
 } from '../../../constants/constants';
 import FieldButtonImage from './FieldButtonImage/FieldButtonImage';
 
@@ -17,9 +17,9 @@ export default function FieldButton({
   isValid,
   isFocused,
 }) {
-  const isRadioElement = element === radioDropDownElement;
-  const isCheckboxElement = element === checkboxDropDownElement;
-  const isTitlesElement = element === titlesDropDownElement;
+  const isRadioElement = element === radioDropdownElement;
+  const isCheckboxElement = element === checkboxDropdownElement;
+  const isTitlesElement = element === titlesDropdownElement;
   const isInputPasswordType = inputType === 'password';
 
   const iconClasses = `field-button${isFocused && !isInputPasswordType ? ' rotate' : ''}`;

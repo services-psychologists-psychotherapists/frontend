@@ -193,18 +193,18 @@ export const INPUT_ICONS = {
 // --------------FIELD_ELEMENTS--------------- //
 
 export const inputElement = 'input-element';
-export const radioDropDownElement = 'radio-dropdown-element';
-export const checkboxDropDownElement = 'checkbox-dropdown-element';
-export const titlesDropDownElement = 'titles-dropdown-element';
+export const radioDropdownElement = 'radio-dropdown-element';
+export const checkboxDropdownElement = 'checkbox-dropdown-element';
+export const titlesDropdownElement = 'titles-dropdown-element';
 
 // --------------DROPDOWN_TYPES--------------- //
 
 export const radioType = 'radio';
 export const checkboxType = 'checkbox';
 
-export const dropDownLists = {
-  genderList: ['женский', 'мужской', 'другое'],
-  genderForFilter: ['женский', 'мужской', 'не важно'],
+export const dropdownLists = {
+  genderList: ['Женский', 'Мужской', 'Другое'],
+  genderForFilter: ['Женский', 'Мужской', 'Не важно'],
   experience: ['1-3 года', '4-6 лет', '7-10 лет', '10 и более'],
   ageForFilter: ['25-30 лет', '31-40 лет', '41-50 лет', '51-60 лет', '60 лет и более'],
   approachList: [
@@ -212,7 +212,7 @@ export const dropDownLists = {
     'Экзистенциальный анализ',
     'Телесная терапия',
     'Панические атаки',
-    'Другое',
+    'Другой вариант',
   ],
   mainGoalsOfWork: [
     'Отношения с партнером',
@@ -345,6 +345,7 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
     name: 'email_regist',
     typeForInput: 'email',
     required: true,
+    promptClasses: 'auth__prompt',
   },
   {
     element: inputElement,
@@ -370,6 +371,7 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
     required: true,
     prompt:
       'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ',
+    promptClasses: 'auth__prompt',
   },
   {
     element: inputElement,
@@ -415,48 +417,90 @@ export const PSYCHOLOGIST_INFO_TITLES = {
 
 export const PSYCHO_FILTER_DATA = [
   {
-    element: checkboxDropDownElement,
+    element: radioDropdownElement,
     name: 'experience',
     placeholder: 'Выберите опыт работы',
     title: 'Опыт работы',
-    dropDownContent: dropDownLists.experience,
-    typeForDropDown: 'checkbox',
-    required: true,
+    dropdownContent: dropdownLists.experience,
+    typeForDropdown: 'radio',
+    required: false,
   },
   {
-    element: radioDropDownElement,
+    element: radioDropdownElement,
     name: 'gender',
     placeholder: 'Выберите пол',
     title: 'Пол',
-    dropDownContent: dropDownLists.genderForFilter,
-    typeForDropDown: 'radio',
-    required: true,
+    dropdownContent: dropdownLists.genderForFilter,
+    typeForDropdown: 'radio',
+    required: false,
   },
   {
-    element: checkboxDropDownElement,
+    element: radioDropdownElement,
     name: 'age',
     placeholder: 'Выберите возраст психолога',
     title: 'Возраст',
-    dropDownContent: dropDownLists.ageForFilter,
-    typeForDropDown: 'checkbox',
-    required: true,
+    dropdownContent: dropdownLists.ageForFilter,
+    typeForDropdown: 'radio',
+    required: false,
   },
   {
-    element: titlesDropDownElement,
+    element: titlesDropdownElement,
     name: 'themes',
     placeholder: 'Выберите все подходящие варианты',
     title: 'О чем хотите поговорить?',
-    dropDownContent: dropDownLists.mainGoalsOfWork,
-    typeForDropDown: 'checkbox',
-    required: true,
+    dropdownContent: dropdownLists.mainGoalsOfWork,
+    typeForDropdown: 'checkbox',
+    required: false,
   },
   {
-    element: titlesDropDownElement,
-    name: 'themes2',
+    element: checkboxDropdownElement,
+    name: 'approaches',
     placeholder: 'Выберите все подходящие варианты',
     title: 'Основные направления работы',
-    dropDownContent: dropDownLists.mainGoalsOfWork,
-    typeForDropDown: 'checkbox',
+    dropdownContent: dropdownLists.approachList,
+    typeForDropdown: 'checkbox',
+    required: false,
+    customElement: 'Другой вариант',
+  },
+];
+
+export const INPUT_DATA_FOR_RESET_PASSWORD = [
+  {
+    element: inputElement,
+    title: 'Email',
+    name: 'email_change_password',
+    typeForInput: 'email',
     required: true,
+    minLength: '1',
+    disabled: true,
+    placeholder: 'example@mail.ru',
+  },
+  {
+    element: inputElement,
+    title: 'Введите текущий пароль',
+    name: 'old_password_change_password',
+    typeForInput: 'password',
+    required: true,
+    minLength: '1',
+  },
+  {
+    element: inputElement,
+    title: 'Придумайте новый пароль',
+    name: 'new_password_change_password',
+    typeForInput: 'password',
+    required: true,
+    minLength: '1',
+    prompt:
+      'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ',
+    promptClasses: 'change-password__prompt',
+    fieldsetClasses: 'change-password__fieldset',
+  },
+  {
+    element: inputElement,
+    title: 'Повторите новый пароль',
+    name: 'new2_password_change_password',
+    typeForInput: 'password',
+    required: true,
+    minLength: '1',
   },
 ];

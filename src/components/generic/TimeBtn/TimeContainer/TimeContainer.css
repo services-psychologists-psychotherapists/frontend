@@ -23,6 +23,7 @@
 
 /* TODO: Настроить когда будет дизайн */
 .time-container__not-found {
+  color: var(--text-color-dark-blue);
   font-family: var(--font-family-lato);
   font-size: 18px;
   line-height: 24px;

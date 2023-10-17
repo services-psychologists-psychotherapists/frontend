@@ -53,6 +53,10 @@
   font-weight: var(--text-weight-title);
 }
 
+.calendar__date:focus{
+  outline: 2px solid var(--border-color-medium-violet);
+}
+
 .calendar__cell {
   display: flex;
   justify-content: center;

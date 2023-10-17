@@ -14,7 +14,7 @@
   color: var(--text-color-dark-blue);
 }
 
-.field__label_disabled {
+.disabled-field {
   color: var(--text-color-disabled);
 }
 
@@ -27,7 +27,7 @@
   align-items: center;
   border: 1px solid var(--border-color-medium-violet);
   border-radius: 12px;
-  margin-bottom: 8px;
+  margin-bottom: 3px;
 }
 
 .field__input-container_disabled {

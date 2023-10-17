@@ -46,3 +46,13 @@
   z-index: -1;
   height: 40px;
 }
+
+.dropdown-item__icon_radio:focus,
+.dropdown-item__icon_checkbox:focus {
+  outline: 2px solid var(--border-color-medium-violet);
+}
+
+.dropdown-item__icon_title:focus {
+  outline: 2px solid var(--border-color-medium-violet);
+  border-radius: 20px;
+}

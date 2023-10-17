@@ -1,0 +1,32 @@
+.auth__form-login_buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  column-gap: 28px;
+  align-content: center;
+  align-items: center;
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0;
+  }
+}
+
+.auth__form-login {
+  max-width: 522px;
+  width: 100%;
+  padding: 40px 0 0;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  margin-bottom: 27.2vh; /* ??? */
+  animation: fadeOut 1s;
+}
+
+.auth__form-login_fields {
+  list-style-type: none;
+}

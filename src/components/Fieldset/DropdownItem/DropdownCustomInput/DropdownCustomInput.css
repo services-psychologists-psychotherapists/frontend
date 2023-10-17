@@ -14,7 +14,6 @@
 }
 
 .dropdown-item__input:focus {
-  outline: none;
   color: var(--text-color-dark-violet);
   border-bottom: 1px solid var(--border-color-dark-violet);
 }
@@ -27,4 +26,9 @@
 
 .dropdown-item__input_invalid {
   color: var(--text-color-error);
+}
+
+.dropdown-item__other:focus {
+  border-radius: 0;
+  outline: none;
 }

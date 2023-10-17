@@ -7,16 +7,19 @@ import Footer from '../Footer/Footer';
 import NotFound from '../../pages/NotFound/NotFound';
 import PsychologistAccount from '../../pages/PsychologistAccount/PsychologistAccount';
 import CurrentUserContext from '../../Context/CurrentUserContext';
-import { CLIENT, PSYCHO } from '../../constants/db';
+import { CLIENT } from '../../constants/db';
 import ClientHomePage from '../../pages/ClientHomePage/ClientHomePage';
 import ButtonUp from '../generic/ButtonUp/ButtonUp';
-import PsychologistCardPage from '../../pages/PsychologistsCardPage/PsychologistsCardPage';
 import { PopupProvider } from '../../hooks/usePopup';
 import Popup from '../generic/Popup/Popup';
 import SessionRegistrationForClient from '../../pages/SessionRegistrationForClient/SessionRegistrationForClient';
 import Auth from '../../pages/Auth/Auth';
-import { authUser, createUser } from '../../utils/Api';
+import {
+  authUser,
+  createUser,
+} from '../../utils/Api';
 import DirectoryOfPsychologists from '../../pages/DirectoryOfPsychologists/DirectoryOfPsychologists';
+import ChangePassword from '../../pages/PasswordReset/ChangePassword';
 
 export default function App() {
   const navigate = useNavigate();
@@ -32,7 +35,7 @@ export default function App() {
     try {
       const jwt = await authUser(data);
 
-      setJwt('/client_account', jwt.refresh);
+      setJwt('/client_account', jwt.access);
     } catch (err) {
       console.log(err);
     }
@@ -54,18 +57,10 @@ export default function App() {
     }
   };
 
-  // const signOut = () => {
-  //   setIsLoggedIn(false);
-  //   localStorage.clear();
-  //   navigate('/');
-  // };
-
   return (
-    // TODO: перенести хедер в app
     <div className="page">
       <CurrentUserContext.Provider value={CLIENT}>
         <PopupProvider>
-          {/* TODO: настроить все роуты и внутренние роуты */}
           <Routes>
             <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
             <Route path="/for_a_therapist" element={<PageForPsychologists />} />
@@ -79,16 +74,18 @@ export default function App() {
               element={<Auth isLoggedIn={isLoggedIn} getJwt={getJwt} signUp={signUp} />}
             />
             <Route
-              path="/psychologist"
-              element={<PsychologistCardPage psychologist={PSYCHO} isLoggedIn={isLoggedIn} />}
-            />
-            <Route
               path="/client_account_session-registration"
               element={<SessionRegistrationForClient navigate={navigate} />}
             />
             <Route
               path="/directory_psychologists"
-              element={<DirectoryOfPsychologists isLoggedIn={isLoggedIn} />}
+              element={<DirectoryOfPsychologists />}
+            />
+            <Route
+              path="/password-reset"
+              element={
+                <ChangePassword navigate={navigate} />
+              }
             />
           </Routes>
           <Popup />

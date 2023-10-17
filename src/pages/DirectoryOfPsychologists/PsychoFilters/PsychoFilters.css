@@ -9,6 +9,11 @@
   background: var(--bg-color-light-violet);
 }
 
+.psycho-filters-container {
+  max-height: min-content;
+  padding-bottom: 50px;
+}
+
 .psycho-filters__header {
   display: flex;
   flex-direction: row;
@@ -20,6 +25,7 @@
   display: flex;
   flex-direction: row;
   gap: 12px;
+  align-items: center;
 }
 
 .psycho-filters__header-icon {
@@ -36,10 +42,6 @@
   font-style: normal;
   font-weight: 500;
   line-height: 30px;
-}
-
-.psycho-filters__header-button {
-  /* line-height: 24px; */
 }
 
 .psycho-filters__filter {

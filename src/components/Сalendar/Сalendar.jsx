@@ -28,14 +28,10 @@ export default function Сalendar({
   const formattedlastDay = lastDay.format('D MMMM');
 
   const handleSelectDay = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' || e.type === 'click') {
       setSelectedDay(e.target.id);
+      onDateCellClick(moment(e.target.id, 'DD.MM.YYYY'));
     }
-    if (e.type === 'click') {
-      setSelectedDay(e.target.id);
-    }
-
-    onDateCellClick(moment(e.target.id, 'DD.MM.YYYY'));
   };
 
   const switchToNextWeeks = () => {
@@ -78,7 +74,6 @@ export default function Сalendar({
       setDates(newDates);
     };
 
-    // prettier-ignore
     const handleChangeWeeks = () => {
       if (today.isSameOrAfter(startDay, 'week') && today.isSameOrBefore(lastDay, 'week')) {
         setIsChangedWeeks(false);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import './PsychologistCard.css';
 import PropTypes from 'prop-types';
@@ -7,8 +7,13 @@ import ProfileInfoBlock from '../../templates/ProfileInfoBlock/ProfileInfoBlock'
 import Text from '../../generic/Text/Text';
 import PsychoName from '../../generic/PsychoName/PsychoName';
 import { DATE_FORMAT } from '../../../constants/constants';
-import { getAge, getMonthName, getSessionTime } from '../../../utils/helpers';
+import {
+  getAge,
+  getMonthName,
+  getFormattedLocalTimeArr,
+} from '../../../utils/helpers';
 import Button from '../../generic/Button/Button';
+import TimeContainer from '../../generic/TimeBtn/TimeContainer/TimeContainer';
 
 export default function PsychologistCard({ type, psychologist }) {
   const {
@@ -27,17 +32,35 @@ export default function PsychologistCard({ type, psychologist }) {
     slots,
   } = psychologist;
 
-  const day = moment(slots[0].datetime_from, DATE_FORMAT);
+  const [timeCells, setTimeCells] = useState([]);
+
+  const getTheNearestDate = (slotsList) => {
+    if (slotsList && slotsList.length > 0) {
+      const day = moment(slotsList[0].datetime_from, DATE_FORMAT);
+
+      return getMonthName(day);
+    }
+
+    return '';
+  };
+
+  useEffect(() => {
+    const time = getFormattedLocalTimeArr(slots);
+
+    if (time.length > 0) {
+      setTimeCells(time[0].times);
+    }
+  }, [slots]);
 
   const getEducations = (educations) => (
-    <ul className="psycho-card__list">
+    <ul className="psycho-card__list psycho-card__list-education">
       {educations.map((education) => (
-        <li key={education.id} className="psycho-card__education">
+        <li key={education.title} className="psycho-card__education">
           <Text type="span">{education.graduation_year}</Text>
           <Text type="span">{education.title}</Text>
           <Text type="span">{`Направление: ${education.speciality}`}</Text>
           {education !== educations[courses.length - 1] && educations.length > 1 && (
-            <span className="line" />
+          <span className="line" />
           )}
         </li>
       ))}
@@ -53,6 +76,11 @@ export default function PsychologistCard({ type, psychologist }) {
       ))}
     </ul>
   );
+
+  const handleTimeClick = (e) => {
+    e.stopPropagation();
+    console.log('timeClick');
+  };
 
   return (
     <div className={`psycho-card ${type ? 'psycho-card_type_full' : ''}`}>
@@ -71,34 +99,44 @@ export default function PsychologistCard({ type, psychologist }) {
         {type !== 'full' && <Text>{about}</Text>}
         <div className="next-sessions">
           <h3 className="next-sessions__title">Ближайшее свободное время</h3>
-          <Text>{getMonthName(day)}</Text>
-          <ul className="psycho-card__list">
-            {slots.map((slot) => (
-              <li key={slot.id} className="next-session__slot">
-                <Text>{getSessionTime(moment(slot.datetime_from, DATE_FORMAT))}</Text>
-              </li>
-            ))}
-          </ul>
+          <Text>{getTheNearestDate(slots)}</Text>
+          <TimeContainer
+            timeCells={timeCells || []}
+            containerClassName="psycho-card__time-container"
+            onClick={handleTimeClick}
+          />
           <Button variant="text" href="/make_appointment">
             Выбрать другое время
           </Button>
         </div>
         {type === 'full' && (
           <>
-            <ProfileInfoBlock title="О себе">
-              <Text>{about}</Text>
-            </ProfileInfoBlock>
-            <ProfileInfoBlock title="Опыт работы">
-              <Text>{getAge(experience)}</Text>
-            </ProfileInfoBlock>
-            <ProfileInfoBlock title="С чем работает">{getTags(themes, 'tag')}</ProfileInfoBlock>
-            <ProfileInfoBlock title="Подход в работе">{getTags(approaches)}</ProfileInfoBlock>
-            <ProfileInfoBlock title="Высшее образование">
-              <ul className="psycho-card__list">{getEducations(institutes)}</ul>
-            </ProfileInfoBlock>
-            <ProfileInfoBlock title="Повышение квалификации">
-              <ul className="psycho-card__list">{getEducations(courses)}</ul>
-            </ProfileInfoBlock>
+            {about && (
+              <ProfileInfoBlock title="О себе">
+                <Text>{about}</Text>
+              </ProfileInfoBlock>
+            )}
+            {age && (
+              <ProfileInfoBlock title="Опыт работы">
+                <Text>{getAge(experience)}</Text>
+              </ProfileInfoBlock>
+            )}
+            {(themes && themes.length > 0) && (
+              <ProfileInfoBlock title="С чем работает">{getTags(themes, 'tag')}</ProfileInfoBlock>
+            )}
+            {(approaches && approaches.length > 0) && (
+              <ProfileInfoBlock title="Подход в работе">{getTags(approaches)}</ProfileInfoBlock>
+            )}
+            {(institutes && institutes.length > 0) && (
+              <ProfileInfoBlock title="Высшее образование">
+                <div className="psycho-card__list">{getEducations(institutes)}</div>
+              </ProfileInfoBlock>
+            )}
+            {(courses && courses.length > 0) && (
+              <ProfileInfoBlock title="Повышение квалификации">
+                <div className="psycho-card__list">{getEducations(courses)}</div>
+              </ProfileInfoBlock>
+            )}
           </>
         )}
       </div>
