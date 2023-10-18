@@ -6,9 +6,10 @@
   grid-template-areas:
     'img header'
     'img content';
-  grid-template-columns: auto auto;
+  grid-template-columns: minmax(min-content, 152px) auto;
   column-gap: 28px;
   width: 100%;
+  background-color: #fff;
 }
 
 .psycho-card_type_full {
@@ -64,6 +65,10 @@
   flex-wrap: wrap;
 }
 
+.psycho-card__time-container {
+  max-width: 600px;
+}
+
 .next-sessions > .psycho-card__list {
   margin-bottom: 12px;
 }
@@ -96,4 +101,9 @@
     grid-template-columns: auto 1fr;
     align-items: center;
   }
+}
+
+.psycho-card__list-education {
+  flex-direction: column;
+  width: 100%;
 }

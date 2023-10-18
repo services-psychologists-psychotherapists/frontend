@@ -3,17 +3,17 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Prompt from './Prompt/Prompt';
 import Field from './Field/Field';
-import DropDownList from './DropDownList/DropDownList';
+import ListWithDropdown from './ListWithDropdown/ListWithDropdown';
 import {
-  checkboxDropDownElement,
-  radioDropDownElement,
-  titlesDropDownElement,
+  checkboxDropdownElement,
+  radioDropdownElement,
+  titlesDropdownElement,
   inputElement,
 } from '../../constants/constants';
 
 export default function Fieldset({
   title,
-  typeForDropDown,
+  typeForDropdown,
   typeForInput,
   name,
   prompt,
@@ -23,15 +23,19 @@ export default function Fieldset({
   maxLength,
   required,
   element,
-  dropDownContent,
+  dropdownContent,
   values,
   handleChange,
   errors,
   isValid,
   promptClasses,
+  fieldsetClasses,
   inputContainerClasses,
   selectedDropdownItems,
   id,
+  customElement,
+  resetCustomValue,
+  setCustomValue,
 }) {
   const [isFocused, setIsFocused] = useState(false);
   const [displayValue, setDisplayValue] = useState('');
@@ -41,12 +45,14 @@ export default function Fieldset({
     : 0;
   const selectedTitles = selectedDropdownItems[name] || [];
 
-  const handleOpenDropDown = (e) => {
+  const handleOpenDropdown = (e) => {
     e.preventDefault();
     setIsFocused(!isFocused);
   };
 
   const getInputValue = () => (element === inputElement ? values[name] : displayValue);
+
+  const getHandleChangeForDropdown = () => (typeForDropdown ? () => {} : handleChange);
 
   useEffect(() => {
     const getDescrSelectedElements = (countElements) => {
@@ -65,21 +71,23 @@ export default function Fieldset({
       return setDisplayValue(`Выбрано ${countElements} вариантов`);
     };
 
-    if (element === radioDropDownElement) {
+    if (element === radioDropdownElement) {
       setDisplayValue(selectedDropdownItems[name]);
     }
 
-    if (element === checkboxDropDownElement) {
+    if (element === checkboxDropdownElement) {
       getDescrSelectedElements(selectedCheckBoxCount);
     }
 
-    if (element === titlesDropDownElement) {
+    if (element === titlesDropdownElement) {
       setDisplayValue(selectedTitles);
     }
   }, [selectedDropdownItems]);
 
+  const getFielsetClasses = (classes) => (classes ? ` ${classes}` : '');
+
   return (
-    <fieldset className="fieldset">
+    <fieldset className={`fieldset${getFielsetClasses(fieldsetClasses)}`} id={name}>
       <Field
         element={element}
         title={title}
@@ -92,28 +100,29 @@ export default function Fieldset({
         maxLength={maxLength}
         required={required}
         isValid={isValid}
-        handleChange={handleChange}
-        onClick={handleOpenDropDown}
+        onChange={getHandleChangeForDropdown()}
+        onClick={handleOpenDropdown}
         isFocused={isFocused}
         inputContainerClasses={inputContainerClasses}
         id={id}
       />
-      <DropDownList
+      <ListWithDropdown
         element={element}
-        type={typeForDropDown}
+        type={typeForDropdown}
         onChange={handleChange}
         isFocused={isFocused}
-        dropDownContent={dropDownContent}
+        dropdownContent={dropdownContent}
         name={name}
         selectedDropdownItems={selectedDropdownItems}
-        handleChange={handleChange}
         values={values}
+        customElement={customElement}
+        resetCustomValue={resetCustomValue}
+        setCustomValue={setCustomValue}
       />
       <Prompt
         errors={errors[name]}
         prompt={prompt}
         disabled={disabled}
-        values={values[name]}
         promptClasses={promptClasses}
       />
     </fieldset>
@@ -131,8 +140,8 @@ Fieldset.propTypes = {
   typeForInput: PropTypes.string,
   minLength: PropTypes.string,
   maxLength: PropTypes.string,
-  typeForDropDown: PropTypes.string,
-  dropDownContent: PropTypes.arrayOf(PropTypes.string),
+  typeForDropdown: PropTypes.string,
+  dropdownContent: PropTypes.arrayOf(PropTypes.string),
   values: PropTypes.objectOf(PropTypes.string),
   handleChange: PropTypes.func,
   errors: PropTypes.objectOf(PropTypes.string),
@@ -143,6 +152,10 @@ Fieldset.propTypes = {
     PropTypes.oneOfType([PropTypes.array, PropTypes.string])
   ),
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  fieldsetClasses: PropTypes.string,
+  customElement: PropTypes.string,
+  resetCustomValue: PropTypes.func,
+  setCustomValue: PropTypes.func,
 };
 
 Fieldset.defaultProps = {
@@ -155,8 +168,8 @@ Fieldset.defaultProps = {
   typeForInput: null,
   minLength: null,
   maxLength: null,
-  typeForDropDown: null,
-  dropDownContent: [],
+  typeForDropdown: null,
+  dropdownContent: [],
   errors: null,
   isValid: true,
   handleChange: () => {},
@@ -164,4 +177,8 @@ Fieldset.defaultProps = {
   inputContainerClasses: '',
   selectedDropdownItems: {},
   id: null,
+  fieldsetClasses: '',
+  customElement: '',
+  resetCustomValue: () => {},
+  setCustomValue: () => {},
 };

@@ -2,10 +2,10 @@ import './Input.css';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  checkboxDropDownElement,
+  checkboxDropdownElement,
   inputElement,
-  radioDropDownElement,
-  titlesDropDownElement,
+  radioDropdownElement,
+  titlesDropdownElement,
 } from '../../../constants/constants';
 import TitlesContainer from '../TitlesContainer/TitlesContainer';
 
@@ -26,17 +26,18 @@ export default function Input({
   onClick,
   id,
 }) {
-  const inputClasses = `input${element === inputElement ? ' input_hidden-placeholder' : ''}${
+  const inputClasses = `input${
+    element === inputElement ? ' input_hidden-placeholder' : ''}${
     !isValid ? ' input_invalid' : ''
   }${
-    element === radioDropDownElement
-    || element === checkboxDropDownElement
-    || element === titlesDropDownElement
+    element === radioDropdownElement
+    || element === checkboxDropdownElement
+    || element === titlesDropdownElement
       ? ' input_button'
       : ''
   }`;
 
-  return element === titlesDropDownElement ? (
+  return element === titlesDropdownElement ? (
     <ul
       role="menu"
       onKeyDown={onClick}

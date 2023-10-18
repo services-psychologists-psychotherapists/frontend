@@ -14,10 +14,6 @@
   border: none;
 }
 
-.dropdown-item__container:focus {
-  outline: none;
-}
-
 .dropdown-item__container_radio {
   gap: 8px;
 }

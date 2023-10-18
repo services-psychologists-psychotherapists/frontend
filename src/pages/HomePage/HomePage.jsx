@@ -14,7 +14,7 @@ export default function HomePage() {
         imgLink={bannerImg}
         textBtn="Подобрать психолога"
         title="Подберем психолога, который вам поможет"
-        href="/catalog"
+        href="/directory_psychologists"
       />
       <Background animated />
       <AboutProblems />

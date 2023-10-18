@@ -12,7 +12,8 @@
 }
 
 .field-button:focus {
-  outline: none;
+  outline: 2px solid var(--border-color-medium-violet);
+  border-radius: 12px;
 }
 
 .rotate {

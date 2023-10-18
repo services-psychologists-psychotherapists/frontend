@@ -37,7 +37,6 @@ export default function AuthLogin({
               handleChange={handleChange}
               errors={errors}
               isValid={getInvalidInput(inputValidStatus[i.name])}
-              promptClasses="auth__prompt"
             />
           </li>
         ))}

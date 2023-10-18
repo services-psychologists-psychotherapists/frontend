@@ -1,0 +1,72 @@
+.pagination-list {
+  max-width: 212px;
+  width: min-content;
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  align-items: center;
+  align-self: center;
+}
+
+.pagination-list__previous,
+.pagination-list__next {
+  width: 24px;
+  height: 24px;
+  transition: .3s ease-in-out;
+}
+
+.pagination-list__previous,
+.pagination-list__next,
+.pagination-list__page-number {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.pagination-list__previous {
+  background-image: url('../../../images/calendar_prev_weeks.svg');
+}
+
+.disabled-switch {
+  opacity: .5;
+  cursor: unset;
+}
+
+.pagination-list__next {
+  background-image: url('../../../images/calendar_next_weeks.svg');
+}
+
+.pagination-list__container {
+  list-style-type: none;
+  max-width: 124px;
+  width: min-content;
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+}
+
+.pagination-list__page-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  color: var(--text-color-dark-blue);
+  font-family: var(--font-family-lato);
+  font-size: 18px;
+  font-style: normal;
+  line-height: 24px;
+  transition: .3s ease-in-out;
+}
+
+.pagination-list__page-number:focus,
+.pagination-list__previous:focus,
+.pagination-list__next:focus {
+  outline: 2px solid var(--border-color-medium-violet);
+}
+
+.pagination-list__page-number_active {
+  background: var(--border-color-medium-violet); /* поменять название перем. */
+  color: #fff;
+}

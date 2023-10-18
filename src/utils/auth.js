@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { API_URL } from '../constants/constants';
+import { getJwtFromLocalStorage } from './helpers';
 
 const checkResponse = async (res) => {
   // TODO: подумать про варианты
@@ -33,5 +34,66 @@ export const getRole = async (token) => {
   const response = await axios.get(`${API_URL}/auth/users/me/`, {
     headers: { Authorization: `JWT ${token}` },
   });
+  return checkResponse(response);
+};
+
+// export const verifiJwt = async (token) => {
+//   const response = await axios.post(`${API_URL}/auth/jwt/verify/`, {
+//     token,
+//   });
+
+//   return checkResponse(response);
+// };
+
+export const refreshToken = async (token) => {
+  const response = await axios.post(`${API_URL}/auth/jwt/refresh/`, {
+    refresh: token,
+  });
+
+  return checkResponse(response);
+};
+
+// TODO: разделить
+export const getPsychologists = async (params) => {
+  let themesForFilter = '';
+  let approachesForFilter = '';
+  const paramsCopy = params;
+
+  if (params.themes && params.themes.length > 0) {
+    params.themes.forEach((theme) => {
+      themesForFilter += `?themes=${encodeURIComponent(theme)}&`;
+    });
+  }
+
+  if (params.approaches && params.approaches.length > 0) {
+    params.approaches.forEach((approach) => {
+      approachesForFilter += `?approaches=${encodeURIComponent(approach)}&`;
+    });
+  }
+
+  delete paramsCopy.themes;
+  delete paramsCopy.approaches;
+
+  const response = await axios.get(`${API_URL}/psychologists/${themesForFilter}${approachesForFilter}`, {
+    params: paramsCopy,
+  });
+
+  return checkResponse(response);
+};
+
+export const getPsychologist = async (id) => {
+  const response = await axios.get(`${API_URL}/psychologists/${id}/`);
+
+  return checkResponse(response);
+};
+
+export const setNewPasswords = async (data) => {
+  const response = await axios.post(`${API_URL}/auth/users/set_password/`, data, {
+    headers: {
+      // TODO: получать токен в хелперс и передавать его везде или через контекст?
+      Authorization: getJwtFromLocalStorage(),
+    }
+  });
+
   return checkResponse(response);
 };

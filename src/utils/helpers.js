@@ -98,7 +98,7 @@ export const getFormattedLocalTimeArr = (arr) => {
   const formattedDates = {};
 
   arr.forEach((slot) => {
-    const formattedDate = convertUtcToLocal(slot.time, 'DD.MM.YYYY HH:mm');
+    const formattedDate = convertUtcToLocal(slot.datetime_from, 'DD.MM.YYYY HH:mm');
     const date = formattedDate.split(' ')[0];
     const time = formattedDate.split(' ')[1];
 
@@ -126,3 +126,31 @@ export const getFormattedLocalTimeArr = (arr) => {
 };
 
 export const getPriceWithSpace = (price) => price.toLocaleString();
+
+export const getPasswordErr = (firstPass, secondPass) => firstPass !== secondPass;
+
+export const showPopupWithValue = (setValue, value) => {
+  setValue({
+    data: {
+      title: value,
+    },
+  });
+};
+
+export const checkPasswords = (password1, password2, setPopupValue, data, request) => {
+  if (getPasswordErr(password1, password2)) {
+    showPopupWithValue(setPopupValue, 'Пароли не совпадают');
+  } else {
+    request(data);
+  }
+};
+
+export const getJwtFromLocalStorage = () => {
+  const jwt = localStorage.getItem('jwt');
+
+  if (jwt) {
+    return `JWT ${jwt}`;
+  }
+
+  return null;
+};

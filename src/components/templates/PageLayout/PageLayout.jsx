@@ -9,11 +9,16 @@ export default function PageLayout({
   title,
   nav,
   section,
-  type
+  type,
+  classes
 }) {
   return (
     <section
-      className={`page-layout ${type === 'psychologist' ? `page-layout_type_${type}` : ''}`}
+      className={
+        `page-layout ${type === 'psychologist' ? `page-layout_type_${type}` : ''}
+        ${classes ? ` ${classes}` : ''}
+        `
+      }
     >
       <Title text={title} />
       {nav && <div className="page-layout__nav">{nav}</div>}
@@ -29,10 +34,12 @@ PageLayout.propTypes = {
   nav: node,
   section: node,
   type: string,
+  classes: string,
 };
 
 PageLayout.defaultProps = {
   nav: '',
   section: '',
   type: '',
+  classes: '',
 };

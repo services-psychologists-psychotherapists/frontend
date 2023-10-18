@@ -2,7 +2,9 @@ import { useEffect } from 'react';
 
 const useOutsideClick = (ref, callback) => {
   const handleClick = (e) => {
-    if ((ref.current && !ref.current.contains(e.target)) || e.key === 'Escape') {
+    if (e.type === 'mousedown' && (ref.current && !ref.current.contains(e.target))) {
+      callback();
+    } else if (e.type === 'keydown' && e.key === 'Escape') {
       callback();
     }
   };

@@ -1,0 +1,40 @@
+@keyframes fadeOut {
+  100% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 0;
+  }
+}
+
+.auth__form-registration {
+  max-width: 630px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+  animation: fadeOut 1s;
+}
+
+.auth__form-registration_field-container {
+  display: grid;
+  grid-template-columns: minmax(min-content, 305px) minmax(min-content, 305px);
+  column-gap: 20px;
+  margin-bottom: 40px;
+  list-style-type: none;
+  padding: 0; /* перехватыввет normalize css */
+}
+
+.auth__form-registration_button {
+  align-self: end;
+}
+
+.auth__registration-psycho {
+  margin: 20px 0 28px 0;
+  animation: fadeOut 1s;
+}
+
+.auth__prompt {
+  min-height: 17px;
+  max-height: min-content;
+}

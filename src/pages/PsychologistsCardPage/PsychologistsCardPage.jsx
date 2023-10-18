@@ -4,12 +4,16 @@ import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import PsychologistCard from '../../components/Cards/PsychologistCard/PsychologistCard';
 import Button from '../../components/generic/Button/Button';
 
-export default function PsychologistCardPage({ psychologist }) {
+export default function PsychologistCardPage({ psychologist, isLoggedIn, navigate }) {
   const { first_name: firstName, last_name: lastName } = psychologist;
+
+  const goBack = () => {
+    navigate(-1);
+  };
 
   return (
     <PageLayout
-      section={<Button variant="text-icon">Назад</Button>}
+      section={<Button variant="text-icon" onClick={goBack}>Назад</Button>}
       title={`Психолог ${firstName} ${lastName}`}
       type="psychologist"
     >
@@ -64,4 +68,6 @@ PsychologistCardPage.propTypes = {
       })
     ),
   }).isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  navigate: PropTypes.func.isRequired,
 };
