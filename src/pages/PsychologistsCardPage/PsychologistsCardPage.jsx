@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import PsychologistCard from '../../components/Cards/PsychologistCard/PsychologistCard';
 import Button from '../../components/generic/Button/Button';
-
+// TODO: Remove
 export default function PsychologistCardPage({ psychologist, navigate }) {
   const { first_name: firstName, last_name: lastName } = psychologist;
 

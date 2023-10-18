@@ -51,6 +51,8 @@ export const useForm = (isDropdown, customInputElement) => {
     return null;
   };
 
+  // TODO: Убрать на страницу
+
   useEffect(() => {
     const age = getNums('age');
 

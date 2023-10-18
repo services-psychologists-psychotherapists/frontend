@@ -18,6 +18,7 @@ import DirectoryOfPsychologists from '../../pages/DirectoryOfPsychologists/Direc
 import Header from '../Header/Header';
 import ProtectedRouteElement from '../ProtectedRouteElement/ProtectedRouteElement';
 import ChangePassword from '../../pages/ChangePassword/ChangePassword';
+import PsychologistRegistration from '../../pages/PsychologistRegistration/PsychologistRegistration';
 
 export default function App() {
   const navigate = useNavigate();
@@ -105,6 +106,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/for_a_therapist" element={<PageForPsychologists />} />
             <Route path="/*" element={<NotFound />} />
+            <Route path="/psychologists_registration" element={<PsychologistRegistration />} />
             {
               !isLoggedIn && (
                 <Route
