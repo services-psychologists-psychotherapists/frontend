@@ -4,7 +4,7 @@ import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import PsychologistCard from '../../components/Cards/PsychologistCard/PsychologistCard';
 import Button from '../../components/generic/Button/Button';
 
-export default function PsychologistCardPage({ psychologist, isLoggedIn, navigate }) {
+export default function PsychologistCardPage({ psychologist, navigate }) {
   const { first_name: firstName, last_name: lastName } = psychologist;
 
   const goBack = () => {
@@ -68,6 +68,5 @@ PsychologistCardPage.propTypes = {
       })
     ),
   }).isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
   navigate: PropTypes.func.isRequired,
 };

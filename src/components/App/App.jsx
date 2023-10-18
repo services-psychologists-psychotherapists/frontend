@@ -35,10 +35,16 @@ export default function App() {
 
       setCurrentUser(user);
       setIsLoggedIn(true);
+
+      if (user.role) {
+        return user.role;
+      }
     } catch (err) {
       console.log(err);
       setIsLoggedIn(false);
     }
+
+    return false;
   };
 
   const signIn = async (data) => {
@@ -49,9 +55,13 @@ export default function App() {
         localStorage.setItem('jwt', token.access);
         localStorage.setItem('jwt-refresh', token.refresh);
 
-        await getUser(token.access);
+        const role = await getUser(token.access);
 
-        navigate(`/${currentUser.role}_account`);
+        if (role) {
+          navigate(`/${role}_account`);
+        } else {
+          navigate('/');
+        }
       }
     } catch (err) {
       console.log(err);
