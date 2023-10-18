@@ -3,9 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { INPUT_ICONS, inputElement } from '../../../../constants/constants';
 
-export default function FieldButtonImage({
-  element, disabled, inputType, isEyeOpened, isValid
-}) {
+export default function FieldButtonImage({ element, disabled, inputType, isEyeOpened, isValid }) {
   const isPasswordInputElement = element === inputElement && inputType === 'password';
 
   const fieldButtonImgClass = isPasswordInputElement

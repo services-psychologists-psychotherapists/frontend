@@ -44,6 +44,7 @@
   width: 100%;
   display: flex;
   padding: 12px;
+  border-radius: 12px;
 }
 
 .field__input_button {

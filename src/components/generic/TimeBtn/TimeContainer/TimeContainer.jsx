@@ -1,15 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import {
-  arrayOf, string, func, number, shape
-} from 'prop-types';
+import { arrayOf, string, func, number, shape } from 'prop-types';
 import './TimeContainer.css';
 import TimeCellBtn from '../TimeCellBtn/TimeCellBtn';
 import useHorizontalScroll from '../../../../hooks/useHorizontalScroll';
 import { LENGTH_TO_START_SCROLLING } from '../../../../constants/constants';
 
-export default function TimeContainer({
-  timeCells, containerClassName, onClick, selectedTime
-}) {
+export default function TimeContainer({ timeCells, containerClassName, onClick, selectedTime }) {
   const [isScrollStatus, setIsScrollStatus] = useState(false);
   const scrollOnClick = useHorizontalScroll();
 

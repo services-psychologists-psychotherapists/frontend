@@ -3,7 +3,7 @@ import './DirectoryOfPsychologists.css';
 import Title from '../../components/generic/Title/Title';
 import PsychoFilters from './PsychoFilters/PsychoFilters';
 import PsychologistCard from '../../components/Cards/PsychologistCard/PsychologistCard';
-import { getPsychologists, getPsychologist } from '../../utils/Api';
+import { getPsychologists, getPsychologist } from '../../utils/auth';
 import Button from '../../components/generic/Button/Button';
 import useOutsideClick from '../../hooks/useOnClickOutside';
 import PaginationList from '../../components/generic/PaginationList/PaginationList';
@@ -31,6 +31,10 @@ export default function DirectoryOfPsychologists() {
       setTotalPsychoCount(1);
     }
   }, [totalPsychoCount]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // TODO: Переделать на стейт?
   const numberOfPsychoDisplayed = 7;

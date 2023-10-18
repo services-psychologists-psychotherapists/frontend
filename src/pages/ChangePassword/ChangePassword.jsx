@@ -11,7 +11,7 @@ import {
   checkPasswords,
 } from '../../utils/helpers';
 import { usePopup } from '../../hooks/usePopup';
-import { setNewPasswords } from '../../utils/Api';
+import { setNewPasswords } from '../../utils/auth';
 
 export default function ChangePassword({ navigate }) {
   const {

@@ -15,7 +15,6 @@ export default function PsychologistCardPage({ psychologist, isLoggedIn, navigat
     <PageLayout
       section={<Button variant="text-icon" onClick={goBack}>Назад</Button>}
       title={`Психолог ${firstName} ${lastName}`}
-      isLoggedIn={isLoggedIn}
       type="psychologist"
     >
       <PsychologistCard psychologist={psychologist} type="full" />

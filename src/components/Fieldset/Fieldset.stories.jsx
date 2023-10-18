@@ -125,9 +125,7 @@ export default {
 };
 
 const Template = function Field(args) {
-  const {
-    values, errors, handleChange, selectedDropdownItems
-  } = useForm();
+  const { values, errors, handleChange, selectedDropdownItems } = useForm();
 
   return (
     <form>

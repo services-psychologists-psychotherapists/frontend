@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Prompt from './Prompt/Prompt';
 import Field from './Field/Field';
-import DropDownList from './DropDownList/DropDownList';
+import ListWithDropdown from './ListWithDropdown/ListWithDropdown';
 import {
   checkboxDropdownElement,
   radioDropdownElement,
@@ -106,7 +106,7 @@ export default function Fieldset({
         inputContainerClasses={inputContainerClasses}
         id={id}
       />
-      <DropDownList
+      <ListWithDropdown
         element={element}
         type={typeForDropdown}
         onChange={handleChange}

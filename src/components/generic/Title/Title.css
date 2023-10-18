@@ -25,3 +25,21 @@
   font-weight: 500;
   line-height: 30px;
 }
+
+@media screen and (max-width: 768px) {
+  .title_size_m {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  .title_size_xs {
+    font-size: 18px;
+    line-height: 26px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .title_size_s {
+    font-size: 18px;
+    line-height: 22.8px;
+  }
+}

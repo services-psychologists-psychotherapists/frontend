@@ -5,9 +5,7 @@ import Text from '../../generic/Text/Text';
 import Title from '../../generic/Title/Title';
 import Button from '../../generic/Button/Button';
 
-export default function EmptyCard({
-  type, title, paragraph, textBtn, href
-}) {
+export default function EmptyCard({ type, title, paragraph, textBtn, href }) {
   return (
     <div className={`empty-card empty-card_type_${type}`}>
       {type === 'client' ? (

@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  bool, objectOf, string, func
-} from 'prop-types';
+import { bool, objectOf, string, func } from 'prop-types';
 import './AuthRegistration.css';
 import Fieldset from '../../../components/Fieldset/Fieldset';
 import Button from '../../../components/generic/Button/Button';

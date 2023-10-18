@@ -1,7 +1,6 @@
 import axios from 'axios';
-// TODO: перенести в const
-const API_URL = 'https://sharewithme.acceleratorpracticum.ru/api/v1';
-const getJwtFromLocalStorage = () => `JWT ${localStorage.getItem('jwt')}`;
+import { API_URL } from '../constants/constants';
+import { getJwtFromLocalStorage } from './helpers';
 
 const checkResponse = async (res) => {
   // TODO: подумать про варианты
@@ -12,18 +11,49 @@ const checkResponse = async (res) => {
   return Promise.reject(new Error(`Ошибка: ${res.status}`));
 };
 
-export const authUser = async (data) => {
-  const response = await axios.post(`${API_URL}/auth/jwt/create/`, data);
-
-  return checkResponse(response);
-};
-
 export const createUser = async (data) => {
   const response = await axios.post(`${API_URL}/auth/clients/`, data);
 
   return checkResponse(response);
 };
 
+export const authUser = async (data) => {
+  const response = await axios.post(`${API_URL}/auth/jwt/create/`, data);
+
+  return checkResponse(response);
+};
+
+export const getUserInfo = async (token) => {
+  const response = await axios.get(`${API_URL}/auth/clients/me`, {
+    headers: { Authorization: `JWT ${token}` },
+  });
+  return checkResponse(response);
+};
+
+export const getRole = async (token) => {
+  const response = await axios.get(`${API_URL}/auth/users/me/`, {
+    headers: { Authorization: `JWT ${token}` },
+  });
+  return checkResponse(response);
+};
+
+// export const verifiJwt = async (token) => {
+//   const response = await axios.post(`${API_URL}/auth/jwt/verify/`, {
+//     token,
+//   });
+
+//   return checkResponse(response);
+// };
+
+export const refreshToken = async (token) => {
+  const response = await axios.post(`${API_URL}/auth/jwt/refresh/`, {
+    refresh: token,
+  });
+
+  return checkResponse(response);
+};
+
+// TODO: разделить
 export const getPsychologists = async (params) => {
   let themesForFilter = '';
   let approachesForFilter = '';
@@ -60,7 +90,8 @@ export const getPsychologist = async (id) => {
 export const setNewPasswords = async (data) => {
   const response = await axios.post(`${API_URL}/auth/users/set_password/`, data, {
     headers: {
-      Authorization: getJwtFromLocalStorage()
+      // TODO: получать токен в хелперс и передавать его везде или через контекст?
+      Authorization: getJwtFromLocalStorage(),
     }
   });
 

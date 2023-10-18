@@ -5,8 +5,12 @@ import { AUTH_BTNS } from '../../constants/constants';
 import { useForm } from '../../hooks/useForm';
 import AuthLogin from './AuthLogin/AuthLogin';
 import AuthRegistration from './AuthRegistration/AuthRegistration';
+import { createUser } from '../../utils/auth';
+import { usePopup } from '../../hooks/usePopup';
 
-export default function Auth({ getJwt, signUp }) {
+export default function Auth({
+  signIn,
+}) {
   const [isLogin, setIsLogin] = useState(true);
   const [isRegister, setIsRegister] = useState(false);
   const {
@@ -18,6 +22,27 @@ export default function Auth({ getJwt, signUp }) {
     getInvalidInput,
     resetForm,
   } = useForm();
+
+  const { setValue } = usePopup();
+
+  const signUp = async (data) => {
+    try {
+      const user = await createUser(data);
+
+      signIn({
+        email: user.email,
+        password: data.password,
+      });
+    } catch (err) {
+      console.log(err);
+
+      setValue({
+        data: {
+          title: 'При регистрации произошла ошибка',
+        },
+      });
+    }
+  };
 
   const handleChangeAuthVariant = (e) => {
     if (isLogin && e.target.innerText === AUTH_BTNS.registration) {
@@ -31,6 +56,7 @@ export default function Auth({ getJwt, signUp }) {
     resetForm();
   };
 
+  // prettier-ignore
   const getClassesForActiveBtn = (authVariat) => (authVariat ? ' auth__variants_item-active' : ' auth__variants_item-inactive');
 
   return (
@@ -62,7 +88,7 @@ export default function Auth({ getJwt, signUp }) {
       </ul>
       {isLogin && (
         <AuthLogin
-          getJwt={getJwt}
+          signIn={signIn}
           values={values}
           handleChange={handleChange}
           errors={errors}
@@ -87,6 +113,5 @@ export default function Auth({ getJwt, signUp }) {
 }
 
 Auth.propTypes = {
-  getJwt: func.isRequired,
-  signUp: func.isRequired,
+  signIn: func.isRequired
 };

@@ -144,3 +144,13 @@ export const checkPasswords = (password1, password2, setPopupValue, data, reques
     request(data);
   }
 };
+
+export const getJwtFromLocalStorage = () => {
+  const jwt = localStorage.getItem('jwt');
+
+  if (jwt) {
+    return `JWT ${jwt}`;
+  }
+
+  return null;
+};

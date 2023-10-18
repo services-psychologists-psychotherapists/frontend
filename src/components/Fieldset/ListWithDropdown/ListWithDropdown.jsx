@@ -1,10 +1,10 @@
-import './DropDownList.css';
+import './ListWithDropdown.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import DropdownItem from '../DropdownItem/DropdownItem';
 import { titlesDropdownElement } from '../../../constants/constants';
 
-export default function DropDownList({
+export default function ListWithDropdown({
   isFocused,
   onChange,
   type,
@@ -47,7 +47,7 @@ export default function DropDownList({
   );
 }
 
-DropDownList.propTypes = {
+ListWithDropdown.propTypes = {
   element: PropTypes.string.isRequired,
   type: PropTypes.string,
   isFocused: PropTypes.bool,
@@ -63,7 +63,7 @@ DropDownList.propTypes = {
   setCustomValue: PropTypes.func,
 };
 
-DropDownList.defaultProps = {
+ListWithDropdown.defaultProps = {
   isFocused: false,
   onChange: () => {},
   type: null,
