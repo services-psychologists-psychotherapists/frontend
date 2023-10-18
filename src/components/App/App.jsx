@@ -19,7 +19,7 @@ import {
   createUser,
 } from '../../utils/Api';
 import DirectoryOfPsychologists from '../../pages/DirectoryOfPsychologists/DirectoryOfPsychologists';
-import ChangePassword from '../../pages/PasswordReset/ChangePassword';
+import ChangePassword from '../../pages/ChangePassword/ChangePassword';
 
 export default function App() {
   const navigate = useNavigate();
@@ -82,7 +82,7 @@ export default function App() {
               element={<DirectoryOfPsychologists />}
             />
             <Route
-              path="/password-reset"
+              path="/change_password"
               element={
                 <ChangePassword navigate={navigate} />
               }
