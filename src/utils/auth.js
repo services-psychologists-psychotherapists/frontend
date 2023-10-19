@@ -23,8 +23,8 @@ export const authUser = async (data) => {
   return checkResponse(response);
 };
 
-export const getUserInfo = async (token) => {
-  const response = await axios.get(`${API_URL}/auth/clients/me`, {
+export const getUserInfo = async (token, role) => {
+  const response = await axios.get(`${API_URL}/auth/${role}s/me`, {
     headers: { Authorization: `JWT ${token}` },
   });
   return checkResponse(response);
@@ -74,9 +74,12 @@ export const getPsychologists = async (params) => {
   delete paramsCopy.themes;
   delete paramsCopy.approaches;
 
-  const response = await axios.get(`${API_URL}/psychologists/${themesForFilter}${approachesForFilter}`, {
-    params: paramsCopy,
-  });
+  const response = await axios.get(
+    `${API_URL}/psychologists/${themesForFilter}${approachesForFilter}`,
+    {
+      params: paramsCopy,
+    }
+  );
 
   return checkResponse(response);
 };
@@ -92,7 +95,7 @@ export const setNewPasswords = async (data) => {
     headers: {
       // TODO: получать токен в хелперс и передавать его везде или через контекст?
       Authorization: getJwtFromLocalStorage(),
-    }
+    },
   });
 
   return checkResponse(response);

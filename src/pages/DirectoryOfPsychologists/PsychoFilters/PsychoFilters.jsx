@@ -1,16 +1,18 @@
 import React from 'react';
-import {
-  objectOf, func, string, arrayOf, oneOfType
-} from 'prop-types';
+import { objectOf, func, string, arrayOf, oneOfType } from 'prop-types';
 import './PsychoFilters.css';
 import Button from '../../../components/generic/Button/Button';
 import Fieldset from '../../../components/Fieldset/Fieldset';
 import { PSYCHO_FILTER_DATA } from '../../../constants/constants';
 
 export default function PsychoFilters({
-  values, handleChange, errors,
-  resetForm, selectedDropdownItems,
-  handleFilterSubmit, resetCustomValue,
+  values,
+  handleChange,
+  errors,
+  resetForm,
+  selectedDropdownItems,
+  handleFilterSubmit,
+  resetCustomValue,
   setCustomValue,
 }) {
   // TODO: У инпутов некорректные названия классов необходимо переделать
@@ -73,12 +75,7 @@ PsychoFilters.propTypes = {
   handleChange: func.isRequired,
   errors: objectOf(string).isRequired,
   resetForm: func.isRequired,
-  selectedDropdownItems: objectOf(
-    oneOfType([
-      arrayOf(string),
-      string,
-    ])
-  ),
+  selectedDropdownItems: objectOf(oneOfType([arrayOf(string), string])),
   handleFilterSubmit: func,
   resetCustomValue: func,
   setCustomValue: func,

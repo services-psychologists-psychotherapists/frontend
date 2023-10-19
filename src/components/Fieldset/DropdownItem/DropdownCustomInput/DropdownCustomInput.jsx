@@ -12,7 +12,7 @@ export default function DropdownCustomInput({
   isCustomOpen,
 }) {
   return (
-    (customElement === item) && (
+    customElement === item && (
       <div className="dropdown-item__custom-input">
         <Input
           ownClasses="dropdown-item__input dropdown-item__other"

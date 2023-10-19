@@ -30,9 +30,12 @@ export default function App() {
 
   const getUser = async (token) => {
     try {
-      const user = await auth.getUserInfo(token);
       const role = await auth.getRole(token);
-      user.role = role.is_psychologist ? 'psychologist' : 'client';
+      console.log(role);
+      const userRole = role.is_psychologists ? 'psychologist' : 'client';
+      const user = await auth.getUserInfo(token, userRole);
+      user.role = userRole;
+      console.log(user);
 
       setCurrentUser(user);
       setIsLoggedIn(true);
@@ -96,7 +99,7 @@ export default function App() {
       setIsLoggedIn(false);
     }
   }, []);
-
+  // prettier-ignore
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -107,22 +110,8 @@ export default function App() {
             <Route path="/for_a_therapist" element={<PageForPsychologists />} />
             <Route path="/*" element={<NotFound />} />
             <Route path="/psychologists_registration" element={<PsychologistRegistration />} />
-            {
-              !isLoggedIn && (
-                <Route
-                  path="/signin"
-                  element={(
-                    <Auth
-                      signIn={signIn}
-                    />
-                  )}
-                />
-              )
-            }
-            <Route
-              path="/directory_psychologists"
-              element={<DirectoryOfPsychologists />}
-            />
+            {!isLoggedIn && <Route path="/signin" element={<Auth signIn={signIn} />} />}
+            <Route path="/directory_psychologists" element={<DirectoryOfPsychologists />} />
             {currentUser.role === 'psychologist' ? (
               <>
                 <Route
@@ -132,25 +121,19 @@ export default function App() {
                       element={PsychologistAccount}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
                 />
                 <Route
                   path="/psychologist_account_schedule"
-                  element={(
-                    <ProtectedRouteElement
-                      element={PsychologistAccount}
-                      loggedIn={isLoggedIn}
-                    />
-                      )}
+                  element={
+                    <ProtectedRouteElement element={PsychologistAccount} loggedIn={isLoggedIn} />
+                  }
                 />
                 <Route
                   path="/psychologist_account_profile"
-                  element={(
-                    <ProtectedRouteElement
-                      element={PsychologistAccount}
-                      loggedIn={isLoggedIn}
-                    />
-                      )}
+                  element={
+                    <ProtectedRouteElement element={PsychologistAccount} loggedIn={isLoggedIn} />
+                  }
                 />
                 {/* придумать общий для /change_password */}
                 <Route
@@ -161,7 +144,7 @@ export default function App() {
                       navigate={navigate}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
                 />
               </>
             ) : (
@@ -174,16 +157,11 @@ export default function App() {
                       navigate={navigate}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
                 />
                 <Route
                   path="/client_account"
-                  element={(
-                    <ProtectedRouteElement
-                      element={ClientHomePage}
-                      loggedIn={isLoggedIn}
-                    />
-                      )}
+                  element={<ProtectedRouteElement element={ClientHomePage} loggedIn={isLoggedIn} />}
                 />
                 <Route
                   path="/client_account_session-registration"
@@ -193,7 +171,7 @@ export default function App() {
                       loggedIn={isLoggedIn}
                       navigate={navigate}
                     />
-                      )}
+                  )}
                 />
               </>
             )}
