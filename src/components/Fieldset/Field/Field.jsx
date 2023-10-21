@@ -22,6 +22,7 @@ export default function Field({
   inputContainerClasses,
   id,
   onChange,
+  classesForInput,
 }) {
   const fieldClasses = `field__input${element !== inputElement ? ' field__input_button' : ''}`;
 
@@ -68,6 +69,7 @@ export default function Field({
           isEyeOpened={isEyeOpened}
           ownClasses={fieldClasses}
           id={id}
+          classesForInput={classesForInput}
         />
         <FieldButton
           onClick={handleClickOnButton}
@@ -100,6 +102,7 @@ Field.propTypes = {
   onClick: PropTypes.func,
   inputContainerClasses: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  classesForInput: PropTypes.string,
 };
 
 Field.defaultProps = {
@@ -117,4 +120,5 @@ Field.defaultProps = {
   inputContainerClasses: '',
   value: '',
   id: null,
+  classesForInput: '',
 };

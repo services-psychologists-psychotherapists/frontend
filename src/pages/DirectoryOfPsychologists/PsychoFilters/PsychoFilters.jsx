@@ -35,22 +35,28 @@ export default function PsychoFilters({
           {PSYCHO_FILTER_DATA.map((i) => (
             <li key={i.name}>
               <Fieldset
-                name={i.name}
-                element={i.element}
-                placeholder={i.placeholder}
-                title={i.title}
-                dropdownContent={i.dropdownContent}
-                typeForDropdown={i.typeForDropdown}
-                required={i.required}
-                values={values}
-                errors={errors}
+                name={i.name || null}
+                element={i.element || null}
+                placeholder={i.placeholder || null}
+                title={i.title || null}
+                dropdownContent={i.dropdownContent || []}
+                typeForDropdown={i.typeForDropdown || null}
+                required={i.required || null}
+                values={values || null}
+                errors={errors || null}
                 inputContainerClasses="psycho-filters__filter"
                 promptClasses="psycho-filters__prompt"
-                handleChange={handleChange}
-                selectedDropdownItems={selectedDropdownItems}
-                customElement={i.customElement}
-                resetCustomValue={resetCustomValue}
-                setCustomValue={setCustomValue}
+                handleChange={(e) => {
+                  if (i.customElement) {
+                    handleChange(e, true, i.customElement);
+                  } else {
+                    handleChange(e, true);
+                  }
+                }}
+                selectedDropdownItems={selectedDropdownItems || null}
+                customElement={i.customElement || null}
+                resetCustomValue={resetCustomValue || null}
+                setCustomValue={setCustomValue || null}
               />
             </li>
           ))}

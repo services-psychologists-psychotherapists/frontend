@@ -205,6 +205,7 @@ export const checkboxType = 'checkbox';
 export const dropdownLists = {
   genderList: ['Женский', 'Мужской', 'Другое'],
   genderForFilter: ['Женский', 'Мужской', 'Не важно'],
+  genderForPsycho: ['Женский', 'Мужской'],
   experience: ['1-3 года', '4-6 лет', '7-10 лет', '10 и более'],
   ageForFilter: ['25-30 лет', '31-40 лет', '41-50 лет', '51-60 лет', '60 лет и более'],
   approachList: [
@@ -510,3 +511,157 @@ export const INPUT_DATA_FOR_RESET_PASSWORD = [
 ];
 
 export const API_URL = 'https://sharewithme.acceleratorpracticum.ru/api/v1';
+
+export const PSYCHO_REGISTRATION_TEXT = [
+  'Для регистрации заполните информацию о себе и прикрепите документы об образовании.',
+  'Как только мы все проверим, Вам на почту придет уведомление.',
+];
+
+export const PSYCHO_REGISTRATION_FIRST_STEP = [
+  {
+    element: inputElement,
+    title: 'Имя',
+    name: 'first_name',
+    typeForInput: 'text',
+    required: true,
+    maxLength: '50',
+    minLength: '1',
+  },
+  {
+    element: inputElement,
+    title: 'Фамилия',
+    name: 'last_name',
+    typeForInput: 'text',
+    required: true,
+    maxLength: '50',
+    minLength: '1',
+  },
+  {
+    element: inputElement,
+    title: 'Email',
+    name: 'email',
+    typeForInput: 'email',
+    required: true,
+    promptClasses: 'auth__prompt',
+    minLength: '1',
+  },
+  {
+    element: inputElement,
+    title: 'Телефон',
+    name: 'phone_number',
+    typeForInput: 'tel',
+    required: true,
+    placeholder: '+7 921 123 45 67',
+    maxLength: '12',
+    minLength: '1',
+  },
+  {
+    element: inputElement,
+    title: 'Дата рождения',
+    name: 'birthday',
+    typeForInput: 'date',
+    required: true,
+    placeholder: '23.04.1990',
+  },
+  {
+    element: radioDropdownElement,
+    name: 'gender',
+    placeholder: 'Выберите пол',
+    title: 'Пол',
+    dropdownContent: dropdownLists.genderForPsycho,
+    typeForDropdown: 'radio',
+    // required: true,
+  },
+];
+
+export const PSYCHO_REGISTRATION_SECOND_STEP = [
+  {
+    element: inputElement,
+    title: 'Период обучения',
+    name: 'institutes_graduation_year',
+    typeForInput: 'text',
+    required: true,
+    placeholder: 'Год начала - год окончания',
+  },
+  {
+    element: inputElement,
+    title: 'Название учебного заведения',
+    name: 'institutes_title',
+    typeForInput: 'text',
+    required: true,
+    placeholder: 'Введите название учебного заведения',
+  },
+  {
+    element: inputElement,
+    title: 'Направление подготовки',
+    name: 'institutes_speciality',
+    typeForInput: 'text',
+    required: true,
+  },
+];
+
+export const PSYCHO_REGISTRATION_THIRD_STEP = [
+  {
+    element: inputElement,
+    title: 'Год окончания',
+    name: 'courses_graduation_year',
+    typeForInput: 'text',
+    required: true,
+  },
+  {
+    element: inputElement,
+    title: 'Название учебного заведения',
+    name: 'courses_title',
+    typeForInput: 'text',
+    required: true,
+    placeholder: 'Введите название учебного заведения',
+  },
+  {
+    element: inputElement,
+    title: 'Направление подготовки',
+    name: 'courses_speciality',
+    typeForInput: 'text',
+    required: true,
+  },
+];
+
+export const PSYCHO_REGISTRATION_FOURTH_STEP = [
+  {
+    element: titlesDropdownElement,
+    name: 'themes',
+    placeholder: 'Выберите все подходящие варианты',
+    title: 'Основные направления работы',
+    dropdownContent: dropdownLists.mainGoalsOfWork,
+    typeForDropdown: 'checkbox',
+    // required: true,
+  },
+  {
+    element: checkboxDropdownElement,
+    name: 'approaches',
+    placeholder: 'Выберите все подходящие варианты',
+    title: 'Подход',
+    dropdownContent: dropdownLists.approachList,
+    typeForDropdown: 'checkbox',
+    // required: true,
+    customElement: 'Другой вариант',
+  },
+];
+
+export const PSYCHO_REGISTRATION_FOURTH_STEP_TWO = [
+  {
+    element: inputElement,
+    title: 'Стоимость за сессию (руб.)',
+    name: 'price',
+    typeForInput: 'text',
+    required: true,
+    inputContainerClasses: 'psycho-registration__form_price-container',
+  },
+  {
+    element: inputElement,
+    title: 'Опыт консультирования (в годах)',
+    name: 'experience',
+    typeForInput: 'text',
+    required: true,
+    inputContainerClasses: 'psycho-registration__form_experience-container',
+  },
+];

@@ -1,0 +1,84 @@
+.psycho-registration {
+  padding: 0;
+  row-gap: 20px;
+  grid-template-columns: minmax(min-content, 99px) minmax(min-content, 630px);
+  margin-bottom: 100px;
+  justify-content: center;
+}
+
+.psycho-registration__other-step {
+  transform: translateX(-59px);
+}
+
+.psycho-registration__fist-step {
+  grid-template-columns: 0 minmax(min-content, 630px);
+  column-gap: 0;
+}
+
+.psycho-registration__container {
+  max-width: 630px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.psycho-registration__text {
+  color: var(--text-color-dark-blue);
+  font-family: var(--font-family-lato);
+  font-size: 18px;
+  font-style: normal;
+  line-height: 24px;
+}
+
+.psycho-registration__text-list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  margin-bottom: 20px;
+}
+
+.psycho-registration__form {
+  display: flex;
+  flex-direction: column
+}
+
+.psycho-registration__form-title {
+  color: var(--text-color-dark-violet);
+  padding-top: 20px;
+  margin-bottom: 28px;
+}
+
+.psycho-registration__form-step_list {
+  list-style-type: none;
+}
+
+.psycho-registration__form_button {
+  align-self: flex-end;
+}
+
+.psycho-registration__step_off {
+  display: none;
+}
+
+.psycho-registration__step_on {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+}
+
+.psycho-registration__switch {
+  margin-top: 13px;
+}
+
+.psycho-registration__form-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.psycho-registration__form-education_btn {
+  max-width: 289px;
+  width: 100%;
+  align-self: flex-start;
+}

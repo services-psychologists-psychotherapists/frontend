@@ -34,7 +34,7 @@
   max-height: 300px;
   overflow-y: auto;
   border: 1px solid var(--border-color-medium-violet);
-  transition: .5s ease;
+  transition: .5s ease-in-out;
   border-radius: 12px;
   opacity: 1;
 }

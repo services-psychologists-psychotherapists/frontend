@@ -28,13 +28,22 @@
   display: none;
 }
 
+.file-upload__container:focus {
+  opacity: .5;
+}
+
 .file-upload__container {
-  padding: 12px 24px;
   border-radius: 12px;
-  border: 2px solid var(--border-color-dark-violet);
+  box-shadow: inset 0 0 0 2px var(--border-color-dark-violet);
   transition: .5s ease;
 }
 
 .file-upload__container:hover {
   opacity: .7;
+}
+
+.file-upload__container__text {
+  display: block;
+  padding: 12px 24px;
+  cursor: pointer;
 }
