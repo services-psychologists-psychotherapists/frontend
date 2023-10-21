@@ -67,7 +67,7 @@ export default function AuthRegistration({
                 placeholder={i.placeholder || null}
                 prompt={i.prompt || null}
                 values={values}
-                handleChange={handleChange}
+                handleChange={(e) => handleChange(e)}
                 errors={errors}
                 isValid={getInvalidInput(inputValidStatus[i.name])}
                 promptClasses={i.promptClasses || null}

@@ -16,6 +16,7 @@ export default function ListWithDropdown({
   customElement,
   resetCustomValue,
   setCustomValue,
+  classesForAbsoluteList,
 }) {
   if (dropdownContent.length === 0) {
     return null;
@@ -26,7 +27,7 @@ export default function ListWithDropdown({
   }`;
 
   return (
-    <ul className={dropdownListClasses}>
+    <ul className={`${dropdownListClasses}${classesForAbsoluteList ? ` ${classesForAbsoluteList}` : ''}`}>
       {dropdownContent.map((item) => (
         <li className="dropdown-list__item" key={item}>
           <DropdownItem
@@ -61,6 +62,7 @@ ListWithDropdown.propTypes = {
   customElement: PropTypes.string,
   resetCustomValue: PropTypes.func,
   setCustomValue: PropTypes.func,
+  classesForAbsoluteList: PropTypes.string,
 };
 
 ListWithDropdown.defaultProps = {
@@ -74,4 +76,5 @@ ListWithDropdown.defaultProps = {
   customElement: '',
   resetCustomValue: () => {},
   setCustomValue: () => {},
+  classesForAbsoluteList: '',
 };

@@ -1,0 +1,13 @@
+.psycho-registration__form-step_list-two {
+  display: flex;
+  flex-direction: column;
+}
+
+.psycho-registration__form-education {
+  margin-bottom: 20px;
+}
+
+.psycho-registration__form-step_list-two:not(:first-of-type) {
+  padding-top: 40px;
+  border-top: 2px solid var(--bg-color-light-violet);
+}

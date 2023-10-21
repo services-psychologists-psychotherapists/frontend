@@ -97,3 +97,27 @@ export const setNewPasswords = async (data) => {
 
   return checkResponse(response);
 };
+
+export const uploadFile = async (file) => {
+  const formData = new FormData();
+  formData.append('path', file);
+
+  const response = await axios.post(`${API_URL}/file/upload/`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+
+  return checkResponse(response);
+};
+
+export const createPsychologist = async (data) => {
+  const dataForRequest = { ...data };
+
+  dataForRequest.themes = dataForRequest.themes.map((theme) => ({ title: theme }));
+  dataForRequest.approaches = dataForRequest.approaches.map((approach) => ({ title: approach }));
+
+  const response = await axios.post(`${API_URL}/auth/psychologists/`, dataForRequest);
+
+  return checkResponse(response);
+};

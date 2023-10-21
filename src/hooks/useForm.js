@@ -1,22 +1,23 @@
 import { useState, useCallback, useEffect } from 'react';
 
-export const useForm = (isDropdown, customInputElement) => {
+export const useForm = () => {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
   const [inputValidStatus, setInputValidStatus] = useState({});
   const [selectedDropdownItems, setSelectedDropdownItems] = useState({});
   const [isValid, setIsValid] = useState(true);
   const [isValidForm, setIsValidForm] = useState(false);
-  const [isDropdownElem, setDropdownElem] = useState(false);
   const [dataForRequest, setDataForRequest] = useState({});
   const [customIputValue, setCustomIputValue] = useState('');
   const [customInputFieldset, setCustomInputFieldset] = useState('');
+  const [fileForRequest, setfileForRequest] = useState({});
+  // переделать хук
 
   const getYears = (arr) => {
     if (arr.length > 0) {
       const numArr = arr.reduce((acc, str) => acc.concat(str.match(/\d+/g)), []);
 
-      if (numArr) {
+      if (numArr && numArr[0]) {
         const nums = numArr.map((i) => +i);
         const mimax = [Math.min(...nums), Math.max(...nums)];
 
@@ -24,7 +25,7 @@ export const useForm = (isDropdown, customInputElement) => {
       }
     }
 
-    return null;
+    return false;
   };
 
   const getValue = (arr, key) => {
@@ -50,8 +51,6 @@ export const useForm = (isDropdown, customInputElement) => {
 
     return null;
   };
-
-  // TODO: Убрать на страницу
 
   useEffect(() => {
     const age = getNums('age');
@@ -85,19 +84,13 @@ export const useForm = (isDropdown, customInputElement) => {
     const getGender = (value) => {
       if (value) {
         if (value === 'Мужской') {
-          return {
-            gender: 'male',
-          };
+          return 'male';
         }
         if (value === 'Женский') {
-          return {
-            gender: 'female',
-          };
+          return 'female';
         }
         if (value === 'Не важно') {
-          return {
-            gender: null,
-          };
+          return null;
         }
       }
 
@@ -107,10 +100,19 @@ export const useForm = (isDropdown, customInputElement) => {
     const { gender } = selectedDropdownItems;
 
     if (gender) {
-      setDataForRequest({
-        ...dataForRequest,
-        ...getGender(selectedDropdownItems.gender),
-      });
+      const currentGender = getGender(selectedDropdownItems.gender);
+      if (currentGender !== null) {
+        setDataForRequest({
+          ...dataForRequest,
+          gender: currentGender,
+        });
+      } else {
+        const newData = { ...dataForRequest };
+
+        delete newData.gender;
+
+        setDataForRequest(newData);
+      }
     }
   }, [selectedDropdownItems.gender]);
 
@@ -118,25 +120,54 @@ export const useForm = (isDropdown, customInputElement) => {
     const { themes } = selectedDropdownItems;
 
     if (themes) {
-      setDataForRequest({
-        ...dataForRequest,
-        themes,
-      });
+      if (themes.length) {
+        setDataForRequest({
+          ...dataForRequest,
+          themes,
+        });
+      } else {
+        const newData = { ...dataForRequest };
+
+        delete newData.themes;
+
+        setDataForRequest(newData);
+      }
     }
   }, [selectedDropdownItems.themes]);
+
+  useEffect(() => {
+    const customValue = values.custom;
+
+    if (!customValue) {
+      if ('approaches' in selectedDropdownItems) {
+        const filteredApproaches = [...selectedDropdownItems.approaches].filter(
+          (i) => i !== ''
+        );
+
+        setSelectedDropdownItems({
+          ...selectedDropdownItems,
+          approaches: filteredApproaches,
+        });
+      }
+    }
+  }, [values.custom]);
 
   useEffect(() => {
     const { approaches } = selectedDropdownItems;
 
     if (approaches) {
-      const filteredApproaches = [...selectedDropdownItems.approaches].filter(
-        (i) => i !== ''
-      );
+      if (approaches.length) {
+        setDataForRequest({
+          ...dataForRequest,
+          approaches,
+        });
+      } else {
+        const newData = { ...dataForRequest };
 
-      setDataForRequest({
-        ...dataForRequest,
-        approaches: filteredApproaches,
-      });
+        delete newData.approaches;
+
+        setDataForRequest(newData);
+      }
     }
   }, [selectedDropdownItems.approaches]);
 
@@ -160,25 +191,38 @@ export const useForm = (isDropdown, customInputElement) => {
     }
   };
 
-  useEffect(() => {
-    if (isDropdown) {
-      setDropdownElem(isDropdown);
-    }
-  }, [isDropdown]);
-
-  const handleChange = (evt) => {
-    const input = evt.target;
+  // TODO: полностью перебрать
+  const handleChange = (e, isDropdownElem, customInputElement) => {
+    const input = e.target;
     const {
       name, value, type
     } = input;
-    setValues({ ...values, [name]: value });
+
+    if (type !== 'file') {
+      setValues({ ...values, [name]: value });
+    }
+
     setErrors({ ...errors, [name]: input.validationMessage });
+
     const fieldsetName = input.closest('fieldset').id;
 
     if (name === 'custom') {
       setCustomInputFieldset(fieldsetName);
     }
 
+    if (type === 'file') {
+      const file = e.target.files;
+
+      if (file.length > 0) {
+        const currentFile = e.target.files[0];
+
+        if (currentFile) {
+          setfileForRequest(currentFile);
+        }
+      }
+    }
+
+    // TODO: возможно переделать на отдельные условия
     const getValuesForDropdown = () => {
       if (customInputElement && (customInputElement !== value)) {
         if (type === 'radio') {
@@ -193,12 +237,31 @@ export const useForm = (isDropdown, customInputElement) => {
                 ),
               });
             }
-            // TODO: остается пустая строка в массиве
             setCustomIputValue(value);
           } else {
             setSelectedDropdownItems({ ...selectedDropdownItems, [fieldsetName]: [value] });
             setCustomIputValue(value);
           }
+        } else if (selectedDropdownItems[fieldsetName]) {
+          if (!selectedDropdownItems[fieldsetName].includes(value)) {
+            setSelectedDropdownItems({
+              ...selectedDropdownItems,
+              [fieldsetName]: [...selectedDropdownItems[fieldsetName], value],
+            });
+          } else {
+            setSelectedDropdownItems({
+              ...selectedDropdownItems,
+              [fieldsetName]: selectedDropdownItems[fieldsetName].filter((i) => i !== value),
+            });
+          }
+        } else {
+          setSelectedDropdownItems({ ...selectedDropdownItems, [fieldsetName]: [value] });
+        }
+      }
+
+      if (!customInputElement) {
+        if (type === 'radio') {
+          setSelectedDropdownItems({ ...selectedDropdownItems, [fieldsetName]: value });
         } else if (selectedDropdownItems[fieldsetName]) {
           if (!selectedDropdownItems[fieldsetName].includes(value)) {
             setSelectedDropdownItems({
@@ -223,7 +286,7 @@ export const useForm = (isDropdown, customInputElement) => {
 
     setIsValid(input.checkValidity());
     setInputValidStatus({ ...inputValidStatus, [name]: input.checkValidity() });
-    setIsValidForm(evt.target.closest('form').checkValidity());
+    setIsValidForm(e.target.closest('form').checkValidity());
   };
 
   const resetForm = useCallback(
@@ -270,5 +333,8 @@ export const useForm = (isDropdown, customInputElement) => {
     resetCustomValue,
     setCustomValue,
     dataForRequest,
+    setDataForRequest,
+    getYears,
+    fileForRequest,
   };
 };

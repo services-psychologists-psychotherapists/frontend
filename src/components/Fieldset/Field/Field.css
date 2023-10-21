@@ -25,17 +25,17 @@
 .field__input-container {
   display: flex;
   align-items: center;
-  border: 1px solid var(--border-color-medium-violet);
+  box-shadow: inset 0 0 0 1px var(--border-color-dark-violet);
   border-radius: 12px;
   margin-bottom: 3px;
 }
 
 .field__input-container_disabled {
-  border: 1px solid var(--border-coolor-disabled);
+  box-shadow: inset 0 0 0 1px var(--border-coolor-disabled);
 }
 
 .field__input-container_invalid {
-  border: 1px solid var(--border-color-error);
+  box-shadow: inset 0 0 0 1px var(--border-color-error);
 }
 
 .field__input {

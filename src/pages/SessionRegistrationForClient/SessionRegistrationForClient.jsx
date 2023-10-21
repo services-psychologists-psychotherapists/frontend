@@ -80,7 +80,6 @@ export default function SessionRegistrationForClient({ navigate }) {
   return (
     <PageLayout
       title="Запись на сессию"
-      isLoggedIn
       section={(
         <Button variant="text-icon" onClick={() => goBack()}>
           Назад

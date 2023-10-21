@@ -11,7 +11,7 @@ export default function PageForPsychologists() {
       <Banner
         description="Поможем организовать вашу удаленную работу и сделаем ее комфортнее"
         imgLink={bannerImg}
-        href="/signup-therapist"
+        href="/psychologists_registration"
         textBtn="Подать заявку"
         title="Присоединяйтесь к нашей команде психологов"
       />

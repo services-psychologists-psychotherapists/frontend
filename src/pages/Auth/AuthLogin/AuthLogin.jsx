@@ -34,7 +34,7 @@ export default function AuthLogin({
               minLength={i.minLength}
               required={i.required}
               values={values}
-              handleChange={handleChange}
+              handleChange={(e) => handleChange(e)}
               errors={errors}
               isValid={getInvalidInput(inputValidStatus[i.name])}
             />

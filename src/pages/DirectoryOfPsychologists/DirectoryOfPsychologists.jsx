@@ -16,7 +16,7 @@ export default function DirectoryOfPsychologists() {
     resetForm, selectedDropdownItems,
     resetCustomValue, setCustomValue,
     dataForRequest,
-  } = useForm(true, 'Другой вариант');
+  } = useForm();
   const [psychologistList, setPsychologistList] = useState([]);
   const [isOpenPopup, setOpenPopup] = useState(false);
   const [psychologistFullData, setPsychologistFullData] = useState({});

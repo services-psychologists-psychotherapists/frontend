@@ -36,6 +36,8 @@ export default function Fieldset({
   customElement,
   resetCustomValue,
   setCustomValue,
+  classesForAbsoluteList,
+  classesForInput,
 }) {
   const [isFocused, setIsFocused] = useState(false);
   const [displayValue, setDisplayValue] = useState('');
@@ -105,6 +107,7 @@ export default function Fieldset({
         isFocused={isFocused}
         inputContainerClasses={inputContainerClasses}
         id={id}
+        classesForInput={classesForInput}
       />
       <ListWithDropdown
         element={element}
@@ -118,6 +121,7 @@ export default function Fieldset({
         customElement={customElement}
         resetCustomValue={resetCustomValue}
         setCustomValue={setCustomValue}
+        classesForAbsoluteList={classesForAbsoluteList}
       />
       <Prompt
         errors={errors[name]}
@@ -156,6 +160,8 @@ Fieldset.propTypes = {
   customElement: PropTypes.string,
   resetCustomValue: PropTypes.func,
   setCustomValue: PropTypes.func,
+  classesForAbsoluteList: PropTypes.string,
+  classesForInput: PropTypes.string,
 };
 
 Fieldset.defaultProps = {
@@ -181,4 +187,6 @@ Fieldset.defaultProps = {
   customElement: '',
   resetCustomValue: () => {},
   setCustomValue: () => {},
+  classesForAbsoluteList: '',
+  classesForInput: '',
 };

@@ -1,0 +1,14 @@
+.psycho-registration__form-step_list-one {
+  display: grid;
+  grid-template-columns: minmax(min-content, 305px) minmax(min-content, 305px);
+  column-gap: 20px;
+}
+
+.psycho-registration__form_list {
+  position: absolute;
+  top: 90px;
+}
+
+.psycho-registration__form-step_one {
+  margin-bottom: 20px;
+}

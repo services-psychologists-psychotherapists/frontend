@@ -40,7 +40,7 @@ export default function DropdownItem({
   };
 
   const getNameForInput = (nameElem, valueElem) => {
-    const newName = `${nameElem} ${valueElem}`;
+    const newName = `${nameElem}_${valueElem}`;
 
     return newName.replace(/ /g, '_');
   };
