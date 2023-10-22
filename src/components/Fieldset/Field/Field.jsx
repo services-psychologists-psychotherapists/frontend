@@ -23,6 +23,7 @@ export default function Field({
   id,
   onChange,
   classesForInput,
+  autoComplete,
 }) {
   const fieldClasses = `field__input${element !== inputElement ? ' field__input_button' : ''}`;
 
@@ -70,6 +71,7 @@ export default function Field({
           ownClasses={fieldClasses}
           id={id}
           classesForInput={classesForInput}
+          autoComplete={autoComplete}
         />
         <FieldButton
           onClick={handleClickOnButton}
@@ -103,6 +105,7 @@ Field.propTypes = {
   inputContainerClasses: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   classesForInput: PropTypes.string,
+  autoComplete: PropTypes.string,
 };
 
 Field.defaultProps = {
@@ -121,4 +124,5 @@ Field.defaultProps = {
   value: '',
   id: null,
   classesForInput: '',
+  autoComplete: null,
 };

@@ -102,6 +102,7 @@ export default function FourthStep({
                   classesForInput={i.classesForInput || ''}
                   minLength={i.minLength || null}
                   maxLength={i.maxLength || null}
+                  autoComplete={i.autoComplete || null}
                 />
               </li>
             ))}
