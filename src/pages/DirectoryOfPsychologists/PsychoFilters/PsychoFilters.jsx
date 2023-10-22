@@ -57,6 +57,7 @@ export default function PsychoFilters({
                 customElement={i.customElement || null}
                 resetCustomValue={resetCustomValue || null}
                 setCustomValue={setCustomValue || null}
+                autoComplete={i.autoComplete || null}
               />
             </li>
           ))}

@@ -38,6 +38,7 @@ export default function Fieldset({
   setCustomValue,
   classesForAbsoluteList,
   classesForInput,
+  autoComplete,
 }) {
   const [isFocused, setIsFocused] = useState(false);
   const [displayValue, setDisplayValue] = useState('');
@@ -108,6 +109,7 @@ export default function Fieldset({
         inputContainerClasses={inputContainerClasses}
         id={id}
         classesForInput={classesForInput}
+        autoComplete={autoComplete}
       />
       <ListWithDropdown
         element={element}
@@ -162,6 +164,7 @@ Fieldset.propTypes = {
   setCustomValue: PropTypes.func,
   classesForAbsoluteList: PropTypes.string,
   classesForInput: PropTypes.string,
+  autoComplete: PropTypes.string,
 };
 
 Fieldset.defaultProps = {
@@ -189,4 +192,5 @@ Fieldset.defaultProps = {
   setCustomValue: () => {},
   classesForAbsoluteList: '',
   classesForInput: '',
+  autoComplete: null,
 };

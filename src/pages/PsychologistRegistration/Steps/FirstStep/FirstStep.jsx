@@ -57,6 +57,7 @@ export default function FirstStep({
                 disabled={step !== 1}
                 minLength={i.minLength || null}
                 maxLength={i.maxLength || null}
+                autoComplete={i.autoComplete || null}
               />
             </li>
           ))}

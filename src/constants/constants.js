@@ -429,6 +429,7 @@ export const PSYCHO_FILTER_DATA = [
     dropdownContent: dropdownLists.experience,
     typeForDropdown: 'radio',
     required: false,
+    autoComplete: 'off',
   },
   {
     element: radioDropdownElement,
@@ -438,6 +439,7 @@ export const PSYCHO_FILTER_DATA = [
     dropdownContent: dropdownLists.genderForFilter,
     typeForDropdown: 'radio',
     required: false,
+    autoComplete: 'off',
   },
   {
     element: radioDropdownElement,
@@ -447,6 +449,7 @@ export const PSYCHO_FILTER_DATA = [
     dropdownContent: dropdownLists.ageForFilter,
     typeForDropdown: 'radio',
     required: false,
+    autoComplete: 'off',
   },
   {
     element: titlesDropdownElement,
@@ -456,6 +459,7 @@ export const PSYCHO_FILTER_DATA = [
     dropdownContent: dropdownLists.mainGoalsOfWork,
     typeForDropdown: 'checkbox',
     required: false,
+    autoComplete: 'off',
   },
   {
     element: checkboxDropdownElement,
@@ -466,6 +470,7 @@ export const PSYCHO_FILTER_DATA = [
     typeForDropdown: 'checkbox',
     required: false,
     customElement: 'Другой вариант',
+    autoComplete: 'off',
   },
 ];
 
@@ -570,6 +575,7 @@ export const PSYCHO_REGISTRATION_FIRST_STEP = [
     title: 'Пол',
     dropdownContent: dropdownLists.genderForPsycho,
     typeForDropdown: 'radio',
+    autoComplete: 'off',
     // required: true,
   },
 ];
@@ -634,6 +640,7 @@ export const PSYCHO_REGISTRATION_FOURTH_STEP = [
     dropdownContent: dropdownLists.mainGoalsOfWork,
     typeForDropdown: 'checkbox',
     // required: true,
+    autoComplete: 'off',
   },
   {
     element: checkboxDropdownElement,
@@ -644,6 +651,7 @@ export const PSYCHO_REGISTRATION_FOURTH_STEP = [
     typeForDropdown: 'checkbox',
     // required: true,
     customElement: 'Другой вариант',
+    autoComplete: 'off',
   },
 ];
 

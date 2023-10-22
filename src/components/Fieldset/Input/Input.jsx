@@ -26,6 +26,7 @@ export default function Input({
   onClick,
   id,
   classesForInput,
+  autoComplete,
 }) {
   const inputClasses = `input${
     element === inputElement ? ' input_hidden-placeholder' : ''}${
@@ -43,7 +44,8 @@ export default function Input({
       role="menu"
       onKeyDown={onClick}
       onClick={onClick}
-      className={`${inputClasses} ${ownClasses}`}
+      // className={`${inputClasses} ${ownClasses}`}
+      className={`${inputClasses} ${ownClasses}${classesForInput ? ` ${classesForInput}` : ''}`}
     >
       <TitlesContainer placeholder={placeholder} value={value} element={element} />
     </ul>
@@ -61,6 +63,7 @@ export default function Input({
       minLength={minLength}
       maxLength={maxLength}
       required={required}
+      autoComplete={autoComplete}
     />
   );
 }
@@ -82,6 +85,7 @@ Input.propTypes = {
   onClick: PropTypes.func,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   classesForInput: PropTypes.string,
+  autoComplete: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -101,4 +105,5 @@ Input.defaultProps = {
   onClick: () => {},
   id: null,
   classesForInput: '',
+  autoComplete: null,
 };
