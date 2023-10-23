@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import './PsychologistCard.css';
 import PropTypes from 'prop-types';
@@ -30,9 +31,11 @@ export default function PsychologistCard({ type, psychologist }) {
     age,
     duration,
     slots,
+    id
   } = psychologist;
 
   const [timeCells, setTimeCells] = useState([]);
+  const navigate = useNavigate();
 
   const getTheNearestDate = (slotsList) => {
     if (slotsList && slotsList.length > 0) {
@@ -79,7 +82,7 @@ export default function PsychologistCard({ type, psychologist }) {
 
   const handleTimeClick = (e) => {
     e.stopPropagation();
-    console.log('timeClick');
+    navigate(`/client_account_session-registration/${id}`);
   };
 
   return (
@@ -105,7 +108,7 @@ export default function PsychologistCard({ type, psychologist }) {
             containerClassName="psycho-card__time-container"
             onClick={handleTimeClick}
           />
-          <Button variant="text" href="/make_appointment">
+          <Button variant="text" href={`/client_account_session-registration/${id}`}>
             Выбрать другое время
           </Button>
         </div>
