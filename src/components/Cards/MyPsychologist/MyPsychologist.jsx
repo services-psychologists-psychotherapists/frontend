@@ -22,7 +22,7 @@ export default function MyPsychologist({ psychologist, nextSession }) {
               rightText={`${Number(psychologist.price).toLocaleString()} руб.`}
               description="Психолог"
             />
-            <Button variant={nextSession ? 'secondary' : 'primary'} size={!isScreenSm ? 'm' : 'l'}>
+            <Button variant={nextSession ? 'secondary' : 'primary'} size={!isScreenSm ? 'm' : 'l'} href={`/client_account_session-registration/${psychologist.id}`}>
               Записаться повторно
             </Button>
           </div>
