@@ -13,6 +13,7 @@ export default function UserMenu({ signOut }) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef();
   const { isScreenMd } = useResize();
+  HEADER_DROPDOWN_LINKS[0].link = `${currentUser.role}_account`;
 
   const navLinks = isScreenMd ? HEADER_DROPDOWN_LINKS : HEADER_BURGER_MENU_LINKS;
 
