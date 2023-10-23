@@ -30,9 +30,10 @@ export default function App() {
 
   const getUser = async (token) => {
     try {
-      const user = await auth.getUserInfo(token);
       const role = await auth.getRole(token);
-      user.role = role.is_psychologist ? 'psychologist' : 'client';
+      const userRole = role.is_psychologists ? 'psychologist' : 'client';
+      const user = await auth.getUserInfo(token, userRole);
+      user.role = userRole;
 
       setCurrentUser(user);
       setIsLoggedIn(true);
