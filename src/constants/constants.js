@@ -17,6 +17,9 @@ import arrowDisabled from '../images/Input/input-container__arrow_disabled.svg';
 import form from '../images/how_to_start_form.svg';
 import clock from '../images/how_to_start_clock.svg';
 import girls from '../images/how_to_start_talking_girls.svg';
+import wallet from '../images/wallet_icon.svg';
+import setting from '../images/setting_icon.svg';
+import people from '../images/people_icon.svg';
 
 export const HEADER_NAV_LINKS = [
   {
@@ -672,4 +675,22 @@ export const PSYCHO_REGISTRATION_FOURTH_STEP_TWO = [
     required: true,
     inputContainerClasses: 'psycho-registration__form_experience-container',
   },
+];
+
+export const WORK_WITH_US = [
+  {
+    id: 1,
+    title: 'Современный, быстроразвивающийся сервис с постоянным потоком клиентов',
+    icon: people
+  },
+  {
+    id: 2,
+    title: 'Понятная система оплаты',
+    icon: wallet
+  },
+  {
+    id: 3,
+    title: 'Мы берем на себя все технические вопросы',
+    icon: setting
+  }
 ];
