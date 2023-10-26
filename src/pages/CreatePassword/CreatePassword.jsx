@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { object } from 'prop-types';
+import { object, func } from 'prop-types';
 import { usePopup } from '../../hooks/usePopup';
 import './CreatePassword.css';
-import { createPassword, resetPasswordWithEmail } from '../../utils/auth';
+import { createPassword } from '../../utils/auth';
 import { showPopupWithValue, checkPasswords } from '../../utils/helpers';
 import { useForm } from '../../hooks/useForm';
 import Text from '../../components/generic/Text/Text';
@@ -12,7 +12,7 @@ import Fieldset from '../../components/Fieldset/Fieldset';
 import Title from '../../components/generic/Title/Title';
 import Success from '../../components/Success/Success';
 
-export default function CreatePassword({ curPath }) {
+export default function CreatePassword({ curPath, resetPassword }) {
   const {
     values,
     handleChange,
@@ -37,18 +37,6 @@ export default function CreatePassword({ curPath }) {
       console.log(err);
 
       showPopupWithValue(setValue, 'Произошла ошибка при установке пароля');
-    }
-  };
-
-  const resetPassword = async (email) => {
-    try {
-      await resetPasswordWithEmail(email);
-
-      showPopupWithValue(setValue, 'Ссылка для установки пароля отправлена на ваш email');
-    } catch (err) {
-      console.log(err);
-
-      showPopupWithValue(setValue, 'Произошла ошибка при отправке ссылки');
     }
   };
 
@@ -82,7 +70,7 @@ export default function CreatePassword({ curPath }) {
         && (
           <>
             <Title
-              text="Регистрация"
+              text="Подтверждение пароля"
               titleLvl="2"
               size="m"
             />
@@ -131,7 +119,7 @@ export default function CreatePassword({ curPath }) {
                   typeForInput="email"
                   required
                   minLength="1"
-                  placeholder="Введите ваш email"
+                  placeholder="Введите email"
                   values={values}
                   handleChange={handleChange}
                   errors={errors}
@@ -144,7 +132,9 @@ export default function CreatePassword({ curPath }) {
                 variant="primary"
                 size="l"
                 onClick={
-                  isCorrectLink ? handleSubmit : () => resetPassword(values.create_password_email)
+                  isCorrectLink
+                    ? handleSubmit
+                    : () => resetPassword(values.create_password_email, setValue)
                 }
                 disabled={!isValidForm}
                 className="create-password__form-button"
@@ -162,4 +152,5 @@ export default function CreatePassword({ curPath }) {
 CreatePassword.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   curPath: object.isRequired,
+  resetPassword: func.isRequired,
 };

@@ -21,6 +21,7 @@ import ChangePassword from '../../pages/ChangePassword/ChangePassword';
 import PsychologistRegistration from '../../pages/PsychologistRegistration/PsychologistRegistration';
 import ClientProfilePage from '../../pages/ClientHomePage/ClientProfilePage/ClientProfilePage';
 import CreatePassword from '../../pages/CreatePassword/CreatePassword';
+import ResetPassword from '../../pages/ResetPassword/ResetPassword';
 
 export default function App() {
   const navigate = useNavigate();
@@ -117,6 +118,26 @@ export default function App() {
     }
   };
 
+  const resetPassword = async (email, setPopup) => {
+    try {
+      await auth.resetPasswordWithEmail(email);
+
+      setPopup({
+        data: {
+          title: 'Ссылка для установки пароля отправлена на ваш email',
+        },
+      });
+    } catch (err) {
+      console.log(err);
+
+      setPopup({
+        data: {
+          title: 'При отправке произошла ошибка ',
+        },
+      });
+    }
+  };
+
   const goBack = () => {
     navigate(-1);
   };
@@ -138,11 +159,20 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/for_a_therapist" element={<PageForPsychologists />} />
             <Route
+              path="/reset_password"
+              element={(
+                <ResetPassword
+                  resetPassword={resetPassword}
+                />
+              )}
+            />
+            <Route
               path="/create_password/*"
               element={(
                 <CreatePassword
                   curPath={curPath}
                   goBack={goBack}
+                  resetPassword={resetPassword}
                 />
               )}
             />

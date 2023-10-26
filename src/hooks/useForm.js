@@ -13,11 +13,15 @@ export const useForm = () => {
   const [fileForRequest, setfileForRequest] = useState({});
   // переделать хук
   // Сделать вызовы внутренных функций через параметры?
+  // настроить работу полей регистрации пользователя
 
   // Убрать
   useEffect(() => {
     console.log(dataForRequest);
   }, [dataForRequest]);
+  useEffect(() => {
+    console.log(values);
+  }, [values]);
 
   const getYears = (arr) => {
     if (arr.length > 0) {
