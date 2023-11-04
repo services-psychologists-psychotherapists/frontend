@@ -3,9 +3,7 @@ import './PsychoName.css';
 import { string } from 'prop-types';
 import Title from '../Title/Title';
 
-export default function PsychoName({
-  name, description, leftText, rightText
-}) {
+export default function PsychoName({ name, description, leftText, rightText }) {
   return (
     <div className="name-container">
       <Title size="s" titleLvl="4" text={name} />

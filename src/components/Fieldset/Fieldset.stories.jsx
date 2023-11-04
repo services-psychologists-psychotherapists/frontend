@@ -3,13 +3,13 @@ import { withRouter } from 'storybook-addon-react-router-v6';
 import '../App/App.css';
 import Fieldset from './Fieldset';
 import {
-  checkboxDropDownElement,
+  checkboxDropdownElement,
   checkboxType,
-  dropDownLists,
+  dropdownLists,
   inputElement,
-  radioDropDownElement,
+  radioDropdownElement,
   radioType,
-  titlesDropDownElement,
+  titlesDropdownElement,
 } from '../../constants/constants';
 import { useForm } from '../../hooks/useForm';
 
@@ -33,7 +33,7 @@ export default {
         type: 'radio',
       },
     },
-    typeForDropDown: {
+    typeForDropdown: {
       type: 'string',
       description: 'Определяет каким образом отображаются кнопки в дропдауне.',
       options: ['radio', 'checkbox'],
@@ -64,7 +64,7 @@ export default {
       },
       if: { arg: 'element', eq: 'input-element' },
     },
-    dropDownContent: {
+    dropdownContent: {
       type: 'array',
       description: 'Массив со строками. Список элементов внутри дропдауна',
       options: [
@@ -125,9 +125,7 @@ export default {
 };
 
 const Template = function Field(args) {
-  const {
-    values, errors, handleChange, selectedDropdownItems
-  } = useForm();
+  const { values, errors, handleChange, selectedDropdownItems } = useForm();
 
   return (
     <form>
@@ -143,9 +141,9 @@ const Template = function Field(args) {
 };
 
 export const InputField = Template.bind({});
-export const RadioDropDownField = Template.bind({});
-export const CheckboxDropDownField = Template.bind({});
-export const TitlesDropDownField = Template.bind({});
+export const RadioDropdownField = Template.bind({});
+export const CheckboxDropdownField = Template.bind({});
+export const TitlesDropdownField = Template.bind({});
 
 InputField.args = {
   element: inputElement,
@@ -155,26 +153,26 @@ InputField.args = {
   typeForInput: 'text',
 };
 
-RadioDropDownField.args = {
-  element: radioDropDownElement,
+RadioDropdownField.args = {
+  element: radioDropdownElement,
   placeholder: 'выберите пол',
   title: 'Пол',
-  dropDownContent: dropDownLists.genderList,
-  typeForDropDown: radioType,
+  dropdownContent: dropdownLists.genderList,
+  typeForDropdown: radioType,
 };
 
-CheckboxDropDownField.args = {
-  element: checkboxDropDownElement,
+CheckboxDropdownField.args = {
+  element: checkboxDropdownElement,
   placeholder: 'Выберите все подходящие варианты',
   title: 'Подход',
-  dropDownContent: dropDownLists.approachList,
-  typeForDropDown: checkboxType,
+  dropdownContent: dropdownLists.approachList,
+  typeForDropdown: checkboxType,
 };
 
-TitlesDropDownField.args = {
-  element: titlesDropDownElement,
+TitlesDropdownField.args = {
+  element: titlesDropdownElement,
   placeholder: 'Выберите все подходящие варианты',
   title: 'Основные направления работы',
-  dropDownContent: dropDownLists.mainGoalsOfWork,
-  typeForDropDown: checkboxType,
+  dropdownContent: dropdownLists.mainGoalsOfWork,
+  typeForDropdown: checkboxType,
 };

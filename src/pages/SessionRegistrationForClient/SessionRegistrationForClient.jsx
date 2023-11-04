@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { func } from 'prop-types';
+import * as psychologistSrvice from '../../utils/services/psychologistService';
 import './SessionRegistrationForClient.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import Button from '../../components/generic/Button/Button';
 import Calendar from '../../components/Сalendar/Сalendar';
 import MiniPsychoCard from '../../components/Cards/MiniPsychoCard/MiniPsychoCard';
 import SessionInformation from '../../components/SessionInformation/SessionInformation';
-import { FREE_SLOTS, FULL_PSYCHO_CARD } from '../../constants/db';
 import TimeContainer from '../../components/generic/TimeBtn/TimeContainer/TimeContainer';
 import {
   formattedToday,
@@ -22,6 +23,14 @@ export default function SessionRegistrationForClient({ navigate }) {
   const [selectedDay, setSelectedDay] = useState(formattedToday);
   const [selectedTime, setSelectedTime] = useState('');
   const [formattedLocalDates, setFormattedLocalDates] = useState([]);
+  const [currentPsychologist, setCurrentPsychologist] = useState({});
+  const pathname = useLocation();
+
+  const getPsychologist = async () => {
+    const psychologistId = pathname.pathname.split('/')[2];
+    const psychologist = await psychologistSrvice.getCurrentPsychologist(psychologistId);
+    setCurrentPsychologist(psychologist);
+  };
 
   const goBack = () => {
     navigate(-1);
@@ -42,12 +51,16 @@ export default function SessionRegistrationForClient({ navigate }) {
   };
 
   useEffect(() => {
-    if (FREE_SLOTS) {
-      const currentDatesAndTimes = getFormattedLocalTimeArr(FREE_SLOTS);
+    getPsychologist();
+  }, []);
+
+  useEffect(() => {
+    if (currentPsychologist.slots) {
+      const currentDatesAndTimes = getFormattedLocalTimeArr(currentPsychologist.slots);
 
       setFormattedLocalDates(currentDatesAndTimes);
     }
-  }, [FREE_SLOTS]);
+  }, [currentPsychologist.slots]);
 
   useEffect(() => {
     if (formattedLocalDates.length > 0) {
@@ -80,7 +93,6 @@ export default function SessionRegistrationForClient({ navigate }) {
   return (
     <PageLayout
       title="Запись на сессию"
-      isLoggedIn
       section={(
         <Button variant="text-icon" onClick={() => goBack()}>
           Назад
@@ -90,11 +102,11 @@ export default function SessionRegistrationForClient({ navigate }) {
       <div className="session-registration">
         <section>
           <MiniPsychoCard
-            experience={FULL_PSYCHO_CARD.experience}
-            avatar={FULL_PSYCHO_CARD.avatar}
-            firstName={FULL_PSYCHO_CARD.first_name}
-            lastName={FULL_PSYCHO_CARD.last_name}
-            speciality={FULL_PSYCHO_CARD.speciality}
+            experience={currentPsychologist.experience}
+            avatar={currentPsychologist.avatar}
+            firstName={currentPsychologist.first_name}
+            lastName={currentPsychologist.last_name}
+            speciality={currentPsychologist.speciality}
           />
         </section>
         <section className="session-registration__time">
@@ -115,8 +127,8 @@ export default function SessionRegistrationForClient({ navigate }) {
           <SessionInformation
             selectedTime={selectedTime}
             selectedDay={selectedDay}
-            sessionDuration={FULL_PSYCHO_CARD.duration}
-            sessionPrice={FULL_PSYCHO_CARD.price}
+            sessionDuration={currentPsychologist.duration}
+            sessionPrice={currentPsychologist.price}
           />
         </section>
       </div>

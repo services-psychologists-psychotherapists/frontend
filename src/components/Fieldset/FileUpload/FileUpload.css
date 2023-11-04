@@ -1,0 +1,49 @@
+.file-upload {
+  color: var(--border-color-dark-blue);
+  font-family: var(--font-family-lato);
+  font-size: 14px;
+  font-style: normal;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  border: none;
+  padding: 0;
+}
+
+.file-upload__file {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.file-upload__file-icon {
+  background-image: url('./file.svg');
+  background-repeat: no-repeat;
+  width: 24px;
+  height: 24px;
+}
+
+.file-upload__input {
+  display: none;
+}
+
+.file-upload__container:focus {
+  opacity: .5;
+}
+
+.file-upload__container {
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 2px var(--border-color-dark-violet);
+  transition: .5s ease;
+}
+
+.file-upload__container:hover {
+  opacity: .7;
+}
+
+.file-upload__container__text {
+  display: block;
+  padding: 12px 24px;
+  cursor: pointer;
+}

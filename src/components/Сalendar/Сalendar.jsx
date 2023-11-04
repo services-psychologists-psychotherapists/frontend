@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  arrayOf, func, shape, string, number
-} from 'prop-types';
+import { arrayOf, func, shape, string, number } from 'prop-types';
 import './Сalendar.css';
 import moment from 'moment';
 import BlockWithTitle from '../templates/BlockWithTitle/BlockWithTitle';
@@ -13,9 +11,7 @@ import {
 import { today, formattedToday, binarySearchDateIndex } from '../../utils/helpers';
 // TODO: Сделать сброс недель по дизайну
 
-export default function Сalendar({
-  onDateCellClick, titleText, onResetClick, freeSlotsArray
-}) {
+export default function Сalendar({ onDateCellClick, titleText, onResetClick, freeSlotsArray }) {
   const [selectedDay, setSelectedDay] = useState('');
   const [dates, setDates] = useState([]);
   const [isChangedWeeks, setIsChangedWeeks] = useState(false);
@@ -28,14 +24,10 @@ export default function Сalendar({
   const formattedlastDay = lastDay.format('D MMMM');
 
   const handleSelectDay = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' || e.type === 'click') {
       setSelectedDay(e.target.id);
+      onDateCellClick(moment(e.target.id, 'DD.MM.YYYY'));
     }
-    if (e.type === 'click') {
-      setSelectedDay(e.target.id);
-    }
-
-    onDateCellClick(moment(e.target.id, 'DD.MM.YYYY'));
   };
 
   const switchToNextWeeks = () => {
@@ -78,7 +70,6 @@ export default function Сalendar({
       setDates(newDates);
     };
 
-    // prettier-ignore
     const handleChangeWeeks = () => {
       if (today.isSameOrAfter(startDay, 'week') && today.isSameOrBefore(lastDay, 'week')) {
         setIsChangedWeeks(false);

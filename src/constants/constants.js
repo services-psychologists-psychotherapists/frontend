@@ -17,8 +17,11 @@ import arrowDisabled from '../images/Input/input-container__arrow_disabled.svg';
 import form from '../images/how_to_start_form.svg';
 import clock from '../images/how_to_start_clock.svg';
 import girls from '../images/how_to_start_talking_girls.svg';
+import wallet from '../images/wallet_icon.svg';
+import setting from '../images/setting_icon.svg';
+import people from '../images/people_icon.svg';
 
-export const NAVIGATION_LINKS = [
+export const HEADER_NAV_LINKS = [
   {
     text: 'Каталог психологов',
     link: '/directory_psychologists',
@@ -193,18 +196,19 @@ export const INPUT_ICONS = {
 // --------------FIELD_ELEMENTS--------------- //
 
 export const inputElement = 'input-element';
-export const radioDropDownElement = 'radio-dropdown-element';
-export const checkboxDropDownElement = 'checkbox-dropdown-element';
-export const titlesDropDownElement = 'titles-dropdown-element';
+export const radioDropdownElement = 'radio-dropdown-element';
+export const checkboxDropdownElement = 'checkbox-dropdown-element';
+export const titlesDropdownElement = 'titles-dropdown-element';
 
 // --------------DROPDOWN_TYPES--------------- //
 
 export const radioType = 'radio';
 export const checkboxType = 'checkbox';
 
-export const dropDownLists = {
-  genderList: ['женский', 'мужской', 'другое'],
-  genderForFilter: ['женский', 'мужской', 'не важно'],
+export const dropdownLists = {
+  genderList: ['Женский', 'Мужской', 'Другое'],
+  genderForFilter: ['Женский', 'Мужской', 'Не важно'],
+  genderForPsycho: ['Женский', 'Мужской'],
   experience: ['1-3 года', '4-6 лет', '7-10 лет', '10 и более'],
   ageForFilter: ['25-30 лет', '31-40 лет', '41-50 лет', '51-60 лет', '60 лет и более'],
   approachList: [
@@ -212,7 +216,7 @@ export const dropDownLists = {
     'Экзистенциальный анализ',
     'Телесная терапия',
     'Панические атаки',
-    'Другое',
+    'Другой вариант',
   ],
   mainGoalsOfWork: [
     'Отношения с партнером',
@@ -327,6 +331,10 @@ export const PSYCHOLOGIST_ACCOUNT_TITLES = {
     pageTitle: 'Профиль',
   },
 };
+export const HEADER_BURGER_MENU_LINKS = [...HEADER_DROPDOWN_LINKS, ...HEADER_NAV_LINKS];
+
+export const SCREEN_SM = 480;
+export const SCREEN_MD = 768;
 
 export const SCROLL_SPEED = 1;
 export const LENGTH_TO_START_SCROLLING = 5;
@@ -345,6 +353,7 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
     name: 'email_regist',
     typeForInput: 'email',
     required: true,
+    promptClasses: 'auth__prompt',
   },
   {
     element: inputElement,
@@ -370,6 +379,7 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
     required: true,
     prompt:
       'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ',
+    promptClasses: 'auth__prompt',
   },
   {
     element: inputElement,
@@ -415,48 +425,272 @@ export const PSYCHOLOGIST_INFO_TITLES = {
 
 export const PSYCHO_FILTER_DATA = [
   {
-    element: checkboxDropDownElement,
+    element: radioDropdownElement,
     name: 'experience',
     placeholder: 'Выберите опыт работы',
     title: 'Опыт работы',
-    dropDownContent: dropDownLists.experience,
-    typeForDropDown: 'checkbox',
-    required: true,
+    dropdownContent: dropdownLists.experience,
+    typeForDropdown: 'radio',
+    required: false,
+    autoComplete: 'off',
   },
   {
-    element: radioDropDownElement,
+    element: radioDropdownElement,
     name: 'gender',
     placeholder: 'Выберите пол',
     title: 'Пол',
-    dropDownContent: dropDownLists.genderForFilter,
-    typeForDropDown: 'radio',
-    required: true,
+    dropdownContent: dropdownLists.genderForFilter,
+    typeForDropdown: 'radio',
+    required: false,
+    autoComplete: 'off',
   },
   {
-    element: checkboxDropDownElement,
+    element: radioDropdownElement,
     name: 'age',
     placeholder: 'Выберите возраст психолога',
     title: 'Возраст',
-    dropDownContent: dropDownLists.ageForFilter,
-    typeForDropDown: 'checkbox',
-    required: true,
+    dropdownContent: dropdownLists.ageForFilter,
+    typeForDropdown: 'radio',
+    required: false,
+    autoComplete: 'off',
   },
   {
-    element: titlesDropDownElement,
+    element: titlesDropdownElement,
     name: 'themes',
     placeholder: 'Выберите все подходящие варианты',
     title: 'О чем хотите поговорить?',
-    dropDownContent: dropDownLists.mainGoalsOfWork,
-    typeForDropDown: 'checkbox',
+    dropdownContent: dropdownLists.mainGoalsOfWork,
+    typeForDropdown: 'checkbox',
+    required: false,
+    autoComplete: 'off',
+  },
+  {
+    element: checkboxDropdownElement,
+    name: 'approaches',
+    placeholder: 'Выберите все подходящие варианты',
+    title: 'Основные направления работы',
+    dropdownContent: dropdownLists.approachList,
+    typeForDropdown: 'checkbox',
+    required: false,
+    customElement: 'Другой вариант',
+    autoComplete: 'off',
+  },
+];
+
+export const INPUT_DATA_FOR_RESET_PASSWORD = [
+  {
+    element: inputElement,
+    title: 'Email',
+    name: 'email_change_password',
+    typeForInput: 'email',
+    required: true,
+    minLength: '1',
+    disabled: true,
+    placeholder: 'example@mail.ru',
+  },
+  {
+    element: inputElement,
+    title: 'Введите текущий пароль',
+    name: 'old_password_change_password',
+    typeForInput: 'password',
+    required: true,
+    minLength: '1',
+  },
+  {
+    element: inputElement,
+    title: 'Придумайте новый пароль',
+    name: 'new_password_change_password',
+    typeForInput: 'password',
+    required: true,
+    minLength: '1',
+    prompt:
+      'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ',
+    promptClasses: 'change-password__prompt',
+    fieldsetClasses: 'change-password__fieldset',
+  },
+  {
+    element: inputElement,
+    title: 'Повторите новый пароль',
+    name: 'new2_password_change_password',
+    typeForInput: 'password',
+    required: true,
+    minLength: '1',
+  },
+];
+
+export const API_URL = 'https://sharewithme.acceleratorpracticum.ru/api/v1';
+
+export const PSYCHO_REGISTRATION_TEXT = [
+  'Для регистрации заполните информацию о себе и прикрепите документы об образовании.',
+  'Как только мы все проверим, Вам на почту придет уведомление.',
+];
+
+export const PSYCHO_REGISTRATION_FIRST_STEP = [
+  {
+    element: inputElement,
+    title: 'Имя',
+    name: 'first_name',
+    typeForInput: 'text',
+    required: true,
+    maxLength: '50',
+    minLength: '1',
+  },
+  {
+    element: inputElement,
+    title: 'Фамилия',
+    name: 'last_name',
+    typeForInput: 'text',
+    required: true,
+    maxLength: '50',
+    minLength: '1',
+  },
+  {
+    element: inputElement,
+    title: 'Email',
+    name: 'email',
+    typeForInput: 'email',
+    required: true,
+    promptClasses: 'auth__prompt',
+    minLength: '1',
+  },
+  {
+    element: inputElement,
+    title: 'Телефон',
+    name: 'phone_number',
+    typeForInput: 'tel',
+    required: true,
+    placeholder: '+7 921 123 45 67',
+    maxLength: '12',
+    minLength: '1',
+  },
+  {
+    element: inputElement,
+    title: 'Дата рождения',
+    name: 'birthday',
+    typeForInput: 'date',
+    required: true,
+    placeholder: '23.04.1990',
+  },
+  {
+    element: radioDropdownElement,
+    name: 'gender',
+    placeholder: 'Выберите пол',
+    title: 'Пол',
+    dropdownContent: dropdownLists.genderForPsycho,
+    typeForDropdown: 'radio',
+    autoComplete: 'off',
+    // required: true,
+  },
+];
+
+export const PSYCHO_REGISTRATION_SECOND_STEP = [
+  {
+    element: inputElement,
+    title: 'Период обучения',
+    name: 'institutes_graduation_year',
+    typeForInput: 'text',
+    required: true,
+    placeholder: 'Год начала - год окончания',
+  },
+  {
+    element: inputElement,
+    title: 'Название учебного заведения',
+    name: 'institutes_title',
+    typeForInput: 'text',
+    required: true,
+    placeholder: 'Введите название учебного заведения',
+  },
+  {
+    element: inputElement,
+    title: 'Направление подготовки',
+    name: 'institutes_speciality',
+    typeForInput: 'text',
+    required: true,
+  },
+];
+
+export const PSYCHO_REGISTRATION_THIRD_STEP = [
+  {
+    element: inputElement,
+    title: 'Год окончания',
+    name: 'courses_graduation_year',
+    typeForInput: 'text',
     required: true,
   },
   {
-    element: titlesDropDownElement,
-    name: 'themes2',
-    placeholder: 'Выберите все подходящие варианты',
-    title: 'Основные направления работы',
-    dropDownContent: dropDownLists.mainGoalsOfWork,
-    typeForDropDown: 'checkbox',
+    element: inputElement,
+    title: 'Название учебного заведения',
+    name: 'courses_title',
+    typeForInput: 'text',
+    required: true,
+    placeholder: 'Введите название учебного заведения',
+  },
+  {
+    element: inputElement,
+    title: 'Направление подготовки',
+    name: 'courses_speciality',
+    typeForInput: 'text',
     required: true,
   },
+];
+
+export const PSYCHO_REGISTRATION_FOURTH_STEP = [
+  {
+    element: titlesDropdownElement,
+    name: 'themes',
+    placeholder: 'Выберите все подходящие варианты',
+    title: 'Основные направления работы',
+    dropdownContent: dropdownLists.mainGoalsOfWork,
+    typeForDropdown: 'checkbox',
+    // required: true,
+    autoComplete: 'off',
+  },
+  {
+    element: checkboxDropdownElement,
+    name: 'approaches',
+    placeholder: 'Выберите все подходящие варианты',
+    title: 'Подход',
+    dropdownContent: dropdownLists.approachList,
+    typeForDropdown: 'checkbox',
+    // required: true,
+    customElement: 'Другой вариант',
+    autoComplete: 'off',
+  },
+];
+
+export const PSYCHO_REGISTRATION_FOURTH_STEP_TWO = [
+  {
+    element: inputElement,
+    title: 'Стоимость за сессию (руб.)',
+    name: 'price',
+    typeForInput: 'text',
+    required: true,
+    inputContainerClasses: 'psycho-registration__form_price-container',
+  },
+  {
+    element: inputElement,
+    title: 'Опыт консультирования (в годах)',
+    name: 'experience',
+    typeForInput: 'text',
+    required: true,
+    inputContainerClasses: 'psycho-registration__form_experience-container',
+  },
+];
+
+export const WORK_WITH_US = [
+  {
+    id: 1,
+    title: 'Современный, быстроразвивающийся сервис с постоянным потоком клиентов',
+    icon: people
+  },
+  {
+    id: 2,
+    title: 'Понятная система оплаты',
+    icon: wallet
+  },
+  {
+    id: 3,
+    title: 'Мы берем на себя все технические вопросы',
+    icon: setting
+  }
 ];

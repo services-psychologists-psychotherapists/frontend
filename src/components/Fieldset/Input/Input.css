@@ -6,14 +6,15 @@
   line-height: 24px;
   color: var(--text-color-dark-blue);
   background-color: transparent;
-  list-style-type: none;
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  list-style-type: none; /* названия классиов и их содержание */
 }
 
 .input:focus {
   outline: none;
+  border-radius: 12px;
   color: var(--border-color-dark-violet);
 }
 

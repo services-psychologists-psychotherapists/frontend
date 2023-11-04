@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './DropdownItem.css';
 import PropTypes from 'prop-types';
-import { checkboxType, radioType, titlesDropDownElement } from '../../../constants/constants';
+import { checkboxType, radioType, titlesDropdownElement } from '../../../constants/constants';
 import DropdownItemIcon from './DropdownItemIcon/DropdownItemIcon';
 import DropdownItemTitle from './DropdownItemTitle/DropdownItemTitle';
 import DropdownCustomInput from './DropdownCustomInput/DropdownCustomInput';
@@ -14,9 +14,11 @@ export default function DropdownItem({
   name,
   selectedDropdownItems,
   values,
-  handleChange,
+  customElement,
+  resetCustomValue,
+  setCustomValue,
 }) {
-  const isTitlesElement = element === titlesDropDownElement;
+  const isTitlesElement = element === titlesDropdownElement;
 
   const isRadioType = type === radioType;
   const isCheckboxType = type === checkboxType;
@@ -37,15 +39,40 @@ export default function DropdownItem({
     return '';
   };
 
-  const containerClassName = getContainerClassName();
+  const getNameForInput = (nameElem, valueElem) => {
+    const newName = `${nameElem}_${valueElem}`;
+
+    return newName.replace(/ /g, '_');
+  };
+
+  const nameForElem = getNameForInput(name, item);
+
+  const [isCustomOpen, setIsCustomOpen] = useState(false);
+
+  const handleClickCustomInput = () => {
+    setIsCustomOpen(!isCustomOpen);
+
+    if (isCustomOpen) {
+      resetCustomValue();
+    } else {
+      setCustomValue();
+    }
+  };
 
   const checkIsChecked = () => {
+    if (customElement === item) {
+      return isCustomOpen;
+    }
+
     if (isRadioType) {
       return selectedDropdownItems[name] === item;
     }
 
     if (isCheckboxType) {
-      return (selectedDropdownItems[name] && selectedDropdownItems[name].includes(item)) || false;
+      return (
+        selectedDropdownItems[name]
+        && selectedDropdownItems[name].includes(item)
+      ) || false;
     }
 
     return false;
@@ -53,30 +80,37 @@ export default function DropdownItem({
 
   const isChecked = checkIsChecked();
 
+  const getOnClick = () => (
+    customElement === item ? handleClickCustomInput : () => {}
+  );
+
+  const onClickForInput = getOnClick();
+
   return (
-    <label className={`dropdown-item__container${containerClassName}`}>
+    <label className={`dropdown-item__container${getContainerClassName()}`}>
       <DropdownItemIcon
         element={element}
         type={type}
         item={item}
         onChange={onChange}
         checked={isChecked}
-        name={name}
+        name={nameForElem}
+        onClick={onClickForInput}
       />
       <DropdownItemTitle
         checked={isChecked}
         type={type}
         element={element}
         item={item}
+        customElement={customElement}
       />
       <DropdownCustomInput
         inputType="text"
-        element={element}
-        name={name}
         item={item}
         values={values}
-        onChange={handleChange}
-        selectedDropdownItems={selectedDropdownItems}
+        onChange={onChange}
+        customElement={customElement}
+        isCustomOpen={isCustomOpen}
       />
     </label>
   );
@@ -88,11 +122,13 @@ DropdownItem.propTypes = {
   onChange: PropTypes.func,
   type: PropTypes.string,
   name: PropTypes.string,
-  handleChange: PropTypes.func,
   values: PropTypes.objectOf(PropTypes.string),
   selectedDropdownItems: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.array, PropTypes.string])
   ),
+  customElement: PropTypes.string,
+  resetCustomValue: PropTypes.func,
+  setCustomValue: PropTypes.func,
 };
 
 DropdownItem.defaultProps = {
@@ -101,6 +137,8 @@ DropdownItem.defaultProps = {
   type: null,
   name: null,
   values: null,
-  handleChange: () => {},
   selectedDropdownItems: {},
+  customElement: '',
+  resetCustomValue: () => {},
+  setCustomValue: () => {},
 };

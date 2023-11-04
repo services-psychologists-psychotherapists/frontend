@@ -7,3 +7,13 @@
 .block-template_size_m {
   gap: 48px;
 }
+
+@media screen and (max-width: 768px) {
+  .block-template {
+    gap: 18px;
+  }
+
+  .block-template_size_m {
+    gap: 30px;
+  }
+}

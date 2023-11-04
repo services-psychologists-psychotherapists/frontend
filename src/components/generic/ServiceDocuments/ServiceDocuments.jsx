@@ -4,9 +4,7 @@ import './ServiceDocuments.css';
 import ServiceDocumentsBtn from './ServiceDocumentsBtn/ServiceDocumentsBtn';
 import { SERVICE_DOCUMENTS } from '../../../constants/constants';
 
-export default function ServiceDocuments({
-  onClick, selectedItem, className, textVariant
-}) {
+export default function ServiceDocuments({ onClick, selectedItem, className, textVariant }) {
   // TODO: Возможно убрать отдельный компонент кнопки и сделать ее тут
   // TODO: Добавить ссылки для объектов?
   return (

@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './Avatar.css';
 import noAvatar from '../../../images/no-avatar.svg';
 
 export default function Avatar({ src, size }) {
-  const avatar = src || noAvatar;
+  const [avatar, setAvatar] = useState(noAvatar);
+
+  useEffect(() => {
+    const img = new Image();
+    img.src = src;
+    img.onload = () => setAvatar(src);
+    img.onerror = () => setAvatar(noAvatar);
+  }, [src]);
 
   function getNoAvatarClasses(tag) {
     if (avatar === noAvatar) {
@@ -23,7 +30,7 @@ export default function Avatar({ src, size }) {
     <div className={`avatar avatar_size_${size} ${getNoAvatarClasses('avatar')}`}>
       <img
         src={avatar}
-        alt="аватар пользователя" // Не только для пользователя. Настроить стили отображения
+        alt="Аватар"
         className={`${avatar !== noAvatar ? 'img' : getNoAvatarClasses('img')}`}
       />
       {size === 'xl' && (

@@ -19,7 +19,10 @@ export default function WhereToBegin() {
           </li>
         ))}
       </ul>
-      <Button onClick={() => {}} className="where-to-begin__button">
+      <Button
+        href="/directory_psychologists"
+        className="where-to-begin__button"
+      >
         Каталог психологов
       </Button>
     </section>

@@ -1,14 +1,12 @@
 import React from 'react';
-import {
-  func, bool, objectOf, string
-} from 'prop-types';
+import { func, bool, objectOf, string } from 'prop-types';
 import './AuthLogin.css';
 import { LOGIN_INPUT_PARAMS_FOR_CLIENT } from '../../../constants/constants';
 import Fieldset from '../../../components/Fieldset/Fieldset';
 import Button from '../../../components/generic/Button/Button';
 
 export default function AuthLogin({
-  getJwt,
+  signIn,
   values,
   handleChange,
   errors,
@@ -17,7 +15,7 @@ export default function AuthLogin({
   getInvalidInput,
 }) {
   const handleSubmitLogin = () => {
-    getJwt({
+    signIn({
       email: values.email_login,
       password: values.password_login,
     });
@@ -36,10 +34,9 @@ export default function AuthLogin({
               minLength={i.minLength}
               required={i.required}
               values={values}
-              handleChange={handleChange}
+              handleChange={(e) => handleChange(e)}
               errors={errors}
               isValid={getInvalidInput(inputValidStatus[i.name])}
-              promptClasses="auth__prompt"
             />
           </li>
         ))}
@@ -65,7 +62,7 @@ export default function AuthLogin({
 }
 
 AuthLogin.propTypes = {
-  getJwt: func.isRequired,
+  signIn: func.isRequired,
   isValidForm: bool.isRequired,
   inputValidStatus: objectOf(bool).isRequired,
   getInvalidInput: func.isRequired,

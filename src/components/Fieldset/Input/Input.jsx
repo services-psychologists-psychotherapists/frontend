@@ -2,10 +2,10 @@ import './Input.css';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {
-  checkboxDropDownElement,
+  checkboxDropdownElement,
   inputElement,
-  radioDropDownElement,
-  titlesDropDownElement,
+  radioDropdownElement,
+  titlesDropdownElement,
 } from '../../../constants/constants';
 import TitlesContainer from '../TitlesContainer/TitlesContainer';
 
@@ -25,30 +25,34 @@ export default function Input({
   ownClasses,
   onClick,
   id,
+  classesForInput,
+  autoComplete,
 }) {
-  const inputClasses = `input${element === inputElement ? ' input_hidden-placeholder' : ''}${
+  const inputClasses = `input${
+    element === inputElement ? ' input_hidden-placeholder' : ''}${
     !isValid ? ' input_invalid' : ''
   }${
-    element === radioDropDownElement
-    || element === checkboxDropDownElement
-    || element === titlesDropDownElement
+    element === radioDropdownElement
+    || element === checkboxDropdownElement
+    || element === titlesDropdownElement
       ? ' input_button'
       : ''
   }`;
 
-  return element === titlesDropDownElement ? (
+  return element === titlesDropdownElement ? (
     <ul
       role="menu"
       onKeyDown={onClick}
       onClick={onClick}
-      className={`${inputClasses} ${ownClasses}`}
+      // className={`${inputClasses} ${ownClasses}`}
+      className={`${inputClasses} ${ownClasses}${classesForInput ? ` ${classesForInput}` : ''}`}
     >
       <TitlesContainer placeholder={placeholder} value={value} element={element} />
     </ul>
   ) : (
     <input
       onClick={onClick}
-      className={`${inputClasses} ${ownClasses}`}
+      className={`${inputClasses} ${ownClasses}${classesForInput ? ` ${classesForInput}` : ''}`}
       type={isEyeOpened ? 'text' : type}
       name={name}
       id={id}
@@ -59,6 +63,7 @@ export default function Input({
       minLength={minLength}
       maxLength={maxLength}
       required={required}
+      autoComplete={autoComplete}
     />
   );
 }
@@ -79,6 +84,8 @@ Input.propTypes = {
   ownClasses: PropTypes.string,
   onClick: PropTypes.func,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  classesForInput: PropTypes.string,
+  autoComplete: PropTypes.string,
 };
 
 Input.defaultProps = {
@@ -97,4 +104,6 @@ Input.defaultProps = {
   onChange: () => {},
   onClick: () => {},
   id: null,
+  classesForInput: '',
+  autoComplete: null,
 };

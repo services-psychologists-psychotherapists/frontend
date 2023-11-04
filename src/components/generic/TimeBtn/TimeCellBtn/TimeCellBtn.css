@@ -13,7 +13,7 @@
   line-height: 24px;
 }
 
-.time-cell_active {
+.time-cell_active, .time-cell:active {
   background-color: var(--border-color-dark-violet); /* поменять переменную */
   color: #fff;
 }

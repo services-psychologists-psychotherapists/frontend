@@ -8,6 +8,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.5.1",
+    "libphonenumber-js": "^1.10.48",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.43",
     "prop-types": "^15.8.1",
@@ -74,8 +75,7 @@
     "webpack": "^5.88.2"
   },
   "lint-staged": {
-    "*.{js,jsx}": "npm run lint:fix",
-    "*.{css,md,html,json}": "npm run format"
+    "*.{js,jsx}": "npm run lint:fix"
   },
   "config": {
     "commitizen": {

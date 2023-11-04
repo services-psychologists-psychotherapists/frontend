@@ -25,3 +25,10 @@
   padding: 8px 16px;
   border-radius: 20px;
 }
+
+@media screen and (max-width: 480px) {
+  .text_size_s {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}

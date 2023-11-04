@@ -1,0 +1,21 @@
+.psycho-registration__form-clue {
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+  align-items: center;
+}
+
+.psycho-registration__form-clue_icon {
+  background-image: url('./attention.svg');
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+}
+
+.psycho-registration__form-clue_text {
+  color: var(--text-color-dark-violet);
+  font-family: var(--font-family-lato);
+  font-size: 14px;
+  font-style: normal;
+  line-height: normal;
+}

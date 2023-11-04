@@ -2,34 +2,26 @@ import './DropdownCustomInput.css';
 import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../../Input/Input';
-import { checkboxDropDownElement } from '../../../../constants/constants';
 
 export default function DropdownCustomInput({
   item,
   inputType,
   onChange,
-  selectedDropdownItems,
   values,
-  name,
-  element,
+  customElement,
+  isCustomOpen,
 }) {
-  const isCheckboxElement = element === checkboxDropDownElement;
-  const isOtherChecked = ((selectedDropdownItems[name] && selectedDropdownItems[name].includes('Другое')) || false)
-    && isCheckboxElement;
-  const isOther = item === 'Другое';
-  const shouldRenderCustomInput = isOther && isCheckboxElement;
-
   return (
-    shouldRenderCustomInput && (
+    (customElement === item) && (
       <div className="dropdown-item__custom-input">
         <Input
-          ownClasses="dropdown-item__input"
+          ownClasses="dropdown-item__input dropdown-item__other"
           type={inputType}
           name="custom"
           value={values.custom || ''}
           onChange={onChange}
-          placeholder={!isOtherChecked ? 'Другое' : 'Введите свой вариант'}
-          disabled={!isOtherChecked}
+          placeholder={!isCustomOpen ? customElement : 'Введите свой вариант'}
+          disabled={!isCustomOpen}
         />
       </div>
     )
@@ -37,22 +29,19 @@ export default function DropdownCustomInput({
 }
 
 DropdownCustomInput.propTypes = {
-  element: PropTypes.string.isRequired,
-  name: PropTypes.string,
   item: PropTypes.string,
   values: PropTypes.objectOf(PropTypes.string),
   onChange: PropTypes.func,
   inputType: PropTypes.string,
-  selectedDropdownItems: PropTypes.objectOf(
-    PropTypes.oneOfType([PropTypes.array, PropTypes.string])
-  ),
+  customElement: PropTypes.string,
+  isCustomOpen: PropTypes.bool,
 };
 
 DropdownCustomInput.defaultProps = {
-  name: null,
   item: null,
   values: null,
   onChange: () => {},
   inputType: null,
-  selectedDropdownItems: {},
+  customElement: '',
+  isCustomOpen: false,
 };

@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  bool, objectOf, string, func
-} from 'prop-types';
+import { bool, objectOf, string, func } from 'prop-types';
 import './AuthRegistration.css';
 import Fieldset from '../../../components/Fieldset/Fieldset';
 import Button from '../../../components/generic/Button/Button';
@@ -9,6 +7,9 @@ import Text from '../../../components/generic/Text/Text';
 import { REGISTRATION_INPUT_PARAMS_FOR_CLIENT } from '../../../constants/constants';
 import ServiceDocuments from '../../../components/generic/ServiceDocuments/ServiceDocuments';
 import { usePopup } from '../../../hooks/usePopup';
+import {
+  checkPasswords,
+} from '../../../utils/helpers';
 
 export default function AuthRegistration({
   values,
@@ -21,33 +22,25 @@ export default function AuthRegistration({
 }) {
   const { setValue } = usePopup();
 
-  const getPasswordErr = (firstPass, secondPass) => firstPass !== secondPass;
-
-  const showPopupWithPassErr = () => {
-    setValue({
-      data: {
-        title: 'Пароли не совпадают',
-      },
-    });
-  };
-
   const handleSubmitRegister = () => {
-    if (getPasswordErr(values.passowrd_regist, values.passowrd2_regist)) {
-      showPopupWithPassErr();
-    } else {
-      signUp({
+    checkPasswords(
+      values.passowrd_regist,
+      values.passowrd2_regist,
+      setValue,
+      {
         first_name: values.name_regist,
         birthday: values.birthday_regist,
         phone_number: values.phone_regist || '',
         email: values.email_regist,
         password: values.passowrd_regist,
-      });
-    }
+      },
+      signUp
+    );
   };
 
   return (
     <>
-      <div className="auth__psycho">
+      <div className="auth__registration-psycho">
         <Text size="s" type="span">
           Вы психолог?
         </Text>
@@ -74,10 +67,10 @@ export default function AuthRegistration({
                 placeholder={i.placeholder || null}
                 prompt={i.prompt || null}
                 values={values}
-                handleChange={handleChange}
+                handleChange={(e) => handleChange(e)}
                 errors={errors}
                 isValid={getInvalidInput(inputValidStatus[i.name])}
-                promptClasses="auth__prompt"
+                promptClasses={i.promptClasses || null}
               />
             </li>
           ))}

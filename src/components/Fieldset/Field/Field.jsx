@@ -14,7 +14,6 @@ export default function Field({
   maxLength,
   required,
   element,
-  handleChange,
   isValid,
   value,
   onClick,
@@ -22,6 +21,9 @@ export default function Field({
   title,
   inputContainerClasses,
   id,
+  onChange,
+  classesForInput,
+  autoComplete,
 }) {
   const fieldClasses = `field__input${element !== inputElement ? ' field__input_button' : ''}`;
 
@@ -40,9 +42,13 @@ export default function Field({
     return onClick(e);
   };
 
+  const getDisabledField = (disabledStatus) => (
+    disabledStatus ? ' disabled-field' : ''
+  );
+
   return (
-    <div className={`field field__label${disabled ? ' field__title_disabled' : ''}`}>
-      <span className="field__label-text">{title}</span>
+    <div className={`field field__label${getDisabledField(disabled)}`}>
+      <span className={`field__label-text${getDisabledField(disabled)}`}>{title}</span>
       <div
         className={`field__input-container${` ${inputContainerClasses}`} ${
           !isValid && !disabled ? ' field__input-container_invalid' : ''
@@ -54,7 +60,7 @@ export default function Field({
           value={value}
           type={type}
           name={name}
-          onChange={handleChange}
+          onChange={onChange}
           placeholder={placeholder}
           isValid={isValid}
           disabled={disabled}
@@ -64,6 +70,8 @@ export default function Field({
           isEyeOpened={isEyeOpened}
           ownClasses={fieldClasses}
           id={id}
+          classesForInput={classesForInput}
+          autoComplete={autoComplete}
         />
         <FieldButton
           onClick={handleClickOnButton}
@@ -82,7 +90,7 @@ export default function Field({
 Field.propTypes = {
   element: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  handleChange: PropTypes.func,
+  onChange: PropTypes.func,
   isValid: PropTypes.bool,
   required: PropTypes.bool,
   disabled: PropTypes.bool,
@@ -96,13 +104,15 @@ Field.propTypes = {
   onClick: PropTypes.func,
   inputContainerClasses: PropTypes.string,
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  classesForInput: PropTypes.string,
+  autoComplete: PropTypes.string,
 };
 
 Field.defaultProps = {
   disabled: false,
   required: false,
   isValid: true,
-  handleChange: () => {},
+  onChange: () => {},
   placeholder: null,
   type: null,
   name: null,
@@ -113,4 +123,6 @@ Field.defaultProps = {
   inputContainerClasses: '',
   value: '',
   id: null,
+  classesForInput: '',
+  autoComplete: null,
 };

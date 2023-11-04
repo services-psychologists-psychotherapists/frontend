@@ -6,11 +6,13 @@ import PsychoName from '../../generic/PsychoName/PsychoName';
 import Button from '../../generic/Button/Button';
 import EmptyCard from '../EmptyCard/EmptyCard';
 import { NO_PSYCHO_MESSAGE } from '../../../constants/constants';
+import { useResize } from '../../../hooks/useResize';
 
 export default function MyPsychologist({ psychologist, nextSession }) {
+  const { isScreenSm } = useResize();
   return (
     <div className="your-psycho">
-      {psychologist ? (
+      {psychologist.id ? (
         <>
           <Avatar size="l" src={psychologist.avatar} />
           <div className="your-psycho__container">
@@ -20,7 +22,9 @@ export default function MyPsychologist({ psychologist, nextSession }) {
               rightText={`${Number(psychologist.price).toLocaleString()} руб.`}
               description="Психолог"
             />
-            <Button variant={nextSession ? 'secondary' : 'primary'}>Записаться повторно</Button>
+            <Button variant={nextSession ? 'secondary' : 'primary'} size={!isScreenSm ? 'm' : 'l'} href={`/client_account_session-registration/${psychologist.id}`}>
+              Записаться повторно
+            </Button>
           </div>
         </>
       ) : (

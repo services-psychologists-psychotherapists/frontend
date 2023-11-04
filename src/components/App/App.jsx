@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
 import HomePage from '../../pages/HomePage/HomePage';
@@ -7,89 +7,197 @@ import Footer from '../Footer/Footer';
 import NotFound from '../../pages/NotFound/NotFound';
 import PsychologistAccount from '../../pages/PsychologistAccount/PsychologistAccount';
 import CurrentUserContext from '../../Context/CurrentUserContext';
-import { CLIENT, PSYCHO } from '../../constants/db';
 import ClientHomePage from '../../pages/ClientHomePage/ClientHomePage';
 import ButtonUp from '../generic/ButtonUp/ButtonUp';
-import PsychologistCardPage from '../../pages/PsychologistsCardPage/PsychologistsCardPage';
 import { PopupProvider } from '../../hooks/usePopup';
 import Popup from '../generic/Popup/Popup';
 import SessionRegistrationForClient from '../../pages/SessionRegistrationForClient/SessionRegistrationForClient';
 import Auth from '../../pages/Auth/Auth';
-import { authUser, createUser } from '../../utils/Api';
+import * as auth from '../../utils/auth';
 import DirectoryOfPsychologists from '../../pages/DirectoryOfPsychologists/DirectoryOfPsychologists';
+import Header from '../Header/Header';
+import ProtectedRouteElement from '../ProtectedRouteElement/ProtectedRouteElement';
+import ChangePassword from '../../pages/ChangePassword/ChangePassword';
+import PsychologistRegistration from '../../pages/PsychologistRegistration/PsychologistRegistration';
 
 export default function App() {
   const navigate = useNavigate();
+  // const { pathname } = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+  // const jwt = localStorage.getItem('jwt');
+  const jwtRefresh = localStorage.getItem('jwt-refresh');
 
-  const setJwt = (link, token) => {
-    localStorage.setItem('jwt', token); // переделать на куки
-    setIsLoggedIn(true);
-    navigate(link);
-  };
-
-  const getJwt = async (data) => {
+  const getUser = async (token) => {
     try {
-      const jwt = await authUser(data);
+      const role = await auth.getRole(token);
+      const userRole = role.is_psychologists ? 'psychologist' : 'client';
+      const user = await auth.getUserInfo(token, userRole);
+      user.role = userRole;
 
-      setJwt('/client_account', jwt.refresh);
+      setCurrentUser(user);
+      setIsLoggedIn(true);
+
+      if (user.role) {
+        return user.role;
+      }
     } catch (err) {
       console.log(err);
+      setIsLoggedIn(false);
     }
+
+    return false;
   };
 
-  const signUp = async (data) => {
+  const signIn = async (data) => {
     try {
-      const user = await createUser(data);
-      const jwt = await getJwt({
-        email: user.email,
-        password: data.password,
-      });
+      const token = await auth.authUser(data);
 
-      if (jwt) {
-        setJwt('/client_account', jwt.refresh);
+      if (token) {
+        localStorage.setItem('jwt', token.access);
+        localStorage.setItem('jwt-refresh', token.refresh);
+
+        const role = await getUser(token.access);
+
+        if (role) {
+          navigate(`/${role}_account`);
+        } else {
+          navigate('/');
+        }
       }
     } catch (err) {
       console.log(err);
     }
   };
 
-  // const signOut = () => {
-  //   setIsLoggedIn(false);
-  //   localStorage.clear();
-  //   navigate('/');
-  // };
+  const signOut = () => {
+    setIsLoggedIn(false);
+    localStorage.clear();
+    navigate('/');
+  };
+
+  const verifyJwt = async (token) => {
+    try {
+      const tokenAccess = await auth.refreshToken(token);
+
+      if (tokenAccess) {
+        localStorage.setItem('jwt', tokenAccess.access);
+        await getUser(tokenAccess.access);
+      }
+    } catch (err) {
+      console.log(err);
+      setIsLoggedIn(false);
+    }
+  };
+
+  useEffect(() => {
+    if (jwtRefresh) {
+      verifyJwt(jwtRefresh);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   return (
-    // TODO: перенести хедер в app
     <div className="page">
-      <CurrentUserContext.Provider value={CLIENT}>
+      <CurrentUserContext.Provider value={currentUser}>
         <PopupProvider>
-          {/* TODO: настроить все роуты и внутренние роуты */}
+          <Header isLoggedIn={isLoggedIn} signOut={signOut} />
           <Routes>
-            <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/for_a_therapist" element={<PageForPsychologists />} />
             <Route path="/*" element={<NotFound />} />
-            <Route path="/psychologist_account" element={<PsychologistAccount />} />
-            <Route path="/psychologist_account_schedule" element={<PsychologistAccount />} />
-            <Route path="/psychologist_account_profile" element={<PsychologistAccount />} />
-            <Route path="/client_account" element={<ClientHomePage isLoggedIn={isLoggedIn} />} />
-            <Route
-              path="/signin"
-              element={<Auth isLoggedIn={isLoggedIn} getJwt={getJwt} signUp={signUp} />}
-            />
-            <Route
-              path="/psychologist"
-              element={<PsychologistCardPage psychologist={PSYCHO} isLoggedIn={isLoggedIn} />}
-            />
-            <Route
-              path="/client_account_session-registration"
-              element={<SessionRegistrationForClient navigate={navigate} />}
-            />
+            <Route path="/psychologists_registration" element={<PsychologistRegistration />} />
+            {
+              !isLoggedIn && (
+                <Route
+                  path="/signin"
+                  element={(
+                    <Auth
+                      signIn={signIn}
+                    />
+                  )}
+                />
+              )
+            }
             <Route
               path="/directory_psychologists"
-              element={<DirectoryOfPsychologists isLoggedIn={isLoggedIn} />}
+              element={<DirectoryOfPsychologists />}
             />
+            {currentUser.role === 'psychologist' ? (
+              <>
+                <Route
+                  path="/psychologist_account"
+                  element={(
+                    <ProtectedRouteElement
+                      element={PsychologistAccount}
+                      loggedIn={isLoggedIn}
+                    />
+                      )}
+                />
+                <Route
+                  path="/psychologist_account_schedule"
+                  element={(
+                    <ProtectedRouteElement
+                      element={PsychologistAccount}
+                      loggedIn={isLoggedIn}
+                    />
+                      )}
+                />
+                <Route
+                  path="/psychologist_account_profile"
+                  element={(
+                    <ProtectedRouteElement
+                      element={PsychologistAccount}
+                      loggedIn={isLoggedIn}
+                    />
+                      )}
+                />
+                {/* придумать общий для /change_password */}
+                <Route
+                  path="/change_password"
+                  element={(
+                    <ProtectedRouteElement
+                      element={ChangePassword}
+                      navigate={navigate}
+                      loggedIn={isLoggedIn}
+                    />
+                      )}
+                />
+              </>
+            ) : (
+              <>
+                <Route
+                  path="/change_password"
+                  element={(
+                    <ProtectedRouteElement
+                      element={ChangePassword}
+                      navigate={navigate}
+                      loggedIn={isLoggedIn}
+                    />
+                      )}
+                />
+                <Route
+                  path="/client_account"
+                  element={(
+                    <ProtectedRouteElement
+                      element={ClientHomePage}
+                      loggedIn={isLoggedIn}
+                    />
+                      )}
+                />
+                <Route
+                  path="/client_account_session-registration/:id"
+                  element={(
+                    <ProtectedRouteElement
+                      element={SessionRegistrationForClient}
+                      loggedIn={isLoggedIn}
+                      navigate={navigate}
+                    />
+                      )}
+                />
+              </>
+            )}
           </Routes>
           <Popup />
         </PopupProvider>

@@ -1,13 +1,14 @@
 import './DropdownItemIcon.css';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { checkboxType, radioType, titlesDropDownElement } from '../../../../constants/constants';
+import { checkboxType, radioType, titlesDropdownElement } from '../../../../constants/constants';
 
 export default function DropdownItemIcon({
   type, onChange, item,
   element, checked, name,
+  onClick,
 }) {
-  const isTitlesElement = element === titlesDropDownElement;
+  const isTitlesElement = element === titlesDropdownElement;
 
   const isRadioType = type === radioType;
   const isCheckboxType = type === checkboxType;
@@ -28,18 +29,16 @@ export default function DropdownItemIcon({
     return '';
   };
 
-  const dropdownItemIconClassName = getDropdownItemIconClassName();
-
   return (
     type && (
-      // TODO: не инпуты?
       <input
         type={type}
-        className={`dropdown-item__icon_${dropdownItemIconClassName}`}
+        className={`dropdown-item__icon_${getDropdownItemIconClassName()}`}
         value={item}
         checked={checked}
         onChange={onChange}
         name={name}
+        onClick={() => onClick()}
       />
     )
   );
@@ -52,6 +51,7 @@ DropdownItemIcon.propTypes = {
   onChange: PropTypes.func,
   type: PropTypes.string,
   name: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 DropdownItemIcon.defaultProps = {
@@ -60,4 +60,5 @@ DropdownItemIcon.defaultProps = {
   onChange: () => {},
   type: null,
   name: null,
+  onClick: () => {},
 };
