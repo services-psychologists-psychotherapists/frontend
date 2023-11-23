@@ -518,7 +518,7 @@ export const INPUT_DATA_FOR_RESET_PASSWORD = [
   },
 ];
 
-export const API_URL = 'https://sharewithme.site';
+export const API_URL = 'https://sharewithme.site/api/v1';
 
 export const PSYCHO_REGISTRATION_TEXT = [
   'Для регистрации заполните информацию о себе и прикрепите документы об образовании.',
