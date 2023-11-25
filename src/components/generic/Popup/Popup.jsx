@@ -33,12 +33,13 @@ export default function Popup({ children }) {
         {(buttonsQuantity === 1 && (
           <Button
             onClick={() => {
-              buttons.onClick();
+              buttons[0].onClick();
               closePopup();
             }}
-            type={buttons.type}
-            size={buttons.size}
-            variant={buttons.variant}
+            type={buttons[0].type}
+            size={buttons[0].size}
+            variant={buttons[0].variant}
+            href={buttons[0].href || ''}
           >
             {buttons[0].label}
           </Button>
