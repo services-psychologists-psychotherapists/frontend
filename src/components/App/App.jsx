@@ -197,16 +197,6 @@ export default function App() {
                   )}
                 />
                 <Route
-                  path="/client_profile"
-                  element={(
-                    <ProtectedRouteElement
-                      element={ClientProfilePage}
-                      loggedIn={isLoggedIn}
-                      currentUser={currentUser}
-                    />
-                  )}
-                />
-                <Route
                   path="/client_account_session-registration/:id"
                   element={(
                     <ProtectedRouteElement
