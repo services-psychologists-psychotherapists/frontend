@@ -36,9 +36,9 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+          password: ${{ secrets.PASSPHRASE }}
           script: |
-            cd app/
+            cd psycho/
             sudo docker-compose stop
             sudo docker rm psy_frontend
             sudo docker rmi ${{ secrets.DOCKER_USERNAME }}/psy_front

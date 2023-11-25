@@ -30,10 +30,10 @@ export default function App() {
 
   const getUser = async (token) => {
     try {
-      const user = await auth.getUserInfo(token);
       const role = await auth.getRole(token);
-      // TODO: вытаскивать из роли email
-      user.role = role.is_psychologist ? 'psychologist' : 'client';
+      const userRole = role.is_psychologists ? 'psychologist' : 'client';
+      const user = await auth.getUserInfo(token, userRole);
+      user.role = userRole;
 
       setCurrentUser(user);
       setIsLoggedIn(true);
@@ -197,7 +197,17 @@ export default function App() {
                       )}
                 />
                 <Route
-                  path="/client_account_session-registration"
+                  path="/client_profile"
+                  element={(
+                    <ProtectedRouteElement
+                      element={ClientProfilePage}
+                      loggedIn={isLoggedIn}
+                      currentUser={currentUser}
+                    />
+                      )}
+                />
+                <Route
+                  path="/client_account_session-registration/:id"
                   element={(
                     <ProtectedRouteElement
                       element={SessionRegistrationForClient}

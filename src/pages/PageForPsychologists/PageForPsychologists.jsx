@@ -4,6 +4,7 @@ import Banner from '../../components/Banner/Banner';
 import HowToStart from '../../components/HowToStart/HowToStart';
 import TermsOfCooperation from '../../components/TermsOfCooperation/TermsOfCooperation';
 import Background from '../../components/generic/Background/Background';
+import WorkWithUs from '../../components/WorkWithUs/WorkWithUs';
 
 export default function PageForPsychologists() {
   return (
@@ -16,6 +17,7 @@ export default function PageForPsychologists() {
         title="Присоединяйтесь к нашей команде психологов"
       />
       <Background />
+      <WorkWithUs />
       <HowToStart />
       <TermsOfCooperation />
     </>
