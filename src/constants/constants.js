@@ -287,7 +287,7 @@ export const NO_SLOTS_MESSAGE = {
 
 export const CLIENT_PROFILE_NAV_LINKS = [
   {
-    text: 'Главная',
+    text: 'Личный кабинет',
     link: '/client_account',
   },
   {
@@ -672,4 +672,17 @@ export const PSYCHO_REGISTRATION_FOURTH_STEP_TWO = [
     required: true,
     inputContainerClasses: 'psycho-registration__form_experience-container',
   },
+];
+
+export const PROFILE_FIELDS = [
+  {
+    disabled: true,
+    title: 'Логин',
+    text: 'example@mail.ru',
+  },
+  {
+    disabled: false,
+    title: 'Пароль',
+    text: '***********',
+  }
 ];

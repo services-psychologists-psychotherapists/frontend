@@ -17,8 +17,15 @@ export default function ClientHomePage() {
 
   return (
     <PageLayout
-      title="Главная"
-      nav={<NavLinksList list={CLIENT_PROFILE_NAV_LINKS} direction="column" variant="violet" />}
+      title="Личный кабинет"
+      nav={(
+        <NavLinksList
+          list={CLIENT_PROFILE_NAV_LINKS}
+          direction="column"
+          variant="violet"
+          className="client-profile__nav-links"
+        />
+      )}
     >
       <div className="client-account">
         <BlockWithTitle title="Следующая сессия">

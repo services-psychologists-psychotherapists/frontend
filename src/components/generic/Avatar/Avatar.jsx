@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { func, string } from 'prop-types';
 import './Avatar.css';
 import noAvatar from '../../../images/no-avatar.svg';
 
-export default function Avatar({ src, size }) {
+export default function Avatar({ src, size, onClick }) {
   const [avatar, setAvatar] = useState(noAvatar);
 
   useEffect(() => {
@@ -34,20 +34,24 @@ export default function Avatar({ src, size }) {
         className={`${avatar !== noAvatar ? 'img' : getNoAvatarClasses('img')}`}
       />
       {size === 'xl' && (
-        <button type="button" className={`camera-icon ${getNoAvatarClasses('camera-icon')}`} />
+        <button
+          type="button"
+          className={`camera-icon ${getNoAvatarClasses('camera-icon')}`}
+          onClick={onClick}
+        />
       )}
     </div>
   );
 }
 
-const { string } = PropTypes;
-
 Avatar.propTypes = {
   src: string,
   size: string,
+  onClick: func,
 };
 
 Avatar.defaultProps = {
   size: 'xl',
   src: noAvatar,
+  onClick: () => {},
 };

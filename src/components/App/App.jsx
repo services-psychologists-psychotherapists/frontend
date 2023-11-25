@@ -19,19 +19,20 @@ import Header from '../Header/Header';
 import ProtectedRouteElement from '../ProtectedRouteElement/ProtectedRouteElement';
 import ChangePassword from '../../pages/ChangePassword/ChangePassword';
 import PsychologistRegistration from '../../pages/PsychologistRegistration/PsychologistRegistration';
+import ClientProfilePage from '../../pages/ClientHomePage/ClientProfilePage/ClientProfilePage';
 
 export default function App() {
   const navigate = useNavigate();
-  // const { pathname } = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  // const jwt = localStorage.getItem('jwt');
   const jwtRefresh = localStorage.getItem('jwt-refresh');
+  // const jwt = localStorage.getItem('jwt');
 
   const getUser = async (token) => {
     try {
       const user = await auth.getUserInfo(token);
       const role = await auth.getRole(token);
+      // TODO: вытаскивать из роли email
       user.role = role.is_psychologist ? 'psychologist' : 'client';
 
       setCurrentUser(user);
@@ -182,6 +183,16 @@ export default function App() {
                     <ProtectedRouteElement
                       element={ClientHomePage}
                       loggedIn={isLoggedIn}
+                    />
+                      )}
+                />
+                <Route
+                  path="/client_profile"
+                  element={(
+                    <ProtectedRouteElement
+                      element={ClientProfilePage}
+                      loggedIn={isLoggedIn}
+                      currentUser={currentUser}
                     />
                       )}
                 />
