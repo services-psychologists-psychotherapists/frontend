@@ -22,18 +22,20 @@ export default function Popup({ children }) {
   const title = value ? value.data.title : '';
   const { buttons } = value ? value.data : [];
   const buttonsQuantity = buttons ? buttons.length : 0;
-
   const classesPopup = `popup ${value ? 'popup-visible' : ''}`;
+
   return (
     <div className={classesPopup}>
       <div className="popup__container" ref={ref}>
         <button type="button" className="popup__button-close" onClick={closePopup} />
         <Title size="s" text={title} />
         <div className="popup__content">{children}</div>
-
         {(buttonsQuantity === 1 && (
           <Button
-            onClick={buttons.onClick}
+            onClick={() => {
+              buttons.onClick();
+              closePopup();
+            }}
             type={buttons.type}
             size={buttons.size}
             variant={buttons.variant}
@@ -41,22 +43,26 @@ export default function Popup({ children }) {
             {buttons[0].label}
           </Button>
         ))
-          || (buttonsQuantity >= 2 && (
-            <ButtonGroup>
-              {buttons.map((button) => (
-                <Button
-                  key={button.label}
-                  onClick={button.onClick}
-                  type={button.type}
-                  size={button.size}
-                  variant={button.variant}
-                >
-                  {button.label}
-                </Button>
-              ))}
-            </ButtonGroup>
-          ))
-          || (buttonsQuantity === 0 && null)}
+        || (buttonsQuantity >= 2 && (
+          <ButtonGroup>
+            {buttons.map((button) => (
+              <Button
+                key={button.label}
+                onClick={() => {
+                  button.onClick();
+                  closePopup();
+                }}
+                type={button.type}
+                size={button.size}
+                variant={button.variant}
+                href={button.href || ''}
+              >
+                {button.label}
+              </Button>
+            ))}
+          </ButtonGroup>
+        ))
+        || (buttonsQuantity === 0 && null)}
       </div>
     </div>
   );

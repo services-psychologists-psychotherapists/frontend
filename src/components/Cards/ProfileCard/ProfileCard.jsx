@@ -2,11 +2,14 @@ import React from 'react';
 import { object } from 'prop-types';
 import './ProfileCard.css';
 import Button from '../../generic/Button/Button';
-import { PROFILE_FIELDS } from '../../../constants/constants';
+import { PROFILE_FIELDS, POPUP_DATA } from '../../../constants/constants';
 import Title from '../../generic/Title/Title';
 import Avatar from '../../generic/Avatar/Avatar';
+import { usePopup } from '../../../hooks/usePopup';
 
 export default function ProfileCard({ data }) {
+  const { setValue } = usePopup();
+
   return (
     <section className="profile-card">
       <Title
@@ -40,7 +43,7 @@ export default function ProfileCard({ data }) {
           <Button
             variant="secondary"
             className="profile-card__button"
-            href="/change_password"
+            onClick={() => setValue(POPUP_DATA.changePassword)}
           >
             Изменить пароль
           </Button>

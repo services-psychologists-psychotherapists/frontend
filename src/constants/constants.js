@@ -693,7 +693,7 @@ export const PROFILE_FIELDS = [
 export const WORK_WITH_US = [
   {
     id: 1,
-    title: 'Современный, быстроразвивающийся сервис с постоянным потоком клиентов',
+    title: 'Современный, быстроразвивающийся сервис с постоянным потоком клиентов',
     icon: people
   },
   {
@@ -707,3 +707,70 @@ export const WORK_WITH_US = [
     icon: setting
   }
 ];
+
+export const POPUP_DATA = {
+  ConfirmDeletePopup: {
+    data: {
+      title: 'Удалить?',
+      buttons: [
+        {
+          label: 'Нет',
+          onClick: () => console.log('Нажали Нет'),
+          type: 'button',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Да',
+          onClick: () => console.log('Нажали Да'),
+          type: 'button',
+          size: 'l',
+          variant: 'primary',
+        },
+      ],
+    },
+  },
+  deleteFreeSlot: {
+    data: {
+      title: 'Вы уверены, что хотите удалить из расписания свободное время?',
+      buttons: [
+        {
+          label: 'Удалить',
+          onClick: () => console.log('Нажали Отменить'),
+          type: 'secondary',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Отмена',
+          onClick: () => console.log('Нажали Добавить'),
+          type: 'primary',
+          size: 'l',
+          variant: 'primary',
+        },
+      ],
+    },
+  },
+  changePassword: {
+    data: {
+      title: 'Хотите изменить пароль?',
+      buttons: [
+        {
+          label: 'Отменить',
+          onClick: () => {},
+          type: 'button',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Да',
+          onClick: () => {},
+          type: 'button',
+          size: 'l',
+          variant: 'primary',
+          href: '/change_password',
+        },
+      ],
+    },
+  }
+};

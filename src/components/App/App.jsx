@@ -133,7 +133,7 @@ export default function App() {
                       element={PsychologistAccount}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
                 />
                 <Route
                   path="/psychologist_account_schedule"
@@ -142,7 +142,7 @@ export default function App() {
                       element={PsychologistAccount}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
                 />
                 <Route
                   path="/psychologist_account_profile"
@@ -151,7 +151,7 @@ export default function App() {
                       element={PsychologistAccount}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
                 />
                 {/* придумать общий для /change_password */}
                 <Route
@@ -162,7 +162,7 @@ export default function App() {
                       navigate={navigate}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
                 />
               </>
             ) : (
@@ -175,7 +175,7 @@ export default function App() {
                       navigate={navigate}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
                 />
                 <Route
                   path="/client_account"
@@ -184,7 +184,7 @@ export default function App() {
                       element={ClientHomePage}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
                 />
                 <Route
                   path="/client_profile"
@@ -194,7 +194,7 @@ export default function App() {
                       loggedIn={isLoggedIn}
                       currentUser={currentUser}
                     />
-                      )}
+                  )}
                 />
                 <Route
                   path="/client_profile"
@@ -204,7 +204,7 @@ export default function App() {
                       loggedIn={isLoggedIn}
                       currentUser={currentUser}
                     />
-                      )}
+                  )}
                 />
                 <Route
                   path="/client_account_session-registration/:id"
@@ -214,7 +214,7 @@ export default function App() {
                       loggedIn={isLoggedIn}
                       navigate={navigate}
                     />
-                      )}
+                  )}
                 />
               </>
             )}

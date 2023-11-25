@@ -28,7 +28,7 @@ export default function Button({
       if (disabled) {
         return '';
       }
-      return { to: href };
+      return { to: href, onClick: () => onClick() };
     }
     return { type, onClick: handlerBtnClick };
   }
