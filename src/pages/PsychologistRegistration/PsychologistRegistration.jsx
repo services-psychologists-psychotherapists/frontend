@@ -12,6 +12,7 @@ import FourthStep from './Steps/FourthStep/FourthStep';
 import { useForm } from '../../hooks/useForm';
 import { uploadFile, createPsychologist } from '../../utils/auth';
 import { usePopup } from '../../hooks/usePopup';
+import Success from './Success/Success';
 
 export default function PsychologistRegistration() {
   // TODO: добавить анимацию переходов
@@ -33,6 +34,7 @@ export default function PsychologistRegistration() {
   const { setValue } = usePopup();
 
   const [docIdForRequest, setDocIdForRequest] = useState('');
+  const [isSuccess, setIsSuccess] = useState(false);
 
   const [listId, setListId] = useState(0);
 
@@ -42,11 +44,7 @@ export default function PsychologistRegistration() {
     try {
       const psycho = await createPsychologist(data);
 
-      setValue({
-        data: {
-          title: 'Вы успешно зарегистрировались',
-        },
-      });
+      setIsSuccess(true);
       // TODO: убрать
       console.log(psycho);
     } catch (err) {
@@ -598,90 +596,98 @@ export default function PsychologistRegistration() {
   }, [instituteSpeciality]);
 
   return (
-    <PageLayout
-      classes={
-        `psycho-registration${step === 1 ? `${' psycho-registration__fist-step'}`
-          : `${' psycho-registration__other-step'}`}`
-      }
-      title="Подать заявку"
-      nav={step !== 1 ? (
-        <Button
-          variant="text-icon"
-          onClick={() => switchPrevStep()}
-          className="psycho-registration__switch"
-        >
-          Назад
-        </Button>
-      ) : null}
-    >
-      <div className="psycho-registration__container">
-        {step === 1 ? (
-          <ul className="psycho-registration__text-list">
-            {PSYCHO_REGISTRATION_TEXT.map((i) => (
-              <li key={i}>
-                <p className="psycho-registration__text">{i}</p>
-              </li>
-            ))}
-          </ul>
-        ) : null}
-        <form className="psycho-registration__form">
-          {/* TODO: объединить шаги в один компонент? */}
-          <FirstStep
-            className={step === 1 ? 'psycho-registration__step_on' : ''}
-            values={values}
-            handleChange={handleChange}
-            errors={errors}
-            inputValidStatus={inputValidStatus}
-            getInvalidInput={getInvalidInput}
-            selectedDropdownItems={selectedDropdownItems}
-            step={step}
-          />
-          <SecondStep
-            className={step === 2 ? 'psycho-registration__step_on' : ''}
-            values={values}
-            handleChange={handleChange}
-            errors={errors}
-            inputValidStatus={inputValidStatus}
-            getInvalidInput={getInvalidInput}
-            step={step}
-            getClosestList={getClosestList}
-            setListId={setListId}
-          />
-          <ThirdStep
-            className={step === 3 ? 'psycho-registration__step_on' : ''}
-            values={values}
-            handleChange={handleChange}
-            errors={errors}
-            inputValidStatus={inputValidStatus}
-            getInvalidInput={getInvalidInput}
-            step={step}
-            getClosestList={getClosestList}
-            setListId={setListId}
-          />
-          <FourthStep
-            className={step === 4 ? 'psycho-registration__step_on' : ''}
-            values={values}
-            handleChange={handleChange}
-            errors={errors}
-            inputValidStatus={inputValidStatus}
-            getInvalidInput={getInvalidInput}
-            step={step}
-            selectedDropdownItems={selectedDropdownItems}
-            setCustomValue={setCustomValue}
-            resetCustomValue={resetCustomValue}
-          />
-          <Button
-            className="psycho-registration__form_button"
-            type={step !== 4 ? 'button' : 'submit'}
-            variant="primary"
-            size="l"
-            disabled={!isValidForm}
-            onClick={switchNextStep}
+    <div>
+      {
+        isSuccess ? (
+          <Success />
+        ) : (
+          <PageLayout
+            classes={
+              `psycho-registration${step === 1 ? `${' psycho-registration__fist-step'}`
+                : `${' psycho-registration__other-step'}`}`
+            }
+            title="Подать заявку"
+            nav={step !== 1 ? (
+              <Button
+                variant="text-icon"
+                onClick={() => switchPrevStep()}
+                className="psycho-registration__switch"
+              >
+                Назад
+              </Button>
+            ) : null}
           >
-            {step !== 4 ? 'Далее' : 'Подать заявку'}
-          </Button>
-        </form>
-      </div>
-    </PageLayout>
+            <div className="psycho-registration__container">
+              {step === 1 ? (
+                <ul className="psycho-registration__text-list">
+                  {PSYCHO_REGISTRATION_TEXT.map((i) => (
+                    <li key={i}>
+                      <p className="psycho-registration__text">{i}</p>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+              <form className="psycho-registration__form">
+                {/* TODO: объединить шаги в один компонент? */}
+                <FirstStep
+                  className={step === 1 ? 'psycho-registration__step_on' : ''}
+                  values={values}
+                  handleChange={handleChange}
+                  errors={errors}
+                  inputValidStatus={inputValidStatus}
+                  getInvalidInput={getInvalidInput}
+                  selectedDropdownItems={selectedDropdownItems}
+                  step={step}
+                />
+                <SecondStep
+                  className={step === 2 ? 'psycho-registration__step_on' : ''}
+                  values={values}
+                  handleChange={handleChange}
+                  errors={errors}
+                  inputValidStatus={inputValidStatus}
+                  getInvalidInput={getInvalidInput}
+                  step={step}
+                  getClosestList={getClosestList}
+                  setListId={setListId}
+                />
+                <ThirdStep
+                  className={step === 3 ? 'psycho-registration__step_on' : ''}
+                  values={values}
+                  handleChange={handleChange}
+                  errors={errors}
+                  inputValidStatus={inputValidStatus}
+                  getInvalidInput={getInvalidInput}
+                  step={step}
+                  getClosestList={getClosestList}
+                  setListId={setListId}
+                />
+                <FourthStep
+                  className={step === 4 ? 'psycho-registration__step_on' : ''}
+                  values={values}
+                  handleChange={handleChange}
+                  errors={errors}
+                  inputValidStatus={inputValidStatus}
+                  getInvalidInput={getInvalidInput}
+                  step={step}
+                  selectedDropdownItems={selectedDropdownItems}
+                  setCustomValue={setCustomValue}
+                  resetCustomValue={resetCustomValue}
+                />
+                <Button
+                  className="psycho-registration__form_button"
+                  type={step !== 4 ? 'button' : 'submit'}
+                  variant="primary"
+                  size="l"
+                  disabled={!isValidForm}
+                  onClick={switchNextStep}
+                >
+                  {step !== 4 ? 'Далее' : 'Подать заявку'}
+                </Button>
+              </form>
+            </div>
+          </PageLayout>
+        )
+      }
+    </div>
   );
 }

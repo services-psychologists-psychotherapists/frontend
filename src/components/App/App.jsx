@@ -107,7 +107,7 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/for_a_therapist" element={<PageForPsychologists />} />
             <Route path="/*" element={<NotFound />} />
-            <Route path="/psychologists_registration" element={<PsychologistRegistration />} />
+            <Route path="/psychologists_registration/*" element={<PsychologistRegistration />} />
             {
               !isLoggedIn && (
                 <Route
