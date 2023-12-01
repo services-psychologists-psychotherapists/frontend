@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   bool, objectOf, string, func, number,
 } from 'prop-types';
@@ -9,6 +9,9 @@ import { PSYCHO_REGISTRATION_SECOND_STEP } from '../../../../constants/constants
 import Fieldset from '../../../../components/Fieldset/Fieldset';
 import FileUpload from '../../../../components/Fieldset/FileUpload/FileUpload';
 import Button from '../../../../components/generic/Button/Button';
+import { usePopup } from '../../../../hooks/usePopup';
+import { checkFile, resetValue, handleDataUpdate } from '../../../../utils/helpers';
+// TODO: Запретить ввод букв в Периоде обученияпе
 
 export default function SecondStep({
   className,
@@ -20,12 +23,157 @@ export default function SecondStep({
   step,
   getClosestList,
   setListId,
+  listId,
+  setDataForRequest,
+  getYears,
+  docIdForRequest,
+  fileForRequest,
+  uploadDocuments,
 }) {
+  const { setValue } = usePopup();
+
+  const [instituteTitle, setInstituteTitle] = useState(null);
+  const [instituteSpeciality, setInstituteSpeciality] = useState(null);
+  const [graduationYear, setGraduationYear] = useState(null);
+  const [isRendered, setIsRendered] = useState(false);
   const [educationBlocks, setEducationBlocks] = useState([0]);
 
   const addEducationBlock = () => {
     setEducationBlocks((prevBlocks) => [...prevBlocks, prevBlocks.length]);
   };
+
+  useEffect(() => {
+    setIsRendered(true);
+  }, []);
+
+  useEffect(() => {
+    const propertyPathTitle = `institutes_title${listId}`;
+    const newInstituteTitle = values[propertyPathTitle];
+
+    const propertyPathSpeciality = `institutes_speciality${listId}`;
+    const newInstituteSpeciality = values[propertyPathSpeciality];
+
+    const propertyPathGraduationYear = `institutes_graduation_year${listId}`;
+    const newGraduationYear = values[propertyPathGraduationYear];
+
+    if (newInstituteTitle !== instituteTitle) {
+      setInstituteTitle(newInstituteTitle);
+    }
+
+    if (newInstituteSpeciality !== instituteSpeciality) {
+      setInstituteSpeciality(newInstituteSpeciality);
+    }
+
+    if (newGraduationYear !== graduationYear) {
+      setGraduationYear(newGraduationYear);
+    }
+  }, [values, listId]);
+
+  useEffect(() => {
+    if (isRendered && step === 2) {
+      if (graduationYear) {
+        const minMaxArr = getYears([graduationYear]);
+
+        if (minMaxArr && minMaxArr[0].length > 1) {
+          const yearsArr = minMaxArr[1];
+
+          if (
+            (yearsArr[0].toString().length === 4)
+            && (yearsArr[1].toString().length === 4)
+          ) {
+            handleDataUpdate(
+              'graduation_year',
+              `${yearsArr[0]}-${yearsArr[1]}`,
+              setDataForRequest,
+              'institutes',
+              listId,
+            );
+
+            return;
+          }
+        }
+      }
+
+      resetValue(
+        'graduation_year',
+        'institutes',
+        listId,
+        setDataForRequest,
+      );
+    }
+  }, [graduationYear, isRendered]);
+
+  useEffect(() => {
+    if (isRendered && step === 2) {
+      if (instituteTitle) {
+        handleDataUpdate(
+          'title',
+          instituteTitle,
+          setDataForRequest,
+          'institutes',
+          listId,
+        );
+      } else {
+        resetValue(
+          'title',
+          'institutes',
+          listId,
+          setDataForRequest,
+        );
+      }
+    }
+  }, [instituteTitle, isRendered]);
+
+  useEffect(() => {
+    if (isRendered && step === 2) {
+      if (instituteSpeciality) {
+        handleDataUpdate(
+          'speciality',
+          instituteSpeciality,
+          setDataForRequest,
+          'institutes',
+          listId,
+        );
+      } else {
+        resetValue(
+          'speciality',
+          'institutes',
+          listId,
+          setDataForRequest,
+        );
+      }
+    }
+  }, [instituteSpeciality, isRendered]);
+
+  useEffect(() => {
+    if (isRendered && step === 2) {
+      checkFile(
+        fileForRequest,
+        step,
+        2,
+        uploadDocuments,
+        setValue,
+        () => resetValue(
+          'document',
+          'institutes',
+          listId,
+          setDataForRequest,
+        ),
+      );
+    }
+  }, [fileForRequest]);
+
+  useEffect(() => {
+    if (docIdForRequest && step === 2) {
+      handleDataUpdate(
+        'document',
+        docIdForRequest,
+        setDataForRequest,
+        'institutes',
+        listId,
+      );
+    }
+  }, [docIdForRequest]);
 
   return (
     <div className={className || 'psycho-registration__step_off'}>
@@ -92,6 +240,12 @@ SecondStep.propTypes = {
   step: number.isRequired,
   getClosestList: func.isRequired,
   setListId: func.isRequired,
+  listId: number.isRequired,
+  setDataForRequest: func.isRequired,
+  getYears: func.isRequired,
+  docIdForRequest: string.isRequired,
+  fileForRequest: objectOf(string).isRequired,
+  uploadDocuments: func.isRequired,
 };
 
 SecondStep.defaultProps = {

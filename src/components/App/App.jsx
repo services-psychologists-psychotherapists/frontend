@@ -28,6 +28,26 @@ export default function App() {
   const jwtRefresh = localStorage.getItem('jwt-refresh');
   // const jwt = localStorage.getItem('jwt');
 
+  const [docIdForRequest, setDocIdForRequest] = useState('');
+
+  const uploadDocuments = async (document, setPopup) => {
+    try {
+      const docData = await auth.uploadFile(document);
+
+      setDocIdForRequest(docData.id);
+    } catch (err) {
+      console.log(err);
+
+      setPopup({
+        data: {
+          title: 'При загрузке документа произошла ошибка',
+        },
+      });
+    }
+
+    return false;
+  };
+
   const getUser = async (token) => {
     try {
       const role = await auth.getRole(token);
@@ -107,7 +127,15 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/for_a_therapist" element={<PageForPsychologists />} />
             <Route path="/*" element={<NotFound />} />
-            <Route path="/psychologists_registration" element={<PsychologistRegistration />} />
+            <Route
+              path="/psychologists_registration"
+              element={(
+                <PsychologistRegistration
+                  docIdForRequest={docIdForRequest}
+                  uploadDocuments={uploadDocuments}
+                />
+              )}
+            />
             {
               !isLoggedIn && (
                 <Route

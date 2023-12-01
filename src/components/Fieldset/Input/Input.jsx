@@ -44,7 +44,6 @@ export default function Input({
       role="menu"
       onKeyDown={onClick}
       onClick={onClick}
-      // className={`${inputClasses} ${ownClasses}`}
       className={`${inputClasses} ${ownClasses}${classesForInput ? ` ${classesForInput}` : ''}`}
     >
       <TitlesContainer placeholder={placeholder} value={value} element={element} />
