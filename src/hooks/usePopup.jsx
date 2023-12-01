@@ -7,7 +7,6 @@ export function PopupProvider({ children }) {
   const [value, setValue] = useState(null);
 
   return (
-    // кстати у него еще странная анимация закрытия из-за null видимо
     // eslint-disable-next-line
     <PopupContext.Provider value={{ value, setValue }}>{children}</PopupContext.Provider>
   );
