@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import React, { useEffect } from 'react';
 import {
   bool, objectOf, string, func, number, oneOfType, arrayOf, object

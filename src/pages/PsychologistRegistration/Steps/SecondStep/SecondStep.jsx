@@ -11,7 +11,7 @@ import FileUpload from '../../../../components/Fieldset/FileUpload/FileUpload';
 import Button from '../../../../components/generic/Button/Button';
 import { usePopup } from '../../../../hooks/usePopup';
 import { checkFile, resetValue, handleDataUpdate } from '../../../../utils/helpers';
-// TODO: Запретить ввод букв в Периоде обученияпе
+// TODO: Запретить ввод букв в Периоде обучения?
 
 export default function SecondStep({
   className,

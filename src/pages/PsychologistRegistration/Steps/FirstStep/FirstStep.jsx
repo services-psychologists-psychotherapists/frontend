@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import React, { useEffect } from 'react';
 import {
   bool, objectOf, string, func, oneOfType, arrayOf, number, object
@@ -27,39 +26,33 @@ export default function FirstStep({
   dataForRequest,
 }) {
   useEffect(() => {
-    const firstName = values.first_name;
-
-    if (firstName) {
-      updateData('first_name', firstName, setDataForRequest);
+    if (values.first_name) {
+      updateData('first_name', values.first_name, setDataForRequest);
     } else {
       removeProperty('first_name', setDataForRequest, dataForRequest);
     }
   }, [values.first_name]);
 
   useEffect(() => {
-    const lastName = values.last_name;
-
-    if (lastName) {
-      updateData('last_name', lastName, setDataForRequest);
+    if (values.last_name) {
+      updateData('last_name', values.last_name, setDataForRequest);
     } else {
       removeProperty('last_name', setDataForRequest, dataForRequest);
     }
   }, [values.last_name]);
 
   useEffect(() => {
-    const userEmail = values.email;
-    const isEmail = /@/.test(userEmail);
+    const isEmail = /@/.test(values.email);
 
-    if (userEmail && isEmail) {
-      updateData('email', userEmail, setDataForRequest);
+    if (isEmail) {
+      updateData('email', values.email, setDataForRequest);
     } else {
       removeProperty('email', setDataForRequest, dataForRequest);
     }
   }, [values.email]);
 
   useEffect(() => {
-    const phoneString = values.phone_number;
-    const validPhoneNumber = phoneString && parsePhoneNumberFromString(phoneString);
+    const validPhoneNumber = values.phone_number && parsePhoneNumberFromString(values.phone_number);
 
     if (validPhoneNumber) {
       updateData('phone_number', validPhoneNumber.number, setDataForRequest);
@@ -69,10 +62,8 @@ export default function FirstStep({
   }, [values.phone_number]);
 
   useEffect(() => {
-    const userBirthday = values.birthday;
-
-    if (userBirthday) {
-      const formattedBirthday = moment(userBirthday).format('DD.MM.YYYY');
+    if (values.birthday) {
+      const formattedBirthday = moment(values.birthday).format('DD.MM.YYYY');
 
       updateData('birthday', formattedBirthday, setDataForRequest);
     } else {
