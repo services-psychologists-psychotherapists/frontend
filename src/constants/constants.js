@@ -634,7 +634,7 @@ export const PSYCHO_REGISTRATION_THIRD_STEP = [
   },
 ];
 
-export const PSYCHO_REGISTRATION_FOURTH_STEP = [
+export const PSYCHO_REGISTRATION_FOURTH_STEP_ONE = [
   {
     element: titlesDropdownElement,
     name: 'themes',

@@ -76,7 +76,7 @@ export default function PsychologistRegistration({
 
   return (
     <>
-      {isSuccess && <PageLayout />}
+      {isSuccess && <Success />}
       {!isSuccess && (
         <PageLayout
           classes={

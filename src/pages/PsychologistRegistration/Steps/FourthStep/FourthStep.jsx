@@ -6,7 +6,7 @@ import './FourthStep.css';
 import Title from '../../../../components/generic/Title/Title';
 import FormClue from '../../FormClue/FormClue';
 import {
-  PSYCHO_REGISTRATION_FOURTH_STEP,
+  PSYCHO_REGISTRATION_FOURTH_STEP_ONE,
   PSYCHO_REGISTRATION_FOURTH_STEP_TWO,
   checkboxDropdownElement,
   titlesDropdownElement,
@@ -65,7 +65,7 @@ export default function FourthStep({
       <div className="psycho-registration__form-container">
         <FormClue />
         <ul className="psycho-registration__form-step_list psycho-registration__form-step_list-two">
-          {PSYCHO_REGISTRATION_FOURTH_STEP.map((i) => (
+          {PSYCHO_REGISTRATION_FOURTH_STEP_ONE.map((i) => (
             <li key={i.name}>
               <Fieldset
                 name={i.name || null}
@@ -99,6 +99,7 @@ export default function FourthStep({
                 customElement={i.customElement || null}
                 placeholder={i.placeholder || ''}
                 classesForInput={i.classesForInput || ''}
+                autoComplete={i.autoComplete || null}
               />
             </li>
           ))}
