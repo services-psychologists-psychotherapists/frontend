@@ -8,10 +8,13 @@ export default function NavLinksList({
   list,
   navLink,
   direction,
-  variant
+  variant,
+  className,
 }) {
   return (
-    <ul className={`links links_direction_${direction} links_type_${variant}`}>
+    <ul className={`links links_direction_${direction} links_type_${variant}${
+      className ? ` ${className}` : ''}`}
+    >
       {list.map(({ link, text }) => (
         <li key={link}>
           <NavigationLink link={link} text={text} navLink={navLink} />
@@ -31,10 +34,12 @@ NavLinksList.propTypes = {
   navLink: PropTypes.bool,
   direction: PropTypes.oneOf(['row', 'column']),
   variant: PropTypes.string,
+  className: PropTypes.string,
 };
 
 NavLinksList.defaultProps = {
   navLink: true,
   direction: 'row',
   variant: '',
+  className: '',
 };

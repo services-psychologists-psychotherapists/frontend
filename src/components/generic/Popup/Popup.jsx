@@ -37,33 +37,40 @@ export default function Popup({ children }) {
         <button type="button" className="popup__button-close" onClick={closePopup} />
         <Title size="s" text={title} />
         <div className="popup__content">{children}</div>
-
         {(buttonsQuantity === 1 && (
           <Button
-            onClick={buttons.onClick}
-            type={buttons.type}
-            size={buttons.size}
-            variant={buttons.variant}
+            onClick={() => {
+              buttons[0].onClick();
+              closePopup();
+            }}
+            type={buttons[0].type}
+            size={buttons[0].size}
+            variant={buttons[0].variant}
+            href={buttons[0].href || ''}
           >
             {buttons[0].label}
           </Button>
         ))
-          || (buttonsQuantity >= 2 && (
-            <ButtonGroup>
-              {buttons.map((button) => (
-                <Button
-                  key={button.label}
-                  onClick={button.onClick}
-                  type={button.type}
-                  size={button.size}
-                  variant={button.variant}
-                >
-                  {button.label}
-                </Button>
-              ))}
-            </ButtonGroup>
-          ))
-          || (buttonsQuantity === 0 && null)}
+        || (buttonsQuantity >= 2 && (
+          <ButtonGroup>
+            {buttons.map((button) => (
+              <Button
+                key={button.label}
+                onClick={() => {
+                  button.onClick();
+                  closePopup();
+                }}
+                type={button.type}
+                size={button.size}
+                variant={button.variant}
+                href={button.href || ''}
+              >
+                {button.label}
+              </Button>
+            ))}
+          </ButtonGroup>
+        ))
+        || (buttonsQuantity === 0 && null)}
       </div>
     </div>
   );

@@ -19,14 +19,34 @@ import Header from '../Header/Header';
 import ProtectedRouteElement from '../ProtectedRouteElement/ProtectedRouteElement';
 import ChangePassword from '../../pages/ChangePassword/ChangePassword';
 import PsychologistRegistration from '../../pages/PsychologistRegistration/PsychologistRegistration';
+import ClientProfilePage from '../../pages/ClientHomePage/ClientProfilePage/ClientProfilePage';
 
 export default function App() {
   const navigate = useNavigate();
-  // const { pathname } = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  // const jwt = localStorage.getItem('jwt');
   const jwtRefresh = localStorage.getItem('jwt-refresh');
+  // const jwt = localStorage.getItem('jwt');
+
+  const [docIdForRequest, setDocIdForRequest] = useState('');
+
+  const uploadDocuments = async (document, setPopup) => {
+    try {
+      const docData = await auth.uploadFile(document);
+
+      setDocIdForRequest(docData.id);
+    } catch (err) {
+      console.log(err);
+
+      setPopup({
+        data: {
+          title: 'При загрузке документа произошла ошибка',
+        },
+      });
+    }
+
+    return false;
+  };
 
   const getUser = async (token) => {
     try {
@@ -107,7 +127,15 @@ export default function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/for_a_therapist" element={<PageForPsychologists />} />
             <Route path="/*" element={<NotFound />} />
-            <Route path="/psychologists_registration" element={<PsychologistRegistration />} />
+            <Route
+              path="/psychologists_registration"
+              element={(
+                <PsychologistRegistration
+                  docIdForRequest={docIdForRequest}
+                  uploadDocuments={uploadDocuments}
+                />
+              )}
+            />
             {
               !isLoggedIn && (
                 <Route
@@ -133,7 +161,7 @@ export default function App() {
                       element={PsychologistAccount}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
                 />
                 <Route
                   path="/psychologist_account_schedule"
@@ -142,7 +170,7 @@ export default function App() {
                       element={PsychologistAccount}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
                 />
                 <Route
                   path="/psychologist_account_profile"
@@ -151,7 +179,7 @@ export default function App() {
                       element={PsychologistAccount}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
                 />
                 {/* придумать общий для /change_password */}
                 <Route
@@ -162,7 +190,7 @@ export default function App() {
                       navigate={navigate}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
                 />
               </>
             ) : (
@@ -175,7 +203,7 @@ export default function App() {
                       navigate={navigate}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
                 />
                 <Route
                   path="/client_account"
@@ -184,7 +212,17 @@ export default function App() {
                       element={ClientHomePage}
                       loggedIn={isLoggedIn}
                     />
-                      )}
+                  )}
+                />
+                <Route
+                  path="/client_profile"
+                  element={(
+                    <ProtectedRouteElement
+                      element={ClientProfilePage}
+                      loggedIn={isLoggedIn}
+                      currentUser={currentUser}
+                    />
+                  )}
                 />
                 <Route
                   path="/client_account_session-registration/:id"
@@ -194,7 +232,7 @@ export default function App() {
                       loggedIn={isLoggedIn}
                       navigate={navigate}
                     />
-                      )}
+                  )}
                 />
               </>
             )}

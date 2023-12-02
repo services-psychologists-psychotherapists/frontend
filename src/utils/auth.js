@@ -27,6 +27,7 @@ export const getUserInfo = async (token, role) => {
   const response = await axios.get(`${API_URL}/auth/${role}s/me`, {
     headers: { Authorization: `JWT ${token}` },
   });
+
   return checkResponse(response);
 };
 

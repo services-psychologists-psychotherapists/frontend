@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
-  bool, objectOf, string, func, number, oneOfType, arrayOf
+  bool, objectOf, string, func, number, oneOfType, arrayOf, object
 } from 'prop-types';
 import './FourthStep.css';
 import Title from '../../../../components/generic/Title/Title';
@@ -15,6 +15,7 @@ import Fieldset from '../../../../components/Fieldset/Fieldset';
 import Textarea from '../../../../components/Fieldset/Textarea/Textarea';
 import ServiceDocuments from '../../../../components/generic/ServiceDocuments/ServiceDocuments';
 import Text from '../../../../components/generic/Text/Text';
+import { removeProperty, updateData } from '../../../../utils/helpers';
 
 export default function FourthStep({
   className,
@@ -27,7 +28,33 @@ export default function FourthStep({
   selectedDropdownItems,
   resetCustomValue,
   setCustomValue,
+  setDataForRequest,
+  dataForRequest,
 }) {
+  useEffect(() => {
+    if (values.about) {
+      updateData('about', values.about, setDataForRequest);
+    } else {
+      removeProperty('about', setDataForRequest, dataForRequest);
+    }
+  }, [values.about]);
+
+  useEffect(() => {
+    if (values.price && Number(values.price)) {
+      updateData('price', values.price, setDataForRequest);
+    } else {
+      removeProperty('price', setDataForRequest, dataForRequest);
+    }
+  }, [values.price]);
+
+  useEffect(() => {
+    if (values.experience && Number(values.experience)) {
+      updateData('experience', values.experience, setDataForRequest);
+    } else {
+      removeProperty('experience', setDataForRequest, dataForRequest);
+    }
+  }, [values.experience]);
+
   return (
     <div className={className || 'psycho-registration__step_off'}>
       <Title
@@ -157,6 +184,9 @@ FourthStep.propTypes = {
   ).isRequired,
   resetCustomValue: func,
   setCustomValue: func,
+  setDataForRequest: func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  dataForRequest: object.isRequired,
 };
 
 FourthStep.defaultProps = {

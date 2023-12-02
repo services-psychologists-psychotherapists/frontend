@@ -15,8 +15,8 @@ export default function PageLayout({
   return (
     <section
       className={
-        `page-layout ${type === 'psychologist' ? `page-layout_type_${type}` : ''}
-        ${classes ? ` ${classes}` : ''}
+        `page-layout ${type === 'psychologist' ? `page-layout_type_${type}` : ''}${
+          classes ? ` ${classes}` : ''}
         `
       }
     >

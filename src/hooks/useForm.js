@@ -12,6 +12,12 @@ export const useForm = () => {
   const [customInputFieldset, setCustomInputFieldset] = useState('');
   const [fileForRequest, setfileForRequest] = useState({});
   // переделать хук
+  // Сделать вызовы внутренных функций через параметры?
+
+  // Убрать
+  useEffect(() => {
+    console.log(dataForRequest);
+  }, [dataForRequest]);
 
   const getYears = (arr) => {
     if (arr.length > 0) {

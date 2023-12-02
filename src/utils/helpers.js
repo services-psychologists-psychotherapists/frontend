@@ -154,3 +154,92 @@ export const getJwtFromLocalStorage = () => {
 
   return null;
 };
+
+// ---------------------------ДЛЯ КОМПОНЕНТОВ ШАГОВ РЕГИСТРАЦИИ---------------------------
+
+export const checkFile = (curFile, curStep, forStep, uploadDoc, setPopup, deletePrev) => {
+  if (curFile.name && curStep === forStep) {
+    const fileExtension = curFile.name.split('.').pop();
+
+    if (fileExtension === 'pdf' || fileExtension === 'jpg') {
+      uploadDoc(curFile);
+    } else {
+      setPopup({
+        data: {
+          title: 'Можно отправить только pdf и jpg файлы',
+        },
+      });
+
+      deletePrev();
+    }
+  }
+};
+
+export const resetValue = (deleteElement, key, listId, setData) => {
+  setData((prevData) => {
+    const items = prevData[key] || [];
+    const itemExists = items.some(
+      (item, index) => index === listId && Object.prototype.hasOwnProperty.call(item, deleteElement)
+    );
+
+    if (itemExists) {
+      return {
+        ...prevData,
+        [key]: items.map((item, index) => {
+          if (index === listId) {
+            const newItem = { ...item };
+
+            delete newItem[deleteElement];
+
+            return newItem;
+          }
+          return item;
+        }),
+      };
+    }
+    return prevData;
+  });
+};
+
+export const handleDataUpdate = (key, value, setNewData, groupName, idForList) => {
+  setNewData((prevData) => {
+    const elems = prevData[groupName] || [];
+    const courseExists = elems.some((_, index) => index === idForList);
+
+    if (courseExists) {
+      return {
+        ...prevData,
+        [groupName]: elems.map((items, index) => (index === idForList
+          ? { ...items, [key]: value }
+          : items))
+      };
+    }
+
+    return {
+      ...prevData,
+      [groupName]: [
+        ...elems,
+        { [key]: value }
+      ]
+    };
+  });
+};
+
+export const removeProperty = (prop, setNewData, obj) => {
+  if (obj[prop]) {
+    setNewData((prevData) => {
+      const { [prop]: _, ...newData } = prevData;
+
+      return newData;
+    });
+  }
+};
+
+export const updateData = (field, value, setNewData) => {
+  setNewData((prevData) => ({
+    ...prevData,
+    [field]: value,
+  }));
+};
+
+// ------------------------------------------------------------------------------

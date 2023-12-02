@@ -16,6 +16,10 @@
   align-items: center;
 }
 
+.client-profile__nav-links {
+  padding-right: 24px;
+}
+
 @media screen and (max-width: 480px) {
   .client-account {
     gap: 20px;

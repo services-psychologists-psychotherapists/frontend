@@ -290,7 +290,7 @@ export const NO_SLOTS_MESSAGE = {
 
 export const CLIENT_PROFILE_NAV_LINKS = [
   {
-    text: 'Главная',
+    text: 'Личный кабинет',
     link: '/client_account',
   },
   {
@@ -614,7 +614,7 @@ export const PSYCHO_REGISTRATION_THIRD_STEP = [
     element: inputElement,
     title: 'Год окончания',
     name: 'courses_graduation_year',
-    typeForInput: 'text',
+    typeForInput: 'number',
     required: true,
   },
   {
@@ -663,7 +663,7 @@ export const PSYCHO_REGISTRATION_FOURTH_STEP_TWO = [
     element: inputElement,
     title: 'Стоимость за сессию (руб.)',
     name: 'price',
-    typeForInput: 'text',
+    typeForInput: 'number',
     required: true,
     inputContainerClasses: 'psycho-registration__form_price-container',
   },
@@ -671,16 +671,29 @@ export const PSYCHO_REGISTRATION_FOURTH_STEP_TWO = [
     element: inputElement,
     title: 'Опыт консультирования (в годах)',
     name: 'experience',
-    typeForInput: 'text',
+    typeForInput: 'number',
     required: true,
     inputContainerClasses: 'psycho-registration__form_experience-container',
   },
 ];
 
+export const PROFILE_FIELDS = [
+  {
+    disabled: true,
+    title: 'Логин',
+    text: 'example@mail.ru',
+  },
+  {
+    disabled: false,
+    title: 'Пароль',
+    text: '***********',
+  }
+];
+
 export const WORK_WITH_US = [
   {
     id: 1,
-    title: 'Современный, быстроразвивающийся сервис с постоянным потоком клиентов',
+    title: 'Современный, быстроразвивающийся сервис с постоянным потоком клиентов',
     icon: people
   },
   {
@@ -694,3 +707,70 @@ export const WORK_WITH_US = [
     icon: setting
   }
 ];
+
+export const POPUP_DATA = {
+  ConfirmDeletePopup: {
+    data: {
+      title: 'Удалить?',
+      buttons: [
+        {
+          label: 'Нет',
+          onClick: () => console.log('Нажали Нет'),
+          type: 'button',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Да',
+          onClick: () => console.log('Нажали Да'),
+          type: 'button',
+          size: 'l',
+          variant: 'primary',
+        },
+      ],
+    },
+  },
+  deleteFreeSlot: {
+    data: {
+      title: 'Вы уверены, что хотите удалить из расписания свободное время?',
+      buttons: [
+        {
+          label: 'Удалить',
+          onClick: () => console.log('Нажали Отменить'),
+          type: 'secondary',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Отмена',
+          onClick: () => console.log('Нажали Добавить'),
+          type: 'primary',
+          size: 'l',
+          variant: 'primary',
+        },
+      ],
+    },
+  },
+  changePassword: {
+    data: {
+      title: 'Хотите изменить пароль?',
+      buttons: [
+        {
+          label: 'Отменить',
+          onClick: () => {},
+          type: 'button',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Да',
+          onClick: () => {},
+          type: 'button',
+          size: 'l',
+          variant: 'primary',
+          href: '/change_password',
+        },
+      ],
+    },
+  }
+};
