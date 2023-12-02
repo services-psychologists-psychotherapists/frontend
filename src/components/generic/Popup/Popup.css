@@ -12,8 +12,8 @@
   z-index: 99;
   opacity: 0;
   transition:
-    visibility 0.3s,
-    opacity 0.3s;
+    visibility 0.4s,
+    opacity 0.4s;
 }
 
 .popup-visible {
