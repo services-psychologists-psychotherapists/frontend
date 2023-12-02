@@ -5,7 +5,7 @@ import Text from '../../generic/Text/Text';
 import Title from '../../generic/Title/Title';
 import Button from '../../generic/Button/Button';
 
-export default function EmptyCard({ type, title, paragraph, textBtn, href }) {
+export default function EmptyCard({ type, title, paragraph, textBtn }) {
   return (
     <div className={`empty-card empty-card_type_${type}`}>
       {type === 'client' ? (
@@ -19,7 +19,8 @@ export default function EmptyCard({ type, title, paragraph, textBtn, href }) {
           <p className="empty-card__paragraph">{paragraph}</p>
         </>
       )}
-      {textBtn && <Button href={href}>{textBtn}</Button>}
+      {textBtn
+      && <Button href="/directory_psychologists">{textBtn}</Button>}
     </div>
   );
 }
@@ -28,11 +29,9 @@ EmptyCard.propTypes = {
   type: oneOf(['client', 'psychologist']),
   title: string.isRequired,
   paragraph: string.isRequired,
-  href: string,
   textBtn: string,
 };
 EmptyCard.defaultProps = {
   type: 'psychologist',
-  href: '',
   textBtn: '',
 };

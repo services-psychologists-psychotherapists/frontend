@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Popup.css';
 import { node } from 'prop-types';
 import Button from '../Button/Button';
@@ -10,22 +10,29 @@ import { usePopup } from '../../../hooks/usePopup';
 export default function Popup({ children }) {
   const ref = useRef();
   const { value, setValue } = usePopup();
-
-  useOutsideClick(ref, () => {
-    setValue(null);
-  });
+  const [active, setActive] = useState();
 
   const closePopup = () => {
-    setValue(null);
+    setActive(false);
+    if (active) {
+      setTimeout(() => setValue(null), 450);
+    }
   };
+
+  useOutsideClick(ref, () => closePopup());
 
   const title = value ? value.data.title : '';
   const { buttons } = value ? value.data : [];
   const buttonsQuantity = buttons ? buttons.length : 0;
-  const classesPopup = `popup ${value ? 'popup-visible' : ''}`;
+
+  useEffect(() => {
+    if (value) {
+      setActive(true);
+    }
+  }, [value]);
 
   return (
-    <div className={classesPopup}>
+    <div className={`popup ${active ? 'popup-visible' : ''}`}>
       <div className="popup__container" ref={ref}>
         <button type="button" className="popup__button-close" onClick={closePopup} />
         <Title size="s" text={title} />
