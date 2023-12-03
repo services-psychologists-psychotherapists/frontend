@@ -502,7 +502,7 @@ export const INPUT_DATA_FOR_RESET_PASSWORD = [
     name: 'new_password_change_password',
     typeForInput: 'password',
     required: true,
-    minLength: '1',
+    minLength: '8',
     prompt:
       'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ',
     promptClasses: 'change-password__prompt',
@@ -514,7 +514,32 @@ export const INPUT_DATA_FOR_RESET_PASSWORD = [
     name: 'new2_password_change_password',
     typeForInput: 'password',
     required: true,
-    minLength: '1',
+    minLength: '8',
+  },
+];
+
+export const INPUT_DATA_FOR_SET_PASSWORD = [
+  {
+    element: inputElement,
+    title: 'Придумайте пароль',
+    placeholder: 'Введите пароль',
+    name: 'new_password_create_password',
+    typeForInput: 'password',
+    required: true,
+    minLength: '8',
+    prompt:
+      'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ',
+    promptClasses: 'create-password__prompt',
+    fieldsetClasses: 'create-password__fieldset',
+  },
+  {
+    element: inputElement,
+    title: 'Повторите пароль',
+    placeholder: 'Введите пароль повторно',
+    name: 'new2_password_create_password',
+    typeForInput: 'password',
+    required: true,
+    minLength: '8',
   },
 ];
 
@@ -524,6 +549,8 @@ export const PSYCHO_REGISTRATION_TEXT = [
   'Для регистрации заполните информацию о себе и прикрепите документы об образовании.',
   'Как только мы все проверим, Вам на почту придет уведомление.',
 ];
+
+// -------------------Для шагов регистрации психолога-------------------------
 
 export const PSYCHO_REGISTRATION_FIRST_STEP = [
   {
@@ -585,52 +612,75 @@ export const PSYCHO_REGISTRATION_FIRST_STEP = [
 
 export const PSYCHO_REGISTRATION_SECOND_STEP = [
   {
+    item: 'Fieldset',
     element: inputElement,
     title: 'Период обучения',
     name: 'institutes_graduation_year',
     typeForInput: 'text',
     required: true,
-    placeholder: 'Год начала - год окончания',
+    placeholder: 'Введите год начала - год окончания',
   },
   {
+    item: 'Textarea',
+    id: 'institute',
     element: inputElement,
     title: 'Название учебного заведения',
     name: 'institutes_title',
-    typeForInput: 'text',
+    textareaClassName: 'psycho-registration__form-text_step-two',
+    containerClassName: 'psycho-registration__form-text-container_step-two',
     required: true,
     placeholder: 'Введите название учебного заведения',
+    maxLength: '200',
+    minLength: '1',
   },
   {
+    item: 'Textarea',
+    id: 'speciality',
     element: inputElement,
     title: 'Направление подготовки',
     name: 'institutes_speciality',
+    textareaClassName: 'psycho-registration__form-text_step-two',
+    containerClassName: 'psycho-registration__form-text-container_step-two',
     typeForInput: 'text',
     required: true,
+    placeholder: 'Введите название направления подготовки',
+    maxLength: '50',
+    minLength: '1',
   },
 ];
 
 export const PSYCHO_REGISTRATION_THIRD_STEP = [
   {
+    item: 'Fieldset',
     element: inputElement,
     title: 'Год окончания',
     name: 'courses_graduation_year',
     typeForInput: 'number',
-    required: true,
+    placeholder: 'Введите год окончания',
   },
   {
+    item: 'Textarea',
     element: inputElement,
     title: 'Название учебного заведения',
     name: 'courses_title',
+    textareaClassName: 'psycho-registration__form-text_step-two',
+    containerClassName: 'psycho-registration__form-text-container_step-two',
     typeForInput: 'text',
-    required: true,
     placeholder: 'Введите название учебного заведения',
+    maxLength: '200',
+    minLength: '1',
   },
   {
+    item: 'Textarea',
     element: inputElement,
     title: 'Направление подготовки',
     name: 'courses_speciality',
+    textareaClassName: 'psycho-registration__form-text_step-two',
+    containerClassName: 'psycho-registration__form-text-container_step-two',
     typeForInput: 'text',
-    required: true,
+    placeholder: 'Введите направление подготовки',
+    maxLength: '50',
+    minLength: '1',
   },
 ];
 
@@ -676,6 +726,8 @@ export const PSYCHO_REGISTRATION_FOURTH_STEP_TWO = [
     inputContainerClasses: 'psycho-registration__form_experience-container',
   },
 ];
+
+// ----------------------------------------------------------------------------------
 
 export const PROFILE_FIELDS = [
   {

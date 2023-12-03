@@ -10,6 +10,7 @@ import { usePopup } from '../../../hooks/usePopup';
 import {
   checkPasswords,
 } from '../../../utils/helpers';
+// TODO: Выводить сообщения об ошибках в запросах в попапы?
 
 export default function AuthRegistration({
   values,
@@ -23,6 +24,8 @@ export default function AuthRegistration({
   const { setValue } = usePopup();
 
   const handleSubmitRegister = () => {
+    const email = values.email_regist.toLowerCase();
+
     checkPasswords(
       values.passowrd_regist,
       values.passowrd2_regist,
@@ -31,7 +34,7 @@ export default function AuthRegistration({
         first_name: values.name_regist,
         birthday: values.birthday_regist,
         phone_number: values.phone_regist || '',
-        email: values.email_regist,
+        email,
         password: values.passowrd_regist,
       },
       signUp

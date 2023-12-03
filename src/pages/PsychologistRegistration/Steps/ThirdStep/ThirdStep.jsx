@@ -9,8 +9,9 @@ import { PSYCHO_REGISTRATION_THIRD_STEP } from '../../../../constants/constants'
 import Fieldset from '../../../../components/Fieldset/Fieldset';
 import FileUpload from '../../../../components/Fieldset/FileUpload/FileUpload';
 import Button from '../../../../components/generic/Button/Button';
+import Textarea from '../../../../components/Fieldset/Textarea/Textarea';
 import { usePopup } from '../../../../hooks/usePopup';
-import { checkFile, resetValue, handleDataUpdate } from '../../../../utils/helpers';
+import { checkFile, resetValue, handleDataUpdate, addEducationBlock } from '../../../../utils/helpers';
 // TODO: Одинаковый со втором сделать общий
 
 export default function ThirdStep({
@@ -21,26 +22,20 @@ export default function ThirdStep({
   inputValidStatus,
   getInvalidInput,
   step,
-  getClosestList,
-  setListId,
   listId,
   fileForRequest,
   uploadDocuments,
   docIdForRequest,
   setDataForRequest,
+  setDocIdForRequest,
 }) {
   const { setValue } = usePopup();
 
   const [educationBlocks, setEducationBlocks] = useState([0]);
-
-  const [coursesGraduationYear, setCoursesGraduationYear] = useState(null);
-  const [coursesTitle, setCoursesTitle] = useState(null);
-  const [coursesSpeciality, setCoursesSpeciality] = useState(null);
+  const [coursesGraduationYear, setCoursesGraduationYear] = useState('');
+  const [coursesTitle, setCoursesTitle] = useState('');
+  const [coursesSpeciality, setCoursesSpeciality] = useState('');
   const [isRendered, setIsRendered] = useState(false);
-
-  const addEducationBlock = () => {
-    setEducationBlocks((prevBlocks) => [...prevBlocks, prevBlocks.length]);
-  };
 
   useEffect(() => {
     setIsRendered(true);
@@ -156,32 +151,48 @@ export default function ThirdStep({
           <ul id={blockId} key={blockId} className="psycho-registration__form-step_list psycho-registration__form-step_list-two">
             {PSYCHO_REGISTRATION_THIRD_STEP.map((i) => (
               <li key={i.name}>
-                <Fieldset
-                  name={`${i.name}${blockId}` || null}
-                  element={i.element || null}
-                  title={i.title || null}
-                  typeForInput={i.typeForInput || null}
-                  required={i.required || false}
-                  values={values}
-                  handleChange={(e) => getClosestList(e, setListId, handleChange)}
-                  errors={errors}
-                  isValid={getInvalidInput(inputValidStatus[`${i.name}${blockId}`])}
-                  promptClasses={i.promptClasses || ''}
-                  typeForDropdown={i.typeForDropdown}
-                  placeholder={i.placeholder || null}
-                  disabled={step !== 3}
-                  inputContainerClasses={i.inputContainerClasses || ''}
-                  minLength={i.minLength || null}
-                  maxLength={i.maxLength || null}
-                />
+                {i.item === 'Fieldset' && (
+                  <Fieldset
+                    name={`${i.name}${blockId}` || null}
+                    element={i.element || null}
+                    title={i.title || null}
+                    typeForInput={i.typeForInput || null}
+                    required={i.required || false}
+                    values={values}
+                    handleChange={(e) => handleChange(e)}
+                    errors={errors}
+                    isValid={getInvalidInput(inputValidStatus[`${i.name}${blockId}`])}
+                    placeholder={i.placeholder || null}
+                    disabled={step !== 3}
+                    inputContainerClasses={i.inputContainerClasses || ''}
+                    minLength={i.minLength || null}
+                    maxLength={i.maxLength || null}
+                  />
+                )}
+                {i.item === 'Textarea' && (
+                  <Textarea
+                    title={i.title || null}
+                    onChange={(e) => handleChange(e)}
+                    name={`${i.name}${blockId}` || null}
+                    value={values[`${i.name}${blockId}`]}
+                    id={i.id || null}
+                    textareaClassName={i.textareaClassName || null}
+                    containerClassName={i.containerClassName || null}
+                    disabled={step !== 3}
+                    required={i.required || false}
+                    errors={errors || null}
+                    minLength={i.minLength || null}
+                    maxLength={i.maxLength || null}
+                    placeholder={i.placeholder || null}
+                  />
+                )}
               </li>
             ))}
             <li className="psycho-registration__form-education">
               <FileUpload
                 text="Прикрепить документ об образовании"
-                onChange={(e) => getClosestList(e, setListId, handleChange)}
+                onChange={(e) => handleChange(e)}
                 disabled={step !== 3}
-                // isRequired={step === 3}
               />
             </li>
           </ul>
@@ -189,7 +200,17 @@ export default function ThirdStep({
       </div>
       <Button
         variant="text"
-        onClick={addEducationBlock}
+        onClick={
+          () => addEducationBlock(
+            coursesTitle,
+            coursesSpeciality,
+            coursesGraduationYear,
+            docIdForRequest,
+            setEducationBlocks,
+            setDocIdForRequest,
+            setValue,
+          )
+        }
         className="psycho-registration__form-education_btn"
       >
         + добавить повышение квалификации
@@ -206,13 +227,12 @@ ThirdStep.propTypes = {
   errors: objectOf(string).isRequired,
   className: string,
   step: number.isRequired,
-  getClosestList: func.isRequired,
-  setListId: func.isRequired,
   listId: number.isRequired,
   fileForRequest: objectOf(string).isRequired,
   uploadDocuments: func.isRequired,
   docIdForRequest: string.isRequired,
   setDataForRequest: func.isRequired,
+  setDocIdForRequest: func.isRequired,
 };
 
 ThirdStep.defaultProps = {

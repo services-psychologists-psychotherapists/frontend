@@ -13,12 +13,15 @@ export default function AuthLogin({
   isValidForm,
   inputValidStatus,
   getInvalidInput,
+  setValue,
 }) {
   const handleSubmitLogin = () => {
+    const email = values.email_login.toLowerCase();
+
     signIn({
-      email: values.email_login,
+      email,
       password: values.password_login,
-    });
+    }, setValue);
   };
 
   return (
@@ -69,4 +72,5 @@ AuthLogin.propTypes = {
   values: objectOf(string).isRequired,
   handleChange: func.isRequired,
   errors: objectOf(string).isRequired,
+  setValue: func.isRequired,
 };

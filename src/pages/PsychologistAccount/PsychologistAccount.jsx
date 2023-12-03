@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import { object } from 'prop-types';
 import moment from 'moment';
 import './PsychologistAccount.css';
-import { useLocation } from 'react-router-dom';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import NavLinksList from '../../components/NavLinksList/NavLinksList';
 import {
@@ -17,12 +17,12 @@ import SessionPlanner from '../../components/SessionPlanner/SessionPlanner';
 import SlotsList from '../../components/SlotsList/SlotsList';
 import Title from '../../components/generic/Title/Title';
 
-export default function PsychologistAccount() {
+export default function PsychologistAccount({ curPath }) {
   const [currentDay, setCurrentDay] = useState(moment());
   let nextAppointment = null;
   const selectedSlots = [];
   const slotsWithSessions = [];
-  const path = useLocation().pathname.split('_').pop();
+  const path = curPath.pathname.split('_').pop();
 
   const getNextSession = () => {
     nextAppointment = slotsWithSessions.reduce((acc, cur) => {
@@ -65,7 +65,6 @@ export default function PsychologistAccount() {
               titleText={PSYCHOLOGIST_ACCOUNT_TITLES[path].calendarTitle}
               onDateCellClick={setCurrentDay}
             />
-
             <BlockWithTitle title={PSYCHOLOGIST_ACCOUNT_TITLES[path].reminderTitle}>
               {path !== 'schedule' ? (
                 <CardOfSession session={nextAppointment} />
@@ -75,7 +74,6 @@ export default function PsychologistAccount() {
             </BlockWithTitle>
           </>
         ) : null}
-
         {path !== 'profile' ? (
           <SlotsList sessions={selectedSlots} selectedDay={currentDay} />
         ) : (
@@ -85,3 +83,8 @@ export default function PsychologistAccount() {
     </PageLayout>
   );
 }
+
+PsychologistAccount.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  curPath: object.isRequired,
+};

@@ -99,6 +99,12 @@ export const setNewPasswords = async (data) => {
   return checkResponse(response);
 };
 
+export const createPassword = async (data) => {
+  const response = await axios.post(`${API_URL}/auth/users/reset_password_confirm/`, data);
+
+  return checkResponse(response);
+};
+
 export const uploadFile = async (file) => {
   const formData = new FormData();
   formData.append('path', file);
@@ -119,6 +125,12 @@ export const createPsychologist = async (data) => {
   dataForRequest.approaches = dataForRequest.approaches.map((approach) => ({ title: approach }));
 
   const response = await axios.post(`${API_URL}/auth/psychologists/`, dataForRequest);
+
+  return checkResponse(response);
+};
+
+export const resetPasswordWithEmail = async (email) => {
+  const response = await axios.post(`${API_URL}/auth/users/reset_password/`, { email });
 
   return checkResponse(response);
 };

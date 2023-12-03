@@ -45,7 +45,9 @@ export default function FirstStep({
     const isEmail = /@/.test(values.email);
 
     if (isEmail) {
-      updateData('email', values.email, setDataForRequest);
+      const email = values.email.toLowerCase();
+
+      updateData('email', email, setDataForRequest);
     } else {
       removeProperty('email', setDataForRequest, dataForRequest);
     }

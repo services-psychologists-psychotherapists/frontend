@@ -204,9 +204,9 @@ export const resetValue = (deleteElement, key, listId, setData) => {
 export const handleDataUpdate = (key, value, setNewData, groupName, idForList) => {
   setNewData((prevData) => {
     const elems = prevData[groupName] || [];
-    const courseExists = elems.some((_, index) => index === idForList);
+    const elemsExists = elems.some((_, index) => index === idForList);
 
-    if (courseExists) {
+    if (elemsExists) {
       return {
         ...prevData,
         [groupName]: elems.map((items, index) => (index === idForList
@@ -240,6 +240,27 @@ export const updateData = (field, value, setNewData) => {
     ...prevData,
     [field]: value,
   }));
+};
+
+export const addEducationBlock = (
+  title,
+  speciality,
+  years,
+  docId,
+  setBlock,
+  setDocId,
+  setPopup
+) => {
+  if (title && speciality && years && docId) {
+    setBlock((prevBlocks) => [...prevBlocks, prevBlocks.length]);
+    setDocId('');
+  } else {
+    setPopup({
+      data: {
+        title: 'Заполните все поля и прикрепите документ',
+      },
+    });
+  }
 };
 
 // ------------------------------------------------------------------------------

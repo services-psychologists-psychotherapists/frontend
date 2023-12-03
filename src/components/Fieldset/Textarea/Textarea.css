@@ -32,3 +32,7 @@
 .custom-textarea__text_error {
   box-shadow: inset 0 0 0 1px var(--border-color-error);
 }
+
+.custom-textarea__title {
+  padding-left: 12px;
+}

@@ -32,7 +32,7 @@ export default function Auth({
       signIn({
         email: user.email,
         password: data.password,
-      });
+      }, setValue);
     } catch (err) {
       console.log(err);
 
@@ -95,6 +95,7 @@ export default function Auth({
           isValidForm={isValidForm}
           inputValidStatus={inputValidStatus}
           getInvalidInput={getInvalidInput}
+          setValue={setValue}
         />
       )}
       {isRegister && (

@@ -13,7 +13,7 @@ import {
 import { usePopup } from '../../hooks/usePopup';
 import { setNewPasswords } from '../../utils/auth';
 
-export default function ChangePassword({ navigate }) {
+export default function ChangePassword({ navigate, goBack }) {
   const {
     values,
     handleChange,
@@ -23,10 +23,6 @@ export default function ChangePassword({ navigate }) {
     getInvalidInput,
   } = useForm();
   const { setValue } = usePopup();
-
-  const goBack = () => {
-    navigate(-1);
-  };
 
   const setPassword = async (passwords) => {
     try {
@@ -109,4 +105,5 @@ export default function ChangePassword({ navigate }) {
 
 ChangePassword.propTypes = {
   navigate: func.isRequired,
+  goBack: func.isRequired,
 };

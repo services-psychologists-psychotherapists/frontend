@@ -93,7 +93,6 @@ export default function FourthStep({
                 dropdownContent={i.dropdownContent || []}
                 typeForDropdown={i.typeForDropdown}
                 disabled={step !== 4}
-                inputContainerClasses={i.inputContainerClasses || ''}
                 resetCustomValue={resetCustomValue || null}
                 setCustomValue={setCustomValue || null}
                 customElement={i.customElement || null}
@@ -117,27 +116,17 @@ export default function FourthStep({
                   errors={errors}
                   // Не сразу срабатывает валидация на радио
                   isValid={getInvalidInput(inputValidStatus[i.name])}
-                  promptClasses={i.promptClasses || ''}
-                  selectedDropdownItems={selectedDropdownItems || null}
-                  dropdownContent={i.dropdownContent || []}
-                  typeForDropdown={i.typeForDropdown}
                   disabled={step !== 4}
                   inputContainerClasses={i.inputContainerClasses || ''}
-                  resetCustomValue={resetCustomValue || null}
-                  setCustomValue={setCustomValue || null}
-                  customElement={i.customElement || null}
-                  placeholder={i.placeholder || ''}
-                  classesForInput={i.classesForInput || ''}
                   minLength={i.minLength || null}
                   maxLength={i.maxLength || null}
-                  autoComplete={i.autoComplete || null}
                 />
               </li>
             ))}
           </div>
           <li>
             <Textarea
-              title="&nbsp;&nbsp;&nbsp;Расскажите нам о себе в свободной форме"
+              title="Расскажите нам о себе в свободной форме"
               placeholder="Например, что считаете нам нужно узнать о вас, чтобы понять, какой вы специалист?"
               onChange={(e) => handleChange(e)}
               name="about"
