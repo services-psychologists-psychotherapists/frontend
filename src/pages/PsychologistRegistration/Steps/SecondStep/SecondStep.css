@@ -11,3 +11,11 @@
   padding-top: 40px;
   border-top: 2px solid var(--bg-color-light-violet);
 }
+
+.psycho-registration__form-text_step-two {
+  min-height: 48px;
+}
+
+.psycho-registration__form-text-container_step-two {
+  row-gap: 3px !important;
+}

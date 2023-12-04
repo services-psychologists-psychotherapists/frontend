@@ -12,13 +12,17 @@ export default function Textarea({
   value, textareaClassName, disabled,
   required, errors, promptClasses,
   minLength, maxLength, prompt,
+  titleClasses,
 }) {
   const textareaRef = useRef(null);
 
   useEffect(() => {
     if (textareaRef.current) {
-      textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+      textareaRef.current.style.height = '0px';
+      if (textareaRef.current.scrollHeight > textareaRef.current.clientHeight) {
+        textareaRef.current.style.height = 'auto';
+        textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+      }
     }
   }, [value]);
 
@@ -27,12 +31,15 @@ export default function Textarea({
       className={`custom-textarea${containerClassName ? ` ${containerClassName}` : ''}`}
       id={id}
     >
-      <Text
-        size="s"
-        type="p"
-      >
-        {title}
-      </Text>
+      {title && (
+        <Text
+          size="s"
+          type="p"
+          className={`custom-textarea__title${titleClasses ? ` ${titleClasses}` : ''}`}
+        >
+          {title}
+        </Text>
+      )}
       <textarea
         ref={textareaRef}
         className={
@@ -46,9 +53,9 @@ export default function Textarea({
         name={name}
         value={value}
         disabled={disabled}
-        required={required || false}
-        minLength={minLength || null}
-        maxLength={maxLength || null}
+        required={required}
+        minLength={minLength}
+        maxLength={maxLength}
       />
       <Prompt
         errors={errors[name]}
@@ -79,6 +86,7 @@ Textarea.propTypes = {
   minLength: string,
   maxLength: string,
   prompt: string,
+  titleClasses: string,
 };
 
 Textarea.defaultProps = {
@@ -96,4 +104,5 @@ Textarea.defaultProps = {
   minLength: null,
   maxLength: null,
   prompt: null,
+  titleClasses: '',
 };

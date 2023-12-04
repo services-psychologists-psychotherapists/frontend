@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate, useLocation } from 'react-router-dom';
 import './App.css';
 import HomePage from '../../pages/HomePage/HomePage';
 import PageForPsychologists from '../../pages/PageForPsychologists/PageForPsychologists';
@@ -20,13 +20,14 @@ import ProtectedRouteElement from '../ProtectedRouteElement/ProtectedRouteElemen
 import ChangePassword from '../../pages/ChangePassword/ChangePassword';
 import PsychologistRegistration from '../../pages/PsychologistRegistration/PsychologistRegistration';
 import ClientProfilePage from '../../pages/ClientHomePage/ClientProfilePage/ClientProfilePage';
+import CreatePassword from '../../pages/CreatePassword/CreatePassword';
 
 export default function App() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const jwtRefresh = localStorage.getItem('jwt-refresh');
-  // const jwt = localStorage.getItem('jwt');
+  const curPath = useLocation();
 
   const [docIdForRequest, setDocIdForRequest] = useState('');
 
@@ -69,7 +70,7 @@ export default function App() {
     return false;
   };
 
-  const signIn = async (data) => {
+  const signIn = async (data, setPopup) => {
     try {
       const token = await auth.authUser(data);
 
@@ -87,6 +88,12 @@ export default function App() {
       }
     } catch (err) {
       console.log(err);
+
+      setPopup({
+        data: {
+          title: 'При авторизации произошла ошибка',
+        },
+      });
     }
   };
 
@@ -110,6 +117,10 @@ export default function App() {
     }
   };
 
+  const goBack = () => {
+    navigate(-1);
+  };
+
   useEffect(() => {
     if (jwtRefresh) {
       verifyJwt(jwtRefresh);
@@ -126,12 +137,22 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/for_a_therapist" element={<PageForPsychologists />} />
+            <Route
+              path="/create_password/*"
+              element={(
+                <CreatePassword
+                  curPath={curPath}
+                  goBack={goBack}
+                />
+              )}
+            />
             <Route path="/*" element={<NotFound />} />
             <Route
               path="/psychologists_registration"
               element={(
                 <PsychologistRegistration
                   docIdForRequest={docIdForRequest}
+                  setDocIdForRequest={setDocIdForRequest}
                   uploadDocuments={uploadDocuments}
                 />
               )}
@@ -159,6 +180,7 @@ export default function App() {
                   element={(
                     <ProtectedRouteElement
                       element={PsychologistAccount}
+                      curPath={curPath}
                       loggedIn={isLoggedIn}
                     />
                   )}
@@ -168,6 +190,7 @@ export default function App() {
                   element={(
                     <ProtectedRouteElement
                       element={PsychologistAccount}
+                      curPath={curPath}
                       loggedIn={isLoggedIn}
                     />
                   )}
@@ -177,6 +200,7 @@ export default function App() {
                   element={(
                     <ProtectedRouteElement
                       element={PsychologistAccount}
+                      curPath={curPath}
                       loggedIn={isLoggedIn}
                     />
                   )}
@@ -189,6 +213,7 @@ export default function App() {
                       element={ChangePassword}
                       navigate={navigate}
                       loggedIn={isLoggedIn}
+                      goBack={goBack}
                     />
                   )}
                 />
@@ -202,6 +227,7 @@ export default function App() {
                       element={ChangePassword}
                       navigate={navigate}
                       loggedIn={isLoggedIn}
+                      goBack={goBack}
                     />
                   )}
                 />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { string, func } from 'prop-types';
 import './PsychologistRegistration.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
@@ -8,7 +8,7 @@ import FirstStep from './Steps/FirstStep/FirstStep';
 import SecondStep from './Steps/SecondStep/SecondStep';
 import ThirdStep from './Steps/ThirdStep/ThirdStep';
 import FourthStep from './Steps/FourthStep/FourthStep';
-import Success from './Success/Success';
+import Success from '../../components/Success/Success';
 import { useForm } from '../../hooks/useForm';
 import { createPsychologist } from '../../utils/auth';
 import { usePopup } from '../../hooks/usePopup';
@@ -16,6 +16,7 @@ import { usePopup } from '../../hooks/usePopup';
 export default function PsychologistRegistration({
   docIdForRequest,
   uploadDocuments,
+  setDocIdForRequest,
 }) {
   // TODO: добавить анимацию переходов
   const {
@@ -66,17 +67,37 @@ export default function PsychologistRegistration({
     setStep(step - 1);
   };
 
-  const getClosestList = (e, setListValue, onChange) => {
-    setListValue(+e.target.closest('ul').id);
+  useEffect(() => {
+    if (step === 2 || step === 3) {
+      const handleClick = (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+          setListId(+e.target.closest('ul').id);
+        }
+      };
 
-    if (onChange) {
-      onChange(e);
+      setDocIdForRequest('');
+
+      document.addEventListener('click', handleClick);
+
+      return () => {
+        document.removeEventListener('click', handleClick);
+      };
     }
-  };
+
+    return () => {};
+  }, [step]);
 
   return (
     <>
-      {isSuccess && <Success />}
+      {isSuccess
+        && (
+        <Success
+          title="Заявка отправлена!"
+          text="Как только мы все проверим, Вам на почту придет уведомление"
+          buttonText="На главную"
+          buttonHref="/"
+        />
+        )}
       {!isSuccess && (
         <PageLayout
           classes={
@@ -125,7 +146,6 @@ export default function PsychologistRegistration({
                 inputValidStatus={inputValidStatus}
                 getInvalidInput={getInvalidInput}
                 step={step}
-                getClosestList={getClosestList}
                 setListId={setListId}
                 listId={listId}
                 setDataForRequest={setDataForRequest}
@@ -134,6 +154,7 @@ export default function PsychologistRegistration({
                 fileForRequest={fileForRequest}
                 uploadDocuments={uploadDocuments}
                 dataForRequest={dataForRequest}
+                setDocIdForRequest={setDocIdForRequest}
               />
               <ThirdStep
                 className={step === 3 ? 'psycho-registration__step_on' : ''}
@@ -143,7 +164,6 @@ export default function PsychologistRegistration({
                 inputValidStatus={inputValidStatus}
                 getInvalidInput={getInvalidInput}
                 step={step}
-                getClosestList={getClosestList}
                 setListId={setListId}
                 listId={listId}
                 fileForRequest={fileForRequest}
@@ -151,6 +171,7 @@ export default function PsychologistRegistration({
                 docIdForRequest={docIdForRequest}
                 setDataForRequest={setDataForRequest}
                 dataForRequest={dataForRequest}
+                setDocIdForRequest={setDocIdForRequest}
               />
               <FourthStep
                 className={step === 4 ? 'psycho-registration__step_on' : ''}
@@ -187,4 +208,5 @@ export default function PsychologistRegistration({
 PsychologistRegistration.propTypes = {
   docIdForRequest: string.isRequired,
   uploadDocuments: func.isRequired,
+  setDocIdForRequest: func.isRequired,
 };

@@ -7,10 +7,11 @@ import Title from '../../../../components/generic/Title/Title';
 import FormClue from '../../FormClue/FormClue';
 import { PSYCHO_REGISTRATION_SECOND_STEP } from '../../../../constants/constants';
 import Fieldset from '../../../../components/Fieldset/Fieldset';
+import Textarea from '../../../../components/Fieldset/Textarea/Textarea';
 import FileUpload from '../../../../components/Fieldset/FileUpload/FileUpload';
 import Button from '../../../../components/generic/Button/Button';
 import { usePopup } from '../../../../hooks/usePopup';
-import { checkFile, resetValue, handleDataUpdate } from '../../../../utils/helpers';
+import { checkFile, resetValue, handleDataUpdate, addEducationBlock } from '../../../../utils/helpers';
 // TODO: Запретить ввод букв в Периоде обучения?
 
 export default function SecondStep({
@@ -21,26 +22,21 @@ export default function SecondStep({
   inputValidStatus,
   getInvalidInput,
   step,
-  getClosestList,
-  setListId,
   listId,
   setDataForRequest,
   getYears,
   docIdForRequest,
   fileForRequest,
   uploadDocuments,
+  setDocIdForRequest,
 }) {
   const { setValue } = usePopup();
 
-  const [instituteTitle, setInstituteTitle] = useState(null);
-  const [instituteSpeciality, setInstituteSpeciality] = useState(null);
-  const [graduationYear, setGraduationYear] = useState(null);
+  const [instituteTitle, setInstituteTitle] = useState('');
+  const [instituteSpeciality, setInstituteSpeciality] = useState('');
+  const [graduationYear, setGraduationYear] = useState('');
   const [isRendered, setIsRendered] = useState(false);
   const [educationBlocks, setEducationBlocks] = useState([0]);
-
-  const addEducationBlock = () => {
-    setEducationBlocks((prevBlocks) => [...prevBlocks, prevBlocks.length]);
-  };
 
   useEffect(() => {
     setIsRendered(true);
@@ -101,7 +97,7 @@ export default function SecondStep({
         setDataForRequest,
       );
     }
-  }, [graduationYear, isRendered]);
+  }, [graduationYear]);
 
   useEffect(() => {
     if (isRendered && step === 2) {
@@ -122,7 +118,7 @@ export default function SecondStep({
         );
       }
     }
-  }, [instituteTitle, isRendered]);
+  }, [instituteTitle]);
 
   useEffect(() => {
     if (isRendered && step === 2) {
@@ -143,7 +139,7 @@ export default function SecondStep({
         );
       }
     }
-  }, [instituteSpeciality, isRendered]);
+  }, [instituteSpeciality]);
 
   useEffect(() => {
     if (isRendered && step === 2) {
@@ -188,32 +184,47 @@ export default function SecondStep({
           <ul id={blockId} key={blockId} className="psycho-registration__form-step_list psycho-registration__form-step_list-two">
             {PSYCHO_REGISTRATION_SECOND_STEP.map((i) => (
               <li key={i.name}>
-                <Fieldset
-                  name={`${i.name}${blockId}` || null}
-                  element={i.element || null}
-                  title={i.title || null}
-                  typeForInput={i.typeForInput || null}
-                  required={i.required || false}
-                  values={values}
-                  handleChange={(e) => getClosestList(e, setListId, handleChange)}
-                  errors={errors}
-                  isValid={getInvalidInput(inputValidStatus[`${i.name}${blockId}`])}
-                  promptClasses={i.promptClasses || ''}
-                  typeForDropdown={i.typeForDropdown}
-                  placeholder={i.placeholder || null}
-                  disabled={step !== 2}
-                  inputContainerClasses={i.inputContainerClasses || ''}
-                  minLength={i.minLength || null}
-                  maxLength={i.maxLength || null}
-                />
+                {i.item === 'Fieldset' && (
+                  <Fieldset
+                    name={`${i.name}${blockId}` || null}
+                    element={i.element || null}
+                    title={i.title || null}
+                    typeForInput={i.typeForInput || null}
+                    required={i.required || false}
+                    values={values}
+                    handleChange={(e) => handleChange(e)}
+                    errors={errors}
+                    isValid={getInvalidInput(inputValidStatus[`${i.name}${blockId}`])}
+                    placeholder={i.placeholder || null}
+                    disabled={step !== 2}
+                    minLength={i.minLength || null}
+                    maxLength={i.maxLength || null}
+                  />
+                )}
+                {i.item === 'Textarea' && (
+                  <Textarea
+                    title={i.title || null}
+                    onChange={(e) => handleChange(e)}
+                    name={`${i.name}${blockId}` || null}
+                    value={values[`${i.name}${blockId}`]}
+                    id={i.id || null}
+                    textareaClassName={i.textareaClassName || null}
+                    containerClassName={i.containerClassName || null}
+                    disabled={step !== 2}
+                    required={i.required || false}
+                    errors={errors || null}
+                    minLength={i.minLength || null}
+                    maxLength={i.maxLength || null}
+                    placeholder={i.placeholder || null}
+                  />
+                )}
               </li>
             ))}
             <li className="psycho-registration__form-education">
               <FileUpload
                 text="Прикрепить документ об образовании"
-                onChange={(e) => getClosestList(e, setListId, handleChange)}
+                onChange={(e) => handleChange(e)}
                 disabled={step !== 2}
-                // isRequired={step === 2}
               />
             </li>
           </ul>
@@ -221,7 +232,17 @@ export default function SecondStep({
       </div>
       <Button
         variant="text"
-        onClick={addEducationBlock}
+        onClick={
+          () => addEducationBlock(
+            instituteTitle,
+            instituteSpeciality,
+            graduationYear,
+            docIdForRequest,
+            setEducationBlocks,
+            setDocIdForRequest,
+            setValue,
+          )
+        }
         className="psycho-registration__form-education_btn"
       >
         + добавить высшее образование
@@ -238,14 +259,13 @@ SecondStep.propTypes = {
   errors: objectOf(string).isRequired,
   className: string,
   step: number.isRequired,
-  getClosestList: func.isRequired,
-  setListId: func.isRequired,
   listId: number.isRequired,
   setDataForRequest: func.isRequired,
   getYears: func.isRequired,
   docIdForRequest: string.isRequired,
   fileForRequest: objectOf(string).isRequired,
   uploadDocuments: func.isRequired,
+  setDocIdForRequest: func.isRequired,
 };
 
 SecondStep.defaultProps = {
