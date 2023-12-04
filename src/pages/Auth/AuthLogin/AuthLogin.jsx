@@ -40,6 +40,7 @@ export default function AuthLogin({
               handleChange={(e) => handleChange(e)}
               errors={errors}
               isValid={getInvalidInput(inputValidStatus[i.name])}
+              placeholder={i.placeholder}
             />
           </li>
         ))}
@@ -47,7 +48,7 @@ export default function AuthLogin({
       {/* Не могу использовать ButtonsGroup так как у меня больше gap,
       а изменить или перназначить нельзя */}
       <ul className="auth__form-login_buttons">
-        <Button variant="text" size="l" type="button">
+        <Button variant="text" size="l" type="button" href="/reset_password">
           Не помню пароль
         </Button>
         <Button

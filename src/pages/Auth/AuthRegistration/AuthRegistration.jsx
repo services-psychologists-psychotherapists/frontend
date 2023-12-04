@@ -1,5 +1,6 @@
 import React from 'react';
 import { bool, objectOf, string, func } from 'prop-types';
+import moment from 'moment';
 import './AuthRegistration.css';
 import Fieldset from '../../../components/Fieldset/Fieldset';
 import Button from '../../../components/generic/Button/Button';
@@ -7,9 +8,7 @@ import Text from '../../../components/generic/Text/Text';
 import { REGISTRATION_INPUT_PARAMS_FOR_CLIENT } from '../../../constants/constants';
 import ServiceDocuments from '../../../components/generic/ServiceDocuments/ServiceDocuments';
 import { usePopup } from '../../../hooks/usePopup';
-import {
-  checkPasswords,
-} from '../../../utils/helpers';
+import { checkPasswords } from '../../../utils/helpers';
 // TODO: Выводить сообщения об ошибках в запросах в попапы?
 
 export default function AuthRegistration({
@@ -32,7 +31,7 @@ export default function AuthRegistration({
       setValue,
       {
         first_name: values.name_regist,
-        birthday: values.birthday_regist,
+        birthday: moment(values.birthday_regist).format('DD.MM.YYYY'),
         phone_number: values.phone_regist || '',
         email,
         password: values.passowrd_regist,
@@ -48,8 +47,7 @@ export default function AuthRegistration({
           Вы психолог?
         </Text>
         <Button
-          // TODO: сделать переход на стр. рег. псих.
-          href="/for_a_therapist"
+          href="/psychologists_registration"
           variant="text"
           size="l"
           type="button"

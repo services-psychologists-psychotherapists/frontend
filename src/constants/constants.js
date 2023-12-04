@@ -346,6 +346,7 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
     name: 'name_regist',
     typeForInput: 'text',
     required: true,
+    placeholder: 'Введите имя',
   },
   {
     element: inputElement,
@@ -354,6 +355,7 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
     typeForInput: 'email',
     required: true,
     promptClasses: 'auth__prompt',
+    placeholder: 'Введите email',
   },
   {
     element: inputElement,
@@ -367,7 +369,7 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
     element: inputElement,
     title: 'Дата рождения',
     name: 'birthday_regist',
-    typeForInput: 'text',
+    typeForInput: 'date',
     required: true,
     placeholder: '23.04.1990',
   },
@@ -380,6 +382,7 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
     prompt:
       'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ',
     promptClasses: 'auth__prompt',
+    placeholder: 'Введите пароль',
   },
   {
     element: inputElement,
@@ -387,6 +390,7 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
     name: 'passowrd2_regist',
     typeForInput: 'password',
     required: true,
+    placeholder: 'Повторите пароль',
   },
 ];
 
@@ -403,6 +407,7 @@ export const LOGIN_INPUT_PARAMS_FOR_CLIENT = [
     typeForInput: 'email',
     required: true,
     minLength: '1',
+    placeholder: 'Введите email',
   },
   {
     element: inputElement,
@@ -411,6 +416,7 @@ export const LOGIN_INPUT_PARAMS_FOR_CLIENT = [
     typeForInput: 'password',
     required: true,
     minLength: '1',
+    placeholder: '***********',
   },
 ];
 
