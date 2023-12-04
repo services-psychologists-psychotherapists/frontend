@@ -22,8 +22,6 @@ export default function SecondStep({
   inputValidStatus,
   getInvalidInput,
   step,
-  // getClosestList,
-  // setListId,
   listId,
   setDataForRequest,
   getYears,

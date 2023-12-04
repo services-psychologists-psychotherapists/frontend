@@ -146,7 +146,6 @@ export default function PsychologistRegistration({
                 inputValidStatus={inputValidStatus}
                 getInvalidInput={getInvalidInput}
                 step={step}
-                // getClosestList={getClosestList}
                 setListId={setListId}
                 listId={listId}
                 setDataForRequest={setDataForRequest}
@@ -165,7 +164,6 @@ export default function PsychologistRegistration({
                 inputValidStatus={inputValidStatus}
                 getInvalidInput={getInvalidInput}
                 step={step}
-                // getClosestList={getClosestList}
                 setListId={setListId}
                 listId={listId}
                 fileForRequest={fileForRequest}
