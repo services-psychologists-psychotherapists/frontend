@@ -124,6 +124,10 @@ export const createPsychologist = async (data) => {
   dataForRequest.themes = dataForRequest.themes.map((theme) => ({ title: theme }));
   dataForRequest.approaches = dataForRequest.approaches.map((approach) => ({ title: approach }));
 
+  if (Object.keys(dataForRequest.courses[0]).length === 0) {
+    delete dataForRequest.courses;
+  }
+
   const response = await axios.post(`${API_URL}/auth/psychologists/`, dataForRequest);
 
   return checkResponse(response);

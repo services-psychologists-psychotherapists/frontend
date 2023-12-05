@@ -32,7 +32,6 @@ export default function ResetPassword({ resetPassword }) {
         <Text
           size="s"
           type="p"
-          // className="reset-password__text"
         >
           Введите email, который вы использовали при регистрации профиля, чтобы получить
           письмо для сброса пароля.
