@@ -1,0 +1,57 @@
+.user-data {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+}
+.user-data__form {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  row-gap: 24px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color-dark-violet);
+  max-width: 955px;
+  width: 100%;
+}
+
+.user-data__form-block {
+  display: flex;
+  flex-direction: row;
+  column-gap: 28px;
+}
+
+.user-data__block-title {
+  font-weight: var(--text-weight-title);
+  max-width: 240px;
+  width: 100%;
+}
+
+.data-list {
+  list-style-type: none;
+}
+
+.education-btn {
+  max-width: 289px;
+  width: 100%;
+  align-self: flex-start;
+}
+
+.data-list__text {
+  min-height: 48px;
+}
+
+.data-list_type_column {
+  display: flex;
+  flex-direction: column;
+}
+
+.data-list_type_grid {
+  display: grid;
+  grid-template-columns: minmax(min-content, 305px) minmax(min-content, 305px);
+  column-gap: 20px;
+}
+
+.data-list__graduation-year {
+  max-width: 325px;
+  width: 100%;
+}

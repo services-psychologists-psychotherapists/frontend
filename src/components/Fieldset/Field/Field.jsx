@@ -89,7 +89,7 @@ export default function Field({
 
 Field.propTypes = {
   element: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   onChange: PropTypes.func,
   isValid: PropTypes.bool,
   required: PropTypes.bool,
@@ -125,4 +125,5 @@ Field.defaultProps = {
   id: null,
   classesForInput: '',
   autoComplete: null,
+  title: '',
 };

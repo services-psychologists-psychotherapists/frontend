@@ -4,7 +4,7 @@ import './ClientProfilePage.css';
 import PageLayout from '../../../components/templates/PageLayout/PageLayout';
 import NavLinksList from '../../../components/NavLinksList/NavLinksList';
 import { CLIENT_PROFILE_NAV_LINKS } from '../../../constants/constants';
-import ProfileCard from '../../../components/Cards/ProfileCard/ProfileCard';
+import UserProfileData from '../../../components/UserProfileData/UserProfileData';
 
 export default function ClientProfilePage({ currentUser }) {
   return (
@@ -19,7 +19,7 @@ export default function ClientProfilePage({ currentUser }) {
         />
       )}
     >
-      <ProfileCard
+      <UserProfileData
         data={currentUser}
       />
     </PageLayout>
