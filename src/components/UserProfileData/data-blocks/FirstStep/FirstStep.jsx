@@ -5,16 +5,14 @@ import {
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import moment from 'moment';
 import './FirsStep.css';
-import Title from '../../../../components/generic/Title/Title';
-import FormClue from '../../FormClue/FormClue';
-import Fieldset from '../../../../components/Fieldset/Fieldset';
+import '../../UserProfileData.css';
+import Fieldset from '../../../Fieldset/Fieldset';
 import {
   radioDropdownElement, PSYCHO_REGISTRATION_FIRST_STEP
 } from '../../../../constants/constants';
 import { removeProperty, updateData } from '../../../../utils/helpers';
 
 export default function FirstStep({
-  className,
   values,
   handleChange,
   errors,
@@ -24,6 +22,7 @@ export default function FirstStep({
   step,
   setDataForRequest,
   dataForRequest,
+  // typeOfUse,
 }) {
   useEffect(() => {
     if (values.first_name) {
@@ -74,49 +73,40 @@ export default function FirstStep({
   }, [values.birthday]);
 
   return (
-    <div className={`${className || 'psycho-registration__step_off'} psycho-registration__form-step_one`}>
-      <Title
-        text="1/4&nbsp;&nbsp;&nbsp;Основная информация"
-        className="psycho-registration__form-title"
-        size="s"
-      />
-      <div className="psycho-registration__form-container">
-        <FormClue />
-        <ul className="psycho-registration__form-step_list psycho-registration__form-step_list-one">
-          {PSYCHO_REGISTRATION_FIRST_STEP.map((i) => (
-            <li key={i.name}>
-              <Fieldset
-                name={i.name || null}
-                element={i.element || null}
-                title={i.title || null}
-                typeForInput={i.typeForInput || null}
-                required={i.required || false}
-                values={values}
-                handleChange={(e) => {
-                  if (i.element === radioDropdownElement) {
-                    handleChange(e, true);
-                  } else {
-                    handleChange(e);
-                  }
-                }}
-                errors={errors}
-                // Не сразу срабатывает валидация на радио
-                isValid={getInvalidInput(inputValidStatus[i.name])}
-                promptClasses={i.promptClasses || ''}
-                selectedDropdownItems={selectedDropdownItems || null}
-                dropdownContent={i.dropdownContent || []}
-                typeForDropdown={i.typeForDropdown}
-                classesForAbsoluteList="psycho-registration__form_list"
-                disabled={step !== 1}
-                minLength={i.minLength || null}
-                maxLength={i.maxLength || null}
-                autoComplete={i.autoComplete || null}
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <ul className="data-list data-list_type_grid">
+      {PSYCHO_REGISTRATION_FIRST_STEP.map((i) => (
+        <li key={i.name}>
+          <Fieldset
+            name={i.name}
+            element={i.element}
+            title={i.title}
+            typeForInput={i.typeForInput}
+            required={i.required}
+            values={values}
+            handleChange={(e) => {
+              if (i.element === radioDropdownElement) {
+                handleChange(e, true);
+              } else {
+                handleChange(e);
+              }
+            }}
+            errors={errors}
+            // Не сразу срабатывает валидация на радио
+            isValid={getInvalidInput(inputValidStatus[i.name])}
+            promptClasses={i.promptClasses}
+            selectedDropdownItems={selectedDropdownItems}
+            dropdownContent={i.dropdownContent}
+            typeForDropdown={i.typeForDropdown}
+            classesForAbsoluteList="data-list__gender"
+            disabled={step !== 1}
+            minLength={i.minLength}
+            maxLength={i.maxLength}
+            autoComplete={i.autoComplete}
+            placeholder={i.placeholder}
+          />
+        </li>
+      ))}
+    </ul>
   );
 }
 
@@ -126,7 +116,6 @@ FirstStep.propTypes = {
   values: objectOf(string).isRequired,
   handleChange: func.isRequired,
   errors: objectOf(string).isRequired,
-  className: string,
   selectedDropdownItems: objectOf(
     oneOfType([
       string,
@@ -137,8 +126,5 @@ FirstStep.propTypes = {
   setDataForRequest: func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   dataForRequest: object.isRequired,
-};
-
-FirstStep.defaultProps = {
-  className: '',
+  // typeOfUse: string,
 };

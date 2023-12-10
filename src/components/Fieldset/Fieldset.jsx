@@ -137,7 +137,7 @@ export default function Fieldset({
 
 Fieldset.propTypes = {
   element: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   required: PropTypes.bool,
   disabled: PropTypes.bool,
   placeholder: PropTypes.string,
@@ -193,4 +193,5 @@ Fieldset.defaultProps = {
   classesForAbsoluteList: '',
   classesForInput: '',
   autoComplete: null,
+  title: '',
 };

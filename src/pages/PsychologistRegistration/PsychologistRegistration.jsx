@@ -4,14 +4,15 @@ import './PsychologistRegistration.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import { PSYCHO_REGISTRATION_TEXT } from '../../constants/constants';
 import Button from '../../components/generic/Button/Button';
-import FirstStep from './Steps/FirstStep/FirstStep';
-import SecondStep from './Steps/SecondStep/SecondStep';
-import ThirdStep from './Steps/ThirdStep/ThirdStep';
-import FourthStep from './Steps/FourthStep/FourthStep';
+import FirstStep from '../../components/UserProfileData/data-blocks/FirstStep/FirstStep';
+import SecondStep from '../../components/UserProfileData/data-blocks/SecondStep/SecondStep';
+import ThirdStep from '../../components/UserProfileData/data-blocks/ThirdStep/ThirdStep';
+import FourthStep from '../../components/UserProfileData/data-blocks/FourthStep/FourthStep';
 import Success from '../../components/Success/Success';
 import { useForm } from '../../hooks/useForm';
 import { createPsychologist } from '../../utils/auth';
 import { usePopup } from '../../hooks/usePopup';
+import DescrForStep from './DescrForStep/DescrForStep';
 
 export default function PsychologistRegistration({
   docIdForRequest,
@@ -126,67 +127,91 @@ export default function PsychologistRegistration({
               </ul>
             ) : null}
             <form className="psycho-registration__form">
-              <FirstStep
+              <DescrForStep
                 className={step === 1 ? 'psycho-registration__step_on' : ''}
-                values={values}
-                handleChange={handleChange}
-                errors={errors}
-                inputValidStatus={inputValidStatus}
-                getInvalidInput={getInvalidInput}
-                selectedDropdownItems={selectedDropdownItems}
                 step={step}
-                setDataForRequest={setDataForRequest}
-                dataForRequest={dataForRequest}
-              />
-              <SecondStep
+                title="1/4&nbsp;&nbsp;&nbsp;Основная информация"
+              >
+                <FirstStep
+                  className={step === 1 ? 'psycho-registration__step_on' : ''}
+                  values={values}
+                  handleChange={handleChange}
+                  errors={errors}
+                  inputValidStatus={inputValidStatus}
+                  getInvalidInput={getInvalidInput}
+                  selectedDropdownItems={selectedDropdownItems}
+                  step={step}
+                  setDataForRequest={setDataForRequest}
+                  dataForRequest={dataForRequest}
+                />
+              </DescrForStep>
+              <DescrForStep
                 className={step === 2 ? 'psycho-registration__step_on' : ''}
-                values={values}
-                handleChange={handleChange}
-                errors={errors}
-                inputValidStatus={inputValidStatus}
-                getInvalidInput={getInvalidInput}
                 step={step}
-                setListId={setListId}
-                listId={listId}
-                setDataForRequest={setDataForRequest}
-                getYears={getYears}
-                docIdForRequest={docIdForRequest}
-                fileForRequest={fileForRequest}
-                uploadDocuments={uploadDocuments}
-                dataForRequest={dataForRequest}
-                setDocIdForRequest={setDocIdForRequest}
-              />
-              <ThirdStep
+                title="2/4&nbsp;&nbsp;&nbsp;Высшее образование"
+              >
+                <SecondStep
+                  className={step === 2 ? 'psycho-registration__step_on' : ''}
+                  values={values}
+                  handleChange={handleChange}
+                  errors={errors}
+                  inputValidStatus={inputValidStatus}
+                  getInvalidInput={getInvalidInput}
+                  step={step}
+                  setListId={setListId}
+                  listId={listId}
+                  setDataForRequest={setDataForRequest}
+                  getYears={getYears}
+                  docIdForRequest={docIdForRequest}
+                  fileForRequest={fileForRequest}
+                  uploadDocuments={uploadDocuments}
+                  dataForRequest={dataForRequest}
+                  setDocIdForRequest={setDocIdForRequest}
+                />
+              </DescrForStep>
+              <DescrForStep
                 className={step === 3 ? 'psycho-registration__step_on' : ''}
-                values={values}
-                handleChange={handleChange}
-                errors={errors}
-                inputValidStatus={inputValidStatus}
-                getInvalidInput={getInvalidInput}
                 step={step}
-                setListId={setListId}
-                listId={listId}
-                fileForRequest={fileForRequest}
-                uploadDocuments={uploadDocuments}
-                docIdForRequest={docIdForRequest}
-                setDataForRequest={setDataForRequest}
-                dataForRequest={dataForRequest}
-                setDocIdForRequest={setDocIdForRequest}
-              />
-              <FourthStep
+                title="3/4&nbsp;&nbsp;&nbsp;Повышение квалификации"
+              >
+                <ThirdStep
+                  className={step === 3 ? 'psycho-registration__step_on' : ''}
+                  values={values}
+                  handleChange={handleChange}
+                  errors={errors}
+                  inputValidStatus={inputValidStatus}
+                  getInvalidInput={getInvalidInput}
+                  step={step}
+                  setListId={setListId}
+                  listId={listId}
+                  fileForRequest={fileForRequest}
+                  uploadDocuments={uploadDocuments}
+                  docIdForRequest={docIdForRequest}
+                  setDataForRequest={setDataForRequest}
+                  dataForRequest={dataForRequest}
+                  setDocIdForRequest={setDocIdForRequest}
+                />
+              </DescrForStep>
+              <DescrForStep
                 className={step === 4 ? 'psycho-registration__step_on' : ''}
-                values={values}
-                handleChange={handleChange}
-                errors={errors}
-                inputValidStatus={inputValidStatus}
-                getInvalidInput={getInvalidInput}
                 step={step}
-                selectedDropdownItems={selectedDropdownItems}
-                setCustomValue={setCustomValue}
-                resetCustomValue={resetCustomValue}
-                setDataForRequest={setDataForRequest}
-                dataForRequest={dataForRequest}
-              />
+                title="4/4&nbsp;&nbsp;&nbsp;О работе"
+              >
+                <FourthStep
+                  className={step === 4 ? 'psycho-registration__step_on' : ''}
+                  values={values}
+                  handleChange={handleChange}
+                  errors={errors}
+                  inputValidStatus={inputValidStatus}
+                  getInvalidInput={getInvalidInput}
+                  step={step}
+                  selectedDropdownItems={selectedDropdownItems}
+                  setCustomValue={setCustomValue}
+                  resetCustomValue={resetCustomValue}
+                  setDataForRequest={setDataForRequest}
+                  dataForRequest={dataForRequest}
+                />
+              </DescrForStep>
               <Button
                 className="psycho-registration__form_button"
                 type={step !== 4 ? 'button' : 'submit'}

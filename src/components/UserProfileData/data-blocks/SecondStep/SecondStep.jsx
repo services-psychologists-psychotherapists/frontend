@@ -2,20 +2,17 @@ import React, { useState, useEffect } from 'react';
 import {
   bool, objectOf, string, func, number,
 } from 'prop-types';
-import './SecondStep.css';
-import Title from '../../../../components/generic/Title/Title';
-import FormClue from '../../FormClue/FormClue';
+import '../../UserProfileData.css';
 import { PSYCHO_REGISTRATION_SECOND_STEP } from '../../../../constants/constants';
-import Fieldset from '../../../../components/Fieldset/Fieldset';
-import Textarea from '../../../../components/Fieldset/Textarea/Textarea';
-import FileUpload from '../../../../components/Fieldset/FileUpload/FileUpload';
-import Button from '../../../../components/generic/Button/Button';
+import Fieldset from '../../../Fieldset/Fieldset';
+import Textarea from '../../../Fieldset/Textarea/Textarea';
+import FileUpload from '../../../Fieldset/FileUpload/FileUpload';
+import Button from '../../../generic/Button/Button';
 import { usePopup } from '../../../../hooks/usePopup';
 import { checkFile, resetValue, handleDataUpdate, addEducationBlock } from '../../../../utils/helpers';
 // TODO: Запретить ввод букв в Периоде обучения?
 
 export default function SecondStep({
-  className,
   values,
   handleChange,
   errors,
@@ -172,82 +169,74 @@ export default function SecondStep({
   }, [docIdForRequest]);
 
   return (
-    <div className={className || 'psycho-registration__step_off'}>
-      <Title
-        text="2/4&nbsp;&nbsp;&nbsp;Высшее образование"
-        className="psycho-registration__form-title"
-        size="s"
-      />
-      <div className="psycho-registration__form-container">
-        <FormClue />
-        {educationBlocks.map((blockId) => (
-          <ul id={blockId} key={blockId} className="psycho-registration__form-step_list psycho-registration__form-step_list-two">
-            {PSYCHO_REGISTRATION_SECOND_STEP.map((i) => (
-              <li key={i.name}>
-                {i.item === 'Fieldset' && (
-                  <Fieldset
-                    name={`${i.name}${blockId}` || null}
-                    element={i.element || null}
-                    title={i.title || null}
-                    typeForInput={i.typeForInput || null}
-                    required={i.required || false}
-                    values={values}
-                    handleChange={(e) => handleChange(e)}
-                    errors={errors}
-                    isValid={getInvalidInput(inputValidStatus[`${i.name}${blockId}`])}
-                    placeholder={i.placeholder || null}
-                    disabled={step !== 2}
-                    minLength={i.minLength || null}
-                    maxLength={i.maxLength || null}
-                  />
-                )}
-                {i.item === 'Textarea' && (
-                  <Textarea
-                    title={i.title || null}
-                    onChange={(e) => handleChange(e)}
-                    name={`${i.name}${blockId}` || null}
-                    value={values[`${i.name}${blockId}`]}
-                    id={i.id || null}
-                    textareaClassName={i.textareaClassName || null}
-                    containerClassName={i.containerClassName || null}
-                    disabled={step !== 2}
-                    required={i.required || false}
-                    errors={errors || null}
-                    minLength={i.minLength || null}
-                    maxLength={i.maxLength || null}
-                    placeholder={i.placeholder || null}
-                  />
-                )}
-              </li>
-            ))}
-            <li className="psycho-registration__form-education">
-              <FileUpload
-                text="Прикрепить документ об образовании"
-                onChange={(e) => handleChange(e)}
-                disabled={step !== 2}
-              />
+    <>
+      {educationBlocks.map((blockId) => (
+        <ul id={blockId} key={blockId} className="data-list data-list_type_column">
+          {PSYCHO_REGISTRATION_SECOND_STEP.map((i) => (
+            <li key={i.name}>
+              {i.item === 'Fieldset' && (
+                <Fieldset
+                  inputContainerClasses={i.inputContainerClasses}
+                  name={`${i.name}${blockId}`}
+                  element={i.element}
+                  title={i.title}
+                  typeForInput={i.typeForInput}
+                  required={i.required}
+                  values={values}
+                  handleChange={(e) => handleChange(e)}
+                  errors={errors}
+                  isValid={getInvalidInput(inputValidStatus[`${i.name}${blockId}`])}
+                  placeholder={i.placeholder}
+                  disabled={step !== 2}
+                  minLength={i.minLength}
+                  maxLength={i.maxLength}
+                />
+              )}
+              {i.item === 'Textarea' && (
+                <Textarea
+                  title={i.title}
+                  onChange={(e) => handleChange(e)}
+                  name={`${i.name}${blockId}`}
+                  value={values[`${i.name}${blockId}`]}
+                  id={i.id}
+                  textareaClassName={i.textareaClassName}
+                  disabled={step !== 2}
+                  required={i.required}
+                  errors={errors}
+                  minLength={i.minLength}
+                  maxLength={i.maxLength}
+                  placeholder={i.placeholder}
+                />
+              )}
             </li>
-          </ul>
-        ))}
-      </div>
+          ))}
+          <li>
+            <FileUpload
+              text="Прикрепить документ об образовании"
+              onChange={(e) => handleChange(e)}
+              disabled={step !== 2}
+            />
+          </li>
+        </ul>
+      ))}
       <Button
         variant="text"
         onClick={
-          () => addEducationBlock(
-            instituteTitle,
-            instituteSpeciality,
-            graduationYear,
-            docIdForRequest,
-            setEducationBlocks,
-            setDocIdForRequest,
-            setValue,
-          )
-        }
-        className="psycho-registration__form-education_btn"
+        () => addEducationBlock(
+          instituteTitle,
+          instituteSpeciality,
+          graduationYear,
+          docIdForRequest,
+          setEducationBlocks,
+          setDocIdForRequest,
+          setValue,
+        )
+      }
+        className="education-btn"
       >
         + добавить высшее образование
       </Button>
-    </div>
+    </>
   );
 }
 
@@ -257,7 +246,6 @@ SecondStep.propTypes = {
   values: objectOf(string).isRequired,
   handleChange: func.isRequired,
   errors: objectOf(string).isRequired,
-  className: string,
   step: number.isRequired,
   listId: number.isRequired,
   setDataForRequest: func.isRequired,
@@ -266,8 +254,4 @@ SecondStep.propTypes = {
   fileForRequest: objectOf(string).isRequired,
   uploadDocuments: func.isRequired,
   setDocIdForRequest: func.isRequired,
-};
-
-SecondStep.defaultProps = {
-  className: '',
 };
