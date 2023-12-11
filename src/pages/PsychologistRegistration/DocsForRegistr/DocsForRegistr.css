@@ -1,0 +1,6 @@
+.data-list__documents {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  margin-bottom: 48px;
+}

@@ -12,28 +12,18 @@
   border: 1px solid var(--border-color-dark-violet);
   max-width: 955px;
   width: 100%;
-}
-
-.user-data__form-block {
-  display: flex;
-  flex-direction: row;
-  column-gap: 28px;
-}
-
-.user-data__block-title {
-  font-weight: var(--text-weight-title);
-  max-width: 240px;
-  width: 100%;
+  flex-wrap: nowrap;
 }
 
 .data-list {
   list-style-type: none;
+  width: 100%;
 }
 
 .education-btn {
-  max-width: 289px;
-  width: 100%;
-  align-self: flex-start;
+  min-width: min-content;
+  max-width: 320px;
+  text-align: start;
 }
 
 .data-list__text {
@@ -54,4 +44,27 @@
 .data-list__graduation-year {
   max-width: 325px;
   width: 100%;
+}
+
+.data-list__file-upload {
+  margin-bottom: 20px;
+}
+
+.data-list-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+  width: 100%;
+}
+
+.data-list-container ul:not(:first-child) {
+  padding-top: 40px;
+  border-top: 1px solid var(--border-color-dark-violet);
+}
+
+.user-data__buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  column-gap: 20px;
 }

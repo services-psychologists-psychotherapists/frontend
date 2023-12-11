@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { string, func } from 'prop-types';
 import './PsychologistRegistration.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
@@ -13,6 +13,8 @@ import { useForm } from '../../hooks/useForm';
 import { createPsychologist } from '../../utils/auth';
 import { usePopup } from '../../hooks/usePopup';
 import DescrForStep from './DescrForStep/DescrForStep';
+import DocsForRegistr from './DocsForRegistr/DocsForRegistr';
+import useUploadDoc from '../../hooks/useUploadDoc';
 
 export default function PsychologistRegistration({
   docIdForRequest,
@@ -39,6 +41,9 @@ export default function PsychologistRegistration({
   const [isSuccess, setIsSuccess] = useState(false);
   const [listId, setListId] = useState(0);
   const [step, setStep] = useState(1);
+  const [curBlockType, setCurBlockType] = useState('');
+
+  useUploadDoc(setListId, setCurBlockType, setDocIdForRequest);
 
   const createPsycho = async (data) => {
     try {
@@ -67,26 +72,6 @@ export default function PsychologistRegistration({
   const switchPrevStep = () => {
     setStep(step - 1);
   };
-
-  useEffect(() => {
-    if (step === 2 || step === 3) {
-      const handleClick = (e) => {
-        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
-          setListId(+e.target.closest('ul').id);
-        }
-      };
-
-      setDocIdForRequest('');
-
-      document.addEventListener('click', handleClick);
-
-      return () => {
-        document.removeEventListener('click', handleClick);
-      };
-    }
-
-    return () => {};
-  }, [step]);
 
   return (
     <>
@@ -133,7 +118,6 @@ export default function PsychologistRegistration({
                 title="1/4&nbsp;&nbsp;&nbsp;Основная информация"
               >
                 <FirstStep
-                  className={step === 1 ? 'psycho-registration__step_on' : ''}
                   values={values}
                   handleChange={handleChange}
                   errors={errors}
@@ -151,7 +135,6 @@ export default function PsychologistRegistration({
                 title="2/4&nbsp;&nbsp;&nbsp;Высшее образование"
               >
                 <SecondStep
-                  className={step === 2 ? 'psycho-registration__step_on' : ''}
                   values={values}
                   handleChange={handleChange}
                   errors={errors}
@@ -167,6 +150,7 @@ export default function PsychologistRegistration({
                   uploadDocuments={uploadDocuments}
                   dataForRequest={dataForRequest}
                   setDocIdForRequest={setDocIdForRequest}
+                  curBlockType={curBlockType}
                 />
               </DescrForStep>
               <DescrForStep
@@ -175,7 +159,6 @@ export default function PsychologistRegistration({
                 title="3/4&nbsp;&nbsp;&nbsp;Повышение квалификации"
               >
                 <ThirdStep
-                  className={step === 3 ? 'psycho-registration__step_on' : ''}
                   values={values}
                   handleChange={handleChange}
                   errors={errors}
@@ -190,15 +173,15 @@ export default function PsychologistRegistration({
                   setDataForRequest={setDataForRequest}
                   dataForRequest={dataForRequest}
                   setDocIdForRequest={setDocIdForRequest}
+                  curBlockType={curBlockType}
                 />
               </DescrForStep>
               <DescrForStep
-                className={step === 4 ? 'psycho-registration__step_on' : ''}
+                className={step === 4 ? 'psycho-registration__step_on psycho-registration__last-step' : ''}
                 step={step}
                 title="4/4&nbsp;&nbsp;&nbsp;О работе"
               >
                 <FourthStep
-                  className={step === 4 ? 'psycho-registration__step_on' : ''}
                   values={values}
                   handleChange={handleChange}
                   errors={errors}
@@ -212,6 +195,7 @@ export default function PsychologistRegistration({
                   dataForRequest={dataForRequest}
                 />
               </DescrForStep>
+              {step === 4 && <DocsForRegistr />}
               <Button
                 className="psycho-registration__form_button"
                 type={step !== 4 ? 'button' : 'submit'}

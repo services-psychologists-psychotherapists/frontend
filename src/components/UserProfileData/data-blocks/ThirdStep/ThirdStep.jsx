@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   bool, objectOf, string, func, number,
 } from 'prop-types';
-import '../../UserProfileData.css';
 import { PSYCHO_REGISTRATION_THIRD_STEP } from '../../../../constants/constants';
 import Fieldset from '../../../Fieldset/Fieldset';
 import FileUpload from '../../../Fieldset/FileUpload/FileUpload';
@@ -25,6 +24,7 @@ export default function ThirdStep({
   docIdForRequest,
   setDataForRequest,
   setDocIdForRequest,
+  curBlockType,
 }) {
   const { setValue } = usePopup();
 
@@ -62,7 +62,7 @@ export default function ThirdStep({
   }, [values, listId]);
 
   useEffect(() => {
-    if (isRendered && step === 3) {
+    if (isRendered && step === 3 && curBlockType === 'courses') {
       checkFile(
         fileForRequest,
         step,
@@ -75,7 +75,7 @@ export default function ThirdStep({
   }, [fileForRequest]);
 
   useEffect(() => {
-    if (docIdForRequest && step === 3) {
+    if (docIdForRequest && step === 3 && curBlockType === 'courses') {
       handleDataUpdate(
         'document',
         docIdForRequest,
@@ -135,9 +135,9 @@ export default function ThirdStep({
   }, [coursesGraduationYear]);
 
   return (
-    <>
+    <div className="data-list-container">
       {educationBlocks.map((blockId) => (
-        // TODO: классы со второго
+      // TODO: классы со второго
         <ul id={blockId} key={blockId} className="data-list data-list_type_column">
           {PSYCHO_REGISTRATION_THIRD_STEP.map((i) => (
             <li key={i.name}>
@@ -182,28 +182,32 @@ export default function ThirdStep({
               text="Прикрепить документ об образовании"
               onChange={(e) => handleChange(e)}
               disabled={step !== 3}
+              className="data-list__file-upload"
+              name="courses"
             />
+          </li>
+          <li>
+            <Button
+              variant="text"
+              onClick={
+              () => addEducationBlock(
+                coursesTitle,
+                coursesSpeciality,
+                coursesGraduationYear,
+                docIdForRequest,
+                setEducationBlocks,
+                setDocIdForRequest,
+                setValue,
+              )
+            }
+              className="education-btn"
+            >
+              + добавить повышение квалификации
+            </Button>
           </li>
         </ul>
       ))}
-      <Button
-        variant="text"
-        onClick={
-          () => addEducationBlock(
-            coursesTitle,
-            coursesSpeciality,
-            coursesGraduationYear,
-            docIdForRequest,
-            setEducationBlocks,
-            setDocIdForRequest,
-            setValue,
-          )
-        }
-        className="education-btn"
-      >
-        + добавить повышение квалификации
-      </Button>
-    </>
+    </div>
   );
 }
 
@@ -220,4 +224,9 @@ ThirdStep.propTypes = {
   docIdForRequest: string.isRequired,
   setDataForRequest: func.isRequired,
   setDocIdForRequest: func.isRequired,
+  curBlockType: string,
+};
+
+ThirdStep.defaultProps = {
+  curBlockType: '',
 };

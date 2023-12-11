@@ -63,7 +63,8 @@
   margin-bottom: 40px;
 }
 
-.psycho-registration__step_on:first-of-type {
+.psycho-registration__step_on:first-of-type,
+.psycho-registration__last-step {
   margin-bottom: 20px;
 }
 
