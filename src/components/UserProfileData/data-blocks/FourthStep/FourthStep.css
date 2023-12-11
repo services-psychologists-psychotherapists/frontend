@@ -6,10 +6,3 @@
 .data-list__textarea {
   min-height: 108px;
 }
-
-.data-list__documents {
-  display: flex;
-  flex-direction: column;
-  row-gap: 8px;
-  margin-bottom: 8px;
-}

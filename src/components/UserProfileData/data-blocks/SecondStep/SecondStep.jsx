@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import {
   bool, objectOf, string, func, number,
 } from 'prop-types';
-import '../../UserProfileData.css';
 import { PSYCHO_REGISTRATION_SECOND_STEP } from '../../../../constants/constants';
 import Fieldset from '../../../Fieldset/Fieldset';
 import Textarea from '../../../Fieldset/Textarea/Textarea';
@@ -26,6 +25,7 @@ export default function SecondStep({
   fileForRequest,
   uploadDocuments,
   setDocIdForRequest,
+  curBlockType,
 }) {
   const { setValue } = usePopup();
 
@@ -139,7 +139,7 @@ export default function SecondStep({
   }, [instituteSpeciality]);
 
   useEffect(() => {
-    if (isRendered && step === 2) {
+    if (isRendered && step === 2 && curBlockType === 'institutes') {
       checkFile(
         fileForRequest,
         step,
@@ -157,7 +157,7 @@ export default function SecondStep({
   }, [fileForRequest]);
 
   useEffect(() => {
-    if (docIdForRequest && step === 2) {
+    if (docIdForRequest && step === 2 && curBlockType === 'institutes') {
       handleDataUpdate(
         'document',
         docIdForRequest,
@@ -169,44 +169,44 @@ export default function SecondStep({
   }, [docIdForRequest]);
 
   return (
-    <>
+    <div className="data-list-container">
       {educationBlocks.map((blockId) => (
         <ul id={blockId} key={blockId} className="data-list data-list_type_column">
           {PSYCHO_REGISTRATION_SECOND_STEP.map((i) => (
             <li key={i.name}>
               {i.item === 'Fieldset' && (
-                <Fieldset
-                  inputContainerClasses={i.inputContainerClasses}
-                  name={`${i.name}${blockId}`}
-                  element={i.element}
-                  title={i.title}
-                  typeForInput={i.typeForInput}
-                  required={i.required}
-                  values={values}
-                  handleChange={(e) => handleChange(e)}
-                  errors={errors}
-                  isValid={getInvalidInput(inputValidStatus[`${i.name}${blockId}`])}
-                  placeholder={i.placeholder}
-                  disabled={step !== 2}
-                  minLength={i.minLength}
-                  maxLength={i.maxLength}
-                />
+              <Fieldset
+                inputContainerClasses={i.inputContainerClasses}
+                name={`${i.name}${blockId}`}
+                element={i.element}
+                title={i.title}
+                typeForInput={i.typeForInput}
+                required={i.required}
+                values={values}
+                handleChange={(e) => handleChange(e)}
+                errors={errors}
+                isValid={getInvalidInput(inputValidStatus[`${i.name}${blockId}`])}
+                placeholder={i.placeholder}
+                disabled={step !== 2}
+                minLength={i.minLength}
+                maxLength={i.maxLength}
+              />
               )}
               {i.item === 'Textarea' && (
-                <Textarea
-                  title={i.title}
-                  onChange={(e) => handleChange(e)}
-                  name={`${i.name}${blockId}`}
-                  value={values[`${i.name}${blockId}`]}
-                  id={i.id}
-                  textareaClassName={i.textareaClassName}
-                  disabled={step !== 2}
-                  required={i.required}
-                  errors={errors}
-                  minLength={i.minLength}
-                  maxLength={i.maxLength}
-                  placeholder={i.placeholder}
-                />
+              <Textarea
+                title={i.title}
+                onChange={(e) => handleChange(e)}
+                name={`${i.name}${blockId}`}
+                value={values[`${i.name}${blockId}`]}
+                id={i.id}
+                textareaClassName={i.textareaClassName}
+                disabled={step !== 2}
+                required={i.required}
+                errors={errors}
+                minLength={i.minLength}
+                maxLength={i.maxLength}
+                placeholder={i.placeholder}
+              />
               )}
             </li>
           ))}
@@ -215,28 +215,32 @@ export default function SecondStep({
               text="Прикрепить документ об образовании"
               onChange={(e) => handleChange(e)}
               disabled={step !== 2}
+              className="data-list__file-upload"
+              name="institutes"
             />
+          </li>
+          <li>
+            <Button
+              variant="text"
+              onClick={
+                  () => addEducationBlock(
+                    instituteTitle,
+                    instituteSpeciality,
+                    graduationYear,
+                    docIdForRequest,
+                    setEducationBlocks,
+                    setDocIdForRequest,
+                    setValue,
+                  )
+                }
+              className="education-btn"
+            >
+              + добавить высшее образование
+            </Button>
           </li>
         </ul>
       ))}
-      <Button
-        variant="text"
-        onClick={
-        () => addEducationBlock(
-          instituteTitle,
-          instituteSpeciality,
-          graduationYear,
-          docIdForRequest,
-          setEducationBlocks,
-          setDocIdForRequest,
-          setValue,
-        )
-      }
-        className="education-btn"
-      >
-        + добавить высшее образование
-      </Button>
-    </>
+    </div>
   );
 }
 
@@ -254,4 +258,9 @@ SecondStep.propTypes = {
   fileForRequest: objectOf(string).isRequired,
   uploadDocuments: func.isRequired,
   setDocIdForRequest: func.isRequired,
+  curBlockType: string,
+};
+
+SecondStep.defaultProps = {
+  curBlockType: '',
 };

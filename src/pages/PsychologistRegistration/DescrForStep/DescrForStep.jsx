@@ -1,6 +1,5 @@
 import React from 'react';
 import { string, node } from 'prop-types';
-import './DescrForStep.css';
 import Title from '../../../components/generic/Title/Title';
 import FormClue from '../FormClue/FormClue';
 

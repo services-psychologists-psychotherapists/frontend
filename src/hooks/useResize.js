@@ -8,7 +8,9 @@ export const useResize = () => {
     const handleResize = (e) => {
       setWidth(e.target.innerWidth);
     };
+
     window.addEventListener('resize', handleResize);
+
     return () => {
       window.removeEventListener('resize', handleResize);
     };

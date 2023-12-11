@@ -5,7 +5,6 @@ import {
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import moment from 'moment';
 import './FirsStep.css';
-import '../../UserProfileData.css';
 import Fieldset from '../../../Fieldset/Fieldset';
 import {
   radioDropdownElement, PSYCHO_REGISTRATION_FIRST_STEP

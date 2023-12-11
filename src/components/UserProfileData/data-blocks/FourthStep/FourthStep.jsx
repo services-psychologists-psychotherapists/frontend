@@ -3,7 +3,6 @@ import {
   bool, objectOf, string, func, number, oneOfType, arrayOf, object
 } from 'prop-types';
 import './FourthStep.css';
-import '../../UserProfileData.css';
 import {
   PSYCHO_REGISTRATION_FOURTH_STEP_ONE,
   PSYCHO_REGISTRATION_FOURTH_STEP_TWO,
@@ -12,8 +11,6 @@ import {
 } from '../../../../constants/constants';
 import Fieldset from '../../../Fieldset/Fieldset';
 import Textarea from '../../../Fieldset/Textarea/Textarea';
-import ServiceDocuments from '../../../generic/ServiceDocuments/ServiceDocuments';
-import Text from '../../../generic/Text/Text';
 import { removeProperty, updateData } from '../../../../utils/helpers';
 
 export default function FourthStep({
@@ -54,9 +51,46 @@ export default function FourthStep({
   }, [values.experience]);
 
   return (
-    <>
-      <ul className="data-list data-list_type_column">
-        {PSYCHO_REGISTRATION_FOURTH_STEP_ONE.map((i) => (
+    <ul className="data-list data-list_type_column">
+      {PSYCHO_REGISTRATION_FOURTH_STEP_ONE.map((i) => (
+        <li key={i.name}>
+          <Fieldset
+            name={i.name}
+            element={i.element}
+            title={i.title}
+            typeForInput={i.typeForInput}
+            required={i.required}
+            values={values}
+            handleChange={(e) => {
+              if (i.element === titlesDropdownElement) {
+                handleChange(e, true);
+              }
+
+              if (i.element === checkboxDropdownElement) {
+                if (i.customElement) {
+                  handleChange(e, true, i.customElement);
+                }
+              }
+            }}
+            errors={errors}
+                // Не сразу срабатывает валидация на радио
+            isValid={getInvalidInput(inputValidStatus[i.name])}
+            promptClasses={i.promptClasses}
+            selectedDropdownItems={selectedDropdownItems}
+            dropdownContent={i.dropdownContent}
+            typeForDropdown={i.typeForDropdown}
+            disabled={step !== 4}
+            resetCustomValue={resetCustomValue}
+            setCustomValue={setCustomValue}
+            customElement={i.customElement}
+            placeholder={i.placeholder}
+            classesForInput={i.classesForInput}
+            autoComplete={i.autoComplete}
+          />
+        </li>
+      ))}
+      <div className="data-list_type_grid">
+        {PSYCHO_REGISTRATION_FOURTH_STEP_TWO.map((i) => (
           <li key={i.name}>
             <Fieldset
               name={i.name}
@@ -65,89 +99,36 @@ export default function FourthStep({
               typeForInput={i.typeForInput}
               required={i.required}
               values={values}
-              handleChange={(e) => {
-                if (i.element === titlesDropdownElement) {
-                  handleChange(e, true);
-                }
-
-                if (i.element === checkboxDropdownElement) {
-                  if (i.customElement) {
-                    handleChange(e, true, i.customElement);
-                  }
-                }
-              }}
+              handleChange={(e) => handleChange(e)}
               errors={errors}
-                // Не сразу срабатывает валидация на радио
+                  // Не сразу срабатывает валидация на радио
               isValid={getInvalidInput(inputValidStatus[i.name])}
-              promptClasses={i.promptClasses}
-              selectedDropdownItems={selectedDropdownItems}
-              dropdownContent={i.dropdownContent}
-              typeForDropdown={i.typeForDropdown}
               disabled={step !== 4}
-              resetCustomValue={resetCustomValue}
-              setCustomValue={setCustomValue}
-              customElement={i.customElement}
+              inputContainerClasses={i.inputContainerClasses || ''}
+              minLength={i.minLength}
+              maxLength={i.maxLength}
               placeholder={i.placeholder}
-              classesForInput={i.classesForInput}
-              autoComplete={i.autoComplete}
             />
           </li>
         ))}
-        <div className="data-list_type_grid">
-          {PSYCHO_REGISTRATION_FOURTH_STEP_TWO.map((i) => (
-            <li key={i.name}>
-              <Fieldset
-                name={i.name}
-                element={i.element}
-                title={i.title}
-                typeForInput={i.typeForInput}
-                required={i.required}
-                values={values}
-                handleChange={(e) => handleChange(e)}
-                errors={errors}
-                  // Не сразу срабатывает валидация на радио
-                isValid={getInvalidInput(inputValidStatus[i.name])}
-                disabled={step !== 4}
-                inputContainerClasses={i.inputContainerClasses || ''}
-                minLength={i.minLength}
-                maxLength={i.maxLength}
-                placeholder={i.placeholder}
-              />
-            </li>
-          ))}
-        </div>
-        <li>
-          <Textarea
-            title="Расскажите нам о себе в свободной форме"
-            placeholder="Например, что считаете нам нужно узнать о вас, чтобы понять, какой вы специалист?"
-            onChange={(e) => handleChange(e)}
-            name="about"
-            id="psycho-about"
-            value={values.about}
-            textareaClassName="data-list__textarea"
-            disabled={step !== 4}
-            required
-            errors={errors || null}
-            minLength="1"
-            maxLength="500"
-          />
-        </li>
-      </ul>
-      <div
-        className="data-list__documents"
-      >
-        <Text
-          size="s"
-          type="span"
-        >
-          Нажимая кнопку «Подать заявку», Вы соглашаетесь c
-        </Text>
-        <ServiceDocuments
-          textVariant="whereby"
-          className="auth__service-documents_text"
-        />
       </div>
-    </>
+      <li>
+        <Textarea
+          title="Расскажите нам о себе в свободной форме"
+          placeholder="Например, что считаете нам нужно узнать о вас, чтобы понять, какой вы специалист?"
+          onChange={(e) => handleChange(e)}
+          name="about"
+          id="psycho-about"
+          value={values.about}
+          textareaClassName="data-list__textarea"
+          disabled={step !== 4}
+          required
+          errors={errors || null}
+          minLength="1"
+          maxLength="500"
+        />
+      </li>
+    </ul>
   );
 }
 

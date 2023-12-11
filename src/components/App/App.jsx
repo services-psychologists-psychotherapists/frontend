@@ -114,7 +114,7 @@ export default function App() {
       }
     } catch (err) {
       console.log(err);
-      setIsLoggedIn(false);
+      signOut();
     }
   };
 
@@ -277,6 +277,9 @@ export default function App() {
                       element={ClientProfilePage}
                       loggedIn={isLoggedIn}
                       currentUser={currentUser}
+                      docIdForRequest={docIdForRequest}
+                      setDocIdForRequest={setDocIdForRequest}
+                      uploadDocuments={uploadDocuments}
                     />
                   )}
                 />
