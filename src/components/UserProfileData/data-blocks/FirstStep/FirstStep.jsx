@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  bool, objectOf, string, func, oneOfType, arrayOf, number, object
+  bool, objectOf, string, func, oneOfType, array, number, object
 } from 'prop-types';
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import moment from 'moment';
@@ -21,7 +21,7 @@ export default function FirstStep({
   step,
   setDataForRequest,
   dataForRequest,
-  // typeOfUse,
+  curPath,
 }) {
   useEffect(() => {
     if (values.first_name) {
@@ -73,38 +73,44 @@ export default function FirstStep({
 
   return (
     <ul className="data-list data-list_type_grid">
-      {PSYCHO_REGISTRATION_FIRST_STEP.map((i) => (
-        <li key={i.name}>
-          <Fieldset
-            name={i.name}
-            element={i.element}
-            title={i.title}
-            typeForInput={i.typeForInput}
-            required={i.required}
-            values={values}
-            handleChange={(e) => {
-              if (i.element === radioDropdownElement) {
-                handleChange(e, true);
-              } else {
-                handleChange(e);
-              }
-            }}
-            errors={errors}
-            // Не сразу срабатывает валидация на радио
-            isValid={getInvalidInput(inputValidStatus[i.name])}
-            promptClasses={i.promptClasses}
-            selectedDropdownItems={selectedDropdownItems}
-            dropdownContent={i.dropdownContent}
-            typeForDropdown={i.typeForDropdown}
-            classesForAbsoluteList="data-list__gender"
-            disabled={step !== 1}
-            minLength={i.minLength}
-            maxLength={i.maxLength}
-            autoComplete={i.autoComplete}
-            placeholder={i.placeholder}
-          />
-        </li>
-      ))}
+      {PSYCHO_REGISTRATION_FIRST_STEP.map((i) => {
+        if (i.name === 'email' && curPath.pathname !== '/psychologists_registration') {
+          return null;
+        }
+
+        return (
+          <li key={i.name}>
+            <Fieldset
+              name={i.name}
+              element={i.element}
+              title={i.title}
+              typeForInput={i.typeForInput}
+              required={i.required}
+              values={values}
+              handleChange={(e) => {
+                if (i.element === radioDropdownElement) {
+                  handleChange(e, true);
+                } else {
+                  handleChange(e);
+                }
+              }}
+              errors={errors}
+              // Не сразу срабатывает валидация на радио
+              isValid={getInvalidInput(inputValidStatus[i.name])}
+              promptClasses={i.promptClasses}
+              selectedDropdownItems={selectedDropdownItems}
+              dropdownContent={i.dropdownContent}
+              typeForDropdown={i.typeForDropdown}
+              classesForAbsoluteList="data-list__gender"
+              disabled={step !== 1}
+              minLength={i.minLength}
+              maxLength={i.maxLength}
+              autoComplete={i.autoComplete}
+              placeholder={i.placeholder}
+            />
+          </li>
+        );
+      })}
     </ul>
   );
 }
@@ -118,12 +124,13 @@ FirstStep.propTypes = {
   selectedDropdownItems: objectOf(
     oneOfType([
       string,
-      arrayOf(string),
+      array,
     ])
   ).isRequired,
   step: number.isRequired,
   setDataForRequest: func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   dataForRequest: object.isRequired,
-  // typeOfUse: string,
+  // eslint-disable-next-line react/forbid-prop-types
+  curPath: object.isRequired,
 };

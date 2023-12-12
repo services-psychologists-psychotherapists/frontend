@@ -24,6 +24,7 @@
   min-width: min-content;
   max-width: 320px;
   text-align: start;
+  margin-top: 20px;
 }
 
 .data-list__text {
@@ -44,10 +45,6 @@
 .data-list__graduation-year {
   max-width: 325px;
   width: 100%;
-}
-
-.data-list__file-upload {
-  margin-bottom: 20px;
 }
 
 .data-list-container {

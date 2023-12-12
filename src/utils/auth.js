@@ -38,6 +38,46 @@ export const getRole = async (token) => {
   return checkResponse(response);
 };
 
+export const changePsychoData = async (data, token) => {
+  const dataForRequest = { ...data };
+
+  if (dataForRequest.themes) {
+    dataForRequest.themes = dataForRequest.themes.map((theme) => ({ title: theme }));
+  }
+
+  if (dataForRequest.approaches) {
+    dataForRequest.approaches = dataForRequest.approaches.map((approach) => ({ title: approach }));
+  }
+
+  if (dataForRequest.courses) {
+    if (Object.keys(dataForRequest.courses).length === 0) {
+      delete dataForRequest.courses;
+    }
+  }
+
+  if (dataForRequest.institutes) {
+    if (Object.keys(dataForRequest.institutes).length === 0) {
+      delete dataForRequest.institutes;
+    }
+  }
+
+  if (Object.keys(dataForRequest).length === 0) throw new Error('Нет данных для изменения');
+
+  const response = await axios.patch(`${API_URL}/auth/psychologists/me/`, dataForRequest, {
+    headers: { Authorization: `JWT ${token}` },
+  });
+
+  return checkResponse(response);
+};
+
+export const changeClientData = async (data, token) => {
+  const response = await axios.patch(`${API_URL}/auth/clients/me/`, data, {
+    headers: { Authorization: `JWT ${token}` },
+  });
+
+  return checkResponse(response);
+};
+
 // export const verifiJwt = async (token) => {
 //   const response = await axios.post(`${API_URL}/auth/jwt/verify/`, {
 //     token,

@@ -1,5 +1,5 @@
-import React from 'react';
-import { object } from 'prop-types';
+import React, { useEffect } from 'react';
+import { object, func, objectOf, string } from 'prop-types';
 import './ProfileCard.css';
 import Button from '../../generic/Button/Button';
 import { PROFILE_FIELDS, POPUP_DATA } from '../../../constants/constants';
@@ -7,8 +7,41 @@ import Title from '../../generic/Title/Title';
 import Avatar from '../../generic/Avatar/Avatar';
 import { usePopup } from '../../../hooks/usePopup';
 
-export default function ProfileCard({ data }) {
-  const { setValue } = usePopup();
+export default function ProfileCard({
+  currentUser, changeClientAvatar,
+  changePsychoAvatar, values
+}) {
+  const { setValue, setOnClick } = usePopup();
+  const jwt = localStorage.getItem('jwt');
+
+  const handleFileSelect = (event, userData) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      if (userData.role === 'client') {
+        changeClientAvatar(reader.result, jwt, setValue);
+      } else {
+        changePsychoAvatar(reader.result, jwt, setValue);
+      }
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
+  useEffect(() => {
+    const createInputForUploadingPhoto = () => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = (e) => handleFileSelect(e, currentUser);
+      input.click();
+    };
+
+    setOnClick(() => createInputForUploadingPhoto);
+  }, [values, currentUser]);
 
   return (
     <section className="profile-card">
@@ -20,9 +53,9 @@ export default function ProfileCard({ data }) {
       <div className="profile-card__content">
         <div className="profile-card__container">
           <Avatar
-            src={data.avatar || ''}
+            src={currentUser.avatar || ''}
             size="xl"
-            onClick={() => {}}
+            onClick={() => setValue(POPUP_DATA.avatar)}
           />
           <ul className="profile-card__container_data">
             {PROFILE_FIELDS.map((i) => (
@@ -33,7 +66,7 @@ export default function ProfileCard({ data }) {
                   </span>
                   <div className="profile-card__fieldset_field">
                     <span className="profile-card__fieldset_text">
-                      {i === 'Логин' ? data.email : i.text}
+                      {i.title === 'Логин' ? currentUser.email : i.text}
                     </span>
                   </div>
                 </div>
@@ -55,9 +88,15 @@ export default function ProfileCard({ data }) {
 
 ProfileCard.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
-  data: object,
+  currentUser: object,
+  changePsychoAvatar: func,
+  changeClientAvatar: func,
+  values: objectOf(string),
 };
 
 ProfileCard.defaultProps = {
-  data: {},
+  currentUser: {},
+  changePsychoAvatar: () => {},
+  changeClientAvatar: () => {},
+  values: {},
 };

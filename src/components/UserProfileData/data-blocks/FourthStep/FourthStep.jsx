@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import {
-  bool, objectOf, string, func, number, oneOfType, arrayOf, object
+  bool, objectOf, string, func, number, oneOfType, array, object
 } from 'prop-types';
 import './FourthStep.css';
 import {
@@ -73,7 +73,7 @@ export default function FourthStep({
               }
             }}
             errors={errors}
-                // Не сразу срабатывает валидация на радио
+            // Не сразу срабатывает валидация на радио
             isValid={getInvalidInput(inputValidStatus[i.name])}
             promptClasses={i.promptClasses}
             selectedDropdownItems={selectedDropdownItems}
@@ -101,7 +101,7 @@ export default function FourthStep({
               values={values}
               handleChange={(e) => handleChange(e)}
               errors={errors}
-                  // Не сразу срабатывает валидация на радио
+              // Не сразу срабатывает валидация на радио`
               isValid={getInvalidInput(inputValidStatus[i.name])}
               disabled={step !== 4}
               inputContainerClasses={i.inputContainerClasses || ''}
@@ -142,7 +142,7 @@ FourthStep.propTypes = {
   selectedDropdownItems: objectOf(
     oneOfType([
       string,
-      arrayOf(string),
+      array,
     ])
   ).isRequired,
   resetCustomValue: func,

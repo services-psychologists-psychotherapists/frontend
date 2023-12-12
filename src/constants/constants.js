@@ -214,6 +214,7 @@ export const dropdownLists = {
   approachList: [
     'Гештальт - терапия',
     'Экзистенциальный анализ',
+    'Психоаналитическая терапия',
     'Телесная терапия',
     'Панические атаки',
     'Другой вариант',
@@ -776,14 +777,14 @@ export const POPUP_DATA = {
       buttons: [
         {
           label: 'Нет',
-          onClick: () => console.log('Нажали Нет'),
+          onClick: () => {},
           type: 'button',
           size: 'l',
           variant: 'secondary',
         },
         {
           label: 'Да',
-          onClick: () => console.log('Нажали Да'),
+          onClick: () => {},
           type: 'button',
           size: 'l',
           variant: 'primary',
@@ -797,14 +798,14 @@ export const POPUP_DATA = {
       buttons: [
         {
           label: 'Удалить',
-          onClick: () => console.log('Нажали Отменить'),
+          onClick: () => {},
           type: 'secondary',
           size: 'l',
           variant: 'secondary',
         },
         {
           label: 'Отмена',
-          onClick: () => console.log('Нажали Добавить'),
+          onClick: () => {},
           type: 'primary',
           size: 'l',
           variant: 'primary',
@@ -830,6 +831,27 @@ export const POPUP_DATA = {
           size: 'l',
           variant: 'primary',
           href: '/change_password',
+        },
+      ],
+    },
+  },
+  avatar: {
+    data: {
+      title: 'Загрузка новой фотографии',
+      text: 'Клиентам будет проще узнать вас, если вы загрузите свою настоящую фотографию.',
+      buttons: [
+        {
+          label: 'Отменить',
+          onClick: () => {},
+          type: 'button',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Выбрать файл',
+          type: 'button',
+          size: 'l',
+          variant: 'primary',
         },
       ],
     },

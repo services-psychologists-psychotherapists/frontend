@@ -35,7 +35,10 @@ export default function Textarea({
         <Text
           size="s"
           type="p"
-          className={`custom-textarea__title${titleClasses ? ` ${titleClasses}` : ''}`}
+          className={`
+            custom-textarea__title${titleClasses ? ` ${titleClasses}` : ''}${
+            disabled ? ' custom-textarea__title_disabled' : ''}
+          `}
         >
           {title}
         </Text>

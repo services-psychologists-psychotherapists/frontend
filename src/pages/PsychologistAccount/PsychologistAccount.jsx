@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { object } from 'prop-types';
+import { object, string, func } from 'prop-types';
 import moment from 'moment';
 import './PsychologistAccount.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
@@ -15,9 +15,17 @@ import Calendar from '../../components/Сalendar/Сalendar';
 import CardOfSession from '../../components/Cards/CardOfSession/CardOfSession';
 import SessionPlanner from '../../components/SessionPlanner/SessionPlanner';
 import SlotsList from '../../components/SlotsList/SlotsList';
-import Title from '../../components/generic/Title/Title';
+import UserProfileData from '../../components/UserProfileData/UserProfileData';
 
-export default function PsychologistAccount({ curPath }) {
+export default function PsychologistAccount({
+  curPath,
+  currentUser,
+  docIdForRequest,
+  uploadDocuments,
+  setDocIdForRequest,
+  changePsychoAvatar,
+  changePsychologistData,
+}) {
   const [currentDay, setCurrentDay] = useState(moment());
   let nextAppointment = null;
   const selectedSlots = [];
@@ -37,13 +45,16 @@ export default function PsychologistAccount({ curPath }) {
     if (SLOTS.length > 0) {
       for (let i = 0; i < SLOTS.length; i += 1) {
         const timeSession = moment(SLOTS[i].datetime_from, DATE_FORMAT);
+
         if (timeSession.isSame(currentDay, 'day') && timeSession.isAfter(moment())) {
           selectedSlots.push(SLOTS[i]);
+
           if (SLOTS[i].client) {
             slotsWithSessions.push(SLOTS[i]);
           }
         }
       }
+
       if (slotsWithSessions.length > 0) {
         getNextSession();
       }
@@ -56,30 +67,42 @@ export default function PsychologistAccount({ curPath }) {
     <PageLayout
       title={PSYCHOLOGIST_ACCOUNT_TITLES[path].pageTitle}
       isLoggedIn
-      nav={<NavLinksList list={PSYCHOLOGIST_ACCOUNT_LINKS} direction="column" variant="violet" />}
+      nav={(
+        <NavLinksList
+          list={PSYCHOLOGIST_ACCOUNT_LINKS}
+          direction="column"
+          variant="violet"
+        />
+      )}
     >
-      <section className="psychologist-account">
-        {path !== 'profile' ? (
-          <>
-            <Calendar
-              titleText={PSYCHOLOGIST_ACCOUNT_TITLES[path].calendarTitle}
-              onDateCellClick={setCurrentDay}
-            />
-            <BlockWithTitle title={PSYCHOLOGIST_ACCOUNT_TITLES[path].reminderTitle}>
-              {path !== 'schedule' ? (
-                <CardOfSession session={nextAppointment} />
-              ) : (
-                <SessionPlanner />
-              )}
-            </BlockWithTitle>
-          </>
-        ) : null}
-        {path !== 'profile' ? (
+      {path !== 'profile' ? (
+        <section className="psychologist-account">
+
+          <Calendar
+            titleText={PSYCHOLOGIST_ACCOUNT_TITLES[path].calendarTitle}
+            onDateCellClick={setCurrentDay}
+          />
+          <BlockWithTitle title={PSYCHOLOGIST_ACCOUNT_TITLES[path].reminderTitle}>
+            {path !== 'schedule' ? (
+              <CardOfSession session={nextAppointment} />
+            ) : (
+              <SessionPlanner />
+            )}
+          </BlockWithTitle>
           <SlotsList sessions={selectedSlots} selectedDay={currentDay} />
-        ) : (
-          <Title text="ПРОФИЛЬ ЗДЕСЬ" />
-        )}
-      </section>
+        </section>
+      ) : null}
+      {path === 'profile' ? (
+        <UserProfileData
+          currentUser={currentUser}
+          docIdForRequest={docIdForRequest}
+          uploadDocuments={uploadDocuments}
+          setDocIdForRequest={setDocIdForRequest}
+          changePsychoAvatar={changePsychoAvatar}
+          changePsychologistData={changePsychologistData}
+          curPath={curPath}
+        />
+      ) : null}
     </PageLayout>
   );
 }
@@ -87,4 +110,15 @@ export default function PsychologistAccount({ curPath }) {
 PsychologistAccount.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   curPath: object.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  currentUser: object,
+  docIdForRequest: string.isRequired,
+  uploadDocuments: func.isRequired,
+  setDocIdForRequest: func.isRequired,
+  changePsychoAvatar: func.isRequired,
+  changePsychologistData: func.isRequired,
+};
+
+PsychologistAccount.defaultProps = {
+  currentUser: {},
 };

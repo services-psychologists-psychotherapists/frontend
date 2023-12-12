@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  bool, objectOf, string, func, number,
+  bool, objectOf, string, func, number, object,
 } from 'prop-types';
 import { PSYCHO_REGISTRATION_SECOND_STEP } from '../../../../constants/constants';
 import Fieldset from '../../../Fieldset/Fieldset';
@@ -8,7 +8,10 @@ import Textarea from '../../../Fieldset/Textarea/Textarea';
 import FileUpload from '../../../Fieldset/FileUpload/FileUpload';
 import Button from '../../../generic/Button/Button';
 import { usePopup } from '../../../../hooks/usePopup';
-import { checkFile, resetValue, handleDataUpdate, addEducationBlock } from '../../../../utils/helpers';
+import {
+  checkFile, resetValue, handleDataUpdate, addEducationBlock,
+  getDisabledField,
+} from '../../../../utils/helpers';
 // TODO: Запретить ввод букв в Периоде обучения?
 
 export default function SecondStep({
@@ -26,18 +29,47 @@ export default function SecondStep({
   uploadDocuments,
   setDocIdForRequest,
   curBlockType,
+  currentUser,
+  setValues,
+  isReset,
 }) {
   const { setValue } = usePopup();
 
+  const [educationBlocks, setEducationBlocks] = useState(
+    currentUser.institutes && currentUser.institutes.length > 1 ? [] : [0]
+  );
   const [instituteTitle, setInstituteTitle] = useState('');
   const [instituteSpeciality, setInstituteSpeciality] = useState('');
   const [graduationYear, setGraduationYear] = useState('');
   const [isRendered, setIsRendered] = useState(false);
-  const [educationBlocks, setEducationBlocks] = useState([0]);
 
   useEffect(() => {
     setIsRendered(true);
   }, []);
+
+  useEffect(() => {
+    setEducationBlocks(currentUser.institutes && currentUser.institutes.length > 1 ? [] : [0]);
+    setInstituteTitle('');
+    setInstituteSpeciality('');
+    setGraduationYear('');
+  }, [isReset]);
+
+  useEffect(() => {
+    if (currentUser.institutes) {
+      if (educationBlocks.length < currentUser.institutes.length) {
+        setEducationBlocks((prevBlocks) => [...prevBlocks, prevBlocks.length]);
+      }
+
+      currentUser.institutes.forEach((institute, index) => {
+        setValues((prevData) => ({
+          ...prevData,
+          [`institutes_title${index}`]: institute.title,
+          [`institutes_speciality${index}`]: institute.speciality,
+          [`institutes_graduation_year${index}`]: institute.graduation_year,
+        }));
+      });
+    }
+  }, [currentUser, educationBlocks]);
 
   useEffect(() => {
     const propertyPathTitle = `institutes_title${listId}`;
@@ -170,43 +202,43 @@ export default function SecondStep({
 
   return (
     <div className="data-list-container">
-      {educationBlocks.map((blockId) => (
+      {educationBlocks.map((blockId, index) => (
         <ul id={blockId} key={blockId} className="data-list data-list_type_column">
           {PSYCHO_REGISTRATION_SECOND_STEP.map((i) => (
             <li key={i.name}>
               {i.item === 'Fieldset' && (
-              <Fieldset
-                inputContainerClasses={i.inputContainerClasses}
-                name={`${i.name}${blockId}`}
-                element={i.element}
-                title={i.title}
-                typeForInput={i.typeForInput}
-                required={i.required}
-                values={values}
-                handleChange={(e) => handleChange(e)}
-                errors={errors}
-                isValid={getInvalidInput(inputValidStatus[`${i.name}${blockId}`])}
-                placeholder={i.placeholder}
-                disabled={step !== 2}
-                minLength={i.minLength}
-                maxLength={i.maxLength}
-              />
+                <Fieldset
+                  inputContainerClasses={i.inputContainerClasses}
+                  name={`${i.name}${blockId}`}
+                  element={i.element}
+                  title={i.title}
+                  typeForInput={i.typeForInput}
+                  required={i.required}
+                  values={values}
+                  handleChange={(e) => handleChange(e)}
+                  errors={errors}
+                  isValid={getInvalidInput(inputValidStatus[`${i.name}${blockId}`])}
+                  placeholder={i.placeholder}
+                  disabled={getDisabledField(blockId, currentUser, 2, step, 'institutes')}
+                  minLength={i.minLength}
+                  maxLength={i.maxLength}
+                />
               )}
               {i.item === 'Textarea' && (
-              <Textarea
-                title={i.title}
-                onChange={(e) => handleChange(e)}
-                name={`${i.name}${blockId}`}
-                value={values[`${i.name}${blockId}`]}
-                id={i.id}
-                textareaClassName={i.textareaClassName}
-                disabled={step !== 2}
-                required={i.required}
-                errors={errors}
-                minLength={i.minLength}
-                maxLength={i.maxLength}
-                placeholder={i.placeholder}
-              />
+                <Textarea
+                  title={i.title}
+                  onChange={(e) => handleChange(e)}
+                  name={`${i.name}${blockId}`}
+                  value={values[`${i.name}${blockId}`]}
+                  id={i.id}
+                  textareaClassName={i.textareaClassName}
+                  disabled={getDisabledField(blockId, currentUser, 2, step, 'institutes')}
+                  required={i.required}
+                  errors={errors}
+                  minLength={i.minLength}
+                  maxLength={i.maxLength}
+                  placeholder={i.placeholder}
+                />
               )}
             </li>
           ))}
@@ -214,30 +246,31 @@ export default function SecondStep({
             <FileUpload
               text="Прикрепить документ об образовании"
               onChange={(e) => handleChange(e)}
-              disabled={step !== 2}
-              className="data-list__file-upload"
+              disabled={getDisabledField(blockId, currentUser, 2, step, 'institutes')}
               name="institutes"
             />
           </li>
-          <li>
-            <Button
-              variant="text"
-              onClick={
-                  () => addEducationBlock(
-                    instituteTitle,
-                    instituteSpeciality,
-                    graduationYear,
-                    docIdForRequest,
-                    setEducationBlocks,
-                    setDocIdForRequest,
-                    setValue,
-                  )
-                }
-              className="education-btn"
-            >
-              + добавить высшее образование
-            </Button>
-          </li>
+          {index === educationBlocks.length - 1 && (
+            <li>
+              <Button
+                type="button"
+                variant="text"
+                onClick={() => addEducationBlock(
+                  instituteTitle,
+                  instituteSpeciality,
+                  graduationYear,
+                  docIdForRequest,
+                  setEducationBlocks,
+                  setDocIdForRequest,
+                  setValue,
+                  getDisabledField(blockId, currentUser, 2, step, 'institutes'),
+                )}
+                className="education-btn"
+              >
+                + добавить высшее образование
+              </Button>
+            </li>
+          )}
         </ul>
       ))}
     </div>
@@ -259,8 +292,14 @@ SecondStep.propTypes = {
   uploadDocuments: func.isRequired,
   setDocIdForRequest: func.isRequired,
   curBlockType: string,
+  // eslint-disable-next-line react/forbid-prop-types
+  currentUser: object,
+  setValues: func,
+  isReset: bool.isRequired,
 };
 
 SecondStep.defaultProps = {
   curBlockType: '',
+  currentUser: {},
+  setValues: () => {},
 };

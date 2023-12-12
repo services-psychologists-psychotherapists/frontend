@@ -6,6 +6,5 @@
 
 .user-data__block-title {
   font-weight: var(--text-weight-title);
-  max-width: 230px;
-  width: 100%;
+  min-width: 230px;
 }

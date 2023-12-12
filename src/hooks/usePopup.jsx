@@ -5,10 +5,13 @@ const PopupContext = createContext();
 
 export function PopupProvider({ children }) {
   const [value, setValue] = useState(null);
+  const [onClick, setOnClick] = useState(null);
 
   return (
-    // eslint-disable-next-line
-    <PopupContext.Provider value={{ value, setValue }}>{children}</PopupContext.Provider>
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
+    <PopupContext.Provider value={{ value, setValue, onClick, setOnClick }}>
+      {children}
+    </PopupContext.Provider>
   );
 }
 

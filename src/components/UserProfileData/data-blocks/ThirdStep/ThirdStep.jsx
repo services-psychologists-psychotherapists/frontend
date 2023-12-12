@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  bool, objectOf, string, func, number,
+  bool, objectOf, string, func, number, object,
 } from 'prop-types';
 import { PSYCHO_REGISTRATION_THIRD_STEP } from '../../../../constants/constants';
 import Fieldset from '../../../Fieldset/Fieldset';
@@ -8,8 +8,10 @@ import FileUpload from '../../../Fieldset/FileUpload/FileUpload';
 import Button from '../../../generic/Button/Button';
 import Textarea from '../../../Fieldset/Textarea/Textarea';
 import { usePopup } from '../../../../hooks/usePopup';
-import { checkFile, resetValue, handleDataUpdate, addEducationBlock } from '../../../../utils/helpers';
-// TODO: Одинаковый со втором сделать общий
+import {
+  checkFile, resetValue, handleDataUpdate, addEducationBlock,
+  getDisabledField,
+} from '../../../../utils/helpers';
 
 export default function ThirdStep({
   values,
@@ -25,10 +27,15 @@ export default function ThirdStep({
   setDataForRequest,
   setDocIdForRequest,
   curBlockType,
+  currentUser,
+  setValues,
+  isReset,
 }) {
   const { setValue } = usePopup();
 
-  const [educationBlocks, setEducationBlocks] = useState([0]);
+  const [educationBlocks, setEducationBlocks] = useState(
+    currentUser.courses && currentUser.courses.length > 1 ? [] : [0]
+  );
   const [coursesGraduationYear, setCoursesGraduationYear] = useState('');
   const [coursesTitle, setCoursesTitle] = useState('');
   const [coursesSpeciality, setCoursesSpeciality] = useState('');
@@ -37,6 +44,30 @@ export default function ThirdStep({
   useEffect(() => {
     setIsRendered(true);
   }, []);
+
+  useEffect(() => {
+    setEducationBlocks(currentUser.courses && currentUser.courses.length > 1 ? [] : [0]);
+    setCoursesTitle('');
+    setCoursesSpeciality('');
+    setCoursesGraduationYear('');
+  }, [isReset]);
+
+  useEffect(() => {
+    if (currentUser.courses) {
+      if (educationBlocks.length < currentUser.courses.length) {
+        setEducationBlocks((prevBlocks) => [...prevBlocks, prevBlocks.length]);
+      }
+
+      currentUser.courses.forEach((course, index) => {
+        setValues((prevData) => ({
+          ...prevData,
+          [`courses_title${index}`]: course.title,
+          [`courses_speciality${index}`]: course.speciality,
+          [`courses_graduation_year${index}`]: course.graduation_year,
+        }));
+      });
+    }
+  }, [currentUser, educationBlocks]);
 
   useEffect(() => {
     const propertyPathGraduationYear = `courses_graduation_year${listId}`;
@@ -136,8 +167,7 @@ export default function ThirdStep({
 
   return (
     <div className="data-list-container">
-      {educationBlocks.map((blockId) => (
-      // TODO: классы со второго
+      {educationBlocks.map((blockId, index) => (
         <ul id={blockId} key={blockId} className="data-list data-list_type_column">
           {PSYCHO_REGISTRATION_THIRD_STEP.map((i) => (
             <li key={i.name}>
@@ -153,7 +183,7 @@ export default function ThirdStep({
                 errors={errors}
                 isValid={getInvalidInput(inputValidStatus[`${i.name}${blockId}`])}
                 placeholder={i.placeholder}
-                disabled={step !== 3}
+                disabled={getDisabledField(blockId, currentUser, 3, step, 'courses')}
                 inputContainerClasses={i.inputContainerClasses || ''}
                 minLength={i.minLength}
                 maxLength={i.maxLength}
@@ -167,7 +197,7 @@ export default function ThirdStep({
                 value={values[`${i.name}${blockId}`]}
                 id={i.id}
                 textareaClassName={i.textareaClassName}
-                disabled={step !== 3}
+                disabled={getDisabledField(blockId, currentUser, 3, step, 'courses')}
                 required={i.required}
                 errors={errors}
                 minLength={i.minLength}
@@ -181,30 +211,33 @@ export default function ThirdStep({
             <FileUpload
               text="Прикрепить документ об образовании"
               onChange={(e) => handleChange(e)}
-              disabled={step !== 3}
-              className="data-list__file-upload"
+              disabled={getDisabledField(blockId, currentUser, 3, step, 'courses')}
               name="courses"
             />
           </li>
-          <li>
-            <Button
-              variant="text"
-              onClick={
-              () => addEducationBlock(
-                coursesTitle,
-                coursesSpeciality,
-                coursesGraduationYear,
-                docIdForRequest,
-                setEducationBlocks,
-                setDocIdForRequest,
-                setValue,
-              )
-            }
-              className="education-btn"
-            >
-              + добавить повышение квалификации
-            </Button>
-          </li>
+          {index === educationBlocks.length - 1 && (
+            <li>
+              <Button
+                type="button"
+                variant="text"
+                onClick={
+                  () => addEducationBlock(
+                    coursesTitle,
+                    coursesSpeciality,
+                    coursesGraduationYear,
+                    docIdForRequest,
+                    setEducationBlocks,
+                    setDocIdForRequest,
+                    setValue,
+                    getDisabledField(blockId, currentUser, 3, step, 'courses'),
+                  )
+                }
+                className="education-btn"
+              >
+                + добавить повышение квалификации
+              </Button>
+            </li>
+          )}
         </ul>
       ))}
     </div>
@@ -225,8 +258,14 @@ ThirdStep.propTypes = {
   setDataForRequest: func.isRequired,
   setDocIdForRequest: func.isRequired,
   curBlockType: string,
+  // eslint-disable-next-line react/forbid-prop-types
+  currentUser: object,
+  setValues: func,
+  isReset: bool.isRequired,
 };
 
 ThirdStep.defaultProps = {
   curBlockType: '',
+  currentUser: {},
+  setValues: () => {},
 };
