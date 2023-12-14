@@ -33,7 +33,12 @@ export default function FileUpload({
   };
 
   return (
-    <fieldset id={id || 'document'} className={`file-upload${className ? ` ${className}` : ''}`}>
+    <fieldset
+      id={id || 'document'}
+      className={`file-upload${
+        className ? ` ${className}` : ''}${
+        disabled ? ' file-upload_disabled' : ''}`}
+    >
       {fileName
         && (
           <div className="file-upload__file">
@@ -45,10 +50,12 @@ export default function FileUpload({
         role="button"
         tabIndex={0}
         onKeyDown={handleKeyDown}
-        className="file-upload__container"
+        className={`file-upload__container${
+          disabled ? ' file-upload__container_disabled' : ''}`}
       >
         <label
-          className="file-upload__container__text"
+          className={`file-upload__title${
+            disabled ? ' file-upload__title_disabled' : ''}`}
         >
           {text}
           <input
@@ -60,6 +67,7 @@ export default function FileUpload({
             onChange={handleFileUpload}
             required={isRequired}
             disabled={disabled}
+            accept=".jpg,.pdf"
           />
         </label>
       </div>

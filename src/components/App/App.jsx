@@ -23,6 +23,7 @@ import ClientProfilePage from '../../pages/ClientHomePage/ClientProfilePage/Clie
 import CreatePassword from '../../pages/CreatePassword/CreatePassword';
 import ResetPassword from '../../pages/ResetPassword/ResetPassword';
 
+// Подумать/переделать реализацию setPopup есть функция
 export default function App() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -52,10 +53,11 @@ export default function App() {
 
   const getUser = async (token) => {
     try {
-      const role = await auth.getRole(token);
-      const userRole = role.is_psychologists ? 'psychologist' : 'client';
+      const userParams = await auth.getRole(token);
+      const userRole = userParams.is_psychologists ? 'psychologist' : 'client';
       const user = await auth.getUserInfo(token, userRole);
       user.role = userRole;
+      user.email = userParams.email;
 
       setCurrentUser(user);
       setIsLoggedIn(true);
@@ -132,7 +134,134 @@ export default function App() {
 
       setPopup({
         data: {
-          title: 'При отправке произошла ошибка ',
+          title: 'При отправке произошла ошибка',
+        },
+      });
+    }
+  };
+
+  const changePsychoAvatar = async (avatar, token, setPopup) => {
+    try {
+      const psychoData = await auth.changePsychoData({ avatar }, token);
+
+      setCurrentUser((prevData) => ({
+        ...prevData,
+        avatar: psychoData.avatar,
+      }));
+
+      setPopup({
+        data: {
+          title: 'Аватар был успешно изменен',
+        },
+      });
+    } catch (err) {
+      console.log(err);
+
+      setPopup({
+        data: {
+          title: 'При загрузке произошла ошибка',
+        },
+      });
+    }
+  };
+
+  const changePsychologistData = async (data, token, setPopup) => {
+    const checkChangeData = (userData, prevUserData) => {
+      if (userData && prevUserData) {
+        if (userData.length !== prevUserData.length) {
+          return true;
+        }
+        const dict = new Set(prevUserData.map((i) => i.title));
+
+        return userData.some((i) => !dict.has(i));
+      }
+
+      return false;
+    };
+
+    try {
+      const newData = { ...data };
+
+      if (newData.institutes) {
+        newData.institutes = data.institutes.slice(currentUser.institutes.length);
+      }
+
+      if (newData.courses) {
+        newData.courses = data.courses.slice(currentUser.courses.length);
+      }
+
+      if (!checkChangeData(data.approaches, currentUser.approaches)) {
+        delete newData.approaches;
+      }
+
+      const psychoData = await auth.changePsychoData(newData, token);
+
+      setCurrentUser((prevData) => ({
+        ...prevData,
+        ...psychoData,
+      }));
+
+      setPopup({
+        data: {
+          title: 'Данные были успешно изменены',
+        },
+      });
+    } catch (err) {
+      console.log(err);
+
+      setPopup({
+        data: {
+          title: 'При изменении данных произошла ошибка',
+        },
+      });
+    }
+  };
+
+  const changeClientAvatar = async (avatar, token, setPopup) => {
+    try {
+      const clientData = await auth.changeClientData({ avatar }, token);
+
+      setCurrentUser((prevData) => ({
+        ...prevData,
+        avatar: clientData.avatar,
+      }));
+
+      setPopup({
+        data: {
+          title: 'Аватар был успешно изменен',
+        },
+      });
+    } catch (err) {
+      console.log(err);
+
+      setPopup({
+        data: {
+          title: 'При загрузке произошла ошибка',
+        },
+      });
+    }
+  };
+
+  const changeClientData = async (data, token, setPopup) => {
+    try {
+      const clientData = await auth.changeClientData(data, token);
+
+      setCurrentUser((prevData) => ({
+        ...prevData,
+        ...clientData,
+      }));
+
+      setPopup({
+        data: {
+          title: 'Данные были успешно изменены',
+        },
+      });
+    } catch (err) {
+      console.log(err);
+
+      setPopup({
+        data: {
+          title: 'При изменении данных произошла ошибка',
         },
       });
     }
@@ -212,6 +341,12 @@ export default function App() {
                       element={PsychologistAccount}
                       curPath={curPath}
                       loggedIn={isLoggedIn}
+                      currentUser={currentUser}
+                      docIdForRequest={docIdForRequest}
+                      uploadDocuments={uploadDocuments}
+                      setDocIdForRequest={setDocIdForRequest}
+                      changePsychoAvatar={changePsychoAvatar}
+                      changePsychologistData={changePsychologistData}
                     />
                   )}
                 />
@@ -222,6 +357,12 @@ export default function App() {
                       element={PsychologistAccount}
                       curPath={curPath}
                       loggedIn={isLoggedIn}
+                      currentUser={currentUser}
+                      docIdForRequest={docIdForRequest}
+                      uploadDocuments={uploadDocuments}
+                      setDocIdForRequest={setDocIdForRequest}
+                      changePsychoAvatar={changePsychoAvatar}
+                      changePsychologistData={changePsychologistData}
                     />
                   )}
                 />
@@ -232,6 +373,12 @@ export default function App() {
                       element={PsychologistAccount}
                       curPath={curPath}
                       loggedIn={isLoggedIn}
+                      currentUser={currentUser}
+                      docIdForRequest={docIdForRequest}
+                      uploadDocuments={uploadDocuments}
+                      setDocIdForRequest={setDocIdForRequest}
+                      changePsychoAvatar={changePsychoAvatar}
+                      changePsychologistData={changePsychologistData}
                     />
                   )}
                 />
@@ -280,6 +427,9 @@ export default function App() {
                       docIdForRequest={docIdForRequest}
                       setDocIdForRequest={setDocIdForRequest}
                       uploadDocuments={uploadDocuments}
+                      changeClientAvatar={changeClientAvatar}
+                      changeClientData={changeClientData}
+                      curPath={curPath}
                     />
                   )}
                 />

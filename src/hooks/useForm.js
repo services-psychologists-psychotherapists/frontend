@@ -16,12 +16,15 @@ export const useForm = () => {
   // настроить работу полей регистрации пользователя
 
   // Убрать
-  useEffect(() => {
-    console.log(dataForRequest);
-  }, [dataForRequest]);
-  useEffect(() => {
-    console.log(values);
-  }, [values]);
+  // useEffect(() => {
+  //   console.log(dataForRequest, 'dataForRequest');
+  // }, [dataForRequest]);
+  // useEffect(() => {
+  //   console.log(values, 'values');
+  // }, [values]);
+  // useEffect(() => {
+  //   console.log(selectedDropdownItems, 'selectedDropdownItems');
+  // }, [selectedDropdownItems]);
 
   const getYears = (arr) => {
     if (arr.length > 0) {
@@ -340,6 +343,7 @@ export const useForm = () => {
     inputValidStatus,
     getInvalidInput,
     selectedDropdownItems,
+    setSelectedDropdownItems,
     resetCustomValue,
     setCustomValue,
     dataForRequest,

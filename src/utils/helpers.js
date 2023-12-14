@@ -129,6 +129,7 @@ export const getPriceWithSpace = (price) => price.toLocaleString();
 
 export const getPasswordErr = (firstPass, secondPass) => firstPass !== secondPass;
 
+// возможно убрать или переделать
 export const showPopupWithValue = (setValue, value) => {
   setValue({
     data: {
@@ -249,9 +250,10 @@ export const addEducationBlock = (
   docId,
   setBlock,
   setDocId,
-  setPopup
+  setPopup,
+  disabled,
 ) => {
-  if (title && speciality && years && docId) {
+  if ((title && speciality && years && docId) || disabled) {
     setBlock((prevBlocks) => [...prevBlocks, prevBlocks.length]);
     setDocId('');
   } else {
@@ -261,6 +263,20 @@ export const addEducationBlock = (
       },
     });
   }
+};
+
+export const getDisabledField = (blockId, userData, forStep, curStep, blockType) => {
+  if (userData.institutes) {
+    if (blockId < userData[blockType].length) {
+      return true;
+    }
+  }
+
+  if (forStep !== curStep) {
+    return true;
+  }
+
+  return false;
 };
 
 // ------------------------------------------------------------------------------

@@ -19,6 +19,16 @@
   overflow: hidden;
   border: none;
   margin-bottom: 3px;
+  background-color: transparent;
+}
+
+.custom-textarea__text:disabled {
+  color: var(--text-color-disabled);
+  box-shadow: inset 0 0 0 1px var(--border-coolor-disabled);
+}
+
+.custom-textarea__title_disabled {
+  color: var(--text-color-disabled);
 }
 
 .custom-textarea__text::placeholder {

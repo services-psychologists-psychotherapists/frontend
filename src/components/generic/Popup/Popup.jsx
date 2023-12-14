@@ -9,38 +9,45 @@ import { usePopup } from '../../../hooks/usePopup';
 
 export default function Popup({ children }) {
   const ref = useRef();
-  const { value, setValue } = usePopup();
-  const [active, setActive] = useState();
+  const { value, setValue, onClick } = usePopup();
+  const [isActive, setIsActive] = useState(false);
 
   const closePopup = () => {
-    setActive(false);
-    if (active) {
+    if (isActive) {
       setTimeout(() => setValue(null), 450);
     }
+
+    setIsActive(false);
   };
 
   useOutsideClick(ref, () => closePopup());
 
   const title = value ? value.data.title : '';
+  const text = value ? value.data.text : '';
   const { buttons } = value ? value.data : [];
   const buttonsQuantity = buttons ? buttons.length : 0;
 
   useEffect(() => {
     if (value) {
-      setActive(true);
+      setIsActive(true);
     }
   }, [value]);
 
   return (
-    <div className={`popup ${active ? 'popup-visible' : ''}`}>
+    <div className={`popup ${isActive ? 'popup-visible' : ''}`}>
       <div className="popup__container" ref={ref}>
         <button type="button" className="popup__button-close" onClick={closePopup} />
         <Title size="s" text={title} />
-        <div className="popup__content">{children}</div>
+        {children && <div className="popup__content">{children}</div>}
+        {text && <p className="popup__text">{text}</p>}
         {(buttonsQuantity === 1 && (
           <Button
             onClick={() => {
-              buttons[0].onClick();
+              if (buttons[0].onClick) {
+                buttons[0].onClick();
+              } else {
+                onClick();
+              }
               closePopup();
             }}
             type={buttons[0].type}
@@ -57,7 +64,11 @@ export default function Popup({ children }) {
               <Button
                 key={button.label}
                 onClick={() => {
-                  button.onClick();
+                  if (button.onClick) {
+                    button.onClick();
+                  } else {
+                    onClick();
+                  }
                   closePopup();
                 }}
                 type={button.type}

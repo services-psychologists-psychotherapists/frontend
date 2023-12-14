@@ -11,6 +11,9 @@ export default function ClientProfilePage({
   docIdForRequest,
   uploadDocuments,
   setDocIdForRequest,
+  changeClientAvatar,
+  changeClientData,
+  curPath,
 }) {
   return (
     <PageLayout
@@ -29,6 +32,9 @@ export default function ClientProfilePage({
         docIdForRequest={docIdForRequest}
         uploadDocuments={uploadDocuments}
         setDocIdForRequest={setDocIdForRequest}
+        changeClientAvatar={changeClientAvatar}
+        changeClientData={changeClientData}
+        curPath={curPath}
       />
     </PageLayout>
   );
@@ -39,10 +45,16 @@ ClientProfilePage.propTypes = {
   currentUser: object,
   docIdForRequest: string.isRequired,
   uploadDocuments: func.isRequired,
-  setDocIdForRequest: func.isRequired,
+  setDocIdForRequest: func,
+  changeClientAvatar: func,
+  changeClientData: func,
+  // eslint-disable-next-line react/forbid-prop-types
+  curPath: object.isRequired,
 };
 
 ClientProfilePage.defaultProps = {
-  // eslint-disable-next-line react/forbid-prop-types
   currentUser: {},
+  setDocIdForRequest: () => {},
+  changeClientAvatar: () => {},
+  changeClientData: () => {},
 };
