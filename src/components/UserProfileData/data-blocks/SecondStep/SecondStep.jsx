@@ -295,11 +295,12 @@ SecondStep.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   currentUser: object,
   setValues: func,
-  isReset: bool.isRequired,
+  isReset: bool,
 };
 
 SecondStep.defaultProps = {
   curBlockType: '',
   currentUser: {},
   setValues: () => {},
+  isReset: false,
 };
