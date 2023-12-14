@@ -313,6 +313,7 @@ export default function App() {
                   docIdForRequest={docIdForRequest}
                   setDocIdForRequest={setDocIdForRequest}
                   uploadDocuments={uploadDocuments}
+                  curPath={curPath}
                 />
               )}
             />

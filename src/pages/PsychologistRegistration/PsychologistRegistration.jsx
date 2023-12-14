@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { string, func } from 'prop-types';
+import { string, func, object } from 'prop-types';
 import './PsychologistRegistration.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import { PSYCHO_REGISTRATION_TEXT } from '../../constants/constants';
@@ -20,6 +20,7 @@ export default function PsychologistRegistration({
   docIdForRequest,
   uploadDocuments,
   setDocIdForRequest,
+  curPath,
 }) {
   // TODO: добавить анимацию переходов
   const {
@@ -127,6 +128,7 @@ export default function PsychologistRegistration({
                   step={step}
                   setDataForRequest={setDataForRequest}
                   dataForRequest={dataForRequest}
+                  curPath={curPath}
                 />
               </DescrForStep>
               <DescrForStep
@@ -218,4 +220,6 @@ PsychologistRegistration.propTypes = {
   docIdForRequest: string.isRequired,
   uploadDocuments: func.isRequired,
   setDocIdForRequest: func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  curPath: object.isRequired,
 };
