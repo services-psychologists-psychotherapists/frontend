@@ -30,7 +30,7 @@ export default function Сalendar({
   const handleSelectDay = (e) => {
     if (e.key === 'Enter' || e.type === 'click') {
       setSelectedDay(e.target.id);
-      onDateCellClick(moment(e.target.id, 'DD.MM.YYYY'));
+      onDateCellClick(moment(e.target.id, 'DD.MM.YYYY'), e);
     }
   };
 
