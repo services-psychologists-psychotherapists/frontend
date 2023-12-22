@@ -1,15 +1,6 @@
 import axios from 'axios';
 import { API_URL } from '../constants/constants';
-import { getJwtFromLocalStorage } from './helpers';
-
-const checkResponse = async (res) => {
-  // TODO: подумать про варианты
-  if (res.status >= 200 && res.status < 300) {
-    return res.data;
-  }
-
-  return Promise.reject(new Error(`Ошибка: ${res.status}`));
-};
+import { getJwtFromLocalStorage, checkResponse } from './helpers';
 
 export const createUser = async (data) => {
   const response = await axios.post(`${API_URL}/auth/clients/`, data);

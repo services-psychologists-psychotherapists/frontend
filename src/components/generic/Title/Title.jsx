@@ -1,6 +1,6 @@
 import React from 'react';
 import './Title.css';
-import PropTypes from 'prop-types';
+import { oneOf, string, object, oneOfType } from 'prop-types';
 
 export default function Title({
   size, text, titleLvl, className,
@@ -19,10 +19,10 @@ export default function Title({
 }
 
 Title.propTypes = {
-  size: PropTypes.oneOf(['l', 'm', 's', 'xs']),
-  text: PropTypes.string.isRequired,
-  titleLvl: PropTypes.oneOf(['1', '2', '3', '4', '5', '6']),
-  className: PropTypes.string,
+  size: oneOf(['l', 'm', 's', 'xs']),
+  text: oneOfType([string, object]).isRequired,
+  titleLvl: oneOf(['1', '2', '3', '4', '5', '6']),
+  className: string,
 };
 
 Title.defaultProps = {

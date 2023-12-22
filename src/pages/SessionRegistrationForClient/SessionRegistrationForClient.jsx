@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { func } from 'prop-types';
-import * as psychologistSrvice from '../../utils/services/psychologistService';
+import * as psychologistService from '../../utils/services/psychologistService';
+import * as clientServicejs from '../../utils/services/clientService';
 import './SessionRegistrationForClient.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import Button from '../../components/generic/Button/Button';
@@ -13,23 +14,81 @@ import {
   formattedToday,
   binarySearchDateIndex,
   getFormattedLocalTimeArr,
+  showPopupWithValue,
 } from '../../utils/helpers';
+import { usePopup } from '../../hooks/usePopup';
 
 export default function SessionRegistrationForClient({ navigate }) {
-  // TODO: Данные психолога получать свехру?
   // TODO: Сделать прелоадер
+  const { date, time, cellId } = useParams();
+  const { setValue } = usePopup();
   const [freeTimeElements, setFreeTimeElements] = useState([]);
   const [searchDayIndex, setSearchDayIndex] = useState(0);
-  const [selectedDay, setSelectedDay] = useState(formattedToday);
-  const [selectedTime, setSelectedTime] = useState('');
   const [formattedLocalDates, setFormattedLocalDates] = useState([]);
+  const [selectedDay, setSelectedDay] = useState(date || formattedToday);
+  const [selectedTime, setSelectedTime] = useState(time || '');
   const [currentPsychologist, setCurrentPsychologist] = useState({});
+  const [curCellId, setCurCellId] = useState(cellId || null);
   const pathname = useLocation();
+  const psychologistId = pathname.pathname.split('/')[2];
+  const jwt = localStorage.getItem('jwt');
 
-  const getPsychologist = async () => {
-    const psychologistId = pathname.pathname.split('/')[2];
-    const psychologist = await psychologistSrvice.getCurrentPsychologist(psychologistId);
-    setCurrentPsychologist(psychologist);
+  const getPsychologist = async (userId) => {
+    try {
+      const psychologist = await psychologistService.getCurrentPsychologist(userId);
+
+      setCurrentPsychologist(psychologist);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const createNewSession = async (id, token) => {
+    try {
+      await clientServicejs.createSession(id, token);
+
+      setValue({
+        data: {
+          title: 'Сессия успешно оплачена!',
+          text: (
+            <>
+              Вы записаны
+              {` ${selectedDay} `}
+              в
+              {` ${selectedTime} `}
+              <br />
+              Психолог:
+              {` ${currentPsychologist.first_name}`}
+              {` ${currentPsychologist.last_name}`}
+            </>
+          ),
+          buttons: [
+            {
+              label: 'В личный кабинет',
+              onClick: () => {},
+              type: 'button',
+              size: 'l',
+              variant: 'primary',
+              href: '/client_account',
+            },
+          ],
+        },
+      });
+    } catch (err) {
+      console.log(err);
+
+      showPopupWithValue(
+        setValue,
+        'При создании сессии произошла ошибка.',
+        (
+          <>
+            Возможно у вас уже есть запланированная сессия
+            <br />
+            (можно иметь только одну активную сессию)
+          </>
+        )
+      );
+    }
   };
 
   const goBack = () => {
@@ -38,27 +97,34 @@ export default function SessionRegistrationForClient({ navigate }) {
 
   const handleTimeClick = (e) => {
     setSelectedTime(e.target.innerText);
+    setCurCellId(e.target.id);
   };
 
-  const handleCalendarDateClick = (date) => {
-    const formattedCurrentDate = date.format('DD.MM.YYYY');
+  const handleCalendarDateClick = (dateData) => {
+    const formattedCurrentDate = dateData.format('DD.MM.YYYY');
 
     setSelectedDay(formattedCurrentDate);
   };
 
-  const handleResetDateClick = (date) => {
-    setSelectedDay(date);
+  const handleResetDateClick = (dateData) => {
+    if (formattedLocalDates.length > 0) {
+      setSelectedDay(formattedLocalDates[0].date);
+    } else {
+      setSelectedDay(dateData);
+    }
   };
 
   useEffect(() => {
-    getPsychologist();
+    getPsychologist(psychologistId);
   }, []);
 
   useEffect(() => {
-    if (currentPsychologist.slots) {
+    if (currentPsychologist.slots && currentPsychologist.slots.length > 0) {
       const currentDatesAndTimes = getFormattedLocalTimeArr(currentPsychologist.slots);
 
       setFormattedLocalDates(currentDatesAndTimes);
+      setSelectedDay(currentDatesAndTimes[0].date);
+      setCurCellId(currentDatesAndTimes[0].cells[0].id);
     }
   }, [currentPsychologist.slots]);
 
@@ -71,9 +137,9 @@ export default function SessionRegistrationForClient({ navigate }) {
   useEffect(() => {
     if (formattedLocalDates.length > 0) {
       if (searchDayIndex || searchDayIndex === 0) {
-        const { times } = formattedLocalDates[searchDayIndex];
+        const { cells } = formattedLocalDates[searchDayIndex];
 
-        setFreeTimeElements(times);
+        setFreeTimeElements(cells);
       } else {
         setFreeTimeElements([]);
       }
@@ -81,12 +147,14 @@ export default function SessionRegistrationForClient({ navigate }) {
   }, [formattedLocalDates, searchDayIndex]);
 
   useEffect(() => {
-    setSelectedTime('');
+    if (!time) {
+      setSelectedTime('');
 
-    if (freeTimeElements.length > 0) {
-      const [firstElement] = freeTimeElements;
+      if (freeTimeElements.length > 0) {
+        const [firstElement] = freeTimeElements;
 
-      setSelectedTime(firstElement.time);
+        setSelectedTime(firstElement.time);
+      }
     }
   }, [freeTimeElements]);
 
@@ -110,12 +178,14 @@ export default function SessionRegistrationForClient({ navigate }) {
           />
         </section>
         <section className="session-registration__time">
-          <div className="session-registration__time_calendar">
+          <div className="session-registration__time-calendar">
             <Calendar
               titleText="Выбор даты и времени"
               onDateCellClick={handleCalendarDateClick}
               onResetClick={() => handleResetDateClick(formattedToday)}
               freeSlotsArray={formattedLocalDates}
+              selectedDate={date || ''}
+              isClient
             />
             <TimeContainer
               timeCells={freeTimeElements}
@@ -129,6 +199,7 @@ export default function SessionRegistrationForClient({ navigate }) {
             selectedDay={selectedDay}
             sessionDuration={currentPsychologist.duration}
             sessionPrice={currentPsychologist.price}
+            onClick={() => createNewSession(curCellId, jwt)}
           />
         </section>
       </div>
