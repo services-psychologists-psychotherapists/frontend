@@ -6,33 +6,33 @@ moment.locale('ru');
 export const today = moment();
 export const formattedToday = today.format('DD.MM.YYYY');
 
-export const getMonthName = (date) => date.format('D MMMM');
+const currentTimezone = timezone.tz.guess();
 
-export const getTime = (time) => `0${time}`.slice(-2);
+export const convertUtcToLocal = (utcDateTime, format) => {
+  const utcMoment = timezone.utc(utcDateTime, format);
+  const localDateTime = utcMoment.tz(currentTimezone).format(format);
 
-export const getSessionTime = (startDate, endDate) => {
-  const startTime = `${getTime(startDate.hour())}:${getTime(startDate.minute())}`;
-
-  if (endDate) {
-    const endTime = `${getTime(endDate.hour())}:${getTime(endDate.minute())}`;
-    return `${startTime} - ${endTime}`;
-  }
-  return startTime;
+  return localDateTime;
 };
 
-export const getAge = (date) => {
-  let age = '';
-  const lastSymb = date % 10;
+export const getMonthName = (date) => {
+  const localTime = convertUtcToLocal(date.format('DD.MM.YYYY HH:mm'), 'DD.MM.YYYY HH:mm');
 
-  if (lastSymb === 0 || (date > 10 && date < 20) || (lastSymb > 4 && lastSymb < 10)) {
-    age = 'лет';
-  } else if (lastSymb === 1) {
-    age = 'год';
-  } else {
-    age = 'года';
+  return moment(localTime, 'DD.MM.YYYY HH:mm').format('D MMMM');
+};
+
+export const getSessionTime = (startDate, endDate) => {
+  const startTime = convertUtcToLocal(startDate.format('DD.MM.YYYY HH:mm'), 'DD.MM.YYYY HH:mm');
+
+  if (endDate) {
+    const endTime = convertUtcToLocal(endDate.format('DD.MM.YYYY HH:mm'), 'DD.MM.YYYY HH:mm');
+
+    return `${moment(startTime, 'DD.MM.YYYY HH:mm').format('HH:mm')} - ${
+      moment(endTime, 'DD.MM.YYYY HH:mm').format('HH:mm')
+    }`;
   }
 
-  return `${date} ${age}`;
+  return startTime;
 };
 
 export const getNumArray = (num, length) => {
@@ -66,15 +66,6 @@ export const binarySearchDateIndex = (slots, date) => {
   }
 
   return false;
-};
-
-const currentTimezone = timezone.tz.guess();
-
-export const convertUtcToLocal = (utcDateTime, format) => {
-  const utcMoment = timezone.utc(utcDateTime, format);
-  const localDateTime = utcMoment.tz(currentTimezone).format(format);
-
-  return localDateTime;
 };
 
 // TODO: нам нужно такое преобразование?

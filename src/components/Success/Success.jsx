@@ -6,15 +6,15 @@ import Title from '../generic/Title/Title';
 import Text from '../generic/Text/Text';
 import Button from '../generic/Button/Button';
 
-export default function Success({ title, text, buttonText, buttonHref }) {
+export default function Success({ title, text, buttonText, buttonHref, image }) {
   return (
     <section className="success">
-      <img src={successfull} alt="Заявка отправлена" className="success__img" />
+      <img src={image || successfull} alt="Заявка отправлена" className="success__img" />
       <div className="success__description">
         <Title text={title} className="success__title" />
         <Text size="s">{text}</Text>
       </div>
-      <Button href={buttonHref}>{buttonText}</Button>
+      {buttonText && <Button href={buttonHref}>{buttonText}</Button>}
     </section>
   );
 }
@@ -24,6 +24,7 @@ Success.propTypes = {
   text: string,
   buttonText: string,
   buttonHref: string,
+  image: string,
 };
 
 Success.defaultProps = {
@@ -31,4 +32,5 @@ Success.defaultProps = {
   text: '',
   buttonText: '',
   buttonHref: '',
+  image: '',
 };

@@ -4,8 +4,8 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import Avatar from '../../generic/Avatar/Avatar';
 import PsychoName from '../../generic/PsychoName/PsychoName';
-import { getSessionTime, getMonthName } from '../../../utils/helpers';
-import { DATE_FORMAT, DAYS_NAME, CARD_OF_SESSION_MESSAGE } from '../../../constants/constants';
+import { getSessionTime, getMonthName, convertUtcToLocal } from '../../../utils/helpers';
+import { DATE_FORMAT, CARD_OF_SESSION_MESSAGE } from '../../../constants/constants';
 import ButtonGroup from '../../generic/ButtonGroup/ButtonGroup';
 import Button from '../../generic/Button/Button';
 import EmptyCard from '../EmptyCard/EmptyCard';
@@ -40,6 +40,12 @@ export default function CardOfSession({ type, session }) {
 
   setCardData();
 
+  const getFormattredDay = (day) => {
+    const curDay = convertUtcToLocal(day.format('DD.MM.YYYY HH:mm'), 'DD.MM.YYYY HH:mm');
+
+    return moment(curDay, 'DD.MM.YYYY HH:mm').format('dd');
+  };
+
   return (
     <div className={`session-card session-card_type_${type}`}>
       {session && session.datetime_from ? (
@@ -54,7 +60,10 @@ export default function CardOfSession({ type, session }) {
               )}
               <div className="session-card__date">
                 {type === 'psychologist' && (
-                  <p>{`${getMonthName(timeFrom)}, ${DAYS_NAME[timeFrom.day()]}`}</p>
+                  <p>
+                    {`${getMonthName(timeFrom)}, ${
+                      getFormattredDay(timeFrom)}`}
+                  </p>
                 )}
                 <p>{getSessionTime(timeFrom, timeTo)}</p>
               </div>

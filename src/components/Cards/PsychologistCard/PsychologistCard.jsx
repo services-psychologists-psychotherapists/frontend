@@ -9,9 +9,9 @@ import Text from '../../generic/Text/Text';
 import PsychoName from '../../generic/PsychoName/PsychoName';
 import { DATE_FORMAT } from '../../../constants/constants';
 import {
-  getAge,
   getMonthName,
   getFormattedLocalTimeArr,
+  getDurationOfYears,
 } from '../../../utils/helpers';
 import Button from '../../generic/Button/Button';
 import TimeContainer from '../../generic/TimeBtn/TimeContainer/TimeContainer';
@@ -94,7 +94,7 @@ export default function PsychologistCard({ type, psychologist }) {
       <Avatar size="l" src={avatar} />
       <PsychoName
         name={`${firstName} ${lastName}`}
-        description={type === 'full' ? getAge(age) : `Опыт ${getAge(experience)}`}
+        description={type === 'full' ? getDurationOfYears(age) : `Опыт ${getDurationOfYears(experience)}`}
         leftText={`Сессия ${duration} мин.`}
         rightText={`${Number(price).toLocaleString()} руб.`}
       />
@@ -125,7 +125,7 @@ export default function PsychologistCard({ type, psychologist }) {
             )}
             {age && (
               <ProfileInfoBlock title="Опыт работы">
-                <Text>{getAge(experience)}</Text>
+                <Text>{getDurationOfYears(experience)}</Text>
               </ProfileInfoBlock>
             )}
             {(themes && themes.length > 0) && (

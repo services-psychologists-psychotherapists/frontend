@@ -22,6 +22,7 @@ import PsychologistRegistration from '../../pages/PsychologistRegistration/Psych
 import ClientProfilePage from '../../pages/ClientHomePage/ClientProfilePage/ClientProfilePage';
 import CreatePassword from '../../pages/CreatePassword/CreatePassword';
 import ResetPassword from '../../pages/ResetPassword/ResetPassword';
+import CheckEmail from '../../pages/CheckEmail/CheckEmail';
 
 // Подумать/переделать реализацию setPopup есть функция
 export default function App() {
@@ -287,6 +288,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/for_a_therapist" element={<PageForPsychologists />} />
+            <Route path="/check_email" element={<CheckEmail />} />
             <Route
               path="/reset_password"
               element={(
