@@ -152,10 +152,15 @@ export const uploadFile = async (file) => {
 export const createPsychologist = async (data) => {
   const dataForRequest = { ...data };
 
-  dataForRequest.themes = dataForRequest.themes.map((theme) => ({ title: theme }));
-  dataForRequest.approaches = dataForRequest.approaches.map((approach) => ({ title: approach }));
+  if (dataForRequest.themes) {
+    dataForRequest.themes = dataForRequest.themes.map((theme) => ({ title: theme }));
+  }
 
-  if (Object.keys(dataForRequest.courses[0]).length === 0) {
+  if (dataForRequest.approaches) {
+    dataForRequest.approaches = dataForRequest.approaches.map((approach) => ({ title: approach }));
+  }
+
+  if (dataForRequest.courses && Object.keys(dataForRequest.courses[0]).length === 0) {
     delete dataForRequest.courses;
   }
 

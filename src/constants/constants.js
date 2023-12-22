@@ -20,6 +20,7 @@ import girls from '../images/how_to_start_talking_girls.svg';
 import wallet from '../images/wallet_icon.svg';
 import setting from '../images/setting_icon.svg';
 import people from '../images/people_icon.svg';
+import checkEmailImage from '../images/check-email.svg';
 
 export const HEADER_NAV_LINKS = [
   {
@@ -237,7 +238,6 @@ export const dropdownLists = {
 export const NUMBER_OF_DAYS_DISPLAYED = 13;
 export const NUMBER_TO_SWITCH_THE_WEEKS = 14;
 export const DAYS_OF_WEEK = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
-export const DAYS_NAME = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
 
 export const CARD_OF_SESSION_MESSAGE = {
   client: {
@@ -285,7 +285,7 @@ export const CLIENT_PROFILE_NAV_LINKS = [
   },
 ];
 
-export const DATE_FORMAT = 'DD.MM.YYYY hh:mm';
+export const DATE_FORMAT = 'DD.MM.YYYY HH:mm';
 
 export const PSYCHOLOGIST_ACCOUNT_LINKS = [
   {
@@ -840,5 +840,33 @@ export const POPUP_DATA = {
         },
       ],
     },
-  }
+  },
+  header: {
+    data: {
+      title: 'Вы точно хотите выйти?',
+      buttons: [
+        {
+          label: 'Отменить',
+          onClick: () => {},
+          type: 'button',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Выйти',
+          type: 'button',
+          size: 'l',
+          variant: 'primary',
+        },
+      ],
+    },
+  },
+};
+
+export const CHECK_EMAIL_DATA = {
+  title: 'Подтвердите свой E-mail',
+  text: 'Мы прислали Вам письмо на указанную электронную почту. Пройдите, пожалуйста, по ссылке для подтверждения почты.',
+  image: checkEmailImage,
+  buttonText: 'На страницу входа',
+  buttonHref: '/signin'
 };
