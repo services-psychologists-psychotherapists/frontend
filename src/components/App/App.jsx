@@ -435,7 +435,7 @@ export default function App() {
                   )}
                 />
                 <Route
-                  path="/client_account_session-registration/:id"
+                  path="/client_account_session-registration/:id/:date?/:time?/:cellId?"
                   element={(
                     <ProtectedRouteElement
                       element={SessionRegistrationForClient}

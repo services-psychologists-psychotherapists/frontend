@@ -35,6 +35,7 @@ export default function PsychologistCard({ type, psychologist }) {
   } = psychologist;
 
   const [timeCells, setTimeCells] = useState([]);
+  const [sessionDate, setSessionDate] = useState('');
   const navigate = useNavigate();
 
   const getTheNearestDate = (slotsList) => {
@@ -48,10 +49,11 @@ export default function PsychologistCard({ type, psychologist }) {
   };
 
   useEffect(() => {
-    const time = getFormattedLocalTimeArr(slots);
+    const cells = getFormattedLocalTimeArr(slots);
 
-    if (time.length > 0) {
-      setTimeCells(time[0].times);
+    if (cells.length > 0) {
+      setTimeCells(cells[0].cells);
+      setSessionDate(cells[0].date);
     }
   }, [slots]);
 
@@ -82,7 +84,9 @@ export default function PsychologistCard({ type, psychologist }) {
 
   const handleTimeClick = (e) => {
     e.stopPropagation();
-    navigate(`/client_account_session-registration/${id}`);
+    navigate(
+      `/client_account_session-registration/${id}/${sessionDate}/${e.target.innerText}/${e.target.id}`
+    );
   };
 
   return (

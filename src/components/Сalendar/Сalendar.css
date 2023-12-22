@@ -63,6 +63,8 @@
   align-items: center;
   font-family: var(--font-family-lato);
   color: var(--text-color-dark-blue);
+  width: 100%;
+  height: 100%;
 }
 
 .calendar__date_today {
@@ -128,4 +130,8 @@
 .calendar__date_disabled:hover {
   box-shadow: unset;
   font-weight: unset;
+}
+
+.calendar__dates-cell {
+  all: unset;
 }

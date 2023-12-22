@@ -1,21 +1,12 @@
 import moment from 'moment';
 import timezone from 'moment-timezone';
-import { MONTH_NAME } from '../constants/constants';
 import 'moment/locale/ru';
 
 moment.locale('ru');
 export const today = moment();
 export const formattedToday = today.format('DD.MM.YYYY');
 
-export const getMonthName = (date) => {
-  const month = MONTH_NAME[date.month()];
-
-  if (month.slice(-1) === 'т') {
-    return `${month}а`;
-  }
-
-  return `${date.date()} ${month.slice(0, month.length - 1)}я`;
-};
+export const getMonthName = (date) => date.format('D MMMM');
 
 export const getTime = (time) => `0${time}`.slice(-2);
 
@@ -105,11 +96,11 @@ export const getFormattedLocalTimeArr = (arr) => {
     if (!formattedDates[date]) {
       formattedDates[date] = {
         date,
-        times: [],
+        cells: [],
       };
     }
 
-    formattedDates[date].times.push({
+    formattedDates[date].cells.push({
       id: slot.id,
       time,
     });
@@ -130,10 +121,11 @@ export const getPriceWithSpace = (price) => price.toLocaleString();
 export const getPasswordErr = (firstPass, secondPass) => firstPass !== secondPass;
 
 // возможно убрать или переделать
-export const showPopupWithValue = (setValue, value) => {
+export const showPopupWithValue = (setValue, value, text) => {
   setValue({
     data: {
       title: value,
+      text,
     },
   });
 };
@@ -280,3 +272,12 @@ export const getDisabledField = (blockId, userData, forStep, curStep, blockType)
 };
 
 // ------------------------------------------------------------------------------
+
+export const checkResponse = async (res) => {
+  // TODO: подумать про варианты
+  if (res.status >= 200 && res.status < 300) {
+    return res.data;
+  }
+
+  return Promise.reject(new Error(`Ошибка: ${res.status}`));
+};

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { arrayOf, func, shape, string, number } from 'prop-types';
+import { arrayOf, func, shape, string, number, bool } from 'prop-types';
 import './Сalendar.css';
 import moment from 'moment';
 import BlockWithTitle from '../templates/BlockWithTitle/BlockWithTitle';
@@ -11,8 +11,12 @@ import {
 import { today, formattedToday, binarySearchDateIndex } from '../../utils/helpers';
 // TODO: Сделать сброс недель по дизайну
 
-export default function Сalendar({ onDateCellClick, titleText, onResetClick, freeSlotsArray }) {
-  const [selectedDay, setSelectedDay] = useState('');
+export default function Сalendar({
+  onDateCellClick, titleText,
+  onResetClick, freeSlotsArray,
+  selectedDate, isClient,
+}) {
+  const [selectedDay, setSelectedDay] = useState(selectedDate || '');
   const [dates, setDates] = useState([]);
   const [isChangedWeeks, setIsChangedWeeks] = useState(false);
 
@@ -41,12 +45,17 @@ export default function Сalendar({ onDateCellClick, titleText, onResetClick, fr
   };
 
   const resetDates = () => {
+    if (isClient && freeSlotsArray.length > 0) {
+      const [firstElement] = freeSlotsArray;
+      setSelectedDay(firstElement.date);
+    } else {
+      setSelectedDay('');
+    }
     const resetStartDay = today.clone().startOf('week');
     const resetLastDay = moment(resetStartDay).add(NUMBER_OF_DAYS_DISPLAYED, 'days');
 
     setStartDay(resetStartDay);
     setLastDay(resetLastDay);
-    setSelectedDay('');
 
     onResetClick();
   };
@@ -82,6 +91,14 @@ export default function Сalendar({ onDateCellClick, titleText, onResetClick, fr
     handleChangeWeeks();
   }, [startDay, lastDay]);
 
+  useEffect(() => {
+    if (freeSlotsArray.length > 0) {
+      const [firstElement] = freeSlotsArray;
+
+      setSelectedDay(firstElement.date);
+    }
+  }, [freeSlotsArray]);
+
   const dateСellСlasses = (i) => `${i.isDayOff ? ' calendar__day-of-week_day-off' : ''}${
     i.date === formattedCurrentDate ? ' calendar__date_today' : ''
   }${selectedDay === i.date ? ' calendar__date_selected' : ''}`;
@@ -92,26 +109,30 @@ export default function Сalendar({ onDateCellClick, titleText, onResetClick, fr
 
   const getCalendarDisabledDate = (i) => {
     const isDateLessThanToday = moment(i.date, 'DD.MM.YYYY') < moment(formattedToday, 'DD.MM.YYYY');
+    const res = {
+      class: '',
+      disabled: false,
+    };
 
     const isDateInArr = () => {
       if (freeSlotsArray.length > 0) {
-        return binarySearchDateIndex(freeSlotsArray, i.date) === false;
+        const dateIndex = binarySearchDateIndex(freeSlotsArray, i.date);
+        res.id = dateIndex;
+
+        return dateIndex === false;
       }
 
       return true;
     };
 
-    if (isDateLessThanToday || (freeSlotsArray.length > 0 && isDateInArr())) {
+    if (isDateLessThanToday || (freeSlotsArray.length >= 0 && isClient && isDateInArr())) {
       return {
         class: ' calendar__date_disabled',
         disabled: true,
       };
     }
 
-    return {
-      class: '',
-      disabled: false,
-    };
+    return res;
   };
 
   return (
@@ -151,22 +172,31 @@ export default function Сalendar({ onDateCellClick, titleText, onResetClick, fr
               </li>
             ))}
           </ul>
-          <div className="calendar__dates">
-            {dates.map((i) => (
-              <button
-                className={`calendar__cell calendar__date${dateСellСlasses(i)}${
-                  getCalendarDisabledDate(i).class
-                }`}
-                key={i.date}
-                id={i.date}
-                onClick={handleSelectDay}
-                onKeyDown={handleSelectDay}
-                disabled={getCalendarDisabledDate(i).disabled}
-              >
-                {i.day}
-              </button>
-            ))}
-          </div>
+          <ul className="calendar__dates">
+            {dates.map((i) => {
+              const calendarDisabledDate = getCalendarDisabledDate(i);
+
+              return (
+                <li
+                  className="calendar__dates-cell"
+                  key={i.date}
+                  id={calendarDisabledDate.id !== false ? calendarDisabledDate.id : null}
+                >
+                  <button
+                    className={`calendar__cell calendar__date${dateСellСlasses(i)}${
+                      calendarDisabledDate.class
+                    }`}
+                    id={i.date}
+                    onClick={handleSelectDay}
+                    onKeyDown={handleSelectDay}
+                    disabled={calendarDisabledDate.disabled}
+                  >
+                    {i.day}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
     </BlockWithTitle>
@@ -180,7 +210,7 @@ export default function Сalendar({ onDateCellClick, titleText, onResetClick, fr
   freeSlotsArray: arrayOf(
     shape({
       date: string.isRequired,
-      times: arrayOf(
+      cells: arrayOf(
         shape({
           id: number.isRequired,
           time: string.isRequired,
@@ -188,6 +218,8 @@ export default function Сalendar({ onDateCellClick, titleText, onResetClick, fr
       ).isRequired,
     })
   ),
+  selectedDate: string,
+  isClient: bool,
 };
 
 Сalendar.defaultProps = {
@@ -195,4 +227,6 @@ export default function Сalendar({ onDateCellClick, titleText, onResetClick, fr
   onResetClick: () => {},
   freeSlotsArray: [],
   onDateCellClick: () => {},
+  selectedDate: '',
+  isClient: false,
 };

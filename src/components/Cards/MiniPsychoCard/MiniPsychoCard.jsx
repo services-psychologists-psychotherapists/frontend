@@ -1,5 +1,5 @@
 import React from 'react';
-import { string, number } from 'prop-types';
+import { string, number, oneOfType } from 'prop-types';
 import './MiniPsychoCard.css';
 import BlockWithTitle from '../../templates/BlockWithTitle/BlockWithTitle';
 import Avatar from '../../generic/Avatar/Avatar';
@@ -34,7 +34,7 @@ MiniPsychoCard.propTypes = {
   cardClasses: string,
   firstName: string,
   lastName: string,
-  experience: number,
+  experience: oneOfType([string, number]),
   speciality: string,
 };
 

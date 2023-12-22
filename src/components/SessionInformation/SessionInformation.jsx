@@ -1,5 +1,5 @@
 import React from 'react';
-import { number, string } from 'prop-types';
+import { number, string, func } from 'prop-types';
 import './SessionInformation.css';
 import Button from '../generic/Button/Button';
 import { getPriceWithSpace, formattedToday } from '../../utils/helpers';
@@ -9,6 +9,7 @@ export default function SessionInformation({
   selectedDay,
   sessionDuration,
   sessionPrice,
+  onClick,
 }) {
   return (
     <div className="session-information">
@@ -33,7 +34,12 @@ export default function SessionInformation({
           {`${getPriceWithSpace(sessionPrice)} руб.`}
         </span>
       </div>
-      <Button type="button" size="l" variant="primary">
+      <Button
+        type="button"
+        size="l"
+        variant="primary"
+        onClick={() => onClick()}
+      >
         Оплатить
       </Button>
     </div>
@@ -45,6 +51,7 @@ SessionInformation.propTypes = {
   selectedTime: string,
   sessionDuration: number,
   sessionPrice: number,
+  onClick: func,
 };
 
 SessionInformation.defaultProps = {
@@ -52,4 +59,5 @@ SessionInformation.defaultProps = {
   selectedTime: '',
   sessionDuration: 0,
   sessionPrice: 0,
+  onClick: () => {},
 };

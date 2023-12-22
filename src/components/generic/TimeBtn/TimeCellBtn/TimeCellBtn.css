@@ -11,6 +11,11 @@
   font-family: var(--font-family-lato);
   font-size: 18px;
   line-height: 24px;
+  transition: .3s ease-in-out;
+}
+
+.time-cell:hover:not(.time-cell_active) {
+  opacity: .7;
 }
 
 .time-cell_active, .time-cell:active {
