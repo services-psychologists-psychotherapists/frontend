@@ -79,7 +79,7 @@ export default function SessionRegistrationForClient({ navigate }) {
 
       showPopupWithValue(
         setValue,
-        'При создании сессии произошла ошибка.',
+        'При создании сессии произошла ошибка',
         (
           <>
             Возможно у вас уже есть запланированная сессия
@@ -109,6 +109,7 @@ export default function SessionRegistrationForClient({ navigate }) {
   const handleResetDateClick = (dateData) => {
     if (formattedLocalDates.length > 0) {
       setSelectedDay(formattedLocalDates[0].date);
+      setSelectedTime(formattedLocalDates[0].cells[0].time);
     } else {
       setSelectedDay(dateData);
     }
