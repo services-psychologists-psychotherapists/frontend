@@ -100,16 +100,19 @@ export default function SessionRegistrationForClient({ navigate }) {
     setCurCellId(e.target.id);
   };
 
-  const handleCalendarDateClick = (dateData) => {
+  const handleCalendarDateClick = (dateData, e) => {
     const formattedCurrentDate = dateData.format('DD.MM.YYYY');
 
     setSelectedDay(formattedCurrentDate);
+    setSelectedTime(formattedLocalDates[e.target.closest('li').id].cells[0].time);
+    setCurCellId(formattedLocalDates[e.target.closest('li').id].cells[0].id);
   };
 
   const handleResetDateClick = (dateData) => {
     if (formattedLocalDates.length > 0) {
       setSelectedDay(formattedLocalDates[0].date);
       setSelectedTime(formattedLocalDates[0].cells[0].time);
+      setCurCellId(formattedLocalDates[0].cells[0].id);
     } else {
       setSelectedDay(dateData);
     }
@@ -125,7 +128,9 @@ export default function SessionRegistrationForClient({ navigate }) {
 
       setFormattedLocalDates(currentDatesAndTimes);
       setSelectedDay(currentDatesAndTimes[0].date);
-      setCurCellId(currentDatesAndTimes[0].cells[0].id);
+      if (!cellId) {
+        setCurCellId(currentDatesAndTimes[0].cells[0].id);
+      }
     }
   }, [currentPsychologist.slots]);
 
