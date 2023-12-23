@@ -861,6 +861,27 @@ export const POPUP_DATA = {
       ],
     },
   },
+  deleteSession: {
+    data: {
+      title: 'Вы уверены, что хотите отменить сессию?',
+      text: 'Оплата вернется только при отмене сессии не позднее чем за 12 часов до начала',
+      buttons: [
+        {
+          label: 'Назад',
+          onClick: () => {},
+          type: 'button',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Отменить сессию',
+          type: 'button',
+          size: 'l',
+          variant: 'primary',
+        },
+      ],
+    },
+  }
 };
 
 export const CHECK_EMAIL_DATA = {

@@ -13,7 +13,6 @@ export default function Header({ isLoggedIn, signOut }) {
 
   const handleOut = () => {
     setOnClick(() => signOut);
-
     setValue(POPUP_DATA.header);
   };
 

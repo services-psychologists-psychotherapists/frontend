@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import './Popup.css';
 import { node } from 'prop-types';
 import Button from '../Button/Button';
@@ -10,14 +10,9 @@ import { usePopup } from '../../../hooks/usePopup';
 export default function Popup({ children }) {
   const ref = useRef();
   const { value, setValue, onClick } = usePopup();
-  const [isActive, setIsActive] = useState(false);
 
   const closePopup = () => {
-    if (isActive) {
-      setTimeout(() => setValue(null), 450);
-    }
-
-    setIsActive(false);
+    setValue(null);
   };
 
   useOutsideClick(ref, () => closePopup());
@@ -27,20 +22,15 @@ export default function Popup({ children }) {
   const { buttons } = value ? value.data : [];
   const buttonsQuantity = buttons ? buttons.length : 0;
 
-  useEffect(() => {
-    if (value) {
-      setIsActive(true);
-    }
-  }, [value]);
-
   return (
-    <div className={`popup ${isActive ? 'popup-visible' : ''}`}>
-      <div className="popup__container" ref={ref}>
-        <button type="button" className="popup__button-close" onClick={closePopup} />
-        <Title size="s" text={title} />
-        {children && <div className="popup__content">{children}</div>}
-        {text && <p className="popup__text">{text}</p>}
-        {(buttonsQuantity === 1 && (
+    <div className={`popup ${value ? 'popup-visible' : ''}`}>
+      {value && (
+        <div className="popup__container" ref={ref}>
+          <button type="button" className="popup__button-close" onClick={closePopup} />
+          <Title size="s" text={title} />
+          {children && <div className="popup__content">{children}</div>}
+          {text && <p className="popup__text">{text}</p>}
+          {(buttonsQuantity === 1 && (
           <Button
             onClick={() => {
               if (buttons[0].onClick) {
@@ -57,32 +47,33 @@ export default function Popup({ children }) {
           >
             {buttons[0].label}
           </Button>
-        ))
-        || (buttonsQuantity >= 2 && (
-          <ButtonGroup>
-            {buttons.map((button) => (
-              <Button
-                key={button.label}
-                onClick={() => {
-                  if (button.onClick) {
-                    button.onClick();
-                  } else {
-                    onClick();
-                  }
-                  closePopup();
-                }}
-                type={button.type}
-                size={button.size}
-                variant={button.variant}
-                href={button.href || ''}
-              >
-                {button.label}
-              </Button>
-            ))}
-          </ButtonGroup>
-        ))
-        || (buttonsQuantity === 0 && null)}
-      </div>
+          ))
+            || (buttonsQuantity >= 2 && (
+              <ButtonGroup>
+                {buttons.map((button) => (
+                  <Button
+                    key={button.label}
+                    onClick={() => {
+                      if (button.onClick) {
+                        button.onClick();
+                      } else {
+                        onClick();
+                      }
+                      closePopup();
+                    }}
+                    type={button.type}
+                    size={button.size}
+                    variant={button.variant}
+                    href={button.href || ''}
+                  >
+                    {button.label}
+                  </Button>
+                ))}
+              </ButtonGroup>
+            ))
+            || (buttonsQuantity === 0 && null)}
+        </div>
+      )}
     </div>
   );
 }

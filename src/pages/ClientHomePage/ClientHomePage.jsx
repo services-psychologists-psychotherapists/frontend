@@ -1,19 +1,45 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
+import { func } from 'prop-types';
 import './ClientHomePage.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import NavLinksList from '../../components/NavLinksList/NavLinksList';
-import { CLIENT_PROFILE_NAV_LINKS } from '../../constants/constants';
+import { CLIENT_PROFILE_NAV_LINKS, POPUP_DATA } from '../../constants/constants';
 import BlockWithTitle from '../../components/templates/BlockWithTitle/BlockWithTitle';
 import CardOfSession from '../../components/Cards/CardOfSession/CardOfSession';
 import CurrentUserContext from '../../Context/CurrentUserContext';
 import Text from '../../components/generic/Text/Text';
 import Button from '../../components/generic/Button/Button';
 import MyPsychologist from '../../components/Cards/MyPsychologist/MyPsychologist';
+import { deleteSession } from '../../utils/services/clientService';
+import { usePopup } from '../../hooks/usePopup';
+import { showPopupWithValue } from '../../utils/helpers';
 
-export default function ClientHomePage() {
+export default function ClientHomePage({ getUser }) {
   const currentUser = useContext(CurrentUserContext);
-
+  const jwt = localStorage.getItem('jwt');
   const nextSession = currentUser.next_session;
+  const { setValue, setOnClick } = usePopup();
+
+  const handleDeleteSession = async () => {
+    try {
+      await deleteSession(nextSession.id, jwt);
+
+      getUser(jwt);
+      showPopupWithValue(setValue, 'Сессия отменена успешно!', 'Оплата вернется в течение 7 дней');
+    } catch (err) {
+      console.log(err);
+      showPopupWithValue(setValue, 'При отмене сессии произошла ошибка');
+    }
+  };
+
+  const handleDeleteSessionClick = () => {
+    setOnClick(() => handleDeleteSession);
+    setValue(POPUP_DATA.deleteSession);
+  };
+
+  useEffect(() => {
+    getUser(jwt);
+  }, []);
 
   return (
     <PageLayout
@@ -29,7 +55,11 @@ export default function ClientHomePage() {
     >
       <div className="client-account">
         <BlockWithTitle title="Следующая сессия">
-          <CardOfSession session={nextSession} type="psychologist" />
+          <CardOfSession
+            session={nextSession}
+            type="psychologist"
+            handleDeleteSessionClick={handleDeleteSessionClick}
+          />
         </BlockWithTitle>
         <BlockWithTitle title="Ваш психолог">
           <MyPsychologist psychologist={currentUser.my_psychologist} nextSession={nextSession} />
@@ -38,7 +68,7 @@ export default function ClientHomePage() {
       {currentUser.my_psychologist.id && (
         <div className="client-account__description">
           <Text>Вы можете выбрать другого специалиста, перейдя в</Text>
-          <Button variant="text" href="/catalog">
+          <Button variant="text" href="/directory_psychologists">
             Каталог психологов
           </Button>
         </div>
@@ -46,3 +76,7 @@ export default function ClientHomePage() {
     </PageLayout>
   );
 }
+
+ClientHomePage.propTypes = {
+  getUser: func.isRequired,
+};

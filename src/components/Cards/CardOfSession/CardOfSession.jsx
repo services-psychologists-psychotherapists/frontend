@@ -1,7 +1,7 @@
 import React from 'react';
 import './CardOfSession.css';
 import moment from 'moment';
-import PropTypes from 'prop-types';
+import { oneOf, shape, string, func } from 'prop-types';
 import Avatar from '../../generic/Avatar/Avatar';
 import PsychoName from '../../generic/PsychoName/PsychoName';
 import { getSessionTime, getMonthName, convertUtcToLocal } from '../../../utils/helpers';
@@ -12,7 +12,9 @@ import EmptyCard from '../EmptyCard/EmptyCard';
 import Text from '../../generic/Text/Text';
 import { useResize } from '../../../hooks/useResize';
 
-export default function CardOfSession({ type, session }) {
+export default function CardOfSession({
+  type, session, handleDeleteSessionClick
+}) {
   const { isScreenSm } = useResize();
   let user;
   let timeFrom;
@@ -73,7 +75,11 @@ export default function CardOfSession({ type, session }) {
             <Button href={session.href} size={!isScreenSm ? 'm' : 'l'}>
               {type === 'psychologist' ? 'Перейти' : 'Начать сессию'}
             </Button>
-            <Button onClick={() => {}} variant="secondary" size={!isScreenSm ? 'm' : 'l'}>
+            <Button
+              onClick={handleDeleteSessionClick}
+              variant="secondary"
+              size={!isScreenSm ? 'm' : 'l'}
+            >
               Отменить
             </Button>
           </ButtonGroup>
@@ -91,24 +97,25 @@ export default function CardOfSession({ type, session }) {
 }
 
 CardOfSession.propTypes = {
-  type: PropTypes.oneOf(['client', 'psychologist']),
-  session: PropTypes.shape({
-    client: PropTypes.shape({
-      first_name: PropTypes.string,
-      last_name: PropTypes.string,
-      id: PropTypes.string,
-      avatar: PropTypes.string,
+  type: oneOf(['client', 'psychologist']),
+  session: shape({
+    client: shape({
+      first_name: string,
+      last_name: string,
+      id: string,
+      avatar: string,
     }),
-    psychologist: PropTypes.shape({
-      fitst_name: PropTypes.string,
-      last_name: PropTypes.string,
-      id: PropTypes.string,
-      avatar: PropTypes.string,
+    psychologist: shape({
+      fitst_name: string,
+      last_name: string,
+      id: string,
+      avatar: string,
     }),
-    datetime_from: PropTypes.string,
-    datetime_to: PropTypes.string,
-    href: PropTypes.string,
+    datetime_from: string,
+    datetime_to: string,
+    href: string,
   }),
+  handleDeleteSessionClick: func.isRequired,
 };
 
 CardOfSession.defaultProps = {

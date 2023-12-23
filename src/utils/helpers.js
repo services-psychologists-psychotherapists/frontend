@@ -15,6 +15,7 @@ export const convertUtcToLocal = (utcDateTime, format) => {
   return localDateTime;
 };
 
+// getFormattredDay CardOfSession переделать на общую функцию?
 export const getMonthName = (date) => {
   const localTime = convertUtcToLocal(date.format('DD.MM.YYYY HH:mm'), 'DD.MM.YYYY HH:mm');
 
