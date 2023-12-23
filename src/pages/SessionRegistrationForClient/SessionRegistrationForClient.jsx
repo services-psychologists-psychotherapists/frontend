@@ -47,6 +47,7 @@ export default function SessionRegistrationForClient({ navigate }) {
     try {
       await clientServicejs.createSession(id, token);
 
+      getPsychologist(psychologistId);
       setValue({
         data: {
           title: 'Сессия успешно оплачена!',

@@ -9,3 +9,15 @@ export const createSession = async (id, token) => {
 
   return checkResponse(response);
 };
+
+export const deleteSession = (id, token) => {
+  const response = axios.delete(`${API_URL}/sessions/${id}/`, {
+    headers: { Authorization: `JWT ${token}` },
+  });
+
+  if ((response.status >= 200 && response.status < 300) || response.status === undefined) {
+    return response.data;
+  }
+
+  return Promise.reject(new Error(`Ошибка: ${response.status}`));
+};

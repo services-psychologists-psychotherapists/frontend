@@ -417,6 +417,7 @@ export default function App() {
                     <ProtectedRouteElement
                       element={ClientHomePage}
                       loggedIn={isLoggedIn}
+                      getUser={getUser}
                     />
                   )}
                 />
