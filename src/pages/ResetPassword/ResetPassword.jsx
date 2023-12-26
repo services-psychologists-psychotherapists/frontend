@@ -3,7 +3,7 @@ import { func } from 'prop-types';
 import './ResetPassword.css';
 import Text from '../../components/generic/Text/Text';
 import Fieldset from '../../components/Fieldset/Fieldset';
-import { inputElement } from '../../constants/constants';
+import { inputElement, EMAIL_REGEX } from '../../constants/constants';
 import { useForm } from '../../hooks/useForm';
 import Button from '../../components/generic/Button/Button';
 import { usePopup } from '../../hooks/usePopup';
@@ -39,7 +39,7 @@ export default function ResetPassword({ resetPassword }) {
         <Fieldset
           element={inputElement}
           title="Email"
-          name="reset_password_email"
+          name="email"
           typeForInput="email"
           required
           minLength="1"
@@ -47,13 +47,14 @@ export default function ResetPassword({ resetPassword }) {
           values={values}
           handleChange={handleChange}
           errors={errors}
-          isValid={getInvalidInput(inputValidStatus.create_password_email)}
+          isValid={getInvalidInput(inputValidStatus.email)}
+          pattern={EMAIL_REGEX.toString().slice(1, -1)}
         />
         <Button
           type="submit"
           variant="primary"
           size="l"
-          onClick={() => resetPassword(values.reset_password_email, setValue)}
+          onClick={() => resetPassword(values.email, setValue)}
           disabled={!isValidForm}
           className="reset-password__form-button"
         >

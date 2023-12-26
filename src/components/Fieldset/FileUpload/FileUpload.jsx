@@ -17,7 +17,11 @@ export default function FileUpload({
       if (e.target.files.length > 0) {
         const fileExtension = e.target.files[0].name.split('.').pop();
         if (fileExtension === 'pdf' || fileExtension === 'jpg') {
-          setFileName(e.target.files[0].name);
+          if (e.target.files[0].name.length > 30) {
+            setFileName(`${e.target.files[0].name.slice(0, 30)}...`);
+          } else {
+            setFileName(e.target.files[0].name);
+          }
         } else {
           setFileName('');
         }

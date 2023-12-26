@@ -1,5 +1,6 @@
 .field-container__prompt-height {
-  height: 17px;
+  min-height: 17px;
+  max-height: min-content;
 }
 
 .field-container__prompt {

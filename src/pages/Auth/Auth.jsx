@@ -107,6 +107,7 @@ export default function Auth({
           inputValidStatus={inputValidStatus}
           getInvalidInput={getInvalidInput}
           signUp={signUp}
+          setValue={setValue}
         />
       )}
     </section>

@@ -73,7 +73,6 @@ export default function FourthStep({
               }
             }}
             errors={errors}
-            // Не сразу срабатывает валидация на радио
             isValid={getInvalidInput(inputValidStatus[i.name])}
             promptClasses={i.promptClasses}
             selectedDropdownItems={selectedDropdownItems}
@@ -101,7 +100,6 @@ export default function FourthStep({
               values={values}
               handleChange={(e) => handleChange(e)}
               errors={errors}
-              // Не сразу срабатывает валидация на радио`
               isValid={getInvalidInput(inputValidStatus[i.name])}
               disabled={step !== 4}
               inputContainerClasses={i.inputContainerClasses || ''}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './DropdownItem.css';
-import PropTypes from 'prop-types';
+import { func, string, array, objectOf, oneOfType } from 'prop-types';
 import { checkboxType, radioType, titlesDropdownElement } from '../../../constants/constants';
 import DropdownItemIcon from './DropdownItemIcon/DropdownItemIcon';
 import DropdownItemTitle from './DropdownItemTitle/DropdownItemTitle';
@@ -117,18 +117,18 @@ export default function DropdownItem({
 }
 
 DropdownItem.propTypes = {
-  element: PropTypes.string.isRequired,
-  item: PropTypes.string,
-  onChange: PropTypes.func,
-  type: PropTypes.string,
-  name: PropTypes.string,
-  values: PropTypes.objectOf(PropTypes.string),
-  selectedDropdownItems: PropTypes.objectOf(
-    PropTypes.oneOfType([PropTypes.array, PropTypes.string])
+  element: string.isRequired,
+  item: string,
+  onChange: func,
+  type: string,
+  name: string,
+  values: objectOf(string),
+  selectedDropdownItems: objectOf(
+    oneOfType([array, string])
   ),
-  customElement: PropTypes.string,
-  resetCustomValue: PropTypes.func,
-  setCustomValue: PropTypes.func,
+  customElement: string,
+  resetCustomValue: func,
+  setCustomValue: func,
 };
 
 DropdownItem.defaultProps = {

@@ -1,5 +1,7 @@
 import './Field.css';
-import PropTypes from 'prop-types';
+import { string, bool, number,
+  arrayOf, func, oneOfType,
+} from 'prop-types';
 import React, { useState } from 'react';
 import Input from '../Input/Input';
 import FieldButton from '../FieldButton/FieldButton';
@@ -24,6 +26,7 @@ export default function Field({
   onChange,
   classesForInput,
   autoComplete,
+  pattern,
 }) {
   const fieldClasses = `field__input${element !== inputElement ? ' field__input_button' : ''}`;
 
@@ -72,6 +75,7 @@ export default function Field({
           id={id}
           classesForInput={classesForInput}
           autoComplete={autoComplete}
+          pattern={pattern}
         />
         <FieldButton
           onClick={handleClickOnButton}
@@ -88,24 +92,25 @@ export default function Field({
 }
 
 Field.propTypes = {
-  element: PropTypes.string.isRequired,
-  title: PropTypes.string,
-  onChange: PropTypes.func,
-  isValid: PropTypes.bool,
-  required: PropTypes.bool,
-  disabled: PropTypes.bool,
-  isFocused: PropTypes.bool,
-  placeholder: PropTypes.string,
-  type: PropTypes.string,
-  name: PropTypes.string,
-  minLength: PropTypes.string,
-  maxLength: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-  onClick: PropTypes.func,
-  inputContainerClasses: PropTypes.string,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  classesForInput: PropTypes.string,
-  autoComplete: PropTypes.string,
+  element: string.isRequired,
+  title: string,
+  onChange: func,
+  isValid: bool,
+  required: bool,
+  disabled: bool,
+  isFocused: bool,
+  placeholder: string,
+  type: string,
+  name: string,
+  minLength: string,
+  maxLength: string,
+  value: oneOfType([string, arrayOf(string)]),
+  onClick: func,
+  inputContainerClasses: string,
+  id: oneOfType([string, number]),
+  classesForInput: string,
+  autoComplete: string,
+  pattern: string,
 };
 
 Field.defaultProps = {
@@ -126,4 +131,5 @@ Field.defaultProps = {
   classesForInput: '',
   autoComplete: null,
   title: '',
+  pattern: null,
 };

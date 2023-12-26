@@ -9,16 +9,13 @@ export default function Prompt({
   const promptClassName = prompt && !errors && !disabled
     ? 'field-container__prompt_visible-prompt' : '';
 
-  const maxErrorLength = 50;
-  const trimmedErrors = errors && errors.length > maxErrorLength ? `${errors.substring(0, maxErrorLength)}...` : errors;
-
   return (
     <span
       className={`field-container__prompt ${
         promptClasses || 'field-container__prompt-height'
       } ${errorClassName} ${promptClassName}`}
     >
-      {trimmedErrors || prompt}
+      {errors || prompt}
     </span>
   );
 }

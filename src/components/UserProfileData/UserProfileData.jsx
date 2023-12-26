@@ -216,7 +216,11 @@ export default function UserProfileData({
               disabled={!isValidForm}
               onClick={
                 currentUser.role === 'psychologist'
-                  ? () => changePsychologistData(dataForRequest, token, setValue)
+                  ? () => changePsychologistData(
+                    dataForRequest,
+                    token,
+                    setValue,
+                  )
                   : () => changeClientData(dataForRequest, token, setValue)
               }
             >
