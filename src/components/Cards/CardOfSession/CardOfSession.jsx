@@ -115,10 +115,11 @@ CardOfSession.propTypes = {
     datetime_to: string,
     href: string,
   }),
-  handleDeleteSessionClick: func.isRequired,
+  handleDeleteSessionClick: func,
 };
 
 CardOfSession.defaultProps = {
   type: 'client',
   session: null,
+  handleDeleteSessionClick: () => {},
 };

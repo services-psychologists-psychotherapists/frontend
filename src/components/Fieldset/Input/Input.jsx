@@ -1,5 +1,7 @@
 import './Input.css';
-import PropTypes from 'prop-types';
+import { string, oneOfType, func,
+  bool, arrayOf, number,
+} from 'prop-types';
 import React from 'react';
 import {
   checkboxDropdownElement,
@@ -27,6 +29,7 @@ export default function Input({
   id,
   classesForInput,
   autoComplete,
+  pattern,
 }) {
   const inputClasses = `input${
     element === inputElement ? ' input_hidden-placeholder' : ''}${
@@ -63,28 +66,30 @@ export default function Input({
       maxLength={maxLength}
       required={required}
       autoComplete={autoComplete}
+      pattern={pattern}
     />
   );
 }
 
 Input.propTypes = {
-  element: PropTypes.string,
-  type: PropTypes.string,
-  name: PropTypes.string,
-  placeholder: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
-  required: PropTypes.bool,
-  isEyeOpened: PropTypes.bool,
-  disabled: PropTypes.bool,
-  minLength: PropTypes.string,
-  maxLength: PropTypes.string,
-  onChange: PropTypes.func,
-  isValid: PropTypes.bool,
-  ownClasses: PropTypes.string,
-  onClick: PropTypes.func,
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  classesForInput: PropTypes.string,
-  autoComplete: PropTypes.string,
+  element: string,
+  type: string,
+  name: string,
+  placeholder: string,
+  value: oneOfType([string, arrayOf(string)]),
+  required: bool,
+  isEyeOpened: bool,
+  disabled: bool,
+  minLength: string,
+  maxLength: string,
+  onChange: func,
+  isValid: bool,
+  ownClasses: string,
+  onClick: func,
+  id: oneOfType([string, number]),
+  classesForInput: string,
+  autoComplete: string,
+  pattern: string,
 };
 
 Input.defaultProps = {
@@ -105,4 +110,5 @@ Input.defaultProps = {
   id: null,
   classesForInput: '',
   autoComplete: null,
+  pattern: null,
 };

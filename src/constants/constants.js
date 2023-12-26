@@ -22,6 +22,30 @@ import setting from '../images/setting_icon.svg';
 import people from '../images/people_icon.svg';
 import checkEmailImage from '../images/check-email.svg';
 
+// eslint-disable-next-line no-useless-escape
+export const EMAIL_REGEX = /^[A-Za-z0-9._%+\-]+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$/;
+export const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&.])[A-Za-z\d@$!%*?&.]{8,}$/;
+export const PHONE_REGEX = /^\+?\d{0,12}$/;
+export const DATE_REGEX = /^\d{4}-\d{2}-\d{2}$/;
+// eslint-disable-next-line no-useless-escape
+export const INSTITUTES_GRADUATION_YEAR_REGEX = /^(\d{0,4}([\-|\s]?\d{0,4})?)$/;
+// eslint-disable-next-line no-useless-escape
+export const INSTITUTES_GRADUATION_YEAR_TEST_REGEX = /^\d{4}[\-\s]\d{4}$/;
+export const COURSES_GRADUATION_YEAR_REGEX = /^\d{0,4}$/;
+export const COURSES_GRADUATION_YEAR_TEST_REGEX = /^\d{4}$/;
+export const EMAIL_ERROR_VALIDATION = 'Почта должна быть формата pochta@yandex.ru.';
+export const PASSWORD_ERROR_VALIDATION = 'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ';
+export const PHONE_ERROR_VALIDATION = 'Введите номер телефона в формате вашего региона.';
+export const DATE_ERROR_VALIDATION = 'Введите дату в формате ДД.ММ.ГГГГ.';
+export const INSTITUTES_GRADUATION_YEAR_ERROR = 'Укажите период. Пример: 2015-2020';
+export const COURSES_GRADUATION_YEAR_ERROR = 'Укажите год окончания. Пример: 2020';
+export const COURSES_TITLE_ERROR = 'Укажите название учебного заведения';
+export const COURSES_SPECIALITY_ERROR = 'Укажите направление подготовки';
+export const PRICE_ERROR = 'Укажите сумму в рублях. Пример: 4900';
+export const EXPERIENCE_ERROR = 'Укажите опыт в годах. Пример: 5';
+
+export const PASSWORD_PROMPT = 'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ.';
+
 export const HEADER_NAV_LINKS = [
   {
     text: 'Каталог психологов',
@@ -329,54 +353,64 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
   {
     element: inputElement,
     title: 'Имя (псевдоним)',
-    name: 'name_regist',
+    name: 'name',
     typeForInput: 'text',
     required: true,
     placeholder: 'Введите имя',
+    maxLength: '50',
+    minLength: '1',
   },
   {
     element: inputElement,
     title: 'Email',
-    name: 'email_regist',
+    name: 'email',
     typeForInput: 'email',
     required: true,
-    promptClasses: 'auth__prompt',
+    // promptClasses: 'auth__prompt',
     placeholder: 'Введите email',
+    pattern: EMAIL_REGEX.toString().slice(1, -1),
   },
   {
     element: inputElement,
     title: 'Телефон',
-    name: 'phone_regist',
+    name: 'phone_number',
     typeForInput: 'text',
     required: false,
-    placeholder: '+7 921 123 45 67',
+    placeholder: '+79211234567',
+    minLength: '1',
+    maxLength: '12',
+    pattern: PHONE_REGEX.toString().slice(1, -1),
   },
   {
     element: inputElement,
     title: 'Дата рождения',
-    name: 'birthday_regist',
+    name: 'birthday',
     typeForInput: 'date',
     required: true,
     placeholder: '23.04.1990',
+    pattern: DATE_REGEX.toString().slice(1, -1),
   },
   {
     element: inputElement,
     title: 'Пароль',
-    name: 'passowrd_regist',
+    name: 'password',
     typeForInput: 'password',
     required: true,
-    prompt:
-      'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ',
-    promptClasses: 'auth__prompt',
+    prompt: PASSWORD_PROMPT,
+    // promptClasses: 'auth__prompt',
     placeholder: 'Введите пароль',
+    minLength: '8',
+    pattern: PASSWORD_REGEX.toString().slice(1, -1),
   },
   {
     element: inputElement,
     title: 'Пароль',
-    name: 'passowrd2_regist',
+    name: 'password_2',
     typeForInput: 'password',
     required: true,
     placeholder: 'Повторите пароль',
+    minLength: '8',
+    pattern: PASSWORD_REGEX.toString().slice(1, -1),
   },
 ];
 
@@ -389,20 +423,22 @@ export const LOGIN_INPUT_PARAMS_FOR_CLIENT = [
   {
     element: inputElement,
     title: 'Email',
-    name: 'email_login',
+    name: 'email',
     typeForInput: 'email',
     required: true,
     minLength: '1',
     placeholder: 'Введите email',
+    pattern: EMAIL_REGEX.toString().slice(1, -1),
   },
   {
     element: inputElement,
     title: 'Пароль',
-    name: 'password_login',
+    name: 'password',
     typeForInput: 'password',
     required: true,
     minLength: '1',
     placeholder: '***********',
+    pattern: PASSWORD_REGEX.toString().slice(1, -1),
   },
 ];
 
@@ -469,44 +505,47 @@ export const PSYCHO_FILTER_DATA = [
   },
 ];
 
-export const INPUT_DATA_FOR_RESET_PASSWORD = [
+export const INPUT_DATA_FOR_CHANGE_PASSWORD = [
   {
     element: inputElement,
     title: 'Email',
-    name: 'email_change_password',
+    name: 'email',
     typeForInput: 'email',
     required: true,
     minLength: '1',
     disabled: true,
     placeholder: 'example@mail.ru',
+    pattern: EMAIL_REGEX.toString().slice(1, -1),
   },
   {
     element: inputElement,
     title: 'Введите текущий пароль',
-    name: 'old_password_change_password',
+    name: 'old_password',
     typeForInput: 'password',
     required: true,
     minLength: '1',
+    pattern: PASSWORD_REGEX.toString().slice(1, -1),
   },
   {
     element: inputElement,
     title: 'Придумайте новый пароль',
-    name: 'new_password_change_password',
+    name: 'password',
     typeForInput: 'password',
     required: true,
     minLength: '8',
-    prompt:
-      'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ',
-    promptClasses: 'change-password__prompt',
+    prompt: PASSWORD_PROMPT,
+    // promptClasses: 'change-password__prompt',
     fieldsetClasses: 'change-password__fieldset',
+    pattern: PASSWORD_REGEX.toString().slice(1, -1),
   },
   {
     element: inputElement,
     title: 'Повторите новый пароль',
-    name: 'new2_password_change_password',
+    name: 'password_2',
     typeForInput: 'password',
     required: true,
     minLength: '8',
+    pattern: PASSWORD_REGEX.toString().slice(1, -1),
   },
 ];
 
@@ -515,23 +554,24 @@ export const INPUT_DATA_FOR_SET_PASSWORD = [
     element: inputElement,
     title: 'Придумайте пароль',
     placeholder: 'Введите пароль',
-    name: 'new_password_create_password',
+    name: 'password',
     typeForInput: 'password',
     required: true,
     minLength: '8',
-    prompt:
-      'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ',
-    promptClasses: 'create-password__prompt',
+    prompt: PASSWORD_PROMPT,
+    // promptClasses: 'create-password__prompt',
     fieldsetClasses: 'create-password__fieldset',
+    pattern: PASSWORD_REGEX.toString().slice(1, -1),
   },
   {
     element: inputElement,
     title: 'Повторите пароль',
     placeholder: 'Введите пароль повторно',
-    name: 'new2_password_create_password',
+    name: 'password_2',
     typeForInput: 'password',
     required: true,
     minLength: '8',
+    pattern: PASSWORD_REGEX.toString().slice(1, -1),
   },
 ];
 
@@ -571,9 +611,10 @@ export const PSYCHO_REGISTRATION_FIRST_STEP = [
     name: 'email',
     typeForInput: 'email',
     required: true,
-    promptClasses: 'auth__prompt',
+    // promptClasses: 'auth__prompt',
     minLength: '1',
     placeholder: 'Введите email',
+    pattern: EMAIL_REGEX.toString().slice(1, -1),
   },
   {
     element: inputElement,
@@ -581,9 +622,10 @@ export const PSYCHO_REGISTRATION_FIRST_STEP = [
     name: 'phone_number',
     typeForInput: 'tel',
     required: true,
-    placeholder: '+7 921 123 45 67',
+    placeholder: '+79211234567',
     maxLength: '12',
     minLength: '1',
+    pattern: PHONE_REGEX.toString().slice(1, -1),
   },
   {
     element: inputElement,
@@ -592,6 +634,7 @@ export const PSYCHO_REGISTRATION_FIRST_STEP = [
     typeForInput: 'date',
     required: true,
     placeholder: '23.04.1990',
+    pattern: DATE_REGEX.toString().slice(1, -1),
   },
   {
     element: radioDropdownElement,
@@ -601,7 +644,7 @@ export const PSYCHO_REGISTRATION_FIRST_STEP = [
     dropdownContent: dropdownLists.genderForPsycho,
     typeForDropdown: 'radio',
     autoComplete: 'off',
-    // required: true,
+    required: true,
   },
 ];
 
@@ -615,6 +658,9 @@ export const PSYCHO_REGISTRATION_SECOND_STEP = [
     required: true,
     placeholder: 'Введите год начала - год окончания',
     inputContainerClasses: 'data-list__graduation-year',
+    pattern: INSTITUTES_GRADUATION_YEAR_TEST_REGEX.toString().slice(1, -1),
+    // minLength: '9',
+    maxLength: '9',
   },
   {
     item: 'Textarea',
@@ -649,9 +695,11 @@ export const PSYCHO_REGISTRATION_THIRD_STEP = [
     element: inputElement,
     title: 'Год окончания',
     name: 'courses_graduation_year',
-    typeForInput: 'number',
+    typeForInput: 'text',
     placeholder: 'Введите год окончания',
     inputContainerClasses: 'data-list__graduation-year',
+    pattern: COURSES_GRADUATION_YEAR_TEST_REGEX.toString().slice(1, -1),
+    maxLength: '4',
   },
   {
     item: 'Textarea',

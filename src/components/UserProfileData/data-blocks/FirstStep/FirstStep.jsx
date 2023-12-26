@@ -95,9 +95,7 @@ export default function FirstStep({
                 }
               }}
               errors={errors}
-              // Не сразу срабатывает валидация на радио
               isValid={getInvalidInput(inputValidStatus[i.name])}
-              promptClasses={i.promptClasses}
               selectedDropdownItems={selectedDropdownItems}
               dropdownContent={i.dropdownContent}
               typeForDropdown={i.typeForDropdown}
@@ -107,6 +105,7 @@ export default function FirstStep({
               maxLength={i.maxLength}
               autoComplete={i.autoComplete}
               placeholder={i.placeholder}
+              pattern={i.pattern}
             />
           </li>
         );

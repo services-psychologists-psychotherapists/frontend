@@ -7,7 +7,6 @@ import Button from '../../../components/generic/Button/Button';
 import Text from '../../../components/generic/Text/Text';
 import { REGISTRATION_INPUT_PARAMS_FOR_CLIENT } from '../../../constants/constants';
 import ServiceDocuments from '../../../components/generic/ServiceDocuments/ServiceDocuments';
-import { usePopup } from '../../../hooks/usePopup';
 import { checkPasswords } from '../../../utils/helpers';
 // TODO: Выводить сообщения об ошибках в запросах в попапы?
 
@@ -19,22 +18,21 @@ export default function AuthRegistration({
   inputValidStatus,
   getInvalidInput,
   signUp,
+  setValue,
 }) {
-  const { setValue } = usePopup();
-
   const handleSubmitRegister = () => {
-    const email = values.email_regist.toLowerCase();
+    const email = values.email.toLowerCase();
 
     checkPasswords(
-      values.passowrd_regist,
-      values.passowrd2_regist,
+      values.password,
+      values.password_2,
       setValue,
       {
-        first_name: values.name_regist,
-        birthday: moment(values.birthday_regist).format('DD.MM.YYYY'),
-        phone_number: values.phone_regist || '',
+        first_name: values.name,
+        birthday: moment(values.birthday).format('DD.MM.YYYY'),
+        phone_number: values.phone_number || '',
         email,
-        password: values.passowrd_regist,
+        password: values.password,
       },
       signUp
     );
@@ -60,18 +58,20 @@ export default function AuthRegistration({
           {REGISTRATION_INPUT_PARAMS_FOR_CLIENT.map((i) => (
             <li key={i.name}>
               <Fieldset
-                element={i.element || null}
-                title={i.title || null}
-                name={i.name || null}
-                typeForInput={i.typeForInput || null}
-                required={i.required || false}
-                placeholder={i.placeholder || null}
-                prompt={i.prompt || null}
+                element={i.element}
+                title={i.title}
+                name={i.name}
+                typeForInput={i.typeForInput}
+                required={i.required}
+                placeholder={i.placeholder}
+                prompt={i.prompt}
                 values={values}
                 handleChange={(e) => handleChange(e)}
                 errors={errors}
                 isValid={getInvalidInput(inputValidStatus[i.name])}
-                promptClasses={i.promptClasses || null}
+                pattern={i.pattern}
+                maxLength={i.maxLength}
+                minLength={i.minLength}
               />
             </li>
           ))}
@@ -105,4 +105,5 @@ AuthRegistration.propTypes = {
   handleChange: func.isRequired,
   errors: objectOf(string).isRequired,
   signUp: func.isRequired,
+  setValue: func.isRequired,
 };

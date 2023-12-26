@@ -16,11 +16,11 @@ export default function AuthLogin({
   setValue,
 }) {
   const handleSubmitLogin = () => {
-    const email = values.email_login.toLowerCase();
+    const email = values.email.toLowerCase();
 
     signIn({
       email,
-      password: values.password_login,
+      password: values.password,
     }, setValue);
   };
 
@@ -41,6 +41,8 @@ export default function AuthLogin({
               errors={errors}
               isValid={getInvalidInput(inputValidStatus[i.name])}
               placeholder={i.placeholder}
+              pattern={i.pattern}
+              maxLength={i.maxLength}
             />
           </li>
         ))}

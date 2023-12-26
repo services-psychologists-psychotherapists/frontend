@@ -33,8 +33,3 @@
   margin: 20px 0 28px 0;
   animation: fadeOut 1s;
 }
-
-.auth__prompt {
-  min-height: 17px;
-  max-height: min-content;
-}

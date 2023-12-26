@@ -1,6 +1,8 @@
 import './Fieldset.css';
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { string, bool, number,
+  arrayOf, objectOf, func, oneOfType, array,
+} from 'prop-types';
 import Prompt from './Prompt/Prompt';
 import Field from './Field/Field';
 import ListWithDropdown from './ListWithDropdown/ListWithDropdown';
@@ -12,33 +14,15 @@ import {
 } from '../../constants/constants';
 
 export default function Fieldset({
-  title,
-  typeForDropdown,
-  typeForInput,
-  name,
-  prompt,
-  disabled,
-  placeholder,
-  minLength,
-  maxLength,
-  required,
-  element,
-  dropdownContent,
-  values,
-  handleChange,
-  errors,
-  isValid,
-  promptClasses,
-  fieldsetClasses,
-  inputContainerClasses,
-  selectedDropdownItems,
-  id,
-  customElement,
-  resetCustomValue,
-  setCustomValue,
-  classesForAbsoluteList,
-  classesForInput,
-  autoComplete,
+  title, typeForDropdown, typeForInput,
+  name, prompt, disabled, placeholder,
+  minLength, maxLength, required,
+  element, dropdownContent, values,
+  handleChange, errors, isValid,
+  promptClasses, fieldsetClasses, inputContainerClasses,
+  selectedDropdownItems, id, customElement,
+  resetCustomValue, setCustomValue, classesForAbsoluteList,
+  classesForInput, autoComplete, pattern,
 }) {
   const [isFocused, setIsFocused] = useState(false);
   const [displayValue, setDisplayValue] = useState('');
@@ -110,6 +94,7 @@ export default function Fieldset({
         id={id}
         classesForInput={classesForInput}
         autoComplete={autoComplete}
+        pattern={pattern}
       />
       <ListWithDropdown
         element={element}
@@ -136,35 +121,36 @@ export default function Fieldset({
 }
 
 Fieldset.propTypes = {
-  element: PropTypes.string.isRequired,
-  title: PropTypes.string,
-  required: PropTypes.bool,
-  disabled: PropTypes.bool,
-  placeholder: PropTypes.string,
-  prompt: PropTypes.string,
-  name: PropTypes.string,
-  typeForInput: PropTypes.string,
-  minLength: PropTypes.string,
-  maxLength: PropTypes.string,
-  typeForDropdown: PropTypes.string,
-  dropdownContent: PropTypes.arrayOf(PropTypes.string),
-  values: PropTypes.objectOf(PropTypes.string),
-  handleChange: PropTypes.func,
-  errors: PropTypes.objectOf(PropTypes.string),
-  isValid: PropTypes.bool,
-  promptClasses: PropTypes.string,
-  inputContainerClasses: PropTypes.string,
-  selectedDropdownItems: PropTypes.objectOf(
-    PropTypes.oneOfType([PropTypes.array, PropTypes.string])
+  element: string.isRequired,
+  title: string,
+  required: bool,
+  disabled: bool,
+  placeholder: string,
+  prompt: string,
+  name: string,
+  typeForInput: string,
+  minLength: string,
+  maxLength: string,
+  typeForDropdown: string,
+  dropdownContent: arrayOf(string),
+  values: objectOf(string),
+  handleChange: func,
+  errors: objectOf(string),
+  isValid: bool,
+  promptClasses: string,
+  inputContainerClasses: string,
+  selectedDropdownItems: objectOf(
+    oneOfType([array, string])
   ),
-  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  fieldsetClasses: PropTypes.string,
-  customElement: PropTypes.string,
-  resetCustomValue: PropTypes.func,
-  setCustomValue: PropTypes.func,
-  classesForAbsoluteList: PropTypes.string,
-  classesForInput: PropTypes.string,
-  autoComplete: PropTypes.string,
+  id: oneOfType([string, number]),
+  fieldsetClasses: string,
+  customElement: string,
+  resetCustomValue: func,
+  setCustomValue: func,
+  classesForAbsoluteList: string,
+  classesForInput: string,
+  autoComplete: string,
+  pattern: string,
 };
 
 Fieldset.defaultProps = {
@@ -194,4 +180,5 @@ Fieldset.defaultProps = {
   classesForInput: '',
   autoComplete: null,
   title: '',
+  pattern: null,
 };

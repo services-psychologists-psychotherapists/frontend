@@ -1,10 +1,10 @@
 import React from 'react';
-import { func } from 'prop-types';
+import { func, object } from 'prop-types';
 import './ChangePassword.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import Button from '../../components/generic/Button/Button';
 import Fieldset from '../../components/Fieldset/Fieldset';
-import { INPUT_DATA_FOR_RESET_PASSWORD } from '../../constants/constants';
+import { INPUT_DATA_FOR_CHANGE_PASSWORD } from '../../constants/constants';
 import { useForm } from '../../hooks/useForm';
 import {
   showPopupWithValue,
@@ -13,7 +13,7 @@ import {
 import { usePopup } from '../../hooks/usePopup';
 import { setNewPasswords } from '../../utils/auth';
 
-export default function ChangePassword({ navigate, goBack }) {
+export default function ChangePassword({ navigate, goBack, currentUser }) {
   const {
     values,
     handleChange,
@@ -40,12 +40,12 @@ export default function ChangePassword({ navigate, goBack }) {
 
   const handleSubmit = () => {
     checkPasswords(
-      values.new_password_change_password,
-      values.new2_password_change_password,
+      values.password,
+      values.password_2,
       setValue,
       {
-        new_password: values.new_password_change_password,
-        current_password: values.old_password_change_password,
+        new_password: values.password,
+        current_password: values.old_password,
       },
       setPassword,
     );
@@ -64,9 +64,8 @@ export default function ChangePassword({ navigate, goBack }) {
       >
         <form className="change-password__form">
           <ul className="change-password__input-list">
-            {INPUT_DATA_FOR_RESET_PASSWORD.map((i) => (
+            {INPUT_DATA_FOR_CHANGE_PASSWORD.map((i) => (
               <li key={i.name}>
-                {/* TODO: доставать значение email из данных */}
                 <Fieldset
                   element={i.element}
                   title={i.title}
@@ -74,15 +73,15 @@ export default function ChangePassword({ navigate, goBack }) {
                   typeForInput={i.typeForInput}
                   required={i.required}
                   minLength={i.minLength}
-                  prompt={i.prompt || null}
+                  prompt={i.prompt}
                   values={values}
                   handleChange={handleChange}
                   errors={errors}
                   isValid={getInvalidInput(inputValidStatus[i.name])}
-                  promptClasses={i.promptClasses || null}
-                  fieldsetClasses={i.fieldsetClasses || null}
-                  disabled={i.disabled || false}
-                  placeholder={i.placeholder || null}
+                  fieldsetClasses={i.fieldsetClasses}
+                  disabled={i.disabled}
+                  placeholder={i.name === 'email' ? currentUser.email : i.placeholder}
+                  pattern={i.pattern}
                 />
               </li>
             ))}
@@ -106,4 +105,6 @@ export default function ChangePassword({ navigate, goBack }) {
 ChangePassword.propTypes = {
   navigate: func.isRequired,
   goBack: func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  currentUser: object.isRequired,
 };

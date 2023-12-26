@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { string, func, object } from 'prop-types';
+import { string, func, object, bool } from 'prop-types';
 import './PsychologistRegistration.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import { PSYCHO_REGISTRATION_TEXT } from '../../constants/constants';
@@ -15,12 +15,14 @@ import { usePopup } from '../../hooks/usePopup';
 import DescrForStep from './DescrForStep/DescrForStep';
 import DocsForRegistr from './DocsForRegistr/DocsForRegistr';
 import useUploadDoc from '../../hooks/useUploadDoc';
+import { showPopupWithValue } from '../../utils/helpers';
 
 export default function PsychologistRegistration({
   docIdForRequest,
   uploadDocuments,
   setDocIdForRequest,
   curPath,
+  isLoading,
 }) {
   // TODO: добавить анимацию переходов
   const {
@@ -48,15 +50,20 @@ export default function PsychologistRegistration({
 
   const createPsycho = async (data) => {
     try {
-      await createPsychologist(data);
+      if (!data.themes || !data.approaches) {
+        showPopupWithValue(setValue, 'Заполните направления работы и подходы');
+      } else {
+        await createPsychologist(data);
 
-      setIsSuccess(true);
+        setIsSuccess(true);
+      }
     } catch (err) {
       console.log(err);
 
       setValue({
         data: {
           title: 'При регистрации произошла ошибка',
+          text: 'Проверьте корректность введенных данных или попробуйте позже',
         },
       });
     }
@@ -158,7 +165,7 @@ export default function PsychologistRegistration({
               <DescrForStep
                 className={step === 3 ? 'psycho-registration__step_on' : ''}
                 step={step}
-                title="3/4&nbsp;&nbsp;&nbsp;Повышение квалификации"
+                title="3/4&nbsp;&nbsp;&nbsp;Повышение квалификации (при наличии)"
               >
                 <ThirdStep
                   values={values}
@@ -203,10 +210,10 @@ export default function PsychologistRegistration({
                 type={step !== 4 ? 'button' : 'submit'}
                 variant="primary"
                 size="l"
-                disabled={!isValidForm}
+                disabled={!isValidForm || isLoading}
                 onClick={switchNextStep}
               >
-                {step !== 4 ? 'Далее' : 'Подать заявку'}
+                {isLoading ? 'Загрузка...' : step !== 4 ? 'Далее' : 'Подать заявку'}
               </Button>
             </form>
           </div>
@@ -222,4 +229,5 @@ PsychologistRegistration.propTypes = {
   setDocIdForRequest: func.isRequired,
   // eslint-disable-next-line react/forbid-prop-types
   curPath: object.isRequired,
+  isLoading: bool.isRequired,
 };

@@ -77,7 +77,6 @@ export default function PsychologistAccount({
     >
       {path !== 'profile' ? (
         <section className="psychologist-account">
-
           <Calendar
             titleText={PSYCHOLOGIST_ACCOUNT_TITLES[path].calendarTitle}
             onDateCellClick={setCurrentDay}

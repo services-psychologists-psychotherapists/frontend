@@ -110,8 +110,6 @@ export const getFormattedLocalTimeArr = (arr) => {
 
 export const getPriceWithSpace = (price) => price.toLocaleString();
 
-export const getPasswordErr = (firstPass, secondPass) => firstPass !== secondPass;
-
 // возможно убрать или переделать
 export const showPopupWithValue = (setValue, value, text) => {
   setValue({
@@ -123,7 +121,7 @@ export const showPopupWithValue = (setValue, value, text) => {
 };
 
 export const checkPasswords = (password1, password2, setPopupValue, data, request) => {
-  if (getPasswordErr(password1, password2)) {
+  if (password1 !== password2) {
     showPopupWithValue(setPopupValue, 'Пароли не совпадают');
   } else {
     request(data);

@@ -61,22 +61,22 @@ export default function ThirdStep({
       currentUser.courses.forEach((course, index) => {
         setValues((prevData) => ({
           ...prevData,
-          [`courses_title${index}`]: course.title,
-          [`courses_speciality${index}`]: course.speciality,
-          [`courses_graduation_year${index}`]: course.graduation_year,
+          [`courses_title_${index}`]: course.title,
+          [`courses_speciality_${index}`]: course.speciality,
+          [`courses_graduation_year_${index}`]: course.graduation_year,
         }));
       });
     }
   }, [currentUser, educationBlocks]);
 
   useEffect(() => {
-    const propertyPathGraduationYear = `courses_graduation_year${listId}`;
+    const propertyPathGraduationYear = `courses_graduation_year_${listId}`;
     const newCoursesGraduationYear = values[propertyPathGraduationYear];
 
-    const propertyPathTitle = `courses_title${listId}`;
+    const propertyPathTitle = `courses_title_${listId}`;
     const newCoursesTitle = values[propertyPathTitle];
 
-    const propertyPathSpeciality = `courses_speciality${listId}`;
+    const propertyPathSpeciality = `courses_speciality_${listId}`;
     const newCoursesSpeciality = values[propertyPathSpeciality];
 
     if (newCoursesGraduationYear !== coursesGraduationYear) {
@@ -173,7 +173,7 @@ export default function ThirdStep({
             <li key={i.name}>
               {i.item === 'Fieldset' && (
               <Fieldset
-                name={`${i.name}${blockId}`}
+                name={`${i.name}_${blockId}`}
                 element={i.element}
                 title={i.title}
                 typeForInput={i.typeForInput}
@@ -181,20 +181,21 @@ export default function ThirdStep({
                 values={values}
                 handleChange={(e) => handleChange(e)}
                 errors={errors}
-                isValid={getInvalidInput(inputValidStatus[`${i.name}${blockId}`])}
+                isValid={getInvalidInput(inputValidStatus[`${i.name}_${blockId}`])}
                 placeholder={i.placeholder}
                 disabled={getDisabledField(blockId, currentUser, 3, step, 'courses')}
                 inputContainerClasses={i.inputContainerClasses || ''}
                 minLength={i.minLength}
                 maxLength={i.maxLength}
+                pattern={i.pattern}
               />
               )}
               {i.item === 'Textarea' && (
               <Textarea
                 title={i.title}
                 onChange={(e) => handleChange(e)}
-                name={`${i.name}${blockId}`}
-                value={values[`${i.name}${blockId}`]}
+                name={`${i.name}_${blockId}`}
+                value={values[`${i.name}_${blockId}`]}
                 id={i.id}
                 textareaClassName={i.textareaClassName}
                 disabled={getDisabledField(blockId, currentUser, 3, step, 'courses')}

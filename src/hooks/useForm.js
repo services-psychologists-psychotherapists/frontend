@@ -1,4 +1,14 @@
 import { useState, useCallback, useEffect } from 'react';
+import {
+  EMAIL_REGEX, EMAIL_ERROR_VALIDATION, PHONE_REGEX,
+  PASSWORD_ERROR_VALIDATION, PASSWORD_REGEX,
+  PHONE_ERROR_VALIDATION, DATE_REGEX,
+  DATE_ERROR_VALIDATION, INSTITUTES_GRADUATION_YEAR_REGEX,
+  INSTITUTES_GRADUATION_YEAR_TEST_REGEX, COURSES_GRADUATION_YEAR_REGEX,
+  INSTITUTES_GRADUATION_YEAR_ERROR, COURSES_GRADUATION_YEAR_ERROR,
+  COURSES_GRADUATION_YEAR_TEST_REGEX, COURSES_TITLE_ERROR,
+  COURSES_SPECIALITY_ERROR, PRICE_ERROR, EXPERIENCE_ERROR,
+} from '../constants/constants';
 
 export const useForm = () => {
   const [values, setValues] = useState({});
@@ -16,15 +26,15 @@ export const useForm = () => {
   // настроить работу полей регистрации пользователя
 
   // Убрать
-  // useEffect(() => {
-  //   console.log(dataForRequest, 'dataForRequest');
-  // }, [dataForRequest]);
-  // useEffect(() => {
-  //   console.log(values, 'values');
-  // }, [values]);
-  // useEffect(() => {
-  //   console.log(selectedDropdownItems, 'selectedDropdownItems');
-  // }, [selectedDropdownItems]);
+  useEffect(() => {
+    console.log(dataForRequest, 'dataForRequest');
+  }, [dataForRequest]);
+  useEffect(() => {
+    console.log(values, 'values');
+  }, [values]);
+  useEffect(() => {
+    console.log(selectedDropdownItems, 'selectedDropdownItems');
+  }, [selectedDropdownItems]);
 
   const getYears = (arr) => {
     if (arr.length > 0) {
@@ -211,11 +221,102 @@ export const useForm = () => {
       name, value, type
     } = input;
 
+    // ------------------------------Заполнение данных---------------------------------
+
     if (type !== 'file') {
-      setValues({ ...values, [name]: value });
+      let newValue = value;
+
+      if (name === 'phone_number' && !PHONE_REGEX.test(value)) {
+        newValue = values[name];
+      } else if (/^institutes_graduation_year_\d+$/.test(name)
+      && !INSTITUTES_GRADUATION_YEAR_REGEX.test(value)) {
+        newValue = values[name];
+      } else if (/^courses_graduation_year_\d+$/.test(name)
+      && !COURSES_GRADUATION_YEAR_REGEX.test(value)) {
+        newValue = values[name];
+      }
+
+      setValues({ ...values, [name]: newValue });
     }
 
-    setErrors({ ...errors, [name]: input.validationMessage });
+    //  ------------------------------Валидация---------------------------------
+
+    const VALIDATION_RULES = {
+      email: { regex: EMAIL_REGEX, error: EMAIL_ERROR_VALIDATION },
+      password: { regex: PASSWORD_REGEX, error: PASSWORD_ERROR_VALIDATION },
+      password_2: { regex: PASSWORD_REGEX, error: PASSWORD_ERROR_VALIDATION },
+      old_password: { regex: PASSWORD_REGEX, error: PASSWORD_ERROR_VALIDATION },
+      name: { regex: /.+/, error: input.validationMessage },
+      first_name: { regex: /.+/, error: input.validationMessage },
+      last_name: { regex: /.+/, error: input.validationMessage },
+      phone_number: { regex: PHONE_REGEX, error: PHONE_ERROR_VALIDATION },
+      birthday: { regex: DATE_REGEX, error: DATE_ERROR_VALIDATION },
+      gender: { regex: /.+/, error: input.validationMessage },
+      institutes_graduation_year: {
+        regex: INSTITUTES_GRADUATION_YEAR_TEST_REGEX,
+        error: INSTITUTES_GRADUATION_YEAR_ERROR,
+      },
+      courses_graduation_year: {
+        regex: COURSES_GRADUATION_YEAR_TEST_REGEX,
+        error: COURSES_GRADUATION_YEAR_ERROR,
+      },
+    };
+
+    const setValidationError = (inputName, error) => {
+      setErrors({ ...errors, [inputName]: error });
+      setInputValidStatus({ ...inputValidStatus, [inputName]: false });
+      setIsValidForm(false);
+    };
+
+    let validationRule = VALIDATION_RULES[name];
+
+    switch (true) {
+      case /^institutes_graduation_year_\d+$/.test(name):
+        validationRule = VALIDATION_RULES.institutes_graduation_year;
+        break;
+      case /^courses_graduation_year_\d+$/.test(name):
+        if (value.length === 0) {
+          setValidationError(name, COURSES_GRADUATION_YEAR_ERROR);
+          return;
+        }
+        validationRule = VALIDATION_RULES.courses_graduation_year;
+        break;
+      case name === 'phone_number' && value.length === 0:
+        setValidationError(name, PHONE_ERROR_VALIDATION);
+        return;
+      case /^courses_title_\d+$/.test(name) && value.length === 0:
+        setValidationError(name, COURSES_TITLE_ERROR);
+        return;
+      case /^courses_speciality_\d+$/.test(name) && value.length === 0:
+        setValidationError(name, COURSES_SPECIALITY_ERROR);
+        return;
+      case name === 'price' && value.length === 0:
+        setValidationError(name, PRICE_ERROR);
+        return;
+      case name === 'experience' && value.length === 0:
+        setValidationError(name, EXPERIENCE_ERROR);
+        return;
+      default:
+        break;
+    }
+
+    if (validationRule) {
+      const { regex, error } = validationRule;
+      const isValidEl = regex.test(value);
+
+      if (!isValidEl) {
+        console.log(isValidEl);
+        setIsValidForm(false);
+      }
+
+      setErrors({ ...errors, [name]: isValidEl ? '' : error });
+      setInputValidStatus({ ...inputValidStatus, [name]: isValidEl });
+    } else {
+      setErrors({ ...errors, [name]: input.validationMessage });
+      setInputValidStatus({ ...inputValidStatus, [name]: input.checkValidity() });
+    }
+
+    // ------------------------------------------------------------------------------
 
     const fieldsetName = input.closest('fieldset').id;
 
@@ -297,9 +398,9 @@ export const useForm = () => {
       getValuesForDropdown();
     }
 
-    setIsValid(input.checkValidity());
-    setInputValidStatus({ ...inputValidStatus, [name]: input.checkValidity() });
-    setIsValidForm(e.target.closest('form').checkValidity());
+    setTimeout(() => {
+      setIsValidForm(e.target.closest('form').checkValidity());
+    }, 1);
   };
 
   const resetForm = useCallback(

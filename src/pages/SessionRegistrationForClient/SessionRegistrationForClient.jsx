@@ -47,6 +47,7 @@ export default function SessionRegistrationForClient({ navigate }) {
     try {
       await clientServicejs.createSession(id, token);
 
+      setSearchDayIndex(0);
       getPsychologist(psychologistId);
       setValue({
         data: {

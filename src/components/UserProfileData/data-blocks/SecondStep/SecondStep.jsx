@@ -12,7 +12,6 @@ import {
   checkFile, resetValue, handleDataUpdate, addEducationBlock,
   getDisabledField,
 } from '../../../../utils/helpers';
-// TODO: Запретить ввод букв в Периоде обучения?
 
 export default function SecondStep({
   values,
@@ -63,22 +62,22 @@ export default function SecondStep({
       currentUser.institutes.forEach((institute, index) => {
         setValues((prevData) => ({
           ...prevData,
-          [`institutes_title${index}`]: institute.title,
-          [`institutes_speciality${index}`]: institute.speciality,
-          [`institutes_graduation_year${index}`]: institute.graduation_year,
+          [`institutes_title_${index}`]: institute.title,
+          [`institutes_speciality_${index}`]: institute.speciality,
+          [`institutes_graduation_year_${index}`]: institute.graduation_year,
         }));
       });
     }
   }, [currentUser, educationBlocks]);
 
   useEffect(() => {
-    const propertyPathTitle = `institutes_title${listId}`;
+    const propertyPathTitle = `institutes_title_${listId}`;
     const newInstituteTitle = values[propertyPathTitle];
 
-    const propertyPathSpeciality = `institutes_speciality${listId}`;
+    const propertyPathSpeciality = `institutes_speciality_${listId}`;
     const newInstituteSpeciality = values[propertyPathSpeciality];
 
-    const propertyPathGraduationYear = `institutes_graduation_year${listId}`;
+    const propertyPathGraduationYear = `institutes_graduation_year_${listId}`;
     const newGraduationYear = values[propertyPathGraduationYear];
 
     if (newInstituteTitle !== instituteTitle) {
@@ -209,7 +208,7 @@ export default function SecondStep({
               {i.item === 'Fieldset' && (
                 <Fieldset
                   inputContainerClasses={i.inputContainerClasses}
-                  name={`${i.name}${blockId}`}
+                  name={`${i.name}_${blockId}`}
                   element={i.element}
                   title={i.title}
                   typeForInput={i.typeForInput}
@@ -217,19 +216,20 @@ export default function SecondStep({
                   values={values}
                   handleChange={(e) => handleChange(e)}
                   errors={errors}
-                  isValid={getInvalidInput(inputValidStatus[`${i.name}${blockId}`])}
+                  isValid={getInvalidInput(inputValidStatus[`${i.name}_${blockId}`])}
                   placeholder={i.placeholder}
                   disabled={getDisabledField(blockId, currentUser, 2, step, 'institutes')}
                   minLength={i.minLength}
                   maxLength={i.maxLength}
+                  pattern={i.pattern}
                 />
               )}
               {i.item === 'Textarea' && (
                 <Textarea
                   title={i.title}
                   onChange={(e) => handleChange(e)}
-                  name={`${i.name}${blockId}`}
-                  value={values[`${i.name}${blockId}`]}
+                  name={`${i.name}_${blockId}`}
+                  value={values[`${i.name}_${blockId}`]}
                   id={i.id}
                   textareaClassName={i.textareaClassName}
                   disabled={getDisabledField(blockId, currentUser, 2, step, 'institutes')}
@@ -248,6 +248,7 @@ export default function SecondStep({
               onChange={(e) => handleChange(e)}
               disabled={getDisabledField(blockId, currentUser, 2, step, 'institutes')}
               name="institutes"
+              isRequired
             />
           </li>
           {index === educationBlocks.length - 1 && (

@@ -7,7 +7,7 @@ import { showPopupWithValue, checkPasswords } from '../../utils/helpers';
 import { useForm } from '../../hooks/useForm';
 import Text from '../../components/generic/Text/Text';
 import Button from '../../components/generic/Button/Button';
-import { INPUT_DATA_FOR_SET_PASSWORD, inputElement } from '../../constants/constants';
+import { INPUT_DATA_FOR_SET_PASSWORD, inputElement, EMAIL_REGEX } from '../../constants/constants';
 import Fieldset from '../../components/Fieldset/Fieldset';
 import Title from '../../components/generic/Title/Title';
 import Success from '../../components/Success/Success';
@@ -42,13 +42,13 @@ export default function CreatePassword({ curPath, resetPassword }) {
 
   const handleSubmit = () => {
     checkPasswords(
-      values.new_password_create_password,
-      values.new2_password_create_password,
+      values.password,
+      values.password_2,
       setValue,
       {
         uid: uId,
         token,
-        new_password: values.new_password_create_password,
+        new_password: values.password,
       },
       setPassword,
     );
@@ -87,13 +87,13 @@ export default function CreatePassword({ curPath, resetPassword }) {
                       typeForInput={i.typeForInput}
                       required={i.required}
                       minLength={i.minLength}
-                      prompt={i.prompt || null}
+                      prompt={i.prompt}
                       values={values}
                       handleChange={handleChange}
                       errors={errors}
                       isValid={getInvalidInput(inputValidStatus[i.name])}
-                      fieldsetClasses={i.fieldsetClasses || null}
-                      promptClasses={i.promptClasses || null}
+                      fieldsetClasses={i.fieldsetClasses}
+                      pattern={i.pattern}
                     />
                   </li>
                 ))}
@@ -115,7 +115,7 @@ export default function CreatePassword({ curPath, resetPassword }) {
                 <Fieldset
                   element={inputElement}
                   title="Email"
-                  name="create_password_email"
+                  name="email"
                   typeForInput="email"
                   required
                   minLength="1"
@@ -123,7 +123,8 @@ export default function CreatePassword({ curPath, resetPassword }) {
                   values={values}
                   handleChange={handleChange}
                   errors={errors}
-                  isValid={getInvalidInput(inputValidStatus.create_password_email)}
+                  isValid={getInvalidInput(inputValidStatus.email)}
+                  pattern={EMAIL_REGEX.toString().slice(1, -1)}
                 />
               </>
               )}
@@ -134,7 +135,7 @@ export default function CreatePassword({ curPath, resetPassword }) {
                 onClick={
                   isCorrectLink
                     ? handleSubmit
-                    : () => resetPassword(values.create_password_email, setValue)
+                    : () => resetPassword(values.email, setValue)
                 }
                 disabled={!isValidForm}
                 className="create-password__form-button"

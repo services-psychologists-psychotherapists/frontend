@@ -31,10 +31,12 @@ export default function App() {
   const [currentUser, setCurrentUser] = useState({});
   const jwtRefresh = localStorage.getItem('jwt-refresh');
   const curPath = useLocation();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [docIdForRequest, setDocIdForRequest] = useState('');
 
   const uploadDocuments = async (document, setPopup) => {
+    setIsLoading(true);
     try {
       const docData = await auth.uploadFile(document);
 
@@ -47,6 +49,8 @@ export default function App() {
           title: 'При загрузке документа произошла ошибка',
         },
       });
+    } finally {
+      setIsLoading(false);
     }
 
     return false;
@@ -181,32 +185,40 @@ export default function App() {
     };
 
     try {
-      const newData = { ...data };
+      if (!data.themes || !data.approaches) {
+        setPopup({
+          data: {
+            title: 'Заполните направления работы и подходы',
+          },
+        });
+      } else {
+        const newData = { ...data };
 
-      if (newData.institutes) {
-        newData.institutes = data.institutes.slice(currentUser.institutes.length);
+        if (newData.institutes) {
+          newData.institutes = data.institutes.slice(currentUser.institutes.length);
+        }
+
+        if (newData.courses) {
+          newData.courses = data.courses.slice(currentUser.courses.length);
+        }
+
+        if (!checkChangeData(data.approaches, currentUser.approaches)) {
+          delete newData.approaches;
+        }
+
+        const psychoData = await auth.changePsychoData(newData, token);
+
+        setCurrentUser((prevData) => ({
+          ...prevData,
+          ...psychoData,
+        }));
+
+        setPopup({
+          data: {
+            title: 'Данные были успешно изменены',
+          },
+        });
       }
-
-      if (newData.courses) {
-        newData.courses = data.courses.slice(currentUser.courses.length);
-      }
-
-      if (!checkChangeData(data.approaches, currentUser.approaches)) {
-        delete newData.approaches;
-      }
-
-      const psychoData = await auth.changePsychoData(newData, token);
-
-      setCurrentUser((prevData) => ({
-        ...prevData,
-        ...psychoData,
-      }));
-
-      setPopup({
-        data: {
-          title: 'Данные были успешно изменены',
-        },
-      });
     } catch (err) {
       console.log(err);
 
@@ -316,6 +328,7 @@ export default function App() {
                   setDocIdForRequest={setDocIdForRequest}
                   uploadDocuments={uploadDocuments}
                   curPath={curPath}
+                  isLoading={isLoading}
                 />
               )}
             />
@@ -394,6 +407,7 @@ export default function App() {
                       navigate={navigate}
                       loggedIn={isLoggedIn}
                       goBack={goBack}
+                      currentUser={currentUser}
                     />
                   )}
                 />
