@@ -659,7 +659,6 @@ export const PSYCHO_REGISTRATION_SECOND_STEP = [
     placeholder: 'Введите год начала - год окончания',
     inputContainerClasses: 'data-list__graduation-year',
     pattern: INSTITUTES_GRADUATION_YEAR_TEST_REGEX.toString().slice(1, -1),
-    // minLength: '9',
     maxLength: '9',
   },
   {
