@@ -54,6 +54,26 @@
 .psycho-card__content_type_full {
   margin-top: 32px;
   gap: 32px;
+  min-height: min-content;
+  max-height: 450px;
+  overflow-y: auto;
+  padding-right: 10px;
+  /* Переделать на SimpleBar или Perfect Scrollbar? для moz */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color-dark-violet) var(--bg-color-white);
+}
+
+.psycho-card__content_type_full::-webkit-scrollbar {
+  background-color: var(--bg-color-white);
+  width: 4px;
+  border-radius: 4px;
+  padding-left: 10px;
+}
+
+.psycho-card__content_type_full::-webkit-scrollbar-thumb {
+  background-color: var(--border-color-dark-violet);
+  border-radius: 4px;
+  padding-left: 10px;
 }
 
 .psycho-card__list {

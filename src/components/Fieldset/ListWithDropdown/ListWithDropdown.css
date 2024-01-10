@@ -15,6 +15,14 @@
   opacity: 0;
 }
 
+/* scrollbar-gutter: stable; изменяет границы в moz*/
+/* Переделать на SimpleBar или Perfect Scrollbar? для moz */
+@-moz-document url-prefix() {
+  .dropdown-list {
+    scrollbar-width: none !important;
+  }
+}
+
 /* TODO: стили скрола повторяются */
 /* TODO: поправить размер скрола */
 .dropdown-list::-webkit-scrollbar {
@@ -37,6 +45,9 @@
   transition: .5s ease-in-out;
   border-radius: 12px;
   opacity: 1;
+  /* Переделать на SimpleBar или Perfect Scrollbar? для moz */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color-dark-violet) var(--bg-color-white);
 }
 
 .dropdown-list_titles {

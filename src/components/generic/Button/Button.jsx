@@ -20,7 +20,7 @@ export default function Button({
 
   const handlerBtnClick = (e) => {
     e.preventDefault();
-    onClick();
+    onClick(e);
   };
 
   function props() {

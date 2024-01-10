@@ -5,7 +5,6 @@ import Button from '../generic/Button/Button';
 import { LIST_OF_STEPS } from '../../constants/constants';
 
 export default function HowToStart() {
-  // prettier-ignore
   const classes = {
     imageBlock:
       (el) => `how-to-start__card how-to-start__card_type_img how-to-start__card_color_${el.bgColorImg}`,

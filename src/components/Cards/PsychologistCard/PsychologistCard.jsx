@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import './PsychologistCard.css';
-import PropTypes from 'prop-types';
+import {
+  bool, string, shape, number, arrayOf, object,
+} from 'prop-types';
 import Avatar from '../../generic/Avatar/Avatar';
 import ProfileInfoBlock from '../../templates/ProfileInfoBlock/ProfileInfoBlock';
 import Text from '../../generic/Text/Text';
@@ -12,11 +13,15 @@ import {
   getMonthName,
   getFormattedLocalTimeArr,
   getDurationOfYears,
+  showPopupWithValue,
 } from '../../../utils/helpers';
 import Button from '../../generic/Button/Button';
 import TimeContainer from '../../generic/TimeBtn/TimeContainer/TimeContainer';
+import { usePopup } from '../../../hooks/usePopup';
 
-export default function PsychologistCard({ type, psychologist }) {
+export default function PsychologistCard({
+  type, psychologist, isLoggedIn, currentUser,
+}) {
   const {
     first_name: firstName,
     avatar,
@@ -33,10 +38,10 @@ export default function PsychologistCard({ type, psychologist }) {
     slots,
     id
   } = psychologist;
+  const { setValue } = usePopup();
 
   const [timeCells, setTimeCells] = useState([]);
   const [sessionDate, setSessionDate] = useState('');
-  const navigate = useNavigate();
 
   const getTheNearestDate = (slotsList) => {
     if (slotsList && slotsList.length > 0) {
@@ -54,6 +59,9 @@ export default function PsychologistCard({ type, psychologist }) {
     if (cells.length > 0) {
       setTimeCells(cells[0].cells);
       setSessionDate(cells[0].date);
+    } else {
+      setTimeCells([]);
+      setSessionDate('');
     }
   }, [slots]);
 
@@ -82,9 +90,24 @@ export default function PsychologistCard({ type, psychologist }) {
     </ul>
   );
 
-  const handleTimeClick = (e) => {
+  const getPath = (e, loginStatus, curUser, path) => {
     e.stopPropagation();
-    navigate(
+
+    if (loginStatus) {
+      if (curUser.role === 'client') {
+        return window.open(path, '_blank');
+      }
+      return showPopupWithValue(setValue, 'Для записи на сессию необходимо быть клиентом');
+    }
+
+    return window.open('/signin', '_blank');
+  };
+
+  const handleTimeClick = (e) => {
+    getPath(
+      e,
+      isLoggedIn,
+      currentUser,
       `/client_account_session-registration/${id}/${sessionDate}/${e.target.innerText}/${e.target.id}`
     );
   };
@@ -112,7 +135,15 @@ export default function PsychologistCard({ type, psychologist }) {
             containerClassName="psycho-card__time-container"
             onClick={handleTimeClick}
           />
-          <Button variant="text" href={`/client_account_session-registration/${id}`}>
+          <Button
+            variant="text"
+            onClick={(e) => getPath(
+              e,
+              isLoggedIn,
+              currentUser,
+              `/client_account_session-registration/${id}`
+            )}
+          >
             Выбрать другое время
           </Button>
         </div>
@@ -152,47 +183,50 @@ export default function PsychologistCard({ type, psychologist }) {
 }
 
 PsychologistCard.propTypes = {
-  type: PropTypes.string,
-  psychologist: PropTypes.shape({
-    first_name: PropTypes.string,
-    last_name: PropTypes.string,
-    age: PropTypes.number,
-    experience: PropTypes.number,
-    about: PropTypes.string,
-    price: PropTypes.number,
-    themes: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string,
+  isLoggedIn: bool.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  currentUser: object.isRequired,
+  type: string,
+  psychologist: shape({
+    first_name: string,
+    last_name: string,
+    age: number,
+    experience: number,
+    about: string,
+    price: number,
+    themes: arrayOf(
+      shape({
+        id: number,
+        title: string,
       })
     ),
-    approaches: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        title: PropTypes.string,
+    approaches: arrayOf(
+      shape({
+        id: number,
+        title: string,
       })
     ),
-    institutes: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        speciality: PropTypes.string,
-        graduation_year: PropTypes.string,
+    institutes: arrayOf(
+      shape({
+        title: string,
+        speciality: string,
+        graduation_year: string,
       })
     ),
-    courses: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string,
-        speciality: PropTypes.string,
-        graduation_year: PropTypes.string,
+    courses: arrayOf(
+      shape({
+        title: string,
+        speciality: string,
+        graduation_year: string,
       })
     ),
-    id: PropTypes.string,
-    avatar: PropTypes.string,
-    duration: PropTypes.number,
-    slots: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.number,
-        datetime_from: PropTypes.string,
+    id: string,
+    avatar: string,
+    duration: number,
+    slots: arrayOf(
+      shape({
+        id: number,
+        datetime_from: string,
       })
     ),
   }).isRequired,
