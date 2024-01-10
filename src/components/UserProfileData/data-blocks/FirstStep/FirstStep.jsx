@@ -77,7 +77,6 @@ export default function FirstStep({
         if (i.name === 'email' && curPath.pathname !== '/psychologists_registration') {
           return null;
         }
-
         return (
           <li key={i.name}>
             <Fieldset
