@@ -289,6 +289,7 @@ export default function App() {
       verifyJwt(jwtRefresh);
     } else {
       setIsLoggedIn(false);
+      localStorage.clear();
     }
   }, []);
 
@@ -346,7 +347,12 @@ export default function App() {
             }
             <Route
               path="/directory_psychologists"
-              element={<DirectoryOfPsychologists />}
+              element={(
+                <DirectoryOfPsychologists
+                  isLoggedIn={isLoggedIn}
+                  currentUser={currentUser}
+                />
+              )}
             />
             {currentUser.role === 'psychologist' ? (
               <>

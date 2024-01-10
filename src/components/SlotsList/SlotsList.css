@@ -38,6 +38,9 @@
   padding: 0 10px 0 14px;
   align-self: stretch;
   scrollbar-gutter: stable;
+  /* Переделать на SimpleBar или Perfect Scrollbar? для moz */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color-dark-violet) var(--bg-color-white);
 }
 
 .scroller__title {

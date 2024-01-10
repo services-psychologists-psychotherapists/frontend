@@ -111,10 +111,10 @@ export const getFormattedLocalTimeArr = (arr) => {
 export const getPriceWithSpace = (price) => price.toLocaleString();
 
 // возможно убрать или переделать
-export const showPopupWithValue = (setValue, value, text) => {
+export const showPopupWithValue = (setValue, title, text) => {
   setValue({
     data: {
-      title: value,
+      title,
       text,
     },
   });

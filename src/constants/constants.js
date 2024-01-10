@@ -43,6 +43,7 @@ export const COURSES_TITLE_ERROR = 'Укажите название учебно
 export const COURSES_SPECIALITY_ERROR = 'Укажите направление подготовки';
 export const PRICE_ERROR = 'Укажите сумму в рублях. Пример: 4900';
 export const EXPERIENCE_ERROR = 'Укажите опыт в годах. Пример: 5';
+export const NUMBER_OF_PSYCHO_DISPLAYED = 5;
 
 export const PASSWORD_PROMPT = 'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ.';
 
@@ -105,7 +106,7 @@ export const LIST_OF_STEPS = [
     bgColor: 'white',
     imgPath: form,
     bgColorImg: 'light-violet',
-    link: '',
+    link: '/psychologists_registration',
   },
   {
     numberStep: '02',

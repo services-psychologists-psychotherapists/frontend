@@ -42,7 +42,6 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-self: flex-start;
   top: 0;
   right: 0;
   left: 0;
@@ -51,7 +50,6 @@
   background-color: rgba(255, 255, 255, .8);
   opacity: 0;
   visibility: hidden;
-  overflow-y: auto;
   padding-top: 50px;
   height: 100vh;
   transition: .6s ease-in-out;
@@ -114,5 +112,3 @@
   opacity: 0;
   transition: opacity 500ms ease-in-out;
 }
-
-

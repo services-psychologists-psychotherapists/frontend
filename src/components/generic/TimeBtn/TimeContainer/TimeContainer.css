@@ -1,11 +1,14 @@
 .time-container {
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
   display: flex;
   flex-direction: row;
   gap: 12px;
   list-style-type: none;
   padding-bottom: 12px;
+  /* Переделать на SimpleBar или Perfect Scrollbar? для moz */
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color-dark-violet) var(--bg-color-white);
 }
 
 .time-container::-webkit-scrollbar {

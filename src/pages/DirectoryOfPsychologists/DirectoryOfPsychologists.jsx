@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { bool, object } from 'prop-types';
 import './DirectoryOfPsychologists.css';
 import Title from '../../components/generic/Title/Title';
 import PsychoFilters from './PsychoFilters/PsychoFilters';
@@ -8,8 +9,11 @@ import Button from '../../components/generic/Button/Button';
 import useOutsideClick from '../../hooks/useOnClickOutside';
 import PaginationList from '../../components/generic/PaginationList/PaginationList';
 import { useForm } from '../../hooks/useForm';
+import { NUMBER_OF_PSYCHO_DISPLAYED } from '../../constants/constants';
 
-export default function DirectoryOfPsychologists() {
+export default function DirectoryOfPsychologists({
+  isLoggedIn, currentUser,
+}) {
   // TODO: сделать анимацию переключения страниц
   const {
     values, handleChange, errors,
@@ -36,9 +40,6 @@ export default function DirectoryOfPsychologists() {
     window.scrollTo(0, 0);
   }, []);
 
-  // TODO: Переделать на стейт?
-  const numberOfPsychoDisplayed = 7;
-
   const getNumberOfPages = (psychoCount, psychoDisplayed) => {
     const pages = Math.ceil(
       psychoCount / psychoDisplayed
@@ -49,7 +50,13 @@ export default function DirectoryOfPsychologists() {
     }
   };
 
-  const handleClosePopup = () => {
+  const handleClosePopup = (e) => {
+    if (
+      e && (e.target.className.includes('popup-visible')
+      || e.target.className === 'popup__button-close')) {
+      return;
+    }
+
     setOpenPopup(false);
   };
 
@@ -89,7 +96,7 @@ export default function DirectoryOfPsychologists() {
     setCurrentPage(num);
     getPsychologistList({
       page: num,
-      limit: numberOfPsychoDisplayed,
+      limit: NUMBER_OF_PSYCHO_DISPLAYED,
       ...lastAppliedFilters
     });
   };
@@ -99,7 +106,7 @@ export default function DirectoryOfPsychologists() {
     setCurrentPage(1);
     getPsychologistList({
       page: 1,
-      limit: numberOfPsychoDisplayed,
+      limit: NUMBER_OF_PSYCHO_DISPLAYED,
       ...dataForRequest
     });
   };
@@ -107,12 +114,12 @@ export default function DirectoryOfPsychologists() {
   useEffect(() => {
     getPsychologistList({
       page: 1,
-      limit: numberOfPsychoDisplayed,
+      limit: NUMBER_OF_PSYCHO_DISPLAYED,
     });
   }, []);
 
   useEffect(() => {
-    getNumberOfPages(totalPsychoCount, numberOfPsychoDisplayed);
+    getNumberOfPages(totalPsychoCount, NUMBER_OF_PSYCHO_DISPLAYED);
   }, [totalPsychoCount]);
 
   return (
@@ -150,6 +157,8 @@ export default function DirectoryOfPsychologists() {
                   >
                     <PsychologistCard
                       psychologist={i}
+                      isLoggedIn={isLoggedIn}
+                      currentUser={currentUser}
                     />
                   </div>
                 </li>
@@ -185,7 +194,12 @@ export default function DirectoryOfPsychologists() {
                 text={`${psychologistFullData.speciality} ${
                   psychologistFullData.first_name} ${psychologistFullData.last_name}`}
               />
-              <PsychologistCard type="full" psychologist={psychologistFullData} />
+              <PsychologistCard
+                type="full"
+                psychologist={psychologistFullData}
+                isLoggedIn={isLoggedIn}
+                currentUser={currentUser}
+              />
             </div>
           </div>
         )}
@@ -193,3 +207,9 @@ export default function DirectoryOfPsychologists() {
     </>
   );
 }
+
+DirectoryOfPsychologists.propTypes = {
+  isLoggedIn: bool.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  currentUser: object.isRequired,
+};
