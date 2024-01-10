@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import bannerImg from '../../images/home_banner.svg';
 import Banner from '../../components/Banner/Banner';
 import AboutProblems from '../../components/AboutProblems/AboutProblems';
@@ -7,6 +7,10 @@ import EmergencyHelp from '../../components/EmergencyHelp/EmergencyHelp';
 import Background from '../../components/generic/Background/Background';
 
 export default function HomePage() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Banner
