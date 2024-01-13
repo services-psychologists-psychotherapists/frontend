@@ -20,6 +20,7 @@ export default function HomePage() {
         title="Подберем психолога, который вам поможет"
         href="/directory_psychologists"
         imageClasses="home-page__welcome-image"
+        inimationStatus
       />
       <AboutProblems />
       <WhereToBegin />
