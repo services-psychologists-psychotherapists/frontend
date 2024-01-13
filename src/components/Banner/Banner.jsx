@@ -1,38 +1,33 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { string } from 'prop-types';
 import './Banner.css';
 import Button from '../generic/Button/Button';
 import Title from '../generic/Title/Title';
 
-// prettier-ignore
 export default function Banner({
-  imgLink, textBtn, title, description, imgSize, imgAlt, href
+  imgLink, textBtn, title, description, imgAlt, href
 }) {
   return (
-    <div className="banner-container">
-      <div className={`banner banner_size_${imgSize}`}>
-        <div className="banner__text">
-          <Title size="l" text={title} titleLvl="1" />
-          <p className="banner__description">{description}</p>
-          <Button href={href}>{textBtn}</Button>
-        </div>
-        <img className={`banner__img banner__img_size_${imgSize}`} src={imgLink} alt={imgAlt} />
+    <div className="banner">
+      <div className="banner__text">
+        <Title size="l" text={title} titleLvl="1" />
+        <p className="banner__description">{description}</p>
+        <Button href={href}>{textBtn}</Button>
       </div>
+      <img className="banner__img" src={imgLink} alt={imgAlt} />
     </div>
   );
 }
 
 Banner.propTypes = {
-  imgSize: PropTypes.oneOf(['l', 'm']),
-  imgAlt: PropTypes.string,
-  description: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  imgLink: PropTypes.string.isRequired,
-  textBtn: PropTypes.string.isRequired,
-  href: PropTypes.string.isRequired,
+  imgAlt: string,
+  description: string.isRequired,
+  title: string.isRequired,
+  imgLink: string.isRequired,
+  textBtn: string.isRequired,
+  href: string.isRequired,
 };
 
 Banner.defaultProps = {
-  imgSize: 'l',
   imgAlt: 'Баннер',
 };

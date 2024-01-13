@@ -1,6 +1,6 @@
 import React from 'react';
 import './HelpfulInformation.css';
-import PropTypes from 'prop-types';
+import { node, string } from 'prop-types';
 import Title from '../../generic/Title/Title';
 
 export default function HelpfulInformation({
@@ -12,18 +12,20 @@ export default function HelpfulInformation({
 }) {
   return (
     <section className={`helpful-information ${sectionClassName}`}>
-      <Title size={size} text={text} />
-      <div className={`helpful-information__container ${containerClassName}`}>{children}</div>
+      <div className="helpful-information__container">
+        <Title size={size} text={text} />
+        <div className={`helpful-information__info ${containerClassName}`}>{children}</div>
+      </div>
     </section>
   );
 }
 
 HelpfulInformation.propTypes = {
-  children: PropTypes.node,
-  containerClassName: PropTypes.string,
-  sectionClassName: PropTypes.string,
-  size: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  children: node,
+  containerClassName: string,
+  sectionClassName: string,
+  size: string.isRequired,
+  text: string.isRequired,
 };
 
 HelpfulInformation.defaultProps = {

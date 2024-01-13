@@ -1,66 +1,115 @@
 .about-problems {
-  padding: 120px 80px;
+  padding: 120px 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 48px;
+  align-items: center;
 }
 
-.about-problems__cards {
-  display: grid;
-  margin: auto;
-  list-style: none;
+.about-problems__container {
   max-width: 1280px;
-  grid: repeat(2, 234px) / repeat(12, 1fr);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 48px;
+}
+
+.about-problems__list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   gap: 20px;
+  max-width: 1280px;
+  width: 100%;
 }
 
 .about-problems__card {
-  display: grid;
-  padding: 32px 28px 20px 32px;
-  grid: repeat(2, 1fr) / 1fr;
   border: 1px solid;
   border-color: var(--border-color-medium-violet);
   border-radius: 12px;
+  padding: 32px 32px 20px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
 }
 
 .about-problems__description {
   font-family: var(--font-family-lato);
   font-size: var(--text-font-size-s);
-  line-height: 1.3;
+  line-height: 26px;
   font-weight: var(--text-font-size-s);
   color: var(--text-color-dark-blue);
 }
 
 .about-problems__img {
   object-fit: contain;
-  justify-self: end;
-  align-self: end;
+  align-self: flex-end;
+  height: 120px;
+  width: 120px;
 }
 
-.about-problems__card:first-child {
-  grid-column: span 6;
-  grid: 1fr / 1fr 0.5fr;
-  padding-right: 48px;
+.about-problems__card:nth-child(1) {
+  max-width: 630px;
 }
 
-.about-problems__card:nth-child(2) {
-  grid-column: span 3;
+.about-problems__card:nth-child(1) .about-problems__description {
+  max-width: 368px;
 }
 
+.about-problems__card:nth-child(2),
 .about-problems__card:nth-child(3) {
-  grid-column: span 3;
+  max-width: 305px;
 }
 
-.about-problems__card:nth-child(4) {
-  grid-column: span 4;
-  padding-bottom: 28px;
+.about-problems__card:nth-child(4),
+.about-problems__card:nth-child(5),
+.about-problems__card:nth-child(6) {
+  max-width: 413px;
 }
 
-.about-problems__card:nth-child(5) {
-  grid-column: span 4;
+@media screen and (max-width: 1439px) {
+  .about-problems__card:nth-child(1),
+  .about-problems__card:nth-child(2),
+  .about-problems__card:nth-child(3),
+  .about-problems__card:nth-child(4),
+  .about-problems__card:nth-child(5),
+  .about-problems__card:nth-child(6) {
+    max-width: unset;
+    width: 100%;
+  }
+
+  .about-problems__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .about-problems {
+    padding: 120px 80px;
+  }
 }
 
-.about-problems__card:last-child {
-  grid-column: span 4;
-  padding-bottom: 28px;
+@media screen and (max-width: 960px) {
+  .about-problems__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-problems {
+    padding: 80px 24px;
+  }
+
+  .about-problems__container {
+    row-gap: 32px;
+  }
+}
+
+@media screen and (max-width: 565px) {
+  .about-problems__list {
+    display: flex;
+    flex-direction: column;
+  }
 }

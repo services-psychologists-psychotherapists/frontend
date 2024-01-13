@@ -2,19 +2,17 @@
 .button {
   background-color: inherit;
   border: none;
-  padding: 0;
   text-decoration: none;
-
-  border-radius: 20px;
-
   font-family: var(--font-family-lato);
   font-weight: 400;
   line-height: 1.33;
-
-  transition: 0.3s ease-in-out;
+  transition: .3s ease-in-out;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   white-space: nowrap;
+  border-radius: 20px;
 }
 
 .button_disabled {
@@ -23,7 +21,6 @@
 }
 
 /* Установка размеров кнопки */
-
 .button_size_m {
   padding: 12px 24px;
   font-size: 14px;
@@ -35,7 +32,6 @@
 }
 
 /* Стили для кнопки Primary */
-
 .button__primary {
   color: var(--text-color-white);
   background-color: var(--border-color-dark-violet);
@@ -72,12 +68,12 @@
   display: inline-block;
   top: 0;
   left: -100%;
-  transition: 0.3s ease-in-out;
+  transition: .3s ease-in-out;
 }
 
 .button__secondary_active:hover {
   box-shadow: inset 0 0 0 2px var(--border-color-medium-violet);
-  transition: 0.3s ease-in-out;
+  transition: .3s ease-in-out;
   color: var(--bg-color-white);
 }
 
@@ -99,7 +95,6 @@
 }
 
 /* Стили для кнопки Text */
-
 .button__text,
 .button__text-icon {
   padding: 8px;
@@ -116,7 +111,6 @@
 }
 
 /* Стили для кнопки c иконкой */
-
 .button__text-icon {
   display: flex;
   align-items: center;
@@ -127,12 +121,12 @@
   width: 8px;
   height: 14px;
   fill: none;
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .button__text-icon_active:hover svg {
   transform: translateX(-3px);
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .button__text-icon svg path {
@@ -145,6 +139,7 @@
 .button__text-icon_active:hover svg path {
   stroke: var(--border-color-medium-violet);
 }
+
 .button__text-icon_disabled svg path {
   stroke: #9b9da0;
 }

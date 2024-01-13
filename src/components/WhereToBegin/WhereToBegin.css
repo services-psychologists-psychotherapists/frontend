@@ -1,28 +1,38 @@
 .where-to-begin {
-  padding: 100px 80px 120px;
+  padding: 100px 0 120px;
   background-color: rgba(212, 238, 228, 0.3);
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  align-items: center;
+  width: 100%;
 }
 
-.where-to-begin__cards {
-  list-style: none;
+.where-to-begin__title {
+  margin-bottom: 8px;
+}
+
+.where-to-begin__container {
+  max-width: 1280px;
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  row-gap: 40px;
+}
+
+.where-to-begin__list {
+  list-style: none;
   gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .where-to-begin__card {
-  padding: 32px 28px 40px 32px;
+  padding: 32px 32px 40px;
   display: flex;
   flex-direction: column;
-  flex: 1 1 0;
   gap: 60px;
-  max-width: 413px;
-  aspect-ratio: calc(413 / 308);
-  border: 1px solid;
-  border-color: var(--border-color-medium-violet);
+  width: 100%;
+  border: 1px solid var(--border-color-medium-violet);
   border-radius: 12px;
 }
 
@@ -31,7 +41,7 @@
   color: var(--border-color-dark-violet);
   font-size: var(--text-font-size-m);
   font-weight: 500;
-  line-height: 1.22;
+  line-height: normal;
 }
 
 .where-to-begin__description {
@@ -39,21 +49,56 @@
   color: var(--text-color-dark-blue);
   font-size: var(--text-font-size-s);
   font-weight: var(--text-weight-primary);
-  line-height: 1.3;
+  line-height: 26px;
 }
 
 .where-to-begin__button {
   align-self: flex-end;
 }
 
-.where-to-begin__card_color_white {
+.where-to-begin__card:nth-child(1) {
   background-color: var(--text-color-white);
 }
 
-.where-to-begin__card_color_beige {
+.where-to-begin__card:nth-child(2) {
   background-color: var(--bg-color-loight-yellow);
 }
 
-.where-to-begin__card_color_light-violet {
+.where-to-begin__card:nth-child(3) {
   background-color: var(--bg-color-light-violet);
+}
+
+@media screen and (max-width: 1440px) {
+  .where-to-begin {
+    padding: 100px 80px 120px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .where-to-begin__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .where-to-begin__card {
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .where-to-begin {
+    padding: 80px 24px 120px;
+  }
+
+  .where-to-begin__card {
+    gap: 24px;
+  }
+
+  .where-to-begin__button {
+    align-self: flex-start;
+  }
+
+  .where-to-begin__container {
+    row-gap: 32px;
+  }
 }

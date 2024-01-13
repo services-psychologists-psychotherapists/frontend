@@ -7,24 +7,30 @@ import { CUSTOMER_STEPS } from '../../constants/constants';
 export default function WhereToBegin() {
   return (
     <section className="where-to-begin">
-      <Title size="m" text="С чего начать?" />
-      <ul className="where-to-begin__cards">
-        {CUSTOMER_STEPS.map((el) => (
-          <li
-            className={`where-to-begin__card where-to-begin__card_color_${el.bgColor}`}
-            key={el.numberStep}
-          >
-            <span className="where-to-begin__subtitle-number">{el.numberStep}</span>
-            <p className="where-to-begin__description">{el.descriptionStep}</p>
-          </li>
-        ))}
-      </ul>
-      <Button
-        href="/directory_psychologists"
-        className="where-to-begin__button"
-      >
-        Каталог психологов
-      </Button>
+      <div className="where-to-begin__container">
+        <Title
+          size="m"
+          text="С чего начать?"
+          className="where-to-begin__title"
+        />
+        <ul className="where-to-begin__list">
+          {CUSTOMER_STEPS.map((el) => (
+            <li
+              className="where-to-begin__card"
+              key={el.numberStep}
+            >
+              <span className="where-to-begin__subtitle-number">{el.numberStep}</span>
+              <p className="where-to-begin__description">{el.descriptionStep}</p>
+            </li>
+          ))}
+        </ul>
+        <Button
+          href="/directory_psychologists"
+          className="where-to-begin__button"
+        >
+          Каталог психологов
+        </Button>
+      </div>
     </section>
   );
 }

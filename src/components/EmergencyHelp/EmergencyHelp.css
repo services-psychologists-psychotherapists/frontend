@@ -4,14 +4,15 @@
   font-size: 22px;
   font-weight: 500;
   line-height: 30px;
-  max-width: 667px;
+  max-width: 665px;
   width: 100%;
 }
 
 .emergency-help__contacts {
-  display: grid;
+  display: flex;
+  flex-direction: row;
   gap: 25px 20px;
-  grid-template-columns: repeat(3, minmax(min-content, max-content));
+  list-style-type: none;
 }
 
 .emergency-help__contacts-element {
@@ -19,7 +20,6 @@
   flex-direction: column;
   align-items: flex-start;
   row-gap: 12px;
-  max-width: 392px;
   width: 100%;
 }
 
@@ -36,4 +36,10 @@
   font-family: var(--font-family-lato);
   font-size: 18px;
   line-height: 24px;
+}
+
+@media screen and (max-width: 768px) {
+  .emergency-help__contacts {
+    flex-wrap: wrap;
+  }
 }

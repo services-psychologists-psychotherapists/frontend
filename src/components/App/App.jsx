@@ -108,6 +108,7 @@ export default function App() {
   const signOut = () => {
     setIsLoggedIn(false);
     localStorage.clear();
+    setCurrentUser({});
     navigate('/');
   };
 

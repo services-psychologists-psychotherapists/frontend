@@ -1,0 +1,22 @@
+.welcome {
+  display: flex;
+  flex-direction: column;
+  padding-top: 106px;
+  height: 704px;
+  width: 100%;
+  align-items: center;
+}
+
+@media screen and (max-width: 1440px) {
+  .welcome {
+    padding: 106px 80px 0;
+    height: 644px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .welcome {
+    padding: 40px 24px 0;
+    height: 602px;
+  }
+}
