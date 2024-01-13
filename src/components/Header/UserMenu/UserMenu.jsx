@@ -37,7 +37,7 @@ export default function UserMenu({
   return (
     <div className="dropdown" ref={ref}>
       <button type="button" className="user" onClick={handleClickMenu}>
-        <Avatar src={currentUser.avatar} size="xs" />
+        {isLoggedIn && (<Avatar src={currentUser.avatar} size="xs" />)}
         <p className={`user__name ${isOpen ? 'user__name_opened' : ''}`}>
           {`${currentUser.first_name}`}
         </p>
