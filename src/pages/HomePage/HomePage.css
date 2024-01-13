@@ -1,0 +1,12 @@
+.home-page__welcome-image {
+  display: block;
+  object-fit: contain;
+  width: 49%;
+}
+
+@media screen and (max-width: 768px) {
+  .home-page__welcome-image {
+    width: 327px;
+    height: 226px;
+  }
+}

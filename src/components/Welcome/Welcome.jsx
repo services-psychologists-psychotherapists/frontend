@@ -1,20 +1,38 @@
 import React from 'react';
+import { string, bool } from 'prop-types';
 import './Welcome.css';
 import Banner from '../Banner/Banner';
 import Background from '../generic/Background/Background';
-import bannerImg from '../../images/home_banner.svg';
 
-export default function Welcome() {
+export default function Welcome({
+  bannerImg, descr, text, title,
+  href, inimationStatus, imageClasses,
+}) {
   return (
     <section className="welcome">
-      <Background animated />
+      <Background animated={inimationStatus} />
       <Banner
-        description="Все психологи подтвердили образование,  прошли интервью и готовы оказать всю необходимую поддержку и помощь"
+        description={descr}
         imgLink={bannerImg}
-        textBtn="Подобрать психолога"
-        title="Подберем психолога, который вам поможет"
-        href="/directory_psychologists"
+        textBtn={text}
+        title={title}
+        href={href}
+        imageClasses={imageClasses}
       />
     </section>
   );
 }
+
+Welcome.propTypes = {
+  bannerImg: string.isRequired,
+  descr: string.isRequired,
+  text: string.isRequired,
+  title: string.isRequired,
+  href: string.isRequired,
+  inimationStatus: bool.isRequired,
+  imageClasses: string,
+};
+
+Welcome.defaultProps = {
+  imageClasses: '',
+};

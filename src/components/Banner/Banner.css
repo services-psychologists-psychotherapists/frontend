@@ -4,7 +4,6 @@
   width: 100%;
   align-items: center;
   overflow: hidden;
-  height: 434px;
 }
 
 .banner__text {
@@ -26,12 +25,6 @@
   padding-bottom: 12px;
 }
 
-.banner__img {
-  display: block;
-  object-fit: contain;
-  width: 49%;
-}
-
 @media screen and (max-width: 1250px) {
   .banner__description {
     font-size: 18px;
@@ -49,11 +42,6 @@
   .banner__text {
     width: 100%;
     gap: 16px;
-  }
-
-  .banner__img {
-    width: 327px;
-    height: 226px;
   }
 
   .banner__description {

@@ -5,7 +5,9 @@ import Button from '../generic/Button/Button';
 import Title from '../generic/Title/Title';
 
 export default function Banner({
-  imgLink, textBtn, title, description, imgAlt, href
+  imgLink, textBtn, title,
+  description, imgAlt, href,
+  imageClasses,
 }) {
   return (
     <div className="banner">
@@ -14,7 +16,7 @@ export default function Banner({
         <p className="banner__description">{description}</p>
         <Button href={href}>{textBtn}</Button>
       </div>
-      <img className="banner__img" src={imgLink} alt={imgAlt} />
+      <img className={imageClasses} src={imgLink} alt={imgAlt} />
     </div>
   );
 }
@@ -26,8 +28,10 @@ Banner.propTypes = {
   imgLink: string.isRequired,
   textBtn: string.isRequired,
   href: string.isRequired,
+  imageClasses: string,
 };
 
 Banner.defaultProps = {
   imgAlt: 'Баннер',
+  imageClasses: '',
 };
