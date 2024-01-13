@@ -47,53 +47,36 @@ export const NUMBER_OF_PSYCHO_DISPLAYED = 5;
 
 export const PASSWORD_PROMPT = 'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ.';
 
-export const HEADER_NAV_LINKS = [
-  {
-    text: 'Каталог психологов',
-    link: '/directory_psychologists',
-  },
-  {
-    text: 'Психологам',
-    link: '/for_a_therapist',
-  },
-];
-
 export const CUSTOMER_PROBLEMS = [
   {
-    problemNumber: '1',
     problemName: 'Справиться со стрессом, чувством тревоги, страха и паники',
     imgPath: stress,
-    imgAlt: 'stress',
+    imgAlt: 'Стресс',
   },
   {
-    problemNumber: '2',
     problemName: 'Преодолеть трудности в отношениях',
     imgPath: relationship,
-    imgAlt: 'relationship',
+    imgAlt: 'Отношения',
   },
   {
-    problemNumber: '3',
     problemName: 'Разобраться в себе, повысить самооценку',
     imgPath: yourself,
-    imgAlt: 'yourself',
+    imgAlt: 'Самооценка',
   },
   {
-    problemNumber: '4',
     problemName: 'Определиться с планами на жизнь и построить карьеру',
     imgPath: career,
-    imgAlt: 'career',
+    imgAlt: 'Карьера',
   },
   {
-    problemNumber: '5',
     problemName: 'Справиться с эмоциями после травмирующих событий',
     imgPath: posttraumatic,
-    imgAlt: 'posttraumatic',
+    imgAlt: 'Травмы',
   },
   {
-    problemNumber: '6',
     problemName: 'Проработать зависимости и нежелательные привычки',
     imgPath: badHabits,
-    imgAlt: 'badHabits',
+    imgAlt: 'Привычки',
   },
 ];
 
@@ -134,19 +117,16 @@ export const CUSTOMER_STEPS = [
     numberStep: '01',
     descriptionStep:
       'Выберите психолога через каталог, с помощью нужных фильтров. Все психологи подтвердили образование, прошли тест и интервью.',
-    bgColor: 'white',
   },
   {
     numberStep: '02',
     descriptionStep:
       'Запишитесь к психологу на онлайн-сессию. Терапия с нами — это безопасно и конфиденциально.',
-    bgColor: 'beige',
   },
   {
     numberStep: '03',
     descriptionStep:
       'Управляйте своим расписанием в личном кабинете. Удобно переносить и отменять сессии при необходимости.',
-    bgColor: 'light-violet',
   },
 ];
 
@@ -201,13 +181,6 @@ export const SERVICE_DOCUMENTS = {
     },
   ],
 };
-
-export const HEADER_DROPDOWN_LINKS = [
-  {
-    text: 'Личный кабинет',
-    link: '/client_account',
-  },
-];
 
 export const INPUT_ICONS = {
   openedEye,
@@ -342,7 +315,17 @@ export const PSYCHOLOGIST_ACCOUNT_TITLES = {
     pageTitle: 'Профиль',
   },
 };
-export const HEADER_BURGER_MENU_LINKS = [...HEADER_DROPDOWN_LINKS, ...HEADER_NAV_LINKS];
+
+export const HEADER_NAV_LINKS = [
+  {
+    text: 'Каталог психологов',
+    link: '/directory_psychologists',
+  },
+  {
+    text: 'Психологам',
+    link: '/for_a_therapist',
+  },
+];
 
 export const SCREEN_SM = 480;
 export const SCREEN_MD = 768;

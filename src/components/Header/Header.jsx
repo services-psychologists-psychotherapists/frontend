@@ -7,9 +7,11 @@ import { HEADER_NAV_LINKS, POPUP_DATA } from '../../constants/constants';
 import NavLinksList from '../NavLinksList/NavLinksList';
 import UserMenu from './UserMenu/UserMenu';
 import { usePopup } from '../../hooks/usePopup';
+import { useResize } from '../../hooks/useResize';
 
 export default function Header({ isLoggedIn, signOut }) {
   const { setOnClick, setValue } = usePopup();
+  const { isScreenMd } = useResize();
 
   const handleOut = () => {
     setOnClick(() => signOut);
@@ -18,17 +20,31 @@ export default function Header({ isLoggedIn, signOut }) {
 
   return (
     <header className="header">
-      <Logo />
-      <nav className="header__nav">
-        <NavLinksList list={HEADER_NAV_LINKS} signOut={signOut} />
-        {isLoggedIn ? (
-          <UserMenu signOut={handleOut} />
-        ) : (
-          <Button variant="secondary" href="/signin">
+      <section className="header__container">
+        <Logo />
+        <nav className="header__nav">
+          <NavLinksList
+            list={HEADER_NAV_LINKS}
+            signOut={signOut}
+          />
+          {!isLoggedIn && (
+          <Button
+            variant="secondary"
+            href="/signin"
+            className="header__button"
+          >
             Войти
           </Button>
-        )}
-      </nav>
+          )}
+          {(isLoggedIn || !isScreenMd) && (
+            <UserMenu
+              signOut={handleOut}
+              isScreenMd={isScreenMd}
+              isLoggedIn={isLoggedIn}
+            />
+          )}
+        </nav>
+      </section>
     </header>
   );
 }

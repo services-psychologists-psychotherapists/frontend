@@ -5,8 +5,21 @@
   right: 0;
   left: 0;
   bottom: 0;
-  max-height: 740px;
+  height: 800px;
   z-index: -100;
+  width: 100%;
+}
+
+@media screen and (max-width: 1440px) {
+  .background-container {
+    height: 740px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .background-container {
+    height: 706px;
+  }
 }
 
 .background {
@@ -26,6 +39,7 @@
   top: -20%;
   left: -10%;
 }
+
 .circle_size_s {
   width: 50%;
   padding-bottom: 50%;
@@ -33,6 +47,7 @@
   top: 20%;
   right: 5%;
 }
+
 .circle_size_xs {
   width: 30%;
   padding-bottom: 30%;
@@ -40,6 +55,7 @@
   top: -60%;
   right: 5%;
 }
+
 .circle_size_l {
   width: 68%;
   padding-bottom: 68%;
@@ -52,12 +68,15 @@
 .circle__l_animated {
   animation: trans-right-down 30s ease-in-out infinite;
 }
+
 .circle__m_animated {
   animation: trans-left-down 20s ease-in-out infinite;
 }
+
 .circle__s_animated {
   animation: trans-right-up 20s ease-in-out infinite;
 }
+
 .circle__xs_animated {
   animation: trans-left-up 10s ease-in-out infinite;
 }
@@ -66,15 +85,19 @@
   0% {
     transform: translate(0, 0);
   }
+
   25% {
     transform: translate(90%, 30%);
   }
+
   50% {
     transform: translate(20%, 60%);
   }
+
   75% {
     transform: translate(100%, -10%);
   }
+
   100% {
     transform: translate(0, 0);
   }
@@ -84,15 +107,19 @@
   0% {
     transform: translate(0, 0);
   }
+
   25% {
     transform: translate(-90%, 60%);
   }
+
   50% {
     transform: translate(0%, 20%);
   }
+
   75% {
     transform: translate(-100%, 30%);
   }
+
   100% {
     transform: translate(0, 0);
   }
@@ -102,15 +129,19 @@
   0% {
     transform: translate(0, 0);
   }
+
   25% {
     transform: translate(-100%, -40%);
   }
+
   50% {
     transform: translate(10%, -30%);
   }
+
   75% {
     transform: translate(-80%, -60%);
   }
+
   100% {
     transform: translate(0, 0);
   }
@@ -120,15 +151,19 @@
   0% {
     transform: translate(0, 0);
   }
+
   25% {
     transform: translate(0, 150%);
   }
+
   50% {
     transform: translate(-140%, 100%);
   }
+
   75% {
     transform: translate(100%, 160%);
   }
+
   100% {
     transform: translate(0, 0);
   }

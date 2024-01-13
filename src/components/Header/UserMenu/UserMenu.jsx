@@ -1,29 +1,38 @@
 import React, { useContext, useRef, useState } from 'react';
-import { func } from 'prop-types';
+import { func, bool } from 'prop-types';
 import './UserMenu.css';
 import CurrentUserContext from '../../../Context/CurrentUserContext';
 import NavLinksList from '../../NavLinksList/NavLinksList';
-import { HEADER_DROPDOWN_LINKS, HEADER_BURGER_MENU_LINKS } from '../../../constants/constants';
+import { HEADER_NAV_LINKS } from '../../../constants/constants';
 import useOutsideClick from '../../../hooks/useOnClickOutside';
 import Avatar from '../../generic/Avatar/Avatar';
-import { useResize } from '../../../hooks/useResize';
 
-export default function UserMenu({ signOut }) {
+export default function UserMenu({
+  signOut, isScreenMd, isLoggedIn,
+}) {
   const currentUser = useContext(CurrentUserContext);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef();
-  const { isScreenMd } = useResize();
-  HEADER_DROPDOWN_LINKS[0].link = `${currentUser.role}_account`;
+  const userLink = {
+    text: 'Личный кабинет',
+    link: `${currentUser.role}_account`,
+  };
 
-  const navLinks = isScreenMd ? HEADER_DROPDOWN_LINKS : HEADER_BURGER_MENU_LINKS;
+  const getNavLinks = () => {
+    if (isLoggedIn && !isScreenMd) {
+      return [...HEADER_NAV_LINKS, userLink];
+    }
+    if (isLoggedIn && isScreenMd) {
+      return [userLink];
+    }
+    return HEADER_NAV_LINKS;
+  };
 
   useOutsideClick(ref, () => {
     setIsOpen(false);
   });
 
-  function handleClickMenu() {
-    setIsOpen(!isOpen);
-  }
+  const handleClickMenu = () => setIsOpen(!isOpen);
 
   return (
     <div className="dropdown" ref={ref}>
@@ -32,14 +41,23 @@ export default function UserMenu({ signOut }) {
         <p className={`user__name ${isOpen ? 'user__name_opened' : ''}`}>
           {`${currentUser.first_name}`}
         </p>
+        {!isScreenMd && (
+          <div className={`burger-menu${isOpen ? ' burger-menu_opened' : ''}`}>
+            <span className="burger-menu__point" />
+            <span className="burger-menu__point" />
+            <span className="burger-menu__point" />
+          </div>
+        )}
       </button>
       <ul className={`dropdown__list ${isOpen ? 'dropdown__list_opened' : ''}`}>
-        <NavLinksList list={navLinks} direction="column" />
+        <NavLinksList list={getNavLinks()} direction="column" />
+        {isLoggedIn && (
         <li>
           <button className="exit-btn" onClick={signOut}>
             Выйти
           </button>
         </li>
+        )}
       </ul>
     </div>
   );
@@ -47,4 +65,6 @@ export default function UserMenu({ signOut }) {
 
 UserMenu.propTypes = {
   signOut: func.isRequired,
+  isScreenMd: bool.isRequired,
+  isLoggedIn: bool.isRequired,
 };

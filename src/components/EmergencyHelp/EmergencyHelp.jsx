@@ -10,14 +10,14 @@ export default function EmergencyHelp() {
         Если вам требуется экстренная помощь в серьезной или угрожающей жизни ситуации — обратитесь
         в одну из этих организаций:
       </p>
-      <div className="emergency-help__contacts">
+      <ul className="emergency-help__contacts">
         {EMERGENCY_SERVICES.map((el) => (
-          <div className="emergency-help__contacts-element" key={el.number}>
+          <li className="emergency-help__contacts-element" key={el.number}>
             <h3 className="emergency-help__contacts-title">{el.number}</h3>
             <p className="emergency-help__contacts-description">{el.service}</p>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </HelpfulInformation>
   );
 }

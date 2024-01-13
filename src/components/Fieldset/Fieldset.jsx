@@ -71,10 +71,8 @@ export default function Fieldset({
     }
   }, [selectedDropdownItems]);
 
-  const getFielsetClasses = (classes) => (classes ? ` ${classes}` : '');
-
   return (
-    <fieldset className={`fieldset${getFielsetClasses(fieldsetClasses)}`} id={name}>
+    <fieldset className={`fieldset${fieldsetClasses ? ` ${fieldsetClasses}` : ''}`} id={name}>
       <Field
         element={element}
         title={title}

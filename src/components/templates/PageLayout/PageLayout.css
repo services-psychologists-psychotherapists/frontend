@@ -8,7 +8,7 @@
   grid-template-rows: auto 1fr;
   column-gap: 20px;
   row-gap: 40px;
-  padding: 0 80px 100px;
+  padding: 0 0 100px;
   position: relative;
 }
 

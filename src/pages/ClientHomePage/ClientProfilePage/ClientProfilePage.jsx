@@ -1,6 +1,5 @@
 import React from 'react';
 import { object, string, func } from 'prop-types';
-import './ClientProfilePage.css';
 import PageLayout from '../../../components/templates/PageLayout/PageLayout';
 import NavLinksList from '../../../components/NavLinksList/NavLinksList';
 import { CLIENT_PROFILE_NAV_LINKS } from '../../../constants/constants';

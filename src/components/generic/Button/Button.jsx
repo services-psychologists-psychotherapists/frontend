@@ -1,6 +1,6 @@
 import React from 'react';
 import './Button.css';
-import PropTypes from 'prop-types';
+import { func, node, bool, string, oneOf } from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export default function Button({
@@ -23,7 +23,7 @@ export default function Button({
     onClick(e);
   };
 
-  function props() {
+  const props = () => {
     if (href !== '') {
       if (disabled) {
         return '';
@@ -31,7 +31,7 @@ export default function Button({
       return { to: href, onClick: () => onClick() };
     }
     return { type, onClick: handlerBtnClick };
-  }
+  };
 
   return (
     <Tag className={classes} disabled={disabled} size={size} {...props()}>
@@ -39,23 +39,21 @@ export default function Button({
         <svg>
           <path d="M7 1L1 7L7 13" />
         </svg>
-      ) : (
-        ''
-      )}
+      ) : ''}
       <span>{children}</span>
     </Tag>
   );
 }
 
 Button.propTypes = {
-  onClick: PropTypes.func,
-  children: PropTypes.node.isRequired,
-  type: PropTypes.oneOf(['button', 'submit']),
-  disabled: PropTypes.bool,
-  variant: PropTypes.oneOf(['primary', 'secondary', 'text', 'text-icon']),
-  className: PropTypes.string,
-  size: PropTypes.oneOf(['l', 'm']),
-  href: PropTypes.string,
+  onClick: func,
+  children: node.isRequired,
+  type: oneOf(['button', 'submit']),
+  disabled: bool,
+  variant: oneOf(['primary', 'secondary', 'text', 'text-icon']),
+  className: string,
+  size: oneOf(['l', 'm']),
+  href: string,
 };
 
 Button.defaultProps = {

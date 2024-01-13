@@ -1,0 +1,12 @@
+.psychologists__welcome-image {
+  display: block;
+  object-fit: contain;
+  width: 49%;
+}
+
+@media screen and (max-width: 768px) {
+  .psychologists__welcome-image {
+    width: 327px;
+    height: 301px;
+  }
+}
