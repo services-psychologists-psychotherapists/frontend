@@ -80,3 +80,9 @@
     row-gap: 20px;
   }
 }
+
+@media screen and (max-width: 400px) {
+  .terms-cooperation__button {
+    width: 100%;
+  }
+}
