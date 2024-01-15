@@ -19,7 +19,7 @@ export default function UserMenu({
   };
 
   const getNavLinks = () => {
-    if (isLoggedIn && !isScreenMd) {
+    if (isLoggedIn && isScreenMd) {
       return [...HEADER_NAV_LINKS, userLink];
     }
     if (isLoggedIn && isScreenMd) {
@@ -41,7 +41,7 @@ export default function UserMenu({
         <p className={`user__name ${isOpen ? 'user__name_opened' : ''}`}>
           {`${currentUser.first_name}`}
         </p>
-        {!isScreenMd && (
+        {isScreenMd && (
           <div className={`burger-menu${isOpen ? ' burger-menu_opened' : ''}`}>
             <span className="burger-menu__point" />
             <span className="burger-menu__point" />

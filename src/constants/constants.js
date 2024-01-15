@@ -330,6 +330,8 @@ export const HEADER_NAV_LINKS = [
 export const SCREEN_SM = 480;
 export const SCREEN_MD = 768;
 
+export const SCROLL_WIDTH_FOR_PSYCHO_PAGE = 1175;
+
 export const SCROLL_SPEED = 1;
 export const LENGTH_TO_START_SCROLLING = 5;
 

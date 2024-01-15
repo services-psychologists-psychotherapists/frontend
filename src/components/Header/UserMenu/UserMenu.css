@@ -20,7 +20,7 @@
 
 .user:hover .user__name {
   transform: scale(1.1);
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .user__name {
@@ -29,14 +29,14 @@
   font-size: 18px;
   font-weight: 400;
   color: var(--text-color-dark-blue);
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .user__name::after {
   display: block;
   content: '';
   opacity: 0;
-  transition: 0.2s;
+  transition: .2s;
   position: absolute;
   background-color: var(--border-color-dark-violet);
   height: 1px;
@@ -73,7 +73,7 @@
   visibility: visible;
   opacity: 1;
   transition:
-    opacity 0.3s ease-in-out,
+    opacity .3s ease-in-out,
     visibility 0s;
 }
 
@@ -85,12 +85,12 @@
   font-weight: 400;
   color: var(--text-color-dark-blue);
   cursor: pointer;
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .exit-btn:hover {
   transform: scale(1.1);
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .burger-menu {

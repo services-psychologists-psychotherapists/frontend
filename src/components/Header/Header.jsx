@@ -36,7 +36,7 @@ export default function Header({ isLoggedIn, signOut }) {
             Войти
           </Button>
           )}
-          {(isLoggedIn || !isScreenMd) && (
+          {(isLoggedIn || isScreenMd) && (
             <UserMenu
               signOut={handleOut}
               isScreenMd={isScreenMd}

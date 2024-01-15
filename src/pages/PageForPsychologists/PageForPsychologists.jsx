@@ -21,6 +21,10 @@ export default function PageForPsychologists() {
         href="/psychologists_registration"
         imageClasses="psychologists__welcome-image"
         inimationStatus={false}
+        bannerClasses="psychologists__banner"
+        textClasses="psychologists__banner-text"
+        sectionClasses="psychologists__welcome"
+        backgroundClasses="psychologists__background"
       />
       <WorkWithUs />
       <HowToStart />
