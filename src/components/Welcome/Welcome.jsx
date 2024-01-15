@@ -1,24 +1,31 @@
 import React from 'react';
 import { string, bool } from 'prop-types';
 import './Welcome.css';
-import Banner from '../Banner/Banner';
+import Button from '../generic/Button/Button';
+import Title from '../generic/Title/Title';
 import Background from '../generic/Background/Background';
 
 export default function Welcome({
   bannerImg, descr, text, title,
   href, inimationStatus, imageClasses,
+  bannerClasses, textClasses,
+  sectionClasses, backgroundClasses,
 }) {
   return (
-    <section className="welcome">
-      <Background animated={inimationStatus} />
-      <Banner
-        description={descr}
-        imgLink={bannerImg}
-        textBtn={text}
-        title={title}
-        href={href}
-        imageClasses={imageClasses}
-      />
+    <section className={`welcome${sectionClasses ? ` ${sectionClasses}` : ''}`}>
+      <Background animated={inimationStatus} backgroundClasses={backgroundClasses} />
+      <div className={`banner${bannerClasses ? ` ${bannerClasses}` : ''}`}>
+        <div className={`banner__text${textClasses ? ` ${textClasses}` : ''}`}>
+          <Title
+            size="l"
+            text={title}
+            titleLvl="1"
+          />
+          <p className="banner__description">{descr}</p>
+          <Button href={href}>{text}</Button>
+        </div>
+        <img className={imageClasses} src={bannerImg} alt="Логотип" />
+      </div>
     </section>
   );
 }
@@ -29,10 +36,19 @@ Welcome.propTypes = {
   text: string.isRequired,
   title: string.isRequired,
   href: string.isRequired,
-  inimationStatus: bool.isRequired,
+  inimationStatus: bool,
   imageClasses: string,
+  bannerClasses: string,
+  textClasses: string,
+  sectionClasses: string,
+  backgroundClasses: string,
 };
 
 Welcome.defaultProps = {
   imageClasses: '',
+  bannerClasses: '',
+  inimationStatus: false,
+  textClasses: '',
+  sectionClasses: '',
+  backgroundClasses: '',
 };

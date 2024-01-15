@@ -13,7 +13,6 @@
 
 .time-container::-webkit-scrollbar {
   /* Стили повторяются, подумать */
-  background-color: var(--bg-color-white);
   height: 4px;
   border-radius: 4px;
 }

@@ -5,7 +5,6 @@ import { oneOf, string, object, oneOfType } from 'prop-types';
 export default function Title({
   size, text, titleLvl, className,
 }) {
-  // Heading Title ?
   const Heading = `h${titleLvl}`;
   return (
     <Heading

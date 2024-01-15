@@ -5,7 +5,7 @@
   text-decoration: none;
   font-family: var(--font-family-lato);
   font-weight: 400;
-  line-height: 1.33;
+  line-height: 24px;
   transition: .3s ease-in-out;
   cursor: pointer;
   display: flex;
@@ -142,4 +142,10 @@
 
 .button__text-icon_disabled svg path {
   stroke: #9b9da0;
+}
+
+@media screen and (max-width: 374px) {
+  .button {
+    width: 100%;
+  }
 }

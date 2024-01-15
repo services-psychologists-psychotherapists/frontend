@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { string, func, object, bool } from 'prop-types';
 import './PsychologistRegistration.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
@@ -80,6 +80,10 @@ export default function PsychologistRegistration({
   const switchPrevStep = () => {
     setStep(step - 1);
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

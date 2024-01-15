@@ -1,12 +1,58 @@
 .psychologists__welcome-image {
   display: block;
   object-fit: contain;
+  max-width: 522px;
+  max-height: 480px;
   width: 49%;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 950px) {
+  .psychologists__banner {
+    flex-direction: column;
+    height: 626px;
+    row-gap: 40px;
+    justify-content: unset;
+  }
+  
+  .psychologists__banner-text {
+    max-width: unset;
+    width: 100%;
+    gap: 16px;
+  }
+
   .psychologists__welcome-image {
     width: 327px;
     height: 301px;
+  }
+
+  .psychologists__welcome {
+    padding-top: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .psychologists__welcome {
+    height: 610px;
+  }
+
+  .psychologists__background {
+    height: 714px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .psychologists__welcome {
+    height: 652px;
+  }
+
+  .psychologists__background {
+    height: 756px;
+  }
+}
+
+@media screen and (max-width: 374px) {
+  .psychologists__welcome-image {
+    width: 100%;
+    
   }
 }

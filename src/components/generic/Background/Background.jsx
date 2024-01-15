@@ -1,14 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { bool, string } from 'prop-types';
 import './Background.css';
 
-export default function Background({ animated }) {
+export default function Background({
+  animated, backgroundClasses,
+}) {
   const circleClassName = (size) => (
     `circle circle_size_${size} circle__${size}_${animated && 'animated'}`
   );
 
   return (
-    <div className="background-container">
+    <div className={`background-container${backgroundClasses ? ` ${backgroundClasses}` : ''}`}>
       <div className="background">
         <div className={circleClassName('s')} />
         <div className={circleClassName('l')} />
@@ -20,8 +22,10 @@ export default function Background({ animated }) {
 }
 
 Background.propTypes = {
-  animated: PropTypes.bool,
+  animated: bool,
+  backgroundClasses: string,
 };
 Background.defaultProps = {
   animated: false,
+  backgroundClasses: '',
 };
