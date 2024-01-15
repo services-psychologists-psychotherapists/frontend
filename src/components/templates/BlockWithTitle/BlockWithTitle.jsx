@@ -5,7 +5,7 @@ import Title from '../../generic/Title/Title';
 
 export default function BlockWithTitle({
   children, title, size, constainerClasses,
-  titleLvl,
+  titleLvl, titleClasses,
 }) {
   return (
     <div
@@ -14,7 +14,12 @@ export default function BlockWithTitle({
           ? ` ${constainerClasses}` : ''} block-template_size_${size}`
       }
     >
-      <Title size={size} text={title} titleLvl={titleLvl} />
+      <Title
+        size={size}
+        text={title}
+        titleLvl={titleLvl}
+        className={titleClasses}
+      />
       {children}
     </div>
   );
@@ -26,10 +31,12 @@ BlockWithTitle.propTypes = {
   size: oneOf(['xs', 'm']),
   constainerClasses: string,
   titleLvl: string,
+  titleClasses: string,
 };
 
 BlockWithTitle.defaultProps = {
   size: 'xs',
   constainerClasses: '',
   titleLvl: '3',
+  titleClasses: '',
 };

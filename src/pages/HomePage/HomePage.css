@@ -12,3 +12,9 @@
     height: 226px;
   }
 }
+
+@media screen and (max-width: 374px) {
+  .home-page__welcome-image {
+    width: 100%;
+  }
+}

@@ -5,21 +5,9 @@
   right: 0;
   left: 0;
   bottom: 0;
-  height: 800px;
+  height: 688px;
   z-index: -100;
   width: 100%;
-}
-
-@media screen and (max-width: 1440px) {
-  .background-container {
-    height: 740px;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .background-container {
-    height: 706px;
-  }
 }
 
 .background {
@@ -29,6 +17,8 @@
 .circle {
   border-radius: 50%;
   position: absolute;
+  /* filter: blur При фиксированых позициях будет вызывать лаги на анимации поверх блюра (у других элементов) */
+  /* Конкретно на мобильных устройствах */
   filter: blur(100px);
 }
 

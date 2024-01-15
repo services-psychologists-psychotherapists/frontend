@@ -1,16 +1,37 @@
-import React from 'react';
-import { bool, string } from 'prop-types';
+import React, { useEffect, useRef } from 'react';
+import { bool } from 'prop-types';
 import './Background.css';
 
-export default function Background({
-  animated, backgroundClasses,
-}) {
+export default function Background({ animationStatus }) {
   const circleClassName = (size) => (
-    `circle circle_size_${size} circle__${size}_${animated && 'animated'}`
+    `circle circle_size_${size}${animationStatus ? ` circle__${size}_animated` : ''}`
   );
 
+  const backgroundRef = useRef(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const welcomeElement = document.querySelector('.welcome');
+      const headerElement = document.querySelector('.header');
+
+      if (welcomeElement && headerElement && backgroundRef.current) {
+        const newHeight = welcomeElement.offsetHeight + headerElement.offsetHeight;
+        backgroundRef.current.style.height = `${newHeight}px`;
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <div className={`background-container${backgroundClasses ? ` ${backgroundClasses}` : ''}`}>
+    <div
+      ref={backgroundRef}
+      className="background-container"
+    >
       <div className="background">
         <div className={circleClassName('s')} />
         <div className={circleClassName('l')} />
@@ -22,10 +43,9 @@ export default function Background({
 }
 
 Background.propTypes = {
-  animated: bool,
-  backgroundClasses: string,
+  animationStatus: bool,
 };
+
 Background.defaultProps = {
-  animated: false,
-  backgroundClasses: '',
+  animationStatus: false,
 };
