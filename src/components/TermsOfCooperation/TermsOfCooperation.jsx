@@ -19,7 +19,7 @@ export default function TermsOfCooperation() {
               <br />
               Мы ответим в течение дня
             </p>
-            <p className="terms-cooperation__email">psyhelp@yandex.ru</p>
+            <p className="terms-cooperation__email">share.with.me-help@yandex.ru</p>
           </div>
           <Button
             type="button"
