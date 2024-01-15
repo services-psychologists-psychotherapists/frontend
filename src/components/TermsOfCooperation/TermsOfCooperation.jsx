@@ -25,7 +25,7 @@ export default function TermsOfCooperation() {
             type="button"
             variant="secondary"
             className="terms-cooperation__button"
-        // TODO: настроить действие клика
+            // TODO: настроить действие клика
             onClick={() => console.log('click')}
           >
             Условия сотрудничества

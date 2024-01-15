@@ -20,11 +20,10 @@ export default function PageForPsychologists() {
         title="Присоединяйтесь к нашей команде психологов"
         href="/psychologists_registration"
         imageClasses="psychologists__welcome-image"
-        inimationStatus={false}
+        inimationStatus
         bannerClasses="psychologists__banner"
         textClasses="psychologists__banner-text"
         sectionClasses="psychologists__welcome"
-        backgroundClasses="psychologists__background"
       />
       <WorkWithUs />
       <HowToStart />

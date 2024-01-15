@@ -69,7 +69,7 @@
   max-width: 413px;
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1439px) {
   .about-problems__card:nth-child(1),
   .about-problems__card:nth-child(2),
   .about-problems__card:nth-child(3),

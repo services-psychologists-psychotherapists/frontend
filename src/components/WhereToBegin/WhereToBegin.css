@@ -1,6 +1,6 @@
 .where-to-begin {
   padding: 100px 0 120px;
-  background-color: rgba(212, 238, 228, 0.3);
+  background-color: rgba(212, 238, 228, .3);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -100,5 +100,10 @@
 
   .where-to-begin__container {
     row-gap: 32px;
+  }
+
+  .where-to-begin__title {
+    margin-bottom: 0;
+    line-height: normal;
   }
 }

@@ -9,11 +9,11 @@ export default function Welcome({
   bannerImg, descr, text, title,
   href, inimationStatus, imageClasses,
   bannerClasses, textClasses,
-  sectionClasses, backgroundClasses,
+  sectionClasses,
 }) {
   return (
     <section className={`welcome${sectionClasses ? ` ${sectionClasses}` : ''}`}>
-      <Background animated={inimationStatus} backgroundClasses={backgroundClasses} />
+      <Background animationStatus={inimationStatus} />
       <div className={`banner${bannerClasses ? ` ${bannerClasses}` : ''}`}>
         <div className={`banner__text${textClasses ? ` ${textClasses}` : ''}`}>
           <Title
@@ -41,7 +41,6 @@ Welcome.propTypes = {
   bannerClasses: string,
   textClasses: string,
   sectionClasses: string,
-  backgroundClasses: string,
 };
 
 Welcome.defaultProps = {
@@ -50,5 +49,4 @@ Welcome.defaultProps = {
   inimationStatus: false,
   textClasses: '',
   sectionClasses: '',
-  backgroundClasses: '',
 };
