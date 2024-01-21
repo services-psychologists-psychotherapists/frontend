@@ -14,22 +14,15 @@ import {
 } from '../../../../utils/helpers';
 
 export default function ThirdStep({
-  values,
-  handleChange,
-  errors,
-  inputValidStatus,
-  getInvalidInput,
-  step,
-  listId,
-  fileForRequest,
-  uploadDocuments,
-  docIdForRequest,
-  setDataForRequest,
-  setDocIdForRequest,
-  curBlockType,
-  currentUser,
-  setValues,
-  isReset,
+  values, handleChange,
+  errors, inputValidStatus,
+  getInvalidInput, step,
+  listId, fileForRequest,
+  uploadDocuments, docIdForRequest,
+  setDataForRequest, setDocIdForRequest,
+  curBlockType, currentUser,
+  setValues, isReset,
+  showFileError,
 }) {
   const { setValue } = usePopup();
 
@@ -214,6 +207,7 @@ export default function ThirdStep({
               onChange={(e) => handleChange(e)}
               disabled={getDisabledField(blockId, currentUser, 3, step, 'courses')}
               name="courses"
+              showFileError={() => showFileError(setValue)}
             />
           </li>
           {index === educationBlocks.length - 1 && (
@@ -263,6 +257,7 @@ ThirdStep.propTypes = {
   currentUser: object,
   setValues: func,
   isReset: bool,
+  showFileError: func.isRequired,
 };
 
 ThirdStep.defaultProps = {

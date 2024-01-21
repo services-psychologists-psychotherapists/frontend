@@ -65,7 +65,6 @@ export default function FourthStep({
               if (i.element === titlesDropdownElement) {
                 handleChange(e, true);
               }
-
               if (i.element === checkboxDropdownElement) {
                 if (i.customElement) {
                   handleChange(e, true, i.customElement);

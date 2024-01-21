@@ -15,7 +15,7 @@ import { usePopup } from '../../hooks/usePopup';
 import DescrForStep from './DescrForStep/DescrForStep';
 import DocsForRegistr from './DocsForRegistr/DocsForRegistr';
 import useUploadDoc from '../../hooks/useUploadDoc';
-import { showPopupWithValue } from '../../utils/helpers';
+import { showPopupWithValue, showFileError } from '../../utils/helpers';
 
 export default function PsychologistRegistration({
   docIdForRequest,
@@ -37,6 +37,7 @@ export default function PsychologistRegistration({
     setDataForRequest,
     getYears,
     fileForRequest,
+    setFileForRequest,
   } = useForm();
 
   const { setValue } = usePopup();
@@ -99,8 +100,9 @@ export default function PsychologistRegistration({
       {!isSuccess && (
         <PageLayout
           classes={
-            `psycho-registration${step === 1 ? `${' psycho-registration__fist-step'}`
-              : `${' psycho-registration__other-step'}`}`
+            `psycho-registration${
+              step === 1 ? `${' psycho-registration__fist-step'}` : ''
+            }`
           }
           title="Подать заявку"
           nav={step !== 1 ? (
@@ -164,6 +166,8 @@ export default function PsychologistRegistration({
                   dataForRequest={dataForRequest}
                   setDocIdForRequest={setDocIdForRequest}
                   curBlockType={curBlockType}
+                  setFileForRequest={setFileForRequest}
+                  showFileError={showFileError}
                 />
               </DescrForStep>
               <DescrForStep
@@ -187,6 +191,8 @@ export default function PsychologistRegistration({
                   dataForRequest={dataForRequest}
                   setDocIdForRequest={setDocIdForRequest}
                   curBlockType={curBlockType}
+                  setFileForRequest={setFileForRequest}
+                  showFileError={showFileError}
                 />
               </DescrForStep>
               <DescrForStep

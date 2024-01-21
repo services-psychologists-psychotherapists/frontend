@@ -2,31 +2,30 @@
   padding: 32px;
   border: 1px solid var(--border-color-medium-violet);
   border-radius: 12px;
-  display: grid;
-  grid-template-areas:
-    'img header'
-    'img content';
-  grid-template-columns: minmax(min-content, 152px) auto;
-  column-gap: 28px;
   width: 100%;
   background-color: #fff;
+  overflow-y: auto;
+  max-height: 80vh;
 }
 
-.psycho-card_type_full {
-  grid-template-areas:
-    'img header'
-    'content content';
-  grid-template-columns: auto 1fr;
-  padding-bottom: 62px;
+.psycho-card::-webkit-scrollbar {
+  /* Стили повторяются, подумать */
+  height: 4px;
+  width: 4px;
+  border-radius: 4px;
+}
+
+.psycho-card::-webkit-scrollbar-thumb {
+  /* Стили повторяются, подумать */
+  background-color: var(--border-color-dark-violet);
+  border-radius: 4px;
+}
+
+.psycho-card__header {
+  display: flex;
+  flex-direction: row;
+  column-gap: 28px;
   align-items: center;
-}
-
-.psycho-card > .name-container {
-  grid-area: header;
-}
-
-.psycho-card > .avatar {
-  grid-area: img;
 }
 
 .next-sessions__title {
@@ -44,7 +43,6 @@
 }
 
 .psycho-card__content {
-  grid-area: content;
   display: flex;
   flex-direction: column;
   gap: 28px;
@@ -55,12 +53,11 @@
   margin-top: 32px;
   gap: 32px;
   min-height: min-content;
-  max-height: 450px;
-  overflow-y: auto;
-  padding-right: 10px;
-  /* Переделать на SimpleBar или Perfect Scrollbar? для moz */
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-color-dark-violet) var(--bg-color-white);
+  padding: 0 10px 0 0;
+}
+
+.psycho-card__btn {
+  padding-left: 0;
 }
 
 .psycho-card__content_type_full::-webkit-scrollbar {
@@ -78,8 +75,6 @@
 
 .psycho-card__list {
   list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
@@ -113,17 +108,26 @@
   border-radius: 12px;
 }
 
-@media screen and (max-width: 1200px) {
-  .psycho-card {
-    grid-template-areas:
-      'img header'
-      'content content';
-    grid-template-columns: auto 1fr;
-    align-items: center;
-  }
-}
-
 .psycho-card__list-education {
   flex-direction: column;
   width: 100%;
+}
+
+.next-sessions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@media screen and (max-width: 1024px) {
+  .psycho-card {
+    max-height: 67vh;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .psycho-card__header {
+    column-gap: 15px;
+  }
 }

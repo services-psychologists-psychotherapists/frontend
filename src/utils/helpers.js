@@ -1,6 +1,7 @@
 import moment from 'moment';
 import timezone from 'moment-timezone';
 import 'moment/locale/ru';
+import { FILE_UPLOAD_ERROR } from '../constants/constants';
 
 moment.locale('ru');
 export const today = moment();
@@ -120,6 +121,8 @@ export const showPopupWithValue = (setValue, title, text) => {
   });
 };
 
+export const showFileError = (setValue) => showPopupWithValue(setValue, FILE_UPLOAD_ERROR);
+
 export const checkPasswords = (password1, password2, setPopupValue, data, request) => {
   if (password1 !== password2) {
     showPopupWithValue(setPopupValue, 'Пароли не совпадают');
@@ -140,19 +143,39 @@ export const getJwtFromLocalStorage = () => {
 
 // ---------------------------ДЛЯ КОМПОНЕНТОВ ШАГОВ РЕГИСТРАЦИИ---------------------------
 
-export const checkFile = (curFile, curStep, forStep, uploadDoc, setPopup, deletePrev) => {
+export const checkFileSize = (file) => {
+  const fileSizeInMB = file.size / (1024 * 1024);
+  const maxFileSizeInMB = 3;
+
+  if (fileSizeInMB <= maxFileSizeInMB) {
+    return true;
+  }
+
+  return false;
+};
+
+export const checkFile = (
+  curFile,
+  curStep,
+  forStep,
+  uploadDoc,
+  setPopup,
+  deletePrev,
+  resetFile,
+) => {
   if (curFile.name && curStep === forStep) {
     const fileExtension = curFile.name.split('.').pop();
 
-    if (fileExtension === 'pdf' || fileExtension === 'jpg') {
-      uploadDoc(curFile);
+    if ((fileExtension === 'pdf' || fileExtension === 'jpg') && checkFileSize(curFile)) {
+      uploadDoc(curFile, setPopup);
     } else {
       setPopup({
         data: {
-          title: 'Можно отправить только pdf и jpg файлы',
+          title: FILE_UPLOAD_ERROR,
         },
       });
 
+      resetFile({});
       deletePrev();
     }
   }

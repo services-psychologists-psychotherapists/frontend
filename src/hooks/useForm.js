@@ -20,7 +20,7 @@ export const useForm = () => {
   const [dataForRequest, setDataForRequest] = useState({});
   const [customIputValue, setCustomIputValue] = useState('');
   const [customInputFieldset, setCustomInputFieldset] = useState('');
-  const [fileForRequest, setfileForRequest] = useState({});
+  const [fileForRequest, setFileForRequest] = useState({});
   // переделать хук
   // Сделать вызовы внутренных функций через параметры?
   // настроить работу полей регистрации пользователя
@@ -103,6 +103,20 @@ export const useForm = () => {
     }
   }, [selectedDropdownItems.experience]);
 
+  const checkValidity = (objData) => {
+    let isValidData = true;
+    const keys = Object.keys(objData);
+
+    for (let i = 0; i < keys.length; i += 1) {
+      if (objData[keys[i]] === false) {
+        isValidData = false;
+        break;
+      }
+    }
+
+    return isValidData;
+  };
+
   useEffect(() => {
     const getGender = (value) => {
       if (value) {
@@ -124,7 +138,9 @@ export const useForm = () => {
 
     if (gender) {
       const currentGender = getGender(selectedDropdownItems.gender);
+
       if (currentGender !== null) {
+        setIsValidForm(checkValidity(inputValidStatus));
         setDataForRequest({
           ...dataForRequest,
           gender: currentGender,
@@ -133,7 +149,6 @@ export const useForm = () => {
         const newData = { ...dataForRequest };
 
         delete newData.gender;
-
         setDataForRequest(newData);
       }
     }
@@ -305,7 +320,6 @@ export const useForm = () => {
       const isValidEl = regex.test(value);
 
       if (!isValidEl) {
-        console.log(isValidEl);
         setIsValidForm(false);
       }
 
@@ -331,7 +345,9 @@ export const useForm = () => {
         const currentFile = e.target.files[0];
 
         if (currentFile) {
-          setfileForRequest(currentFile);
+          setFileForRequest(currentFile);
+        } else {
+          setFileForRequest({});
         }
       }
     }
@@ -398,9 +414,7 @@ export const useForm = () => {
       getValuesForDropdown();
     }
 
-    setTimeout(() => {
-      setIsValidForm(e.target.closest('form').checkValidity());
-    }, 1);
+    setIsValidForm(e.target.closest('form').checkValidity());
   };
 
   const resetForm = useCallback(
@@ -451,5 +465,6 @@ export const useForm = () => {
     setDataForRequest,
     getYears,
     fileForRequest,
+    setFileForRequest,
   };
 };

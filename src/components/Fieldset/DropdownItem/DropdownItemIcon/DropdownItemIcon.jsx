@@ -39,6 +39,8 @@ export default function DropdownItemIcon({
         onChange={onChange}
         name={name}
         onClick={() => onClick()}
+        autoComplete="off"
+        readOnly
       />
     )
   );

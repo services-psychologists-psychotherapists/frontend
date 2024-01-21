@@ -1,6 +1,6 @@
 import './DropdownItemTitle.css';
 import React from 'react';
-import PropTypes from 'prop-types';
+import { string, bool } from 'prop-types';
 import { checkboxDropdownElement, titlesDropdownElement } from '../../../../constants/constants';
 
 export default function DropdownItemTitle({
@@ -25,10 +25,10 @@ export default function DropdownItemTitle({
 }
 
 DropdownItemTitle.propTypes = {
-  element: PropTypes.string.isRequired,
-  checked: PropTypes.bool,
-  item: PropTypes.string,
-  customElement: PropTypes.string,
+  element: string.isRequired,
+  checked: bool,
+  item: string,
+  customElement: string,
 };
 
 DropdownItemTitle.defaultProps = {

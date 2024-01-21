@@ -1,22 +1,16 @@
 import './ListWithDropdown.css';
 import React from 'react';
-import PropTypes from 'prop-types';
+import {
+  string, objectOf, arrayOf, func, bool, oneOfType, array,
+} from 'prop-types';
 import DropdownItem from '../DropdownItem/DropdownItem';
 import { titlesDropdownElement } from '../../../constants/constants';
 
 export default function ListWithDropdown({
-  isFocused,
-  onChange,
-  type,
-  dropdownContent,
-  element,
-  name,
-  selectedDropdownItems,
-  values,
-  customElement,
-  resetCustomValue,
-  setCustomValue,
-  classesForAbsoluteList,
+  isFocused, onChange, type,
+  dropdownContent, element, name,
+  selectedDropdownItems, values, customElement,
+  resetCustomValue, setCustomValue, classesForAbsoluteList,
 }) {
   if (dropdownContent.length === 0) {
     return null;
@@ -27,7 +21,10 @@ export default function ListWithDropdown({
   }`;
 
   return (
-    <ul className={`${dropdownListClasses}${classesForAbsoluteList ? ` ${classesForAbsoluteList}` : ''}`}>
+    <ul
+      className={`${dropdownListClasses}${classesForAbsoluteList
+        ? ` ${classesForAbsoluteList}` : ''}`}
+    >
       {dropdownContent.map((item) => (
         <li className="dropdown-list__item" key={item}>
           <DropdownItem
@@ -49,20 +46,20 @@ export default function ListWithDropdown({
 }
 
 ListWithDropdown.propTypes = {
-  element: PropTypes.string.isRequired,
-  type: PropTypes.string,
-  isFocused: PropTypes.bool,
-  onChange: PropTypes.func,
-  dropdownContent: PropTypes.arrayOf(PropTypes.string),
-  name: PropTypes.string,
-  values: PropTypes.objectOf(PropTypes.string),
-  selectedDropdownItems: PropTypes.objectOf(
-    PropTypes.oneOfType([PropTypes.array, PropTypes.string])
+  element: string.isRequired,
+  type: string,
+  isFocused: bool,
+  onChange: func,
+  dropdownContent: arrayOf(string),
+  name: string,
+  values: objectOf(string),
+  selectedDropdownItems: objectOf(
+    oneOfType([array, string])
   ),
-  customElement: PropTypes.string,
-  resetCustomValue: PropTypes.func,
-  setCustomValue: PropTypes.func,
-  classesForAbsoluteList: PropTypes.string,
+  customElement: string,
+  resetCustomValue: func,
+  setCustomValue: func,
+  classesForAbsoluteList: string,
 };
 
 ListWithDropdown.defaultProps = {

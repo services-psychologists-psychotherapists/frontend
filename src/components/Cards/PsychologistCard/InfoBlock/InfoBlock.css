@@ -1,0 +1,22 @@
+.info-block {
+  gap: 28px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.info-block__title {
+  color: var(--text-color-dark-blue);
+  font-family: Lato;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 24px;
+  max-width: 240px;
+}
+
+@media screen and (max-width: 600px) {
+  .info-block {
+    display: flex;
+    flex-direction: column;
+  }
+}

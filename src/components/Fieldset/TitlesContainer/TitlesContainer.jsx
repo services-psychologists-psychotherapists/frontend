@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { string, oneOfType, arrayOf } from 'prop-types';
 import DropdownItemTitle from '../DropdownItem/DropdownItemTitle/DropdownItemTitle';
 
 export default function TitlesContainer({ value, element, placeholder }) {
@@ -15,9 +15,9 @@ export default function TitlesContainer({ value, element, placeholder }) {
 }
 
 TitlesContainer.propTypes = {
-  element: PropTypes.string.isRequired,
-  placeholder: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
+  element: string.isRequired,
+  placeholder: string,
+  value: oneOfType([string, arrayOf(string)]),
 };
 
 TitlesContainer.defaultProps = {

@@ -8,3 +8,10 @@
 .policy-container_text {
   font-family: var(--font-family-montsertat);
 }
+
+@media screen and (max-width: 768px) {
+  .policy-container {
+    flex-direction: column;
+    align-items: start;
+  }
+}

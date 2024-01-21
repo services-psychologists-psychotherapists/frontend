@@ -32,7 +32,6 @@ export default function App() {
   const jwtRefresh = localStorage.getItem('jwt-refresh');
   const curPath = useLocation();
   const [isLoading, setIsLoading] = useState(false);
-
   const [docIdForRequest, setDocIdForRequest] = useState('');
 
   const uploadDocuments = async (document, setPopup) => {
@@ -43,7 +42,7 @@ export default function App() {
       setDocIdForRequest(docData.id);
     } catch (err) {
       console.log(err);
-
+      setDocIdForRequest('');
       setPopup({
         data: {
           title: 'При загрузке документа произошла ошибка',

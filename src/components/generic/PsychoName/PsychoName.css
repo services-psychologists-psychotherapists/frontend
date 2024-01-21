@@ -1,7 +1,11 @@
+.name-container {
+  width: 100%;
+}
+
 .name-container__description {
   display: flex;
   align-items: center;
-  gap: 8px;
+  row-gap: 8px;
   color: var(--text-color-dark-blue);
   margin-top: 12px;
 }
@@ -13,6 +17,7 @@
   line-height: 24px;
   font-family: var(--font-family-lato);
   white-space: nowrap;
+  gap: 8px;
 }
 
 .elipse {
@@ -29,13 +34,13 @@
 }
 
 @media screen and (max-width: 480px) {
-  .name-container__label,
   .name-container__description {
-    font-size: 16px;
-    line-height: 20px;
+    flex-direction: column;
+    row-gap: 5px;
+    align-items: flex-start;
   }
 
-  .name-container__description {
-    margin-top: 8px;
+  .elipse {
+    display: none;
   }
 }

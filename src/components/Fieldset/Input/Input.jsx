@@ -12,24 +12,13 @@ import {
 import TitlesContainer from '../TitlesContainer/TitlesContainer';
 
 export default function Input({
-  element,
-  type,
-  name,
-  disabled,
-  placeholder,
-  minLength,
-  maxLength,
-  required,
-  onChange,
-  value,
-  isValid,
-  isEyeOpened,
-  ownClasses,
-  onClick,
-  id,
-  classesForInput,
-  autoComplete,
-  pattern,
+  element, type, name,
+  disabled, placeholder, minLength,
+  maxLength, required, onChange,
+  value, isValid, isEyeOpened,
+  ownClasses, onClick, id,
+  classesForInput, autoComplete,
+  pattern, readOnly,
 }) {
   const inputClasses = `input${
     element === inputElement ? ' input_hidden-placeholder' : ''}${
@@ -67,6 +56,7 @@ export default function Input({
       required={required}
       autoComplete={autoComplete}
       pattern={pattern}
+      readOnly={readOnly}
     />
   );
 }
@@ -90,6 +80,7 @@ Input.propTypes = {
   classesForInput: string,
   autoComplete: string,
   pattern: string,
+  readOnly: bool,
 };
 
 Input.defaultProps = {
@@ -111,4 +102,5 @@ Input.defaultProps = {
   classesForInput: '',
   autoComplete: null,
   pattern: null,
+  readOnly: false,
 };

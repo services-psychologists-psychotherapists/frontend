@@ -3,7 +3,6 @@ import './PageLayout.css';
 import { node, string } from 'prop-types';
 import Title from '../../generic/Title/Title';
 
-// prettier-ignore
 export default function PageLayout({
   children,
   title,
@@ -14,16 +13,18 @@ export default function PageLayout({
 }) {
   return (
     <section
-      className={
-        `page-layout ${type === 'psychologist' ? `page-layout_type_${type}` : ''}${
-          classes ? ` ${classes}` : ''}
-        `
-      }
+      className="page-layout__container"
     >
-      <Title text={title} />
-      {nav && <div className="page-layout__nav">{nav}</div>}
-      <div className="page-layout__children">{children}</div>
-      {section && <div className="page-layout__section">{section}</div>}
+      <div className={
+        `page-layout ${type === 'psychologist' ? `page-layout_type_${type}` : ''}${
+          classes ? ` ${classes}` : ''}`
+        }
+      >
+        {nav && <div className="page-layout__nav">{nav}</div>}
+        <Title text={title} />
+        <div className="page-layout__children">{children}</div>
+        {section && <div className="page-layout__section">{section}</div>}
+      </div>
     </section>
   );
 }

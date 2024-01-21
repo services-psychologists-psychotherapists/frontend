@@ -13,33 +13,24 @@ import TitleForBlock from './TitleForBlock/TitleForBlock';
 import Button from '../generic/Button/Button';
 import useUploadDoc from '../../hooks/useUploadDoc';
 import { usePopup } from '../../hooks/usePopup';
+import { showFileError } from '../../utils/helpers';
 
 export default function UserProfileData({
-  currentUser,
-  docIdForRequest,
-  uploadDocuments,
-  setDocIdForRequest,
-  changePsychoAvatar,
-  changeClientAvatar,
-  changePsychologistData,
-  changeClientData,
+  currentUser, docIdForRequest,
+  uploadDocuments, setDocIdForRequest,
+  changePsychoAvatar, changeClientAvatar,
+  changePsychologistData, changeClientData,
   curPath,
 }) {
   const {
     values, handleChange, errors,
-    selectedDropdownItems,
-    dataForRequest,
-    isValidForm,
-    inputValidStatus,
-    getInvalidInput,
-    setCustomValue,
-    resetCustomValue,
-    setDataForRequest,
-    getYears,
-    fileForRequest,
-    setValues,
-    setSelectedDropdownItems,
-    resetForm,
+    selectedDropdownItems, dataForRequest,
+    isValidForm, inputValidStatus,
+    getInvalidInput, setCustomValue,
+    resetCustomValue, setDataForRequest,
+    getYears, fileForRequest,
+    setValues, setSelectedDropdownItems,
+    resetForm, setFileForRequest,
   } = useForm();
 
   const [isReset, setIsReset] = useState(false);
@@ -154,6 +145,8 @@ export default function UserProfileData({
                   currentUser={currentUser}
                   setValues={setValues}
                   isReset={isReset}
+                  setFileForRequest={setFileForRequest}
+                  showFileError={showFileError}
                 />
               </TitleForBlock>
               <TitleForBlock
@@ -176,6 +169,7 @@ export default function UserProfileData({
                   currentUser={currentUser}
                   setValues={setValues}
                   isReset={isReset}
+                  setFileForRequest={setFileForRequest}
                 />
               </TitleForBlock>
               <TitleForBlock

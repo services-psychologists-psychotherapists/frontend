@@ -1,8 +1,6 @@
 .psycho-filters {
   display: flex;
   flex-direction: column;
-  max-width: 425px;
-  width: 100%;
   padding: 24px 24px 28px;
   gap: 20px;
   border-radius: 12px;
@@ -11,6 +9,8 @@
 
 .psycho-filters-container {
   max-height: min-content;
+  max-width: 425px;
+  width: 100%;
   padding-bottom: 50px;
 }
 
@@ -60,4 +60,27 @@
   max-width: 190px;
   width: 100%;
   align-self: center;
+}
+
+.psycho-filters__input {
+  max-width: 90%;
+}
+
+@media screen and (max-width: 1200px) {
+  .psycho-filters-container {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .psycho-filters-container {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .psycho-filters__header {
+    flex-direction: column;
+    row-gap: 5px;
+  }
 }

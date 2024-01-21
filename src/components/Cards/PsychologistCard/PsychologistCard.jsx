@@ -5,7 +5,7 @@ import {
   bool, string, shape, number, arrayOf, object,
 } from 'prop-types';
 import Avatar from '../../generic/Avatar/Avatar';
-import ProfileInfoBlock from '../../templates/ProfileInfoBlock/ProfileInfoBlock';
+import InfoBlock from './InfoBlock/InfoBlock';
 import Text from '../../generic/Text/Text';
 import PsychoName from '../../generic/PsychoName/PsychoName';
 import { DATE_FORMAT } from '../../../constants/constants';
@@ -24,19 +24,11 @@ export default function PsychologistCard({
 }) {
   const {
     first_name: firstName,
-    avatar,
     last_name: lastName,
-    experience,
-    about,
-    price,
-    themes,
-    approaches,
-    institutes,
-    courses,
-    age,
-    duration,
-    slots,
-    id
+    avatar, experience,
+    about, price, themes,
+    approaches, institutes, courses,
+    age, duration, slots, id
   } = psychologist;
   const { setValue } = usePopup();
 
@@ -113,14 +105,16 @@ export default function PsychologistCard({
   };
 
   return (
-    <div className={`psycho-card ${type ? 'psycho-card_type_full' : ''}`}>
-      <Avatar size="l" src={avatar} />
-      <PsychoName
-        name={`${firstName} ${lastName}`}
-        description={type === 'full' ? getDurationOfYears(age) : `Опыт ${getDurationOfYears(experience)}`}
-        leftText={`Сессия ${duration} мин.`}
-        rightText={`${Number(price).toLocaleString()} руб.`}
-      />
+    <div className="psycho-card">
+      <div className="psycho-card__header">
+        <Avatar size="l" src={avatar} />
+        <PsychoName
+          name={`${firstName} ${lastName}`}
+          description={type === 'full' ? getDurationOfYears(age) : `Опыт ${getDurationOfYears(experience)}`}
+          leftText={`Сессия ${duration} мин`}
+          rightText={`${Number(price).toLocaleString()} руб`}
+        />
+      </div>
       <div
         className={`psycho-card__content ${
           type === 'full' ? 'psycho-card__content_type_full' : ''
@@ -136,6 +130,7 @@ export default function PsychologistCard({
             onClick={handleTimeClick}
           />
           <Button
+            className="psycho-card__btn"
             variant="text"
             onClick={(e) => getPath(
               e,
@@ -150,30 +145,30 @@ export default function PsychologistCard({
         {type === 'full' && (
           <>
             {about && (
-              <ProfileInfoBlock title="О себе">
+              <InfoBlock title="О себе">
                 <Text>{about}</Text>
-              </ProfileInfoBlock>
+              </InfoBlock>
             )}
             {age && (
-              <ProfileInfoBlock title="Опыт работы">
+              <InfoBlock title="Опыт работы">
                 <Text>{getDurationOfYears(experience)}</Text>
-              </ProfileInfoBlock>
+              </InfoBlock>
             )}
             {(themes && themes.length > 0) && (
-              <ProfileInfoBlock title="С чем работает">{getTags(themes, 'tag')}</ProfileInfoBlock>
+              <InfoBlock title="С чем работает">{getTags(themes, 'tag')}</InfoBlock>
             )}
             {(approaches && approaches.length > 0) && (
-              <ProfileInfoBlock title="Подход в работе">{getTags(approaches)}</ProfileInfoBlock>
+              <InfoBlock title="Подход в работе">{getTags(approaches)}</InfoBlock>
             )}
             {(institutes && institutes.length > 0) && (
-              <ProfileInfoBlock title="Высшее образование">
+              <InfoBlock title="Высшее образование">
                 <div className="psycho-card__list">{getEducations(institutes)}</div>
-              </ProfileInfoBlock>
+              </InfoBlock>
             )}
             {(courses && courses.length > 0) && (
-              <ProfileInfoBlock title="Повышение квалификации">
+              <InfoBlock title="Повышение квалификации">
                 <div className="psycho-card__list">{getEducations(courses)}</div>
-              </ProfileInfoBlock>
+              </InfoBlock>
             )}
           </>
         )}

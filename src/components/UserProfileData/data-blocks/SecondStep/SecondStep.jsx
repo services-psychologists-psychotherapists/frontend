@@ -14,23 +14,16 @@ import {
 } from '../../../../utils/helpers';
 
 export default function SecondStep({
-  values,
-  handleChange,
-  errors,
-  inputValidStatus,
-  getInvalidInput,
-  step,
-  listId,
-  setDataForRequest,
-  getYears,
-  docIdForRequest,
-  fileForRequest,
-  uploadDocuments,
-  setDocIdForRequest,
-  curBlockType,
-  currentUser,
-  setValues,
-  isReset,
+  values, handleChange,
+  errors, inputValidStatus,
+  getInvalidInput, step,
+  listId, setDataForRequest,
+  getYears, docIdForRequest,
+  fileForRequest, uploadDocuments,
+  setDocIdForRequest, curBlockType,
+  currentUser, setValues,
+  isReset, setFileForRequest,
+  showFileError,
 }) {
   const { setValue } = usePopup();
 
@@ -183,6 +176,7 @@ export default function SecondStep({
           listId,
           setDataForRequest,
         ),
+        setFileForRequest,
       );
     }
   }, [fileForRequest]);
@@ -249,6 +243,7 @@ export default function SecondStep({
               disabled={getDisabledField(blockId, currentUser, 2, step, 'institutes')}
               name="institutes"
               isRequired
+              showFileError={() => showFileError(setValue)}
             />
           </li>
           {index === educationBlocks.length - 1 && (
@@ -297,6 +292,8 @@ SecondStep.propTypes = {
   currentUser: object,
   setValues: func,
   isReset: bool,
+  setFileForRequest: func.isRequired,
+  showFileError: func.isRequired,
 };
 
 SecondStep.defaultProps = {

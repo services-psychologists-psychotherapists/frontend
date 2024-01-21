@@ -22,7 +22,7 @@ export default function UserMenu({
     if (isLoggedIn && isScreenMd) {
       return [...HEADER_NAV_LINKS, userLink];
     }
-    if (isLoggedIn && isScreenMd) {
+    if (isLoggedIn && !isScreenMd) {
       return [userLink];
     }
     return HEADER_NAV_LINKS;
