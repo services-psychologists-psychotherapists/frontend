@@ -10,6 +10,7 @@ import useOutsideClick from '../../hooks/useOnClickOutside';
 import PaginationList from '../../components/generic/PaginationList/PaginationList';
 import { useForm } from '../../hooks/useForm';
 import { NUMBER_OF_PSYCHO_DISPLAYED } from '../../constants/constants';
+import BlockWithTitle from '../../components/templates/BlockWithTitle/BlockWithTitle';
 
 export default function DirectoryOfPsychologists({
   isLoggedIn, currentUser,
@@ -125,14 +126,13 @@ export default function DirectoryOfPsychologists({
   return (
     <>
       <section className="directory-psychologists">
-        <Title
+        <BlockWithTitle
+          title="Каталог психологов"
           titleLvl="2"
           size="m"
-          text="Каталог психологов"
-          className="directory-psychologists__title"
-        />
-        <div className="directory-psychologists__container">
-          <div className="directory-psychologists__filter">
+          constainerClasses="directory-psychologists__template"
+        >
+          <div className="directory-psychologists__container">
             <PsychoFilters
               values={values}
               handleChange={handleChange}
@@ -143,39 +143,39 @@ export default function DirectoryOfPsychologists({
               resetCustomValue={resetCustomValue}
               setCustomValue={setCustomValue}
             />
-          </div>
-          <div className="directory-psychologists__psycho-list">
-            <ul className="directory-psychologists__psycho-list_container">
-              {psychologistList && psychologistList.length > 0 ? psychologistList.map((i) => (
-                <li key={i.id}>
-                  <div
-                    className="directory-psychologists__psycho-list_item"
-                    onClick={(e) => handleOpenPsychoCard(i.id, e)}
-                    role="button"
-                    tabIndex="0"
-                    onKeyDown={(e) => handleOpenPsychoCard(i.id, e)}
-                  >
-                    <PsychologistCard
-                      psychologist={i}
-                      isLoggedIn={isLoggedIn}
-                      currentUser={currentUser}
-                    />
-                  </div>
-                </li>
-              ))
-                : (
-                  <li className="directory-psychologists__psycho-list_error">
-                    <Title titleLvl="3" size="s" text="Психологи не найдены" />
+            <div className="directory-psychologists__psycho-list">
+              <ul className="directory-psychologists__psycho-list_container">
+                {psychologistList && psychologistList.length > 0 ? psychologistList.map((i) => (
+                  <li key={i.id}>
+                    <div
+                      className="directory-psychologists__psycho-list_item"
+                      onClick={(e) => handleOpenPsychoCard(i.id, e)}
+                      role="button"
+                      tabIndex="0"
+                      onKeyDown={(e) => handleOpenPsychoCard(i.id, e)}
+                    >
+                      <PsychologistCard
+                        psychologist={i}
+                        isLoggedIn={isLoggedIn}
+                        currentUser={currentUser}
+                      />
+                    </div>
                   </li>
-                )}
-            </ul>
+                ))
+                  : (
+                    <li className="directory-psychologists__psycho-list_error">
+                      <Title titleLvl="3" size="s" text="Психологи не найдены" />
+                    </li>
+                  )}
+              </ul>
+            </div>
           </div>
-        </div>
-        <PaginationList
-          pageCount={numberOfPages}
-          onPageClick={handleSwitchPage}
-          currentPage={currentPage}
-        />
+          <PaginationList
+            pageCount={numberOfPages}
+            onPageClick={handleSwitchPage}
+            currentPage={currentPage}
+          />
+        </BlockWithTitle>
       </section>
       <section className={`psychologists-popup ${isOpenPopup ? 'psychologists-popup_open' : ''}`}>
         {Object.values(psychologistFullData).length > 0 && (

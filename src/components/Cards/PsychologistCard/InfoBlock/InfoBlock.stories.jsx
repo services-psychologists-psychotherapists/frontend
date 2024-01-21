@@ -1,12 +1,12 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import ProfileInfoBlock from './ProfileInfoBlock';
-import './ProfileInfoBlock.css';
-import Text from '../../generic/Text/Text';
+import InfoBlock from './InfoBlock';
+import './InfoBlock.css';
+import Text from '../../../generic/Text/Text';
 
 export default {
-  title: 'Global components/Templates/ProfileInfoBlock',
-  component: ProfileInfoBlock,
+  title: 'Global components/Templates/InfoBlock',
+  component: InfoBlock,
   decorators: [withRouter],
   tags: ['autodocs'],
   argTypes: {
@@ -24,15 +24,14 @@ export default {
 function Template(args) {
   return (
     <div style={{ width: '900px' }}>
-      <ProfileInfoBlock {...args} />
+      <InfoBlock {...args} />
     </div>
   );
 }
 
-export const InfoBlock = Template.bind({});
+export const Block = Template.bind({});
 
-// prettier-ignore
-InfoBlock.args = {
+Block.args = {
   title: 'O Себе',
   children: (
     <Text>

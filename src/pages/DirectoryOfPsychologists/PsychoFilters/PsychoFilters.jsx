@@ -35,15 +35,15 @@ export default function PsychoFilters({
           {PSYCHO_FILTER_DATA.map((i) => (
             <li key={i.name}>
               <Fieldset
-                name={i.name || null}
-                element={i.element || null}
-                placeholder={i.placeholder || null}
-                title={i.title || null}
-                dropdownContent={i.dropdownContent || []}
-                typeForDropdown={i.typeForDropdown || null}
-                required={i.required || null}
-                values={values || null}
-                errors={errors || null}
+                name={i.name}
+                element={i.element}
+                placeholder={i.placeholder}
+                title={i.title}
+                dropdownContent={i.dropdownContent}
+                typeForDropdown={i.typeForDropdown}
+                required={i.required}
+                values={values}
+                errors={errors}
                 inputContainerClasses="psycho-filters__filter"
                 promptClasses="psycho-filters__prompt"
                 handleChange={(e) => {
@@ -53,11 +53,13 @@ export default function PsychoFilters({
                     handleChange(e, true);
                   }
                 }}
-                selectedDropdownItems={selectedDropdownItems || null}
-                customElement={i.customElement || null}
-                resetCustomValue={resetCustomValue || null}
-                setCustomValue={setCustomValue || null}
-                autoComplete={i.autoComplete || null}
+                selectedDropdownItems={selectedDropdownItems}
+                customElement={i.customElement}
+                resetCustomValue={resetCustomValue}
+                setCustomValue={setCustomValue}
+                autoComplete={i.autoComplete}
+                readOnly
+                classesForInput="psycho-filters__input"
               />
             </li>
           ))}

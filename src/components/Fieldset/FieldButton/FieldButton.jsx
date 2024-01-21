@@ -1,5 +1,5 @@
 import './FieldButton.css';
-import PropTypes from 'prop-types';
+import { string, bool, func } from 'prop-types';
 import React from 'react';
 import {
   checkboxDropdownElement,
@@ -9,26 +9,26 @@ import {
 import FieldButtonImage from './FieldButtonImage/FieldButtonImage';
 
 export default function FieldButton({
-  element,
-  disabled,
-  inputType,
-  onClick,
-  isEyeOpened,
-  isValid,
-  isFocused,
+  element, disabled,
+  inputType, onClick,
+  isEyeOpened, isValid,
 }) {
   const isRadioElement = element === radioDropdownElement;
   const isCheckboxElement = element === checkboxDropdownElement;
   const isTitlesElement = element === titlesDropdownElement;
   const isInputPasswordType = inputType === 'password';
-
-  const iconClasses = `field-button${isFocused && !isInputPasswordType ? ' rotate' : ''}`;
-
   const isHaveIcon = isInputPasswordType || isRadioElement || isCheckboxElement || isTitlesElement;
+  const isDropdownElement = isRadioElement || isCheckboxElement || isTitlesElement
+    ? ' field-button__dropdown' : '';
 
   return (
     isHaveIcon && (
-      <button className={iconClasses} onClick={onClick} disabled={disabled} type="button">
+      <button
+        className={`field-button${isDropdownElement}`}
+        onClick={onClick}
+        disabled={disabled}
+        type="button"
+      >
         <FieldButtonImage
           inputType={inputType}
           isValid={isValid}
@@ -42,18 +42,16 @@ export default function FieldButton({
 }
 
 FieldButton.propTypes = {
-  element: PropTypes.string.isRequired,
-  inputType: PropTypes.string,
-  isFocused: PropTypes.bool,
-  disabled: PropTypes.bool,
-  isValid: PropTypes.bool,
-  onClick: PropTypes.func,
-  isEyeOpened: PropTypes.bool,
+  element: string.isRequired,
+  inputType: string,
+  disabled: bool,
+  isValid: bool,
+  onClick: func,
+  isEyeOpened: bool,
 };
 
 FieldButton.defaultProps = {
   isEyeOpened: false,
-  isFocused: false,
   inputType: null,
   disabled: false,
   isValid: true,

@@ -13,6 +13,7 @@
   justify-content: center;
   white-space: nowrap;
   border-radius: 20px;
+  text-wrap: wrap;
 }
 
 .button_disabled {
@@ -142,10 +143,4 @@
 
 .button__text-icon_disabled svg path {
   stroke: #9b9da0;
-}
-
-@media screen and (max-width: 374px) {
-  .button {
-    width: 100%;
-  }
 }

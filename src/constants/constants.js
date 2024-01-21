@@ -44,8 +44,8 @@ export const COURSES_SPECIALITY_ERROR = 'Укажите направление �
 export const PRICE_ERROR = 'Укажите сумму в рублях. Пример: 4900';
 export const EXPERIENCE_ERROR = 'Укажите опыт в годах. Пример: 5';
 export const NUMBER_OF_PSYCHO_DISPLAYED = 5;
-
 export const PASSWORD_PROMPT = 'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ.';
+export const FILE_UPLOAD_ERROR = 'Можно отправить только pdf и jpg файлы размером до 3 МБ';
 
 export const CUSTOMER_PROBLEMS = [
   {
@@ -481,7 +481,7 @@ export const PSYCHO_FILTER_DATA = [
   {
     element: checkboxDropdownElement,
     name: 'approaches',
-    placeholder: 'Выберите все подходящие варианты',
+    placeholder: 'Выберите подходящее',
     title: 'Основные направления работы',
     dropdownContent: dropdownLists.approachList,
     typeForDropdown: 'checkbox',
@@ -714,23 +714,24 @@ export const PSYCHO_REGISTRATION_FOURTH_STEP_ONE = [
   {
     element: titlesDropdownElement,
     name: 'themes',
-    placeholder: 'Выберите все подходящие варианты',
+    placeholder: 'Выберите подходящее',
     title: 'Основные направления работы',
     dropdownContent: dropdownLists.mainGoalsOfWork,
     typeForDropdown: 'checkbox',
-    // required: true,
     autoComplete: 'off',
+    classesForInput: 'data-list__four-step_themes',
   },
   {
     element: checkboxDropdownElement,
     name: 'approaches',
-    placeholder: 'Выберите все подходящие варианты',
+    placeholder: 'Выберите подходящее',
     title: 'Подход',
     dropdownContent: dropdownLists.approachList,
     typeForDropdown: 'checkbox',
-    // required: true,
+    required: true,
     customElement: 'Другой вариант',
     autoComplete: 'off',
+    classesForInput: 'data-list__four-step_themes',
   },
 ];
 

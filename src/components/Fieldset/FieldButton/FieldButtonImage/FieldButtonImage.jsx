@@ -1,9 +1,12 @@
 import './FieldButtonImage.css';
 import React from 'react';
-import PropTypes from 'prop-types';
+import { bool, string } from 'prop-types';
 import { INPUT_ICONS, inputElement } from '../../../../constants/constants';
 
-export default function FieldButtonImage({ element, disabled, inputType, isEyeOpened, isValid }) {
+export default function FieldButtonImage({
+  element, disabled, inputType,
+  isEyeOpened, isValid
+}) {
   const isPasswordInputElement = element === inputElement && inputType === 'password';
 
   const fieldButtonImgClass = isPasswordInputElement
@@ -29,17 +32,15 @@ export default function FieldButtonImage({ element, disabled, inputType, isEyeOp
     return getArrowIconState();
   };
 
-  const iconSrc = getIconSrc();
-
-  return <img className={fieldButtonImgClass} alt="Field-Icon" src={iconSrc} />;
+  return <img className={fieldButtonImgClass} alt="Кнопка" src={getIconSrc()} />;
 }
 
 FieldButtonImage.propTypes = {
-  element: PropTypes.string.isRequired,
-  inputType: PropTypes.string,
-  disabled: PropTypes.bool,
-  isValid: PropTypes.bool,
-  isEyeOpened: PropTypes.bool,
+  element: string.isRequired,
+  inputType: string,
+  disabled: bool,
+  isValid: bool,
+  isEyeOpened: bool,
 };
 
 FieldButtonImage.defaultProps = {

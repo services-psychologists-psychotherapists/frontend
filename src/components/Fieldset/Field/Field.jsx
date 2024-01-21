@@ -1,5 +1,6 @@
 import './Field.css';
-import { string, bool, number,
+import {
+  string, bool, number,
   arrayOf, func, oneOfType,
 } from 'prop-types';
 import React, { useState } from 'react';
@@ -8,31 +9,20 @@ import FieldButton from '../FieldButton/FieldButton';
 import { inputElement } from '../../../constants/constants';
 
 export default function Field({
-  type,
-  name,
-  disabled,
-  placeholder,
-  minLength,
-  maxLength,
-  required,
-  element,
-  isValid,
-  value,
-  onClick,
-  isFocused,
-  title,
-  inputContainerClasses,
-  id,
-  onChange,
-  classesForInput,
-  autoComplete,
-  pattern,
+  type, name, disabled,
+  placeholder, minLength, maxLength,
+  required, element, isValid,
+  value, onClick, readOnly,
+  title, inputContainerClasses,
+  id, onChange, classesForInput,
+  autoComplete, pattern,
 }) {
   const fieldClasses = `field__input${element !== inputElement ? ' field__input_button' : ''}`;
 
   const [isEyeOpened, setIsEyeOpened] = useState(false);
   const isInputElement = element === inputElement;
   const isInputPasswordType = type === 'password';
+
   const showPasswordContent = (e) => {
     e.preventDefault();
     setIsEyeOpened(!isEyeOpened);
@@ -76,10 +66,10 @@ export default function Field({
           classesForInput={classesForInput}
           autoComplete={autoComplete}
           pattern={pattern}
+          readOnly={readOnly}
         />
         <FieldButton
           onClick={handleClickOnButton}
-          isFocused={isFocused}
           element={element}
           disabled={disabled}
           inputType={type}
@@ -98,7 +88,6 @@ Field.propTypes = {
   isValid: bool,
   required: bool,
   disabled: bool,
-  isFocused: bool,
   placeholder: string,
   type: string,
   name: string,
@@ -111,6 +100,7 @@ Field.propTypes = {
   classesForInput: string,
   autoComplete: string,
   pattern: string,
+  readOnly: bool,
 };
 
 Field.defaultProps = {
@@ -121,7 +111,6 @@ Field.defaultProps = {
   placeholder: null,
   type: null,
   name: null,
-  isFocused: false,
   minLength: null,
   maxLength: null,
   onClick: () => {},
@@ -132,4 +121,5 @@ Field.defaultProps = {
   autoComplete: null,
   title: '',
   pattern: null,
+  readOnly: false,
 };

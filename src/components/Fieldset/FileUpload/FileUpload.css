@@ -2,7 +2,6 @@
   color: var(--border-color-dark-blue);
   font-family: var(--font-family-lato);
   font-size: 14px;
-  font-style: normal;
   line-height: normal;
   display: flex;
   align-items: center;
@@ -62,4 +61,12 @@
 
 .file-upload__title_disabled {
   cursor: default;
+}
+
+@media screen and (max-width: 768px) {
+  .file-upload {
+    flex-direction: column;
+    row-gap: 20px;
+    align-items: flex-start;
+  }
 }

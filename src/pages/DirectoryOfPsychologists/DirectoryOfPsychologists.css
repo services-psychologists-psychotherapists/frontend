@@ -1,8 +1,15 @@
 .directory-psychologists {
   display: flex;
   flex-direction: column;
-  padding: 20px 0 0;
+  padding: 80px 0 0;
   margin-bottom: 40px;
+  width: 100%;
+  align-items: center;
+}
+
+.directory-psychologists__template {
+  max-width: 1280px;
+  width: 100%;
 }
 
 .directory-psychologists__title {
@@ -50,7 +57,7 @@
   background-color: rgba(255, 255, 255, .8);
   opacity: 0;
   visibility: hidden;
-  padding-top: 50px;
+  padding: 50px 0 0;
   height: 100vh;
   transition: .6s ease-in-out;
 }
@@ -65,9 +72,9 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  column-gap: 29px;
   max-width: 1030px;
   width: 100%;
+  gap: 29px;
 }
 
 .psychologists-popup__content {
@@ -75,20 +82,28 @@
   display: flex;
   flex-direction: column;
   row-gap: 25px;
-  margin-bottom: 50px;
-  height: min-content;
-  padding-bottom: 50px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color-dark-violet) var(--bg-color-white);
+  margin-bottom: 30px;
+}
+
+.psychologists-popup__content::-webkit-scrollbar {
+  /* Стили повторяются, подумать */
+  height: 4px;
+  border-radius: 4px;
+}
+
+.psychologists-popup__content::-webkit-scrollbar-thumb {
+  /* Стили повторяются, подумать */
+  background-color: var(--border-color-dark-violet);
+  border-radius: 4px;
 }
 
 .psychologists-popup__btn {
   margin-top: 5px;
   align-self: flex-start;
   color: var(--text-color-dark-blue);
-}
-
-.directory-psychologists__filter {
-  max-width: 425px;
-  width: 100%;
 }
 
 .directory-psychologists__psycho-list_error {
@@ -111,4 +126,51 @@
 .directory-animation-exit-active {
   opacity: 0;
   transition: opacity 500ms ease-in-out;
+}
+
+@media screen and (max-width: 1440px) {
+  .directory-psychologists {
+    padding: 80px 80px 0;
+  }
+
+  .psychologists-popup__container {
+    padding-right: 121px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .directory-psychologists__container {
+    flex-wrap: wrap;
+  }
+
+  .directory-psychologists__psycho-list {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .directory-psychologists__container {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .directory-psychologists {
+    padding: 40px 24px 0;
+  }
+
+  .psychologists-popup__container {
+    flex-direction: column;
+    justify-content: unset;
+    padding: 0 24px 0;
+    row-gap: 10px;
+  }
+
+  .psychologists-popup {
+    padding: 0;
+  }
+  
+  .psychologists-popup__btn {
+    width: unset;
+  }
 }
