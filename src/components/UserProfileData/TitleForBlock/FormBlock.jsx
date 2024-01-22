@@ -1,9 +1,9 @@
 import React from 'react';
 import { node, string } from 'prop-types';
-import './TitleForBlock.css';
+import './FormBlock.css';
 import Text from '../../generic/Text/Text';
 
-export default function TitleForBlock({ children, text }) {
+export default function FormBlock({ children, text }) {
   return (
     <div className="user-data__form-block">
       <Text
@@ -17,11 +17,11 @@ export default function TitleForBlock({ children, text }) {
   );
 }
 
-TitleForBlock.propTypes = {
+FormBlock.propTypes = {
   children: node.isRequired,
   text: string,
 };
 
-TitleForBlock.defaultProps = {
+FormBlock.defaultProps = {
   text: '',
 };

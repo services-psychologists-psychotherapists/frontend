@@ -27,7 +27,7 @@
 
   .session-card__date {
     flex-direction: row;
-    gap: 20px;
+    gap: 10px;
   }
 }
 

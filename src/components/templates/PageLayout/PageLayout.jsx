@@ -4,12 +4,9 @@ import { node, string } from 'prop-types';
 import Title from '../../generic/Title/Title';
 
 export default function PageLayout({
-  children,
-  title,
-  nav,
-  section,
-  type,
-  classes
+  children, title,
+  nav, section,
+  type, layoutClassName
 }) {
   return (
     <section
@@ -17,13 +14,13 @@ export default function PageLayout({
     >
       <div className={
         `page-layout ${type === 'psychologist' ? `page-layout_type_${type}` : ''}${
-          classes ? ` ${classes}` : ''}`
+          layoutClassName ? ` ${layoutClassName}` : ''}`
         }
       >
         {nav && <div className="page-layout__nav">{nav}</div>}
+        {section && <div className="page-layout__section">{section}</div>}
         <Title text={title} />
         <div className="page-layout__children">{children}</div>
-        {section && <div className="page-layout__section">{section}</div>}
       </div>
     </section>
   );
@@ -35,12 +32,12 @@ PageLayout.propTypes = {
   nav: node,
   section: node,
   type: string,
-  classes: string,
+  layoutClassName: string,
 };
 
 PageLayout.defaultProps = {
   nav: '',
   section: '',
   type: '',
-  classes: '',
+  layoutClassName: '',
 };

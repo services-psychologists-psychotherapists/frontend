@@ -72,13 +72,13 @@ export default function CardOfSession({
             </div>
           </div>
           <ButtonGroup size="s">
-            <Button href={session.href} size={!isScreenSm ? 'm' : 'l'}>
+            <Button href={session.href} size={isScreenSm ? 'm' : 'l'}>
               {type === 'psychologist' ? 'Перейти' : 'Начать сессию'}
             </Button>
             <Button
               onClick={handleDeleteSessionClick}
               variant="secondary"
-              size={!isScreenSm ? 'm' : 'l'}
+              size={isScreenSm ? 'm' : 'l'}
             >
               Отменить
             </Button>

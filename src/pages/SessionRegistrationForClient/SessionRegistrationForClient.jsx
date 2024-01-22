@@ -8,7 +8,7 @@ import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import Button from '../../components/generic/Button/Button';
 import Calendar from '../../components/Сalendar/Сalendar';
 import MiniPsychoCard from '../../components/Cards/MiniPsychoCard/MiniPsychoCard';
-import SessionInformation from '../../components/SessionInformation/SessionInformation';
+import SessionInformation from './SessionInformation/SessionInformation';
 import TimeContainer from '../../components/generic/TimeBtn/TimeContainer/TimeContainer';
 import {
   formattedToday,
@@ -168,23 +168,26 @@ export default function SessionRegistrationForClient({ navigate }) {
 
   return (
     <PageLayout
+      layoutClassName="session-registration__container"
       title="Запись на сессию"
       section={(
-        <Button variant="text-icon" onClick={() => goBack()}>
+        <Button
+          variant="text-icon"
+          onClick={() => goBack()}
+          className="session-registration__back-btn"
+        >
           Назад
         </Button>
       )}
     >
       <div className="session-registration">
-        <section>
-          <MiniPsychoCard
-            experience={currentPsychologist.experience}
-            avatar={currentPsychologist.avatar}
-            firstName={currentPsychologist.first_name}
-            lastName={currentPsychologist.last_name}
-            speciality={currentPsychologist.speciality}
-          />
-        </section>
+        <MiniPsychoCard
+          experience={currentPsychologist.experience}
+          avatar={currentPsychologist.avatar}
+          firstName={currentPsychologist.first_name}
+          lastName={currentPsychologist.last_name}
+          speciality={currentPsychologist.speciality}
+        />
         <section className="session-registration__time">
           <div className="session-registration__time-calendar">
             <Calendar
@@ -208,6 +211,7 @@ export default function SessionRegistrationForClient({ navigate }) {
             sessionDuration={currentPsychologist.duration}
             sessionPrice={currentPsychologist.price}
             onClick={() => createNewSession(curCellId, jwt)}
+            className="session-registration__info"
           />
         </section>
       </div>

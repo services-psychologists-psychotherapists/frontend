@@ -1,14 +1,14 @@
 import React from 'react';
 import './ButtonGroup.css';
-import PropTypes from 'prop-types';
+import { oneOf, node } from 'prop-types';
 
 export default function ButtonGroup({ children, size }) {
   return <div className={`buttons buttons_size_${size}`}>{children}</div>;
 }
 
 ButtonGroup.propTypes = {
-  children: PropTypes.node.isRequired,
-  size: PropTypes.oneOf(['l', 'm', 's']),
+  children: node.isRequired,
+  size: oneOf(['l', 'm', 's']),
 };
 
 ButtonGroup.defaultProps = {

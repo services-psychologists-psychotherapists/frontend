@@ -23,6 +23,7 @@ import ClientProfilePage from '../../pages/ClientHomePage/ClientProfilePage/Clie
 import CreatePassword from '../../pages/CreatePassword/CreatePassword';
 import ResetPassword from '../../pages/ResetPassword/ResetPassword';
 import CheckEmail from '../../pages/CheckEmail/CheckEmail';
+import Preloader from '../generic/Preloader/Preloader';
 
 // Подумать/переделать реализацию setPopup есть функция
 export default function App() {
@@ -32,6 +33,7 @@ export default function App() {
   const jwtRefresh = localStorage.getItem('jwt-refresh');
   const curPath = useLocation();
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingPage, setIsLoadingPage] = useState(false);
   const [docIdForRequest, setDocIdForRequest] = useState('');
 
   const uploadDocuments = async (document, setPopup) => {
@@ -112,6 +114,7 @@ export default function App() {
   };
 
   const verifyJwt = async (token) => {
+    setIsLoadingPage(true);
     try {
       const tokenAccess = await auth.refreshToken(token);
 
@@ -122,6 +125,8 @@ export default function App() {
     } catch (err) {
       console.log(err);
       signOut();
+    } finally {
+      setIsLoadingPage(false);
     }
   };
 
@@ -295,186 +300,185 @@ export default function App() {
 
   return (
     <div className="page">
-      <CurrentUserContext.Provider value={currentUser}>
-        <PopupProvider>
-          <Header isLoggedIn={isLoggedIn} signOut={signOut} />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/for_a_therapist" element={<PageForPsychologists />} />
-            <Route path="/check_email" element={<CheckEmail />} />
-            <Route
-              path="/reset_password"
-              element={(
-                <ResetPassword
-                  resetPassword={resetPassword}
-                />
-              )}
-            />
-            <Route
-              path="/create_password/*"
-              element={(
-                <CreatePassword
-                  curPath={curPath}
-                  goBack={goBack}
-                  resetPassword={resetPassword}
-                />
-              )}
-            />
-            <Route path="/*" element={<NotFound />} />
-            <Route
-              path="/psychologists_registration"
-              element={(
-                <PsychologistRegistration
-                  docIdForRequest={docIdForRequest}
-                  setDocIdForRequest={setDocIdForRequest}
-                  uploadDocuments={uploadDocuments}
-                  curPath={curPath}
-                  isLoading={isLoading}
-                />
-              )}
-            />
-            {
-              !isLoggedIn && (
+      {!isLoadingPage ? (
+        <CurrentUserContext.Provider value={currentUser}>
+          <PopupProvider>
+            <Header isLoggedIn={isLoggedIn} signOut={signOut} />
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/for_a_therapist" element={<PageForPsychologists />} />
+              <Route path="/check_email" element={<CheckEmail />} />
+              <Route
+                path="/reset_password"
+                element={(
+                  <ResetPassword
+                    resetPassword={resetPassword}
+                  />
+                )}
+              />
+              <Route
+                path="/create_password/*"
+                element={(
+                  <CreatePassword
+                    curPath={curPath}
+                    goBack={goBack}
+                    resetPassword={resetPassword}
+                  />
+                )}
+              />
+              <Route path="/*" element={<NotFound />} />
+              <Route
+                path="/psychologists_registration"
+                element={(
+                  <PsychologistRegistration
+                    docIdForRequest={docIdForRequest}
+                    setDocIdForRequest={setDocIdForRequest}
+                    uploadDocuments={uploadDocuments}
+                    curPath={curPath}
+                    isLoading={isLoading}
+                  />
+                )}
+              />
+              {!isLoggedIn && (
                 <Route
                   path="/signin"
                   element={(
-                    <Auth
-                      signIn={signIn}
-                    />
+                    <Auth signIn={signIn} />
                   )}
-                />
-              )
-            }
-            <Route
-              path="/directory_psychologists"
-              element={(
-                <DirectoryOfPsychologists
-                  isLoggedIn={isLoggedIn}
-                  currentUser={currentUser}
                 />
               )}
-            />
-            {currentUser.role === 'psychologist' ? (
-              <>
-                <Route
-                  path="/psychologist_account"
-                  element={(
-                    <ProtectedRouteElement
-                      element={PsychologistAccount}
-                      curPath={curPath}
-                      loggedIn={isLoggedIn}
-                      currentUser={currentUser}
-                      docIdForRequest={docIdForRequest}
-                      uploadDocuments={uploadDocuments}
-                      setDocIdForRequest={setDocIdForRequest}
-                      changePsychoAvatar={changePsychoAvatar}
-                      changePsychologistData={changePsychologistData}
-                    />
-                  )}
-                />
-                <Route
-                  path="/psychologist_account_schedule"
-                  element={(
-                    <ProtectedRouteElement
-                      element={PsychologistAccount}
-                      curPath={curPath}
-                      loggedIn={isLoggedIn}
-                      currentUser={currentUser}
-                      docIdForRequest={docIdForRequest}
-                      uploadDocuments={uploadDocuments}
-                      setDocIdForRequest={setDocIdForRequest}
-                      changePsychoAvatar={changePsychoAvatar}
-                      changePsychologistData={changePsychologistData}
-                    />
-                  )}
-                />
-                <Route
-                  path="/psychologist_account_profile"
-                  element={(
-                    <ProtectedRouteElement
-                      element={PsychologistAccount}
-                      curPath={curPath}
-                      loggedIn={isLoggedIn}
-                      currentUser={currentUser}
-                      docIdForRequest={docIdForRequest}
-                      uploadDocuments={uploadDocuments}
-                      setDocIdForRequest={setDocIdForRequest}
-                      changePsychoAvatar={changePsychoAvatar}
-                      changePsychologistData={changePsychologistData}
-                    />
-                  )}
-                />
-                {/* придумать общий для /change_password */}
-                <Route
-                  path="/change_password"
-                  element={(
-                    <ProtectedRouteElement
-                      element={ChangePassword}
-                      navigate={navigate}
-                      loggedIn={isLoggedIn}
-                      goBack={goBack}
-                      currentUser={currentUser}
-                    />
-                  )}
-                />
-              </>
-            ) : (
-              <>
-                <Route
-                  path="/change_password"
-                  element={(
-                    <ProtectedRouteElement
-                      element={ChangePassword}
-                      navigate={navigate}
-                      loggedIn={isLoggedIn}
-                      goBack={goBack}
-                    />
-                  )}
-                />
-                <Route
-                  path="/client_account"
-                  element={(
-                    <ProtectedRouteElement
-                      element={ClientHomePage}
-                      loggedIn={isLoggedIn}
-                      getUser={getUser}
-                    />
-                  )}
-                />
-                <Route
-                  path="/client_profile"
-                  element={(
-                    <ProtectedRouteElement
-                      element={ClientProfilePage}
-                      loggedIn={isLoggedIn}
-                      currentUser={currentUser}
-                      docIdForRequest={docIdForRequest}
-                      setDocIdForRequest={setDocIdForRequest}
-                      uploadDocuments={uploadDocuments}
-                      changeClientAvatar={changeClientAvatar}
-                      changeClientData={changeClientData}
-                      curPath={curPath}
-                    />
-                  )}
-                />
-                <Route
-                  path="/client_account_session-registration/:id/:date?/:time?/:cellId?"
-                  element={(
-                    <ProtectedRouteElement
-                      element={SessionRegistrationForClient}
-                      loggedIn={isLoggedIn}
-                      navigate={navigate}
-                    />
-                  )}
-                />
-              </>
-            )}
-          </Routes>
-          <Popup />
-        </PopupProvider>
-      </CurrentUserContext.Provider>
-      <ButtonUp />
-      <Footer />
+              <Route
+                path="/directory_psychologists"
+                element={(
+                  <DirectoryOfPsychologists
+                    isLoggedIn={isLoggedIn}
+                    currentUser={currentUser}
+                  />
+                )}
+              />
+              {isLoggedIn && currentUser.role === 'psychologist' ? (
+                <>
+                  <Route
+                    path="/psychologist_account"
+                    element={(
+                      <ProtectedRouteElement
+                        element={PsychologistAccount}
+                        curPath={curPath}
+                        loggedIn={isLoggedIn}
+                        currentUser={currentUser}
+                        docIdForRequest={docIdForRequest}
+                        uploadDocuments={uploadDocuments}
+                        setDocIdForRequest={setDocIdForRequest}
+                        changePsychoAvatar={changePsychoAvatar}
+                        changePsychologistData={changePsychologistData}
+                      />
+                    )}
+                  />
+                  <Route
+                    path="/psychologist_account_schedule"
+                    element={(
+                      <ProtectedRouteElement
+                        element={PsychologistAccount}
+                        curPath={curPath}
+                        loggedIn={isLoggedIn}
+                        currentUser={currentUser}
+                        docIdForRequest={docIdForRequest}
+                        uploadDocuments={uploadDocuments}
+                        setDocIdForRequest={setDocIdForRequest}
+                        changePsychoAvatar={changePsychoAvatar}
+                        changePsychologistData={changePsychologistData}
+                      />
+                    )}
+                  />
+                  <Route
+                    path="/psychologist_account_profile"
+                    element={(
+                      <ProtectedRouteElement
+                        element={PsychologistAccount}
+                        curPath={curPath}
+                        loggedIn={isLoggedIn}
+                        currentUser={currentUser}
+                        docIdForRequest={docIdForRequest}
+                        uploadDocuments={uploadDocuments}
+                        setDocIdForRequest={setDocIdForRequest}
+                        changePsychoAvatar={changePsychoAvatar}
+                        changePsychologistData={changePsychologistData}
+                      />
+                    )}
+                  />
+                  {/* придумать общий для /change_password */}
+                  <Route
+                    path="/change_password"
+                    element={(
+                      <ProtectedRouteElement
+                        element={ChangePassword}
+                        navigate={navigate}
+                        loggedIn={isLoggedIn}
+                        goBack={goBack}
+                        currentUser={currentUser}
+                      />
+                    )}
+                  />
+                </>
+              ) : isLoggedIn && (
+                <>
+                  <Route
+                    path="/change_password"
+                    element={(
+                      <ProtectedRouteElement
+                        element={ChangePassword}
+                        navigate={navigate}
+                        loggedIn={isLoggedIn}
+                        goBack={goBack}
+                        currentUser={currentUser}
+                      />
+                    )}
+                  />
+                  <Route
+                    path="/client_account"
+                    element={(
+                      <ProtectedRouteElement
+                        element={ClientHomePage}
+                        loggedIn={isLoggedIn}
+                        getUser={getUser}
+                      />
+                    )}
+                  />
+                  <Route
+                    path="/client_profile"
+                    element={(
+                      <ProtectedRouteElement
+                        element={ClientProfilePage}
+                        loggedIn={isLoggedIn}
+                        currentUser={currentUser}
+                        docIdForRequest={docIdForRequest}
+                        setDocIdForRequest={setDocIdForRequest}
+                        uploadDocuments={uploadDocuments}
+                        changeClientAvatar={changeClientAvatar}
+                        changeClientData={changeClientData}
+                        curPath={curPath}
+                      />
+                    )}
+                  />
+                  <Route
+                    path="/client_account_session-registration/:id/:date?/:time?/:cellId?"
+                    element={(
+                      <ProtectedRouteElement
+                        element={SessionRegistrationForClient}
+                        loggedIn={isLoggedIn}
+                        navigate={navigate}
+                      />
+                    )}
+                  />
+                </>
+              )}
+            </Routes>
+            <Popup />
+          </PopupProvider>
+          <ButtonUp />
+          <Footer />
+        </CurrentUserContext.Provider>
+      ) : <Preloader />}
     </div>
   );
 }

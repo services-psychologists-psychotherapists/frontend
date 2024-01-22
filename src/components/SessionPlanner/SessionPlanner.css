@@ -120,3 +120,15 @@
 .session-planner__item_visible {
   display: block;
 }
+
+@media screen and (max-width: 768px) {
+  .session-planner {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 24px;
+  }
+
+  .session-planner__button-add {
+    align-self: unset;
+  }
+}

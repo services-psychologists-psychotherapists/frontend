@@ -7,6 +7,7 @@
   align-items: center;
   max-width: 588px;
   width: 100%;
+  overflow: hidden;
 }
 
 .calendar__content {
@@ -134,4 +135,49 @@
 
 .calendar__dates-cell {
   all: unset;
+}
+
+@media screen and (max-width: 870px) {
+  .calendar {
+    padding: 24px;
+  }
+
+  .calendar__dates, .calendar__days-of-week {
+    grid-template-rows: repeat(2, 50px);
+    grid-template-columns: repeat(7, 50px);
+  }
+
+  .calendar__days-of-week {
+    grid-template-rows: repeat(1, 50px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .calendar__dates, .calendar__days-of-week {
+    grid-template-rows: repeat(2, 40px);
+    grid-template-columns: repeat(7, 40px);
+  }
+
+  .calendar__days-of-week {
+    grid-template-rows: repeat(1, 40px);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .calendar {
+    padding: 20px;
+  }
+
+  .calendar__dates, .calendar__days-of-week {
+    grid-template-rows: repeat(2, 30px);
+    grid-template-columns: repeat(7, 30px);
+  }
+
+  .calendar__days-of-week {
+    grid-template-rows: repeat(1, 30px);
+  }
+
+  .calendar__current-weeks {
+    font-size: 14px;
+  }
 }

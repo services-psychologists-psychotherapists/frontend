@@ -9,7 +9,7 @@ import FourthStep from './data-blocks/FourthStep/FourthStep';
 import { useForm } from '../../hooks/useForm';
 import ProfileCard from '../Cards/ProfileCard/ProfileCard';
 import BlockWithTitle from '../templates/BlockWithTitle/BlockWithTitle';
-import TitleForBlock from './TitleForBlock/TitleForBlock';
+import FormBlock from './TitleForBlock/FormBlock';
 import Button from '../generic/Button/Button';
 import useUploadDoc from '../../hooks/useUploadDoc';
 import { usePopup } from '../../hooks/usePopup';
@@ -105,7 +105,7 @@ export default function UserProfileData({
         title="Анкетные данные"
       >
         <form className="user-data__form">
-          <TitleForBlock
+          <FormBlock
             text="Общая информация"
           >
             <FirstStep
@@ -121,10 +121,10 @@ export default function UserProfileData({
               dataForRequest={dataForRequest}
               curPath={curPath}
             />
-          </TitleForBlock>
+          </FormBlock>
           {currentUser.role === 'psychologist' && (
             <>
-              <TitleForBlock
+              <FormBlock
                 text="Высшее образование"
               >
                 <SecondStep
@@ -148,8 +148,8 @@ export default function UserProfileData({
                   setFileForRequest={setFileForRequest}
                   showFileError={showFileError}
                 />
-              </TitleForBlock>
-              <TitleForBlock
+              </FormBlock>
+              <FormBlock
                 text="Повышение квалификации"
               >
                 <ThirdStep
@@ -170,9 +170,10 @@ export default function UserProfileData({
                   setValues={setValues}
                   isReset={isReset}
                   setFileForRequest={setFileForRequest}
+                  showFileError={showFileError}
                 />
-              </TitleForBlock>
-              <TitleForBlock
+              </FormBlock>
+              <FormBlock
                 text="Дополнительная информация"
               >
                 <FourthStep
@@ -188,11 +189,12 @@ export default function UserProfileData({
                   setDataForRequest={setDataForRequest}
                   dataForRequest={dataForRequest}
                 />
-              </TitleForBlock>
+              </FormBlock>
             </>
           )}
           <div className="user-data__buttons">
             <Button
+              className="user-data__btn"
               type="button"
               variant="secondary"
               size="l"
@@ -204,6 +206,7 @@ export default function UserProfileData({
               Сбросить
             </Button>
             <Button
+              className="user-data__btn"
               type="submit"
               variant="primary"
               size="l"

@@ -1,5 +1,6 @@
 .scroller {
-  width: 455px;
+  max-width: 455px;
+  width: 100%;
   height: 97vh;
   max-height: 718px;
   display: flex;
@@ -48,7 +49,7 @@
   font-weight: 500;
   font-size: 22px;
   color: var(--text-color-dark-blue);
-  line-height: 1.36;
+  line-height: 30px;
 }
 
 .slots::-webkit-scrollbar {

@@ -12,7 +12,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-bottom: 100px;
   animation: fadeOut 1s;
 }
 
@@ -22,7 +21,6 @@
   column-gap: 20px;
   margin-bottom: 40px;
   list-style-type: none;
-  padding: 0; /* перехватыввет normalize css */
 }
 
 .auth__form-registration_button {
@@ -32,4 +30,13 @@
 .auth__registration-psycho {
   margin: 20px 0 28px 0;
   animation: fadeOut 1s;
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+  .auth__form-registration_field-container {
+    display: flex;
+    flex-direction: column;
+  }
 }

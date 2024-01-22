@@ -35,9 +35,10 @@
   }
 }
 
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 900px) {
   .header__nav > .links {
-    max-width: 230px;
+    max-width: 205px;
+    gap: 10px;
   }
 }
 

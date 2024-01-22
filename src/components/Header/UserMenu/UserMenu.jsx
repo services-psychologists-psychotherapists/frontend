@@ -50,7 +50,11 @@ export default function UserMenu({
         )}
       </button>
       <ul className={`dropdown__list ${isOpen ? 'dropdown__list_opened' : ''}`}>
-        <NavLinksList list={getNavLinks()} direction="column" />
+        <NavLinksList
+          list={getNavLinks()}
+          isList
+          className="dropdown__nav-links"
+        />
         {isLoggedIn && (
         <li>
           <button className="exit-btn" onClick={signOut}>
