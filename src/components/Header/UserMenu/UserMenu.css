@@ -2,6 +2,11 @@
   position: relative;
 }
 
+.dropdown__nav-links {
+  flex-direction: column !important;
+  padding: 0;
+}
+
 .user {
   background-color: inherit;
   border: none;
@@ -141,5 +146,9 @@
 @media screen and (max-width: 768px) {
   .user__name {
     display: none;
+  }
+  
+  .dropdown__list {
+    padding: 20px 30px;
   }
 }

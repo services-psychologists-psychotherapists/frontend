@@ -3,6 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 60px 24px 100px;
 }
 
 .auth__variants {
@@ -39,4 +40,15 @@
 
 .auth__service-documents_text {
   font-family: var(--font-family-lato);
+}
+
+@media screen and (max-width: 768px) {
+  .auth__variants {
+    flex-direction: column;
+    row-gap: 10px;
+  }
+
+  .auth {
+    padding: 20px 24px 100px;
+  }
 }

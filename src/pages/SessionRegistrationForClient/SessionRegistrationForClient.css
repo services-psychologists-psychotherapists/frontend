@@ -4,6 +4,10 @@
   row-gap: 40px;
 }
 
+.session-registration__back-btn {
+  padding: 0 8px 0 0;
+}
+
 .session-registration__time-container {
   max-width: 490px;
 }
@@ -20,4 +24,20 @@
   row-gap: 24px;
   max-width: 588px;
   width: 100%;
+}
+
+@media screen and (max-width: 1080px) {
+  .session-registration__time {
+    flex-direction: column;
+  }
+
+  .session-registration__info {
+    align-self: center;
+  }
+
+  .session-registration__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column !important;
+  }
 }

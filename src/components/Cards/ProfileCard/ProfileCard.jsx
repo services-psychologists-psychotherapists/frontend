@@ -6,6 +6,7 @@ import { PROFILE_FIELDS, POPUP_DATA } from '../../../constants/constants';
 import Title from '../../generic/Title/Title';
 import Avatar from '../../generic/Avatar/Avatar';
 import { usePopup } from '../../../hooks/usePopup';
+import { useResize } from '../../../hooks/useResize';
 
 export default function ProfileCard({
   currentUser, changeClientAvatar,
@@ -13,6 +14,7 @@ export default function ProfileCard({
 }) {
   const { setValue, setOnClick } = usePopup();
   const jwt = localStorage.getItem('jwt');
+  const { isScreenMd } = useResize();
 
   const handleFileSelect = (event, userData) => {
     const file = event.target.files[0];
@@ -54,32 +56,35 @@ export default function ProfileCard({
         <div className="profile-card__container">
           <Avatar
             src={currentUser.avatar || ''}
-            size="xl"
+            size={isScreenMd ? 'l' : 'xl'}
             onClick={() => setValue(POPUP_DATA.avatar)}
           />
-          <ul className="profile-card__container_data">
-            {PROFILE_FIELDS.map((i) => (
-              <li key={i.title}>
-                <div className="profile-card__fieldset">
-                  <span className="profile-card__fieldset_title">
-                    {i.title}
-                  </span>
-                  <div className="profile-card__fieldset_field">
-                    <span className="profile-card__fieldset_text">
-                      {i.title === 'Логин' ? currentUser.email : i.text}
+          <div className="profile-card__info">
+            <ul className="profile-card__container_data">
+              {PROFILE_FIELDS.map((i) => (
+                <li key={i.title}>
+                  <div className="profile-card__fieldset">
+                    <span className="profile-card__fieldset_title">
+                      {i.title}
                     </span>
+                    <div className="profile-card__fieldset_field">
+                      <span className="profile-card__fieldset_text">
+                        {i.title === 'Логин' ? currentUser.email : i.text}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <Button
-            variant="secondary"
-            className="profile-card__button"
-            onClick={() => setValue(POPUP_DATA.changePassword)}
-          >
-            Изменить пароль
-          </Button>
+                </li>
+              ))}
+            </ul>
+            <Button
+              variant="secondary"
+              className="profile-card__button"
+              onClick={() => setValue(POPUP_DATA.changePassword)}
+            >
+              Изменить пароль
+            </Button>
+          </div>
+
         </div>
       </div>
     </section>

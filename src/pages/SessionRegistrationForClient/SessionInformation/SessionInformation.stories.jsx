@@ -1,8 +1,8 @@
 import React from 'react';
-import '../App/App.css';
+import '../../../components/App/App.css';
 import './SessionInformation.css';
 import SessionInformation from './SessionInformation';
-import { getPriceWithSpace } from '../../utils/helpers';
+import { getPriceWithSpace } from '../../../utils/helpers';
 
 export default {
   title: 'Global components/Session information/SessionInformation',

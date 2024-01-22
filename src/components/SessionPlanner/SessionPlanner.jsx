@@ -5,9 +5,11 @@ import { TIMING_HOURS, TIMING_MINUTES } from '../../constants/db';
 import { POPUP_DATA } from '../../constants/constants';
 import TimePicker from '../generic/TimePicker/TimePicker';
 import { usePopup } from '../../hooks/usePopup';
+import { useResize } from '../../hooks/useResize';
 
 export default function SessionPlanner() {
   const { setValue } = usePopup();
+  const { isScreenMd } = useResize();
 
   return (
     <div className="session-planner">
@@ -23,6 +25,7 @@ export default function SessionPlanner() {
         onClick={() => setValue(POPUP_DATA.ConfirmDeletePopup)}
         type="submit"
         className="session-planner__button-add"
+        size={isScreenMd ? 'm' : 'l'}
       >
         + Добавить
       </Button>

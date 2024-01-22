@@ -6,10 +6,12 @@ import ButtonGroup from '../ButtonGroup/ButtonGroup';
 import Title from '../Title/Title';
 import useOutsideClick from '../../../hooks/useOnClickOutside';
 import { usePopup } from '../../../hooks/usePopup';
+import { useResize } from '../../../hooks/useResize';
 
 export default function Popup({ children }) {
   const ref = useRef();
   const { value, setValue, onClick } = usePopup();
+  const { isScreenMd } = useResize();
 
   const closePopup = () => {
     setValue(null);
@@ -41,7 +43,7 @@ export default function Popup({ children }) {
               closePopup();
             }}
             type={buttons[0].type}
-            size={buttons[0].size}
+            size={isScreenMd ? 'm' : buttons[0].size}
             variant={buttons[0].variant}
             href={buttons[0].href || ''}
           >
@@ -62,7 +64,7 @@ export default function Popup({ children }) {
                       closePopup();
                     }}
                     type={button.type}
-                    size={button.size}
+                    size={isScreenMd ? 'm' : button.size}
                     variant={button.variant}
                     href={button.href || ''}
                   >

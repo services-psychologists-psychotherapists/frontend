@@ -1,18 +1,17 @@
 import React from 'react';
 import './NavLinksList.css';
-import PropTypes from 'prop-types';
+import { arrayOf, shape, string, bool } from 'prop-types';
 import NavigationLink from './NavigationLink/NavigationLink';
 
-// prettier-ignore
 export default function NavLinksList({
   list,
   navLink,
-  direction,
+  isList,
   variant,
   className,
 }) {
   return (
-    <ul className={`links links_direction_${direction} links_type_${variant}${
+    <ul className={`links${isList ? ' links_type_list' : ''} links_type_${variant}${
       className ? ` ${className}` : ''}`}
     >
       {list.map(({ link, text }) => (
@@ -25,21 +24,21 @@ export default function NavLinksList({
 }
 
 NavLinksList.propTypes = {
-  list: PropTypes.arrayOf(
-    PropTypes.shape({
-      link: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
+  list: arrayOf(
+    shape({
+      link: string.isRequired,
+      text: string.isRequired,
     })
   ).isRequired,
-  navLink: PropTypes.bool,
-  direction: PropTypes.oneOf(['row', 'column']),
-  variant: PropTypes.string,
-  className: PropTypes.string,
+  navLink: bool,
+  isList: bool,
+  variant: string,
+  className: string,
 };
 
 NavLinksList.defaultProps = {
   navLink: true,
-  direction: 'row',
+  isList: false,
   variant: '',
   className: '',
 };

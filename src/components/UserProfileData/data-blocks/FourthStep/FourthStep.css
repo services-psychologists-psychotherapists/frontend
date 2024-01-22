@@ -11,7 +11,7 @@
   width: 93%;
 }
 
-@media screen and (max-width: 915px) {
+@media screen and (max-width: 1330px) {
   .data-list__price,
   .data-list__experience {
     width: 100%;

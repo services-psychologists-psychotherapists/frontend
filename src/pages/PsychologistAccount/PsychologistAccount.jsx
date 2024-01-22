@@ -65,29 +65,33 @@ export default function PsychologistAccount({
 
   return (
     <PageLayout
+      layoutClassName="psychologist-account__layout"
       title={PSYCHOLOGIST_ACCOUNT_TITLES[path].pageTitle}
-      isLoggedIn
       nav={(
         <NavLinksList
           list={PSYCHOLOGIST_ACCOUNT_LINKS}
-          direction="column"
-          variant="violet"
+          isList
+          variant="menu"
         />
       )}
     >
       {path !== 'profile' ? (
         <section className="psychologist-account">
-          <Calendar
-            titleText={PSYCHOLOGIST_ACCOUNT_TITLES[path].calendarTitle}
-            onDateCellClick={setCurrentDay}
-          />
-          <BlockWithTitle title={PSYCHOLOGIST_ACCOUNT_TITLES[path].reminderTitle}>
-            {path !== 'schedule' ? (
-              <CardOfSession session={nextAppointment} />
-            ) : (
-              <SessionPlanner />
-            )}
-          </BlockWithTitle>
+          <div className="psychologist-account__content-block">
+            <Calendar
+              titleText={PSYCHOLOGIST_ACCOUNT_TITLES[path].calendarTitle}
+              onDateCellClick={setCurrentDay}
+            />
+            <BlockWithTitle
+              title={PSYCHOLOGIST_ACCOUNT_TITLES[path].reminderTitle}
+            >
+              {path !== 'schedule' ? (
+                <CardOfSession session={nextAppointment} />
+              ) : (
+                <SessionPlanner />
+              )}
+            </BlockWithTitle>
+          </div>
           <SlotsList sessions={selectedSlots} selectedDay={currentDay} />
         </section>
       ) : null}

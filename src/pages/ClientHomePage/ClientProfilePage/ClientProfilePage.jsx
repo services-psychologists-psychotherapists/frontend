@@ -20,8 +20,8 @@ export default function ClientProfilePage({
       nav={(
         <NavLinksList
           list={CLIENT_PROFILE_NAV_LINKS}
-          direction="column"
-          variant="violet"
+          isList
+          variant="menu"
           className="client-profile__nav-links"
         />
       )}

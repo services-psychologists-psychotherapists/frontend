@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 40px;
+  width: 100%;
 }
 .user-data__form {
   display: flex;
@@ -66,7 +67,7 @@
   column-gap: 20px;
 }
 
-@media screen and (max-width: 915px) {
+@media screen and (max-width: 1330px) {
   .data-list_type_grid {
     display: flex;
     flex-direction: column;
@@ -77,5 +78,13 @@
 @media screen and (max-width: 450px) {
   .data-list__text {
     min-height: 70px;
+  }
+
+  .user-data__btn {
+    max-width: 50%;
+  }
+
+  .user-data__form {
+    padding: 24px;
   }
 }

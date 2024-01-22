@@ -4,8 +4,11 @@ import { oneOf, string } from 'prop-types';
 import Text from '../../generic/Text/Text';
 import Title from '../../generic/Title/Title';
 import Button from '../../generic/Button/Button';
+import { useResize } from '../../../hooks/useResize';
 
 export default function EmptyCard({ type, title, paragraph, textBtn }) {
+  const { isScreenSm } = useResize();
+
   return (
     <div className={`empty-card empty-card_type_${type}`}>
       {type === 'client' ? (
@@ -20,7 +23,14 @@ export default function EmptyCard({ type, title, paragraph, textBtn }) {
         </>
       )}
       {textBtn
-      && <Button href="/directory_psychologists">{textBtn}</Button>}
+      && (
+        <Button
+          href="/directory_psychologists"
+          size={isScreenSm ? 'm' : 'l'}
+        >
+            {textBtn}
+        </Button>
+      )}
     </div>
   );
 }

@@ -99,7 +99,7 @@ export default function PsychologistRegistration({
         )}
       {!isSuccess && (
         <PageLayout
-          classes={
+          layoutClassName={
             `psycho-registration${
               step === 1 ? `${' psycho-registration__fist-step'}` : ''
             }`

@@ -1,8 +1,8 @@
 import React from 'react';
 import { number, string, func } from 'prop-types';
 import './SessionInformation.css';
-import Button from '../generic/Button/Button';
-import { getPriceWithSpace, formattedToday } from '../../utils/helpers';
+import Button from '../../../components/generic/Button/Button';
+import { getPriceWithSpace, formattedToday } from '../../../utils/helpers';
 
 export default function SessionInformation({
   selectedTime,
@@ -10,9 +10,10 @@ export default function SessionInformation({
   sessionDuration,
   sessionPrice,
   onClick,
+  className,
 }) {
   return (
-    <div className="session-information">
+    <div className={`session-information${className ? ` ${className}` : ''}`}>
       {/* TODO: использовать компоненты?
       на текущем этапе нет возможности т.к. компонентам нельзя задать доп. классы
       */}
@@ -52,6 +53,7 @@ SessionInformation.propTypes = {
   sessionDuration: number,
   sessionPrice: number,
   onClick: func,
+  className: string,
 };
 
 SessionInformation.defaultProps = {
@@ -60,4 +62,5 @@ SessionInformation.defaultProps = {
   sessionDuration: 0,
   sessionPrice: 0,
   onClick: () => {},
+  className: '',
 };

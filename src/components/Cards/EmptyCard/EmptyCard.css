@@ -4,12 +4,14 @@
   font-size: 18px;
   color: #9b9da0;
   max-width: 425px;
+  margin-bottom: 4px;
+  overflow: hidden;
 }
 
 .empty-card {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  row-gap: 12px;
   width: 100%;
 }
 
