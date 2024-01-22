@@ -31,7 +31,6 @@ function Template(args) {
 
 export const Block = Template.bind({});
 
-// prettier-ignore
 Block.args = {
   title: 'O Себе',
   children: (
