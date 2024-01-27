@@ -1,5 +1,5 @@
-import React from 'react';
-import { func, object } from 'prop-types';
+import React, { useContext } from 'react';
+import { func } from 'prop-types';
 import './ChangePassword.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import Button from '../../components/generic/Button/Button';
@@ -12,8 +12,11 @@ import {
 } from '../../utils/helpers';
 import { usePopup } from '../../hooks/usePopup';
 import { setNewPasswords } from '../../utils/auth';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
-export default function ChangePassword({ navigate, goBack, currentUser }) {
+export default function ChangePassword({
+  navigate, goBack,
+}) {
   const {
     values,
     handleChange,
@@ -23,6 +26,7 @@ export default function ChangePassword({ navigate, goBack, currentUser }) {
     getInvalidInput,
   } = useForm();
   const { setValue } = usePopup();
+  const currentUser = useContext(CurrentUserContext);
 
   const setPassword = async (passwords) => {
     try {
@@ -105,6 +109,4 @@ export default function ChangePassword({ navigate, goBack, currentUser }) {
 ChangePassword.propTypes = {
   navigate: func.isRequired,
   goBack: func.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  currentUser: object.isRequired,
 };

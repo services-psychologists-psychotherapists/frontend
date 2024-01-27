@@ -26,6 +26,7 @@ export default function MyPsychologist({ psychologist, nextSession }) {
               variant={nextSession ? 'secondary' : 'primary'}
               size={isScreenSm ? 'm' : 'l'}
               href={`/client_account_session-registration/${psychologist.id}`}
+              className="your-psycho__button"
             >
               Записаться повторно
             </Button>

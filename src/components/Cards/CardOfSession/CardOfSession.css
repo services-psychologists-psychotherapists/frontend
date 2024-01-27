@@ -76,6 +76,12 @@
   }
 }
 
+@media screen and (max-width: 550px) {
+  .session-card {
+    max-width: 100%;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .session-card {
     padding: 15px 15px 20px;

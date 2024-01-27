@@ -18,7 +18,7 @@ import useUploadDoc from '../../hooks/useUploadDoc';
 import { showPopupWithValue, showFileError } from '../../utils/helpers';
 
 export default function PsychologistRegistration({
-  docIdForRequest,
+  docIdForRequest, setIsLoading,
   uploadDocuments,
   setDocIdForRequest,
   curPath,
@@ -50,6 +50,7 @@ export default function PsychologistRegistration({
   useUploadDoc(setListId, setCurBlockType, setDocIdForRequest);
 
   const createPsycho = async (data) => {
+    setIsLoading(true);
     try {
       if (!data.themes || !data.approaches) {
         showPopupWithValue(setValue, 'Заполните направления работы и подходы');
@@ -67,6 +68,8 @@ export default function PsychologistRegistration({
           text: 'Проверьте корректность введенных данных или попробуйте позже',
         },
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -214,7 +217,13 @@ export default function PsychologistRegistration({
                   dataForRequest={dataForRequest}
                 />
               </DescrForStep>
-              {step === 4 && <DocsForRegistr />}
+              {step === 4
+                && (
+                  <DocsForRegistr
+                    setValue={setValue}
+                    showPopupWithValue={showPopupWithValue}
+                  />
+                )}
               <Button
                 className="psycho-registration__form_button"
                 type={step !== 4 ? 'button' : 'submit'}
@@ -240,4 +249,5 @@ PsychologistRegistration.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   curPath: object.isRequired,
   isLoading: bool.isRequired,
+  setIsLoading: func.isRequired,
 };

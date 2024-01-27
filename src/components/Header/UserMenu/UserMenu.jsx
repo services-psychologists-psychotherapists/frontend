@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from 'react';
 import { func, bool } from 'prop-types';
 import './UserMenu.css';
-import CurrentUserContext from '../../../Context/CurrentUserContext';
+import CurrentUserContext from '../../../contexts/CurrentUserContext';
 import NavLinksList from '../../NavLinksList/NavLinksList';
 import { HEADER_NAV_LINKS } from '../../../constants/constants';
 import useOutsideClick from '../../../hooks/useOnClickOutside';

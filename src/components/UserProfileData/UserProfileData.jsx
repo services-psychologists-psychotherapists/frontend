@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { object, string, func } from 'prop-types';
+import { object, string, func, bool } from 'prop-types';
 import moment from 'moment';
 import './UserProfileData.css';
 import FirstStep from './data-blocks/FirstStep/FirstStep';
@@ -20,7 +20,7 @@ export default function UserProfileData({
   uploadDocuments, setDocIdForRequest,
   changePsychoAvatar, changeClientAvatar,
   changePsychologistData, changeClientData,
-  curPath,
+  curPath, isLoading,
 }) {
   const {
     values, handleChange, errors,
@@ -31,6 +31,7 @@ export default function UserProfileData({
     getYears, fileForRequest,
     setValues, setSelectedDropdownItems,
     resetForm, setFileForRequest,
+    isChanged, setIsChanged,
   } = useForm();
 
   const [isReset, setIsReset] = useState(false);
@@ -60,7 +61,10 @@ export default function UserProfileData({
     }));
 
     if (currentUser.role === 'psychologist') {
-      setDataForRequest({ institutes: currentUser.institutes, courses: currentUser.courses });
+      setDataForRequest({
+        institutes: currentUser.institutes,
+        courses: currentUser.courses,
+      });
     }
   }, [currentUser, isReset]);
 
@@ -86,6 +90,12 @@ export default function UserProfileData({
       // eslint-disable-next-line no-unused-vars
       data.approaches = data.approaches.map(({ id, title }) => title);
     }
+
+    setDataForRequest((prevData) => ({
+      ...prevData,
+      approaches: data.approaches,
+      themes: data.themes,
+    }));
 
     setSelectedDropdownItems((prevData) => ({
       ...prevData,
@@ -210,18 +220,21 @@ export default function UserProfileData({
               type="submit"
               variant="primary"
               size="l"
-              disabled={!isValidForm}
-              onClick={
-                currentUser.role === 'psychologist'
-                  ? () => changePsychologistData(
+              disabled={!isValidForm || !isChanged || isLoading}
+              onClick={() => {
+                setIsChanged(false);
+                if (currentUser.role === 'psychologist') {
+                  changePsychologistData(
                     dataForRequest,
                     token,
                     setValue,
-                  )
-                  : () => changeClientData(dataForRequest, token, setValue)
-              }
+                  );
+                } else {
+                  changeClientData(dataForRequest, token, setValue);
+                }
+              }}
             >
-              Сохранить
+              {isLoading ? 'Сохранение...' : 'Сохранить'}
             </Button>
           </div>
         </form>
@@ -242,6 +255,7 @@ UserProfileData.propTypes = {
   changeClientData: func,
   // eslint-disable-next-line react/forbid-prop-types
   curPath: object.isRequired,
+  isLoading: bool.isRequired,
 };
 
 UserProfileData.defaultProps = {

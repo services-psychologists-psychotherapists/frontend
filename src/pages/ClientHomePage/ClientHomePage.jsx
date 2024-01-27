@@ -6,7 +6,7 @@ import NavLinksList from '../../components/NavLinksList/NavLinksList';
 import { CLIENT_PROFILE_NAV_LINKS, POPUP_DATA } from '../../constants/constants';
 import BlockWithTitle from '../../components/templates/BlockWithTitle/BlockWithTitle';
 import CardOfSession from '../../components/Cards/CardOfSession/CardOfSession';
-import CurrentUserContext from '../../Context/CurrentUserContext';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 import Text from '../../components/generic/Text/Text';
 import Button from '../../components/generic/Button/Button';
 import MyPsychologist from '../../components/Cards/MyPsychologist/MyPsychologist';

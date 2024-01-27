@@ -56,7 +56,10 @@ export default function CardOfSession({
             <Avatar size="s" src={user.avatar} />
             <div className="session-card__info">
               {type === 'psychologist' ? (
-                <PsychoName description="Психолог" name={`${user.first_name} ${user.last_name}`} />
+                <PsychoName
+                  description="Психолог"
+                  name={`${user.first_name} ${user.last_name}`}
+                />
               ) : (
                 <Text>{`${user.first_name} ${user.last_name}`}</Text>
               )}

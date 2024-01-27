@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import CurrentUserContext from '../../../Context/CurrentUserContext';
+import CurrentUserContext from '../../../contexts/CurrentUserContext';
 import PageLayout from './PageLayout';
 import { PSYCHO } from '../../../constants/db';
 import { Violet } from '../../NavLinksList/NavLinksList.stories';

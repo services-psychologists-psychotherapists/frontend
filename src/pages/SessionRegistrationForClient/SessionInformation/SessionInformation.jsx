@@ -1,11 +1,11 @@
 import React from 'react';
-import { number, string, func } from 'prop-types';
+import { number, string, func, bool } from 'prop-types';
 import './SessionInformation.css';
 import Button from '../../../components/generic/Button/Button';
 import { getPriceWithSpace, formattedToday } from '../../../utils/helpers';
 
 export default function SessionInformation({
-  selectedTime,
+  selectedTime, isLoading,
   selectedDay,
   sessionDuration,
   sessionPrice,
@@ -39,9 +39,10 @@ export default function SessionInformation({
         type="button"
         size="l"
         variant="primary"
+        disabled={isLoading || !selectedTime}
         onClick={() => onClick()}
       >
-        Оплатить
+        {isLoading ? 'Оплата...' : 'Оплатить'}
       </Button>
     </div>
   );
@@ -54,6 +55,7 @@ SessionInformation.propTypes = {
   sessionPrice: number,
   onClick: func,
   className: string,
+  isLoading: bool.isRequired,
 };
 
 SessionInformation.defaultProps = {

@@ -5,6 +5,11 @@
   max-width: 846px;
   display: flex;
   gap: 28px;
+  overflow: hidden;
+}
+
+.your-psycho__button {
+  text-align: center;
 }
 
 .your-psycho__container {

@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { bool, object } from 'prop-types';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { bool, func } from 'prop-types';
 import './DirectoryOfPsychologists.css';
 import Title from '../../components/generic/Title/Title';
 import PsychoFilters from './PsychoFilters/PsychoFilters';
@@ -11,9 +11,11 @@ import PaginationList from '../../components/generic/PaginationList/PaginationLi
 import { useForm } from '../../hooks/useForm';
 import { NUMBER_OF_PSYCHO_DISPLAYED } from '../../constants/constants';
 import BlockWithTitle from '../../components/templates/BlockWithTitle/BlockWithTitle';
+import Preloader from '../../components/generic/Preloader/Preloader';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 export default function DirectoryOfPsychologists({
-  isLoggedIn, currentUser,
+  isLoggedIn, setIsLoading, isLoading
 }) {
   // TODO: сделать анимацию переключения страниц
   const {
@@ -30,6 +32,7 @@ export default function DirectoryOfPsychologists({
   const [currentPage, setCurrentPage] = useState(1);
   const [lastAppliedFilters, setLastAppliedFilters] = useState({});
   const psychoRef = useRef(null);
+  const currentUser = useContext(CurrentUserContext);
 
   useEffect(() => {
     if (!totalPsychoCount) {
@@ -52,8 +55,7 @@ export default function DirectoryOfPsychologists({
   };
 
   const handleClosePopup = (e) => {
-    if (
-      e && (e.target.className.includes('popup-visible')
+    if (e && (e.target.className.includes('popup-visible')
       || e.target.className === 'popup__button-close')) {
       return;
     }
@@ -81,6 +83,7 @@ export default function DirectoryOfPsychologists({
   };
 
   const getPsychologistList = async (data) => {
+    setIsLoading(true);
     try {
       const psychologists = await getPsychologists(data);
 
@@ -90,10 +93,16 @@ export default function DirectoryOfPsychologists({
       console.log(err);
       setPsychologistList([]);
       setTotalPsychoCount(1);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleSwitchPage = (num) => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
     setCurrentPage(num);
     getPsychologistList({
       page: num,
@@ -144,30 +153,33 @@ export default function DirectoryOfPsychologists({
               setCustomValue={setCustomValue}
             />
             <div className="directory-psychologists__psycho-list">
-              <ul className="directory-psychologists__psycho-list_container">
-                {psychologistList && psychologistList.length > 0 ? psychologistList.map((i) => (
-                  <li key={i.id}>
-                    <div
-                      className="directory-psychologists__psycho-list_item"
-                      onClick={(e) => handleOpenPsychoCard(i.id, e)}
-                      role="button"
-                      tabIndex="0"
-                      onKeyDown={(e) => handleOpenPsychoCard(i.id, e)}
-                    >
-                      <PsychologistCard
-                        psychologist={i}
-                        isLoggedIn={isLoggedIn}
-                        currentUser={currentUser}
-                      />
-                    </div>
-                  </li>
-                ))
-                  : (
-                    <li className="directory-psychologists__psycho-list_error">
-                      <Title titleLvl="3" size="s" text="Психологи не найдены" />
-                    </li>
-                  )}
-              </ul>
+              {isLoading
+                ? <Preloader preloaderClassName="directory-psychologists__preloader" /> : (
+                  <ul className="directory-psychologists__psycho-list_container">
+                    {psychologistList && psychologistList.length > 0 ? psychologistList.map((i) => (
+                      <li key={i.id}>
+                        <div
+                          className="directory-psychologists__psycho-list_item"
+                          onClick={(e) => handleOpenPsychoCard(i.id, e)}
+                          role="button"
+                          tabIndex="0"
+                          onKeyDown={(e) => handleOpenPsychoCard(i.id, e)}
+                        >
+                          <PsychologistCard
+                            psychologist={i}
+                            isLoggedIn={isLoggedIn}
+                            currentUser={currentUser}
+                          />
+                        </div>
+                      </li>
+                    )) : (
+                      <li className="directory-psychologists__psycho-list_error">
+                        <Title titleLvl="3" size="s" text="Психологи не найдены" />
+                      </li>
+                    )}
+                  </ul>
+                )}
+
             </div>
           </div>
           <PaginationList
@@ -210,6 +222,6 @@ export default function DirectoryOfPsychologists({
 
 DirectoryOfPsychologists.propTypes = {
   isLoggedIn: bool.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  currentUser: object.isRequired,
+  setIsLoading: func.isRequired,
+  isLoading: bool.isRequired,
 };

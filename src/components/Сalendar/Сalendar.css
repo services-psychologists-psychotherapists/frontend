@@ -91,7 +91,7 @@
 
 .calendar__period_prev-disabled,
 .calendar__date_disabled {
-  opacity: 0.3;
+  opacity: .3;
   cursor: unset;
 }
 
@@ -152,7 +152,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 785px) {
   .calendar__dates, .calendar__days-of-week {
     grid-template-rows: repeat(2, 40px);
     grid-template-columns: repeat(7, 40px);

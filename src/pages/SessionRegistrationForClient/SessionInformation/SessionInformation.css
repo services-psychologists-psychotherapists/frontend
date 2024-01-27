@@ -63,3 +63,14 @@
 .session-information__cell_price-item {
   font-weight: var(--text-weight-title);
 }
+
+@media screen and (max-width: 768px) {
+  .session-information {
+    margin-top: 40px;
+    padding: 20px;
+  }
+
+  .session-information__cell_time {
+    margin-bottom: 16px;
+  }
+}

@@ -1,9 +1,10 @@
 import React from 'react';
+import { string } from 'prop-types';
 import './Preloader.css';
 
-function Preloader() {
+export default function Preloader({ preloaderClassName }) {
   return (
-    <div className="preloader">
+    <div className={`preloader ${preloaderClassName ? ` ${preloaderClassName}` : ''}`}>
       <div className="preloader__container">
         <span className="preloader__round" />
       </div>
@@ -11,4 +12,10 @@ function Preloader() {
   );
 }
 
-export default Preloader;
+Preloader.propTypes = {
+  preloaderClassName: string,
+};
+
+Preloader.defaultProps = {
+  preloaderClassName: '',
+};

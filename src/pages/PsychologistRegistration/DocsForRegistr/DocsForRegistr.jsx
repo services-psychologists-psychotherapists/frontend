@@ -1,9 +1,10 @@
 import React from 'react';
+import { func } from 'prop-types';
 import './DocsForRegistr.css';
 import ServiceDocuments from '../../../components/generic/ServiceDocuments/ServiceDocuments';
 import Text from '../../../components/generic/Text/Text';
 
-export default function DocsForRegistr() {
+export default function DocsForRegistr({ setValue, showPopupWithValue }) {
   return (
     <div
       className="data-list__documents"
@@ -17,7 +18,13 @@ export default function DocsForRegistr() {
       <ServiceDocuments
         textVariant="whereby"
         className="auth__service-documents_text"
+        onClick={() => showPopupWithValue(setValue, 'Документ')}
       />
     </div>
   );
 }
+
+DocsForRegistr.propTypes = {
+  setValue: func.isRequired,
+  showPopupWithValue: func.isRequired,
+};

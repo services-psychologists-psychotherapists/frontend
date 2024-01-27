@@ -20,10 +20,19 @@
   padding-right: 24px;
 }
 
+@media screen and (max-width: 1024px){
+  .client-account__description {
+    margin-top: 16px;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .client-account {
     gap: 20px;
   }
+
   .client-account__description > .text > .button {
     font-size: 12px;
   }

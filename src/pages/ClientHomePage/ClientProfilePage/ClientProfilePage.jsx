@@ -1,19 +1,21 @@
-import React from 'react';
-import { object, string, func } from 'prop-types';
+import React, { useContext } from 'react';
+import { object, string, func, bool } from 'prop-types';
 import PageLayout from '../../../components/templates/PageLayout/PageLayout';
 import NavLinksList from '../../../components/NavLinksList/NavLinksList';
 import { CLIENT_PROFILE_NAV_LINKS } from '../../../constants/constants';
 import UserProfileData from '../../../components/UserProfileData/UserProfileData';
+import CurrentUserContext from '../../../contexts/CurrentUserContext';
 
 export default function ClientProfilePage({
-  currentUser,
   docIdForRequest,
   uploadDocuments,
   setDocIdForRequest,
   changeClientAvatar,
   changeClientData,
   curPath,
+  isLoading,
 }) {
+  const currentUser = useContext(CurrentUserContext);
   return (
     <PageLayout
       title="Профиль"
@@ -34,14 +36,13 @@ export default function ClientProfilePage({
         changeClientAvatar={changeClientAvatar}
         changeClientData={changeClientData}
         curPath={curPath}
+        isLoading={isLoading}
       />
     </PageLayout>
   );
 }
 
 ClientProfilePage.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  currentUser: object,
   docIdForRequest: string.isRequired,
   uploadDocuments: func.isRequired,
   setDocIdForRequest: func,
@@ -49,10 +50,10 @@ ClientProfilePage.propTypes = {
   changeClientData: func,
   // eslint-disable-next-line react/forbid-prop-types
   curPath: object.isRequired,
+  isLoading: bool.isRequired,
 };
 
 ClientProfilePage.defaultProps = {
-  currentUser: {},
   setDocIdForRequest: () => {},
   changeClientAvatar: () => {},
   changeClientData: () => {},

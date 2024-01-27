@@ -6,7 +6,6 @@
   cursor: pointer;
 }
 
-.policy-btn:hover,
-.policy-btn_selected {
+.policy-btn:hover {
   color: var(--text-color-dark-blue);
 }
