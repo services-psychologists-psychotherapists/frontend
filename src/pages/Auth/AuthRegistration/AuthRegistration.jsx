@@ -7,11 +7,11 @@ import Button from '../../../components/generic/Button/Button';
 import Text from '../../../components/generic/Text/Text';
 import { REGISTRATION_INPUT_PARAMS_FOR_CLIENT } from '../../../constants/constants';
 import ServiceDocuments from '../../../components/generic/ServiceDocuments/ServiceDocuments';
-import { checkPasswords } from '../../../utils/helpers';
+import { checkPasswords, showPopupWithValue } from '../../../utils/helpers';
 // TODO: Выводить сообщения об ошибках в запросах в попапы?
 
 export default function AuthRegistration({
-  values,
+  values, isLoading,
   handleChange,
   errors,
   isValidForm,
@@ -80,17 +80,21 @@ export default function AuthRegistration({
           <Text size="s" type="span">
             Нажимая кнопку «Зарегистрироваться», Вы соглашаетесь c
           </Text>
-          <ServiceDocuments textVariant="whereby" className="auth__service-documents_text" />
+          <ServiceDocuments
+            textVariant="whereby"
+            className="auth__service-documents_text"
+            onClick={() => showPopupWithValue(setValue, 'Документ')}
+          />
         </div>
         <Button
           className="auth__form-registration_button"
           type="submit"
           variant="primary"
           size="l"
-          disabled={!isValidForm}
+          disabled={!isValidForm || isLoading}
           onClick={handleSubmitRegister}
         >
-          Зарегистрироваться
+          {isLoading ? 'Регистрация...' : 'Зарегистрироваться'}
         </Button>
       </form>
     </>
@@ -106,4 +110,5 @@ AuthRegistration.propTypes = {
   errors: objectOf(string).isRequired,
   signUp: func.isRequired,
   setValue: func.isRequired,
+  isLoading: bool.isRequired,
 };

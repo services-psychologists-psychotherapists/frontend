@@ -6,7 +6,7 @@ import Fieldset from '../../../components/Fieldset/Fieldset';
 import Button from '../../../components/generic/Button/Button';
 
 export default function AuthLogin({
-  signIn,
+  signIn, isLoading,
   values,
   handleChange,
   errors,
@@ -47,8 +47,6 @@ export default function AuthLogin({
           </li>
         ))}
       </ul>
-      {/* Не могу использовать ButtonsGroup так как у меня больше gap,
-      а изменить или перназначить нельзя */}
       <ul className="auth__form-login_buttons">
         <Button variant="text" size="l" type="button" href="/reset_password">
           Не помню пароль
@@ -58,9 +56,9 @@ export default function AuthLogin({
           variant="primary"
           size="l"
           onClick={handleSubmitLogin}
-          disabled={!isValidForm}
+          disabled={!isValidForm || isLoading}
         >
-          Войти
+          {isLoading ? 'Вход...' : 'Войти'}
         </Button>
       </ul>
     </form>
@@ -76,4 +74,5 @@ AuthLogin.propTypes = {
   handleChange: func.isRequired,
   errors: objectOf(string).isRequired,
   setValue: func.isRequired,
+  isLoading: bool.isRequired,
 };

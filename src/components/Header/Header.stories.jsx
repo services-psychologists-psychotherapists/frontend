@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import CurrentUserContext from '../../Context/CurrentUserContext';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 import Header from './Header';
 import { PSYCHO } from '../../constants/db';
 

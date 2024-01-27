@@ -21,20 +21,10 @@ export const useForm = () => {
   const [customIputValue, setCustomIputValue] = useState('');
   const [customInputFieldset, setCustomInputFieldset] = useState('');
   const [fileForRequest, setFileForRequest] = useState({});
+  const [isChanged, setIsChanged] = useState(false);
   // переделать хук
   // Сделать вызовы внутренных функций через параметры?
   // настроить работу полей регистрации пользователя
-
-  // Убрать
-  useEffect(() => {
-    console.log(dataForRequest, 'dataForRequest');
-  }, [dataForRequest]);
-  useEffect(() => {
-    console.log(values, 'values');
-  }, [values]);
-  useEffect(() => {
-    console.log(selectedDropdownItems, 'selectedDropdownItems');
-  }, [selectedDropdownItems]);
 
   const getYears = (arr) => {
     if (arr.length > 0) {
@@ -232,10 +222,8 @@ export const useForm = () => {
   // TODO: полностью перебрать
   const handleChange = (e, isDropdownElem, customInputElement) => {
     const input = e.target;
-    const {
-      name, value, type
-    } = input;
-
+    const { name, value, type } = input;
+    setIsChanged(true);
     // ------------------------------Заполнение данных---------------------------------
 
     if (type !== 'file') {
@@ -466,5 +454,7 @@ export const useForm = () => {
     getYears,
     fileForRequest,
     setFileForRequest,
+    isChanged,
+    setIsChanged,
   };
 };

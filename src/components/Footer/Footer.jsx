@@ -1,20 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Footer.css';
 import Logo from '../generic/Logo/Logo';
 import { SOCIAL_MEDIA_ICONS, HEADER_NAV_LINKS } from '../../constants/constants';
 import NavLinksList from '../NavLinksList/NavLinksList';
 import ServiceDocuments from '../generic/ServiceDocuments/ServiceDocuments';
+import { usePopup } from '../../hooks/usePopup';
+import { showPopupWithValue } from '../../utils/helpers';
 
 export default function Footer() {
-  const [selectedItem, setSelectedItem] = useState('');
-
-  const handlePolicyClick = (el) => {
-    if (selectedItem) {
-      setSelectedItem('');
-    } else {
-      setSelectedItem(el);
-    }
-  };
+  const { setValue } = usePopup();
 
   return (
     <footer className="footer">
@@ -44,8 +38,7 @@ export default function Footer() {
           </ul>
         </div>
         <ServiceDocuments
-          selectedItem={selectedItem}
-          onClick={handlePolicyClick}
+          onClick={() => showPopupWithValue(setValue, 'Документ')}
           className="footer__service-documents"
           textVariant="default"
         />

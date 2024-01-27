@@ -62,3 +62,13 @@
   background-color: var(--border-color-dark-violet);
   border-radius: 4px;
 }
+
+.scroller__button {
+  text-align: center;
+}
+
+@media screen and (max-width: 960px) {
+  .scroller {
+    height: unset;
+  }
+}

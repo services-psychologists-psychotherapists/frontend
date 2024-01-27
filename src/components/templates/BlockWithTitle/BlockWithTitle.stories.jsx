@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
 import BlockWithTitle from './BlockWithTitle';
 import { Psychologist } from '../../Cards/CardOfSession/CardOfSession.stories';
-import CurrentUserContext from '../../../Context/CurrentUserContext';
+import CurrentUserContext from '../../../contexts/CurrentUserContext';
 import { PSYCHO } from '../../../constants/db';
 
 export default {

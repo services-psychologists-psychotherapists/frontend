@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { func } from 'prop-types';
+import { func, bool, } from 'prop-types';
 import './Auth.css';
 import { AUTH_BTNS } from '../../constants/constants';
 import { useForm } from '../../hooks/useForm';
@@ -9,7 +9,8 @@ import { createUser } from '../../utils/auth';
 import { usePopup } from '../../hooks/usePopup';
 
 export default function Auth({
-  signIn,
+  signIn, isLoading,
+  setIsLoading,
 }) {
   const [isLogin, setIsLogin] = useState(true);
   const [isRegister, setIsRegister] = useState(false);
@@ -22,10 +23,10 @@ export default function Auth({
     getInvalidInput,
     resetForm,
   } = useForm();
-
   const { setValue } = usePopup();
 
   const signUp = async (data) => {
+    setIsLoading(true);
     try {
       const user = await createUser(data);
 
@@ -41,6 +42,8 @@ export default function Auth({
           title: 'При регистрации произошла ошибка',
         },
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -56,8 +59,9 @@ export default function Auth({
     resetForm();
   };
 
-  // prettier-ignore
-  const getClassesForActiveBtn = (authVariat) => (authVariat ? ' auth__variants_item-active' : ' auth__variants_item-inactive');
+  const getClassesForActiveBtn = (authVariat) => (
+    authVariat ? ' auth__variants_item-active' : ' auth__variants_item-inactive'
+  );
 
   return (
     // TODO: проверить классы
@@ -96,6 +100,7 @@ export default function Auth({
           inputValidStatus={inputValidStatus}
           getInvalidInput={getInvalidInput}
           setValue={setValue}
+          isLoading={isLoading}
         />
       )}
       {isRegister && (
@@ -108,6 +113,7 @@ export default function Auth({
           getInvalidInput={getInvalidInput}
           signUp={signUp}
           setValue={setValue}
+          isLoading={isLoading}
         />
       )}
     </section>
@@ -115,5 +121,7 @@ export default function Auth({
 }
 
 Auth.propTypes = {
-  signIn: func.isRequired
+  signIn: func.isRequired,
+  isLoading: bool.isRequired,
+  setIsLoading: func.isRequired,
 };

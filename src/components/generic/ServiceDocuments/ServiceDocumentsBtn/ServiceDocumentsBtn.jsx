@@ -3,11 +3,11 @@ import React from 'react';
 import { func, string } from 'prop-types';
 import './ServiceDocumentsBtn.css';
 
-export default function ServiceDocumentsBtn({ selectedItem, onClick, el }) {
+export default function ServiceDocumentsBtn({ onClick, el }) {
   // TODO: Изменить состояние нажатия когда будет макет
   return (
     <button
-      className={`policy-btn${selectedItem === el ? ' policy-btn_selected' : ''}`}
+      className="policy-btn"
       onClick={onClick}
       type="button"
     >
@@ -17,12 +17,10 @@ export default function ServiceDocumentsBtn({ selectedItem, onClick, el }) {
 }
 
 ServiceDocumentsBtn.propTypes = {
-  selectedItem: string,
   onClick: func,
   el: string.isRequired,
 };
 
 ServiceDocumentsBtn.defaultProps = {
   onClick: () => {},
-  selectedItem: '',
 };

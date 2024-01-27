@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { object, string, func } from 'prop-types';
+import React, { useState, useContext } from 'react';
+import { object, string, func, bool } from 'prop-types';
 import moment from 'moment';
 import './PsychologistAccount.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
@@ -16,16 +16,18 @@ import CardOfSession from '../../components/Cards/CardOfSession/CardOfSession';
 import SessionPlanner from '../../components/SessionPlanner/SessionPlanner';
 import SlotsList from '../../components/SlotsList/SlotsList';
 import UserProfileData from '../../components/UserProfileData/UserProfileData';
+import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 export default function PsychologistAccount({
   curPath,
-  currentUser,
   docIdForRequest,
   uploadDocuments,
   setDocIdForRequest,
   changePsychoAvatar,
   changePsychologistData,
+  isLoading,
 }) {
+  const currentUser = useContext(CurrentUserContext);
   const [currentDay, setCurrentDay] = useState(moment());
   let nextAppointment = null;
   const selectedSlots = [];
@@ -104,6 +106,7 @@ export default function PsychologistAccount({
           changePsychoAvatar={changePsychoAvatar}
           changePsychologistData={changePsychologistData}
           curPath={curPath}
+          isLoading={isLoading}
         />
       ) : null}
     </PageLayout>
@@ -113,15 +116,14 @@ export default function PsychologistAccount({
 PsychologistAccount.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   curPath: object.isRequired,
-  // eslint-disable-next-line react/forbid-prop-types
-  currentUser: object,
   docIdForRequest: string.isRequired,
   uploadDocuments: func.isRequired,
   setDocIdForRequest: func.isRequired,
   changePsychoAvatar: func.isRequired,
   changePsychologistData: func.isRequired,
+  isLoading: bool,
 };
 
 PsychologistAccount.defaultProps = {
-  currentUser: {},
+  isLoading: false,
 };

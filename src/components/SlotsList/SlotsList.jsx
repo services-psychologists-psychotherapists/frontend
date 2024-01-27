@@ -41,7 +41,11 @@ export default function SlotsList({ sessions, selectedDay }) {
           {pathname !== '/psychologist_account_schedule' ? (
             <>
               <p className="scroller__description">{NO_SLOTS_MESSAGE[currentDay].title}</p>
-              <Button variant="secondary" href="/psychologist_account_schedule">
+              <Button
+                variant="secondary"
+                href="/psychologist_account_schedule"
+                className="scroller__button"
+              >
                 {NO_SLOTS_MESSAGE[currentDay].textBtn}
               </Button>
             </>

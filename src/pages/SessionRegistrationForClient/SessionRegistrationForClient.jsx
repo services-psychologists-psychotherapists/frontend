@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import { func } from 'prop-types';
+import { func, bool } from 'prop-types';
 import * as psychologistService from '../../utils/services/psychologistService';
 import * as clientServicejs from '../../utils/services/clientService';
 import './SessionRegistrationForClient.css';
@@ -18,7 +18,7 @@ import {
 } from '../../utils/helpers';
 import { usePopup } from '../../hooks/usePopup';
 
-export default function SessionRegistrationForClient({ navigate }) {
+export default function SessionRegistrationForClient({ goBack, isLoading }) {
   // TODO: Сделать прелоадер
   const { date, time, cellId } = useParams();
   const { setValue } = usePopup();
@@ -91,10 +91,6 @@ export default function SessionRegistrationForClient({ navigate }) {
         )
       );
     }
-  };
-
-  const goBack = () => {
-    navigate(-1);
   };
 
   const handleTimeClick = (e) => {
@@ -212,6 +208,7 @@ export default function SessionRegistrationForClient({ navigate }) {
             sessionPrice={currentPsychologist.price}
             onClick={() => createNewSession(curCellId, jwt)}
             className="session-registration__info"
+            isLoading={isLoading}
           />
         </section>
       </div>
@@ -220,5 +217,6 @@ export default function SessionRegistrationForClient({ navigate }) {
 }
 
 SessionRegistrationForClient.propTypes = {
-  navigate: func.isRequired,
+  goBack: func.isRequired,
+  isLoading: bool.isRequired,
 };

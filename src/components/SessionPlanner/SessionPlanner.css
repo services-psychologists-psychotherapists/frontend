@@ -6,6 +6,8 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  max-width: 588px;
+  width: 100%;
 }
 
 .session-planner__text {
@@ -53,7 +55,7 @@
   font-weight: var(--text-weight-primary);
   color: var(--text-color-dark-blue);
   font-size: 18px;
-  line-height: 1.33;
+  line-height: 24px;
 }
 
 .session-planner_style_open {
@@ -91,7 +93,7 @@
   border-radius: 12px;
   background-color: var(--bg-color-white);
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
   overflow-y: auto;
 }
 

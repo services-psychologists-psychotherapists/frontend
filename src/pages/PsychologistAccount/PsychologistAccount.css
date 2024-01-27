@@ -1,34 +1,20 @@
 .psychologist-account {
-  display: grid;
-  grid: 'calendar shedule' 1fr 'session shedule' 1fr /1fr 1fr;
+  display: flex;
   row-gap: 40px;
   column-gap: 20px;
   align-items: start;
-}
-
-.psychologist-account > .calendar {
-  grid-area: calendar;
-}
-
-.psychologist-account > .session-card {
-  grid-area: session;
-}
-
-.psychologist-account > .scroller {
-  grid-area: shedule;
 }
 
 .psychologist-account__content-block {
   display: flex;
   flex-direction: column;
   row-gap: 41px;
+  width: 100%;
 }
 
 @media screen and (max-width: 1280px) {
   .psychologist-account {
-    display: flex;
     flex-direction: column;
-    align-items: center;
   }
 
   .psychologist-account__content-block {
@@ -38,6 +24,10 @@
 
 @media screen and (max-width: 768px) {
   .psychologist-account__layout {
+    align-items: center;
+  }
+
+  .psychologist-account {
     align-items: center;
   }
 }
