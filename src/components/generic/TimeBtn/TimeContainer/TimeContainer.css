@@ -8,7 +8,6 @@
   padding-bottom: 12px;
 }
 
-/* TODO: Настроить когда будет дизайн */
 .time-container__not-found {
   color: #272766;
   font-family: var(--font-family-lato);

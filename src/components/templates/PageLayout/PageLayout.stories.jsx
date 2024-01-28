@@ -6,7 +6,7 @@ import { PSYCHO } from '../../../constants/db';
 import { Violet } from '../../NavLinksList/NavLinksList.stories';
 import BlockWithTitle from '../BlockWithTitle/BlockWithTitle';
 import { PsychologistEmpty } from '../../Cards/CardOfSession/CardOfSession.stories';
-import { YourPsychologist } from '../../Cards/MyPsychologist/MyPsychologist.stories';
+import { YourPsycho } from '../../Cards/YourPsychologist/YourPsychologist.stories';
 import '../../../pages/ClientHomePage/ClientHomePage.css';
 
 export default {
@@ -69,7 +69,7 @@ Layout.args = {
         <PsychologistEmpty {...PsychologistEmpty.args} />
       </BlockWithTitle>
       <BlockWithTitle title="Ваш психолог">
-        <YourPsychologist {...YourPsychologist.args} />
+        <YourPsycho {...YourPsycho.args} />
       </BlockWithTitle>
     </div>
   ),

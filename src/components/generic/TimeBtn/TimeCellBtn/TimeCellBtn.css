@@ -19,6 +19,6 @@
 }
 
 .time-cell_active, .time-cell:active {
-  background-color: #6b6bc7; /* поменять переменную */
+  background-color: #6b6bc7;
   color: #fff;
 }

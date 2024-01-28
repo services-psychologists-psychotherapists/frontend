@@ -67,6 +67,6 @@
 }
 
 .pagination-list__page-number_active {
-  background: #8d8de9; /* поменять название перем. */
+  background: #8d8de9;
   color: #fff;
 }
