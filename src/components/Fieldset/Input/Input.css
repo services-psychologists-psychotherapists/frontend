@@ -1,10 +1,10 @@
-.input {
+.input, .list-input {
   width: 100%;
   font-family: var(--font-family-lato);
-  font-weight: var(--text-weight-primary);
+  font-weight: 400;
   font-size: 18px;
   line-height: 24px;
-  color: var(--text-color-dark-blue);
+  color: #272766;
   background-color: transparent;
   display: flex;
   flex-wrap: wrap;
@@ -13,42 +13,28 @@
   min-height: 48px;
 }
 
-.input:focus {
+.input:focus, .list-input:focus {
   outline: none;
   border-radius: 12px;
-  color: var(--border-color-dark-violet);
+  color: #6b6bc7;
 }
 
-.input::placeholder {
-  color: var(--text-color-dark-grey);
+.input::placeholder, .list-input::placeholder {
+  color: #9b9da0;
   font-family: var(--font-family-lato);
-  font-weight: var(--text-weight-primary);
+  font-weight: 400;
   font-size: 18px;
   line-height: 24px;
 }
 
-.input_hidden-placeholder:focus::placeholder {
+.input_type_hidden-placeholder:focus::placeholder {
   opacity: 0;
 }
 
-.input_invalid:focus {
-  color: var(--text-color-error);
+.input_type_invalid:focus {
+  color: #cf3614;
 }
 
-.input:disabled {
-  color: var(--text-color-disabled);
-}
-
-.input_button {
-  background-color: transparent;
-  cursor: pointer;
-  caret-color: transparent;
-}
-
-.placeholder {
-  color: var(--text-color-dark-grey);
-  font-family: var(--font-family-lato);
-  font-weight: var(--text-weight-primary);
-  font-size: 18px;
-  line-height: 24px;
+.input:disabled, .list-input:disabled {
+  color: #9b9da0;
 }

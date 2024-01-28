@@ -1,12 +1,11 @@
 import './Input.css';
-import { string, oneOfType, func,
+import {
+  string, oneOfType, func,
   bool, arrayOf, number,
 } from 'prop-types';
 import React from 'react';
 import {
-  checkboxDropdownElement,
   inputElement,
-  radioDropdownElement,
   titlesDropdownElement,
 } from '../../../constants/constants';
 import TitlesContainer from '../TitlesContainer/TitlesContainer';
@@ -21,14 +20,8 @@ export default function Input({
   pattern, readOnly,
 }) {
   const inputClasses = `input${
-    element === inputElement ? ' input_hidden-placeholder' : ''}${
-    !isValid ? ' input_invalid' : ''
-  }${
-    element === radioDropdownElement
-    || element === checkboxDropdownElement
-    || element === titlesDropdownElement
-      ? ' input_button'
-      : ''
+    element === inputElement ? ' input_type_hidden-placeholder' : ''}${
+    !isValid ? ' input_type_invalid' : ''
   }`;
 
   return element === titlesDropdownElement ? (
@@ -36,7 +29,7 @@ export default function Input({
       role="menu"
       onKeyDown={onClick}
       onClick={onClick}
-      className={`${inputClasses} ${ownClasses}${classesForInput ? ` ${classesForInput}` : ''}`}
+      className={`list-${inputClasses} ${ownClasses}${classesForInput ? ` ${classesForInput}` : ''}`}
     >
       <TitlesContainer placeholder={placeholder} value={value} element={element} />
     </ul>

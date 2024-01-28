@@ -8,16 +8,12 @@ import Text from '../../../components/generic/Text/Text';
 import { REGISTRATION_INPUT_PARAMS_FOR_CLIENT } from '../../../constants/constants';
 import ServiceDocuments from '../../../components/generic/ServiceDocuments/ServiceDocuments';
 import { checkPasswords, showPopupWithValue } from '../../../utils/helpers';
-// TODO: Выводить сообщения об ошибках в запросах в попапы?
 
 export default function AuthRegistration({
   values, isLoading,
-  handleChange,
-  errors,
-  isValidForm,
-  inputValidStatus,
-  getInvalidInput,
-  signUp,
+  handleChange, errors,
+  isValidForm, inputValidStatus,
+  getInvalidInput, signUp,
   setValue,
 }) {
   const handleSubmitRegister = () => {
@@ -54,7 +50,7 @@ export default function AuthRegistration({
         </Button>
       </div>
       <form className="auth__form-registration" name="registration" noValidate>
-        <ul className="auth__form-registration_field-container">
+        <ul className="auth__form-registration-list">
           {REGISTRATION_INPUT_PARAMS_FOR_CLIENT.map((i) => (
             <li key={i.name}>
               <Fieldset
@@ -72,6 +68,7 @@ export default function AuthRegistration({
                 pattern={i.pattern}
                 maxLength={i.maxLength}
                 minLength={i.minLength}
+                promptClasses={i.promptClasses || 'auth__prompt'}
               />
             </li>
           ))}
@@ -82,12 +79,12 @@ export default function AuthRegistration({
           </Text>
           <ServiceDocuments
             textVariant="whereby"
-            className="auth__service-documents_text"
+            className="auth__service-documents_type_text"
             onClick={() => showPopupWithValue(setValue, 'Документ')}
           />
         </div>
         <Button
-          className="auth__form-registration_button"
+          className="auth__form-registration-button"
           type="submit"
           variant="primary"
           size="l"

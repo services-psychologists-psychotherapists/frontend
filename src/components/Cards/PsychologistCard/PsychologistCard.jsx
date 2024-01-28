@@ -58,7 +58,7 @@ export default function PsychologistCard({
   }, [slots]);
 
   const getEducations = (educations) => (
-    <ul className="psycho-card__list psycho-card__list-education">
+    <ul className="psycho-card__list psycho-card__list_type_education">
       {educations.map((education) => (
         <li key={education.title} className="psycho-card__education">
           <Text type="span">{education.graduation_year}</Text>
@@ -100,12 +100,13 @@ export default function PsychologistCard({
       e,
       isLoggedIn,
       currentUser,
-      `/client_account_session-registration/${id}/${sessionDate}/${e.target.innerText}/${e.target.id}`
+      `/client_account_session-registration/${
+        id}/${sessionDate}/${e.target.innerText}/${e.target.id}`
     );
   };
 
   return (
-    <div className="psycho-card">
+    <div className="psycho-card scrollbar">
       <div className="psycho-card__header">
         <Avatar size="l" src={avatar} />
         <PsychoName
@@ -117,7 +118,7 @@ export default function PsychologistCard({
       </div>
       <div
         className={`psycho-card__content ${
-          type === 'full' ? 'psycho-card__content_type_full' : ''
+          type === 'full' ? 'psycho-card__content_type_full scrollbar' : ''
         }`}
       >
         {type !== 'full' && <Text>{about}</Text>}

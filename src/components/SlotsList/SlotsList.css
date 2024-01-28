@@ -1,4 +1,4 @@
-.scroller {
+.slot-list {
   max-width: 455px;
   width: 100%;
   height: 97vh;
@@ -7,13 +7,13 @@
   gap: 16px;
   flex-direction: column;
   border-radius: 12px;
-  background-color: var(--bg-color-light-violet);
+  background-color: #d9d9f1;
   padding: 24px 10px 24px;
   position: relative;
   align-items: center;
 }
 
-.scroller__empty {
+.slot-list__empty {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -21,16 +21,16 @@
   gap: 40px;
 }
 
-.scroller__description {
+.slot-list__description {
   font-family: var(--font-family-lato);
-  font-size: var(--text-font-size-s);
-  color: var(--text-color-dark-blue);
+  font-size: 20px;
+  color: #272766;
   padding: 0 38px;
   text-align: center;
   line-height: 26px;
 }
 
-.slots {
+.slot-list__slots {
   list-style: none;
   display: flex;
   gap: 16px;
@@ -39,36 +39,26 @@
   padding: 0 10px 0 14px;
   align-self: stretch;
   scrollbar-gutter: stable;
-  /* Переделать на SimpleBar или Perfect Scrollbar? для moz */
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-color-dark-violet) var(--bg-color-white);
 }
 
-.scroller__title {
-  font-family: var(--font-family-montsertat);
+.slot-list__title {
+  font-family: var(--font-family-montserrat);
   font-weight: 500;
   font-size: 22px;
-  color: var(--text-color-dark-blue);
+  color: #272766;
   line-height: 30px;
 }
 
-.slots::-webkit-scrollbar {
-  background-color: var(--bg-color-white);
-  width: 4px;
-  border-radius: 4px;
+.slot-list__slots::-webkit-scrollbar {
+  background-color: #fefefe;
 }
 
-.slots::-webkit-scrollbar-thumb {
-  background-color: var(--border-color-dark-violet);
-  border-radius: 4px;
-}
-
-.scroller__button {
+.slot-list__button {
   text-align: center;
 }
 
 @media screen and (max-width: 960px) {
-  .scroller {
+  .slot-list {
     height: unset;
   }
 }

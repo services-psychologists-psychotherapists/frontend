@@ -7,12 +7,9 @@ import Button from '../../../components/generic/Button/Button';
 
 export default function AuthLogin({
   signIn, isLoading,
-  values,
-  handleChange,
-  errors,
-  isValidForm,
-  inputValidStatus,
-  getInvalidInput,
+  values, handleChange,
+  errors, isValidForm,
+  inputValidStatus, getInvalidInput,
   setValue,
 }) {
   const handleSubmitLogin = () => {
@@ -26,7 +23,7 @@ export default function AuthLogin({
 
   return (
     <form className="auth__form-login" name="login" noValidate>
-      <ul className="auth__form-login_fields">
+      <ul className="auth__form-login-fields">
         {LOGIN_INPUT_PARAMS_FOR_CLIENT.map((i) => (
           <li key={i.name}>
             <Fieldset
@@ -43,11 +40,12 @@ export default function AuthLogin({
               placeholder={i.placeholder}
               pattern={i.pattern}
               maxLength={i.maxLength}
+              promptClasses={i.promptClasses}
             />
           </li>
         ))}
       </ul>
-      <ul className="auth__form-login_buttons">
+      <ul className="auth__form-login-buttons">
         <Button variant="text" size="l" type="button" href="/reset_password">
           Не помню пароль
         </Button>

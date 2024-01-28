@@ -61,7 +61,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: var(--border-color-medium-violet);
+  background: #8d8de9;
   border-radius: 50%;
 }
 
@@ -83,6 +83,6 @@
 
 .preloader__round::before {
   z-index: 101;
-  background: var(--border-color-medium-violet);
+  background: #8d8de9;
   animation: preloader-inside-red 1s ease-in-out infinite;
 }

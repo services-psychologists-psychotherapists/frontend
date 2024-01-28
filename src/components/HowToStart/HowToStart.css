@@ -1,6 +1,6 @@
 .how-to-start {
   padding: 100px 0 120px;
-  background-color: var(--bg-color-loight-yellow);
+  background-color: #f7f5ef;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,7 +40,7 @@
 
 .how-to-start__card {
   border: 1px solid;
-  border-color: var(--border-color-medium-violet);
+  border-color: #8d8de9;
   border-radius: 12px;
 }
 
@@ -59,24 +59,24 @@
 }
 
 .how-to-start__card_color_white {
-  background-color: var(--bg-color-white);
+  background-color: #fefefe;
 }
 
 .how-to-start__card_color_light-green {
-  background-color: var(--bg-color-light-green);
+  background-color: #d4eee4;
 }
 
 .how-to-start__card_color_light-violet {
-  background-color: var(--bg-color-light-violet);
+  background-color: #d9d9f1;
 }
 
 .how-to-start__num {
-  font-family: var(--font-family-montsertat);
-  font-size: var(--text-font-size-m);
+  font-family: var(--font-family-montserrat);
+  font-size: 38px;
   line-height: normal;
   font-weight: 500;
   grid-area: number;
-  color: var(--text-color-dark-violet);
+  color: #6b6bc7;
 }
 
 .how-to-start__card .title {
@@ -86,10 +86,10 @@
 
 .how-to-start__description {
   font-family: var(--font-family-lato);
-  font-size: var(--text-font-size-s);
+  font-size: 20px;
   line-height: 26px;
-  font-weight: var(--text-weight-primary);
-  color: var(--text-color-dark-blue);
+  font-weight: 400;
+  color: #272766;
   vertical-align: text-top;
 }
 
@@ -154,20 +154,9 @@
     width: 100%;
     overflow-x: auto;
     scrollbar-width: thin;
-    scrollbar-color: var(--border-color-dark-violet) var(--bg-color-white);
+    scrollbar-color: #6b6bc7 #fefefe;
   }
   
-  .how-to-start__box::-webkit-scrollbar {
-    /* Стили повторяются, подумать */
-    height: 4px;
-    border-radius: 4px;
-  }
-  
-  .how-to-start__box::-webkit-scrollbar-thumb {
-    /* Стили повторяются, подумать */
-    background-color: var(--border-color-dark-violet);
-    border-radius: 4px;
-  }
 
   .how-to-start__list {
     height: 670px;

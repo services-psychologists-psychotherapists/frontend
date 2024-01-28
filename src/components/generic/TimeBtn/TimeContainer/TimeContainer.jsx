@@ -5,7 +5,9 @@ import TimeCellBtn from '../TimeCellBtn/TimeCellBtn';
 import useHorizontalScroll from '../../../../hooks/useHorizontalScroll';
 import { LENGTH_TO_START_SCROLLING } from '../../../../constants/constants';
 
-export default function TimeContainer({ timeCells, containerClassName, onClick, selectedTime }) {
+export default function TimeContainer({
+  timeCells, containerClassName, onClick, selectedTime
+}) {
   const [isScrollStatus, setIsScrollStatus] = useState(false);
   const scrollOnClick = useHorizontalScroll();
 
@@ -31,7 +33,12 @@ export default function TimeContainer({ timeCells, containerClassName, onClick, 
   }, [isScrollStatus, timeCells.length]);
 
   return (
-    <ul className={`time-container ${containerClassName}`} {...getScrollAttributes()}>
+    <ul
+      className={
+        `time-container scrollbar${containerClassName ? ` ${containerClassName}` : ''}`
+      }
+      {...getScrollAttributes()}
+    >
       {timeCells.length > 0 ? (
         timeCells.map((el) => (
           <li key={el.id}>
@@ -44,7 +51,6 @@ export default function TimeContainer({ timeCells, containerClassName, onClick, 
           </li>
         ))
       ) : (
-        // TODO: Настроить когда будет дизайн
         // TODO: При перезагрузке стр. сначала появляется not-found
         <li className="time-container__not-found">Свободное время для записи отсутствует</li>
       )}

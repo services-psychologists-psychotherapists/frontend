@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { func } from 'prop-types';
+import { func, bool, } from 'prop-types';
 import './ChangePassword.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import Button from '../../components/generic/Button/Button';
@@ -15,7 +15,7 @@ import { setNewPasswords } from '../../utils/auth';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 export default function ChangePassword({
-  navigate, goBack,
+  navigate, goBack, isLoading, setIsLoading,
 }) {
   const {
     values,
@@ -29,6 +29,7 @@ export default function ChangePassword({
   const currentUser = useContext(CurrentUserContext);
 
   const setPassword = async (passwords) => {
+    setIsLoading(true);
     try {
       const newPassword = await setNewPasswords(passwords);
 
@@ -38,7 +39,13 @@ export default function ChangePassword({
       }
     } catch (err) {
       console.log(err);
-      showPopupWithValue(setValue, 'Произошла ошибка при смене пароля');
+      showPopupWithValue(
+        setValue,
+        'Произошла ошибка при смене пароля',
+        'Проверьте введенные данные, пароль не долже быть похож с почтой'
+      );
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -67,7 +74,7 @@ export default function ChangePassword({
         )}
       >
         <form className="change-password__form">
-          <ul className="change-password__input-list">
+          <ul className="change-password__list">
             {INPUT_DATA_FOR_CHANGE_PASSWORD.map((i) => (
               <li key={i.name}>
                 <Fieldset
@@ -95,10 +102,10 @@ export default function ChangePassword({
             variant="primary"
             size="l"
             onClick={handleSubmit}
-            disabled={!isValidForm}
+            disabled={!isValidForm || isLoading}
             className="change-password__form-button"
           >
-            Сохранить изменения
+            {isLoading ? 'Сохранение...' : 'Сохранить изменения'}
           </Button>
         </form>
       </PageLayout>
@@ -109,4 +116,6 @@ export default function ChangePassword({
 ChangePassword.propTypes = {
   navigate: func.isRequired,
   goBack: func.isRequired,
+  isLoading: bool.isRequired,
+  setIsLoading: func.isRequired,
 };

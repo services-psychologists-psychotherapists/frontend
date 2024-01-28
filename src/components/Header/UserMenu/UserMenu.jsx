@@ -35,32 +35,32 @@ export default function UserMenu({
   const handleClickMenu = () => setIsOpen(!isOpen);
 
   return (
-    <div className="dropdown" ref={ref}>
-      <button type="button" className="user" onClick={handleClickMenu}>
+    <div className="user-menu" ref={ref}>
+      <button type="button" className="user-menu__user" onClick={handleClickMenu}>
         {isLoggedIn && (<Avatar src={currentUser.avatar} size="xs" />)}
-        <p className={`user__name ${isOpen ? 'user__name_opened' : ''}`}>
+        <p className={`user-menu__name ${isOpen ? 'user__name_opened' : ''}`}>
           {`${currentUser.first_name}`}
         </p>
         {isScreenMd && (
-          <div className={`burger-menu${isOpen ? ' burger-menu_opened' : ''}`}>
-            <span className="burger-menu__point" />
-            <span className="burger-menu__point" />
-            <span className="burger-menu__point" />
+          <div className={`user-menu__burger${isOpen ? ' user-menu__burger_opened' : ''}`}>
+            <span className="user-menu__burger-point" />
+            <span className="user-menu__burger-point" />
+            <span className="user-menu__burger-point" />
           </div>
         )}
       </button>
-      <ul className={`dropdown__list ${isOpen ? 'dropdown__list_opened' : ''}`}>
+      <ul className={`user-menu__list${isOpen ? ' user-menu__list_opened' : ''}`}>
         <NavLinksList
           list={getNavLinks()}
           isList
-          className="dropdown__nav-links"
+          className="user-menu__nav-links"
         />
         {isLoggedIn && (
-        <li>
-          <button className="exit-btn" onClick={signOut}>
-            Выйти
-          </button>
-        </li>
+          <li>
+            <button className="exit-btn" onClick={signOut}>
+              Выйти
+            </button>
+          </li>
         )}
       </ul>
     </div>

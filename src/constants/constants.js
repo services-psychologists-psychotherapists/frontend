@@ -44,6 +44,7 @@ export const COURSES_SPECIALITY_ERROR = 'Укажите направление �
 export const PRICE_ERROR = 'Укажите сумму в рублях. Пример: 4900';
 export const EXPERIENCE_ERROR = 'Укажите опыт в годах. Пример: 5';
 export const NUMBER_OF_PSYCHO_DISPLAYED = 5;
+export const NUMBER_OF_PAGES_DISPLAYED = 3;
 export const PASSWORD_PROMPT = 'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ.';
 export const FILE_UPLOAD_ERROR = 'Можно отправить только pdf и jpg файлы размером до 3 МБ';
 
@@ -352,7 +353,6 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
     name: 'email',
     typeForInput: 'email',
     required: true,
-    // promptClasses: 'auth__prompt',
     placeholder: 'Введите email',
     pattern: EMAIL_REGEX.toString().slice(1, -1),
   },
@@ -383,7 +383,6 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
     typeForInput: 'password',
     required: true,
     prompt: PASSWORD_PROMPT,
-    // promptClasses: 'auth__prompt',
     placeholder: 'Введите пароль',
     minLength: '8',
     pattern: PASSWORD_REGEX.toString().slice(1, -1),
@@ -397,6 +396,7 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
     placeholder: 'Повторите пароль',
     minLength: '8',
     pattern: PASSWORD_REGEX.toString().slice(1, -1),
+    promptClasses: 'registration__prompt',
   },
 ];
 
@@ -425,6 +425,7 @@ export const LOGIN_INPUT_PARAMS_FOR_CLIENT = [
     minLength: '1',
     placeholder: '***********',
     pattern: PASSWORD_REGEX.toString().slice(1, -1),
+    promptClasses: 'login__prompt',
   },
 ];
 
@@ -520,7 +521,6 @@ export const INPUT_DATA_FOR_CHANGE_PASSWORD = [
     required: true,
     minLength: '8',
     prompt: PASSWORD_PROMPT,
-    // promptClasses: 'change-password__prompt',
     fieldsetClasses: 'change-password__fieldset',
     pattern: PASSWORD_REGEX.toString().slice(1, -1),
   },
@@ -545,7 +545,6 @@ export const INPUT_DATA_FOR_SET_PASSWORD = [
     required: true,
     minLength: '8',
     prompt: PASSWORD_PROMPT,
-    // promptClasses: 'create-password__prompt',
     fieldsetClasses: 'create-password__fieldset',
     pattern: PASSWORD_REGEX.toString().slice(1, -1),
   },
@@ -597,7 +596,6 @@ export const PSYCHO_REGISTRATION_FIRST_STEP = [
     name: 'email',
     typeForInput: 'email',
     required: true,
-    // promptClasses: 'auth__prompt',
     minLength: '1',
     placeholder: 'Введите email',
     pattern: EMAIL_REGEX.toString().slice(1, -1),

@@ -4,7 +4,7 @@
   align-items: center;
   padding: 32px;
   border-radius: 12px;
-  box-shadow: inset 0 0 0 1px var(--border-color-medium-violet);
+  box-shadow: inset 0 0 0 1px #8d8de9;
   max-height: 364px;
   max-width: 329px;
   width: 100%;
@@ -12,7 +12,7 @@
 }
 
 .session-information__title,
-.session-information__cell_price,
+.session-information__cell_type_price,
 .session-information__description,
 .session-information__cell {
   font-family: var(--font-family-lato);
@@ -24,13 +24,13 @@
 }
 
 .session-information__title,
-.session-information__cell_price {
-  font-weight: var(--text-weight-title);
+.session-information__cell_type_price {
+  font-weight: 700;
 }
 
 .session-information__description,
 .session-information__cell {
-  font-weight: var(--text-weight-primary);
+  font-weight: 400;
 }
 
 .session-information__title {
@@ -39,7 +39,7 @@
 
 .session-information__description {
   margin-bottom: 16px;
-  background-color: var(--bg-color-loight-yellow);
+  background-color: #f7f5ef;
   border-radius: 12px;
   padding: 10px;
 }
@@ -50,18 +50,18 @@
   justify-content: space-between;
 }
 
-.session-information__cell_time {
+.session-information__cell_type_time {
   margin-bottom: 32px;
 }
 
-.session-information__cell_price {
+.session-information__cell_type_price {
   border-top: 1px solid #d9d9f1;
   padding-top: 8px;
   margin-bottom: 28px;
 }
 
-.session-information__cell_price-item {
-  font-weight: var(--text-weight-title);
+.session-information__cell_type_price-item {
+  font-weight: 700;
 }
 
 @media screen and (max-width: 768px) {
@@ -70,7 +70,7 @@
     padding: 20px;
   }
 
-  .session-information__cell_time {
+  .session-information__cell_type_time {
     margin-bottom: 16px;
   }
 }

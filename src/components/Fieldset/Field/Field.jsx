@@ -17,8 +17,6 @@ export default function Field({
   id, onChange, classesForInput,
   autoComplete, pattern,
 }) {
-  const fieldClasses = `field__input${element !== inputElement ? ' field__input_button' : ''}`;
-
   const [isEyeOpened, setIsEyeOpened] = useState(false);
   const isInputElement = element === inputElement;
   const isInputPasswordType = type === 'password';
@@ -36,16 +34,17 @@ export default function Field({
   };
 
   const getDisabledField = (disabledStatus) => (
-    disabledStatus ? ' disabled-field' : ''
+    disabledStatus ? ' field_type_disabled' : ''
   );
 
   return (
-    <div className={`field field__label${getDisabledField(disabled)}`}>
-      <span className={`field__label-text${getDisabledField(disabled)}`}>{title}</span>
+    <div className={`field field_type_label${getDisabledField(disabled)}`}>
+      <span className={`field__text${getDisabledField(disabled)}`}>{title}</span>
       <div
-        className={`field__input-container${` ${inputContainerClasses}`} ${
-          !isValid && !disabled ? ' field__input-container_invalid' : ''
-        } ${disabled ? ' field__input-container_disabled' : ''}`}
+        className={`field__input-container${inputContainerClasses
+          ? ` ${inputContainerClasses}` : ''}${
+          !isValid && !disabled ? ' field__input-container_type_invalid' : ''
+        }${disabled ? ' field__input-container_type_disabled' : ''}`}
       >
         <Input
           element={element}
@@ -61,7 +60,7 @@ export default function Field({
           maxLength={maxLength}
           required={required}
           isEyeOpened={isEyeOpened}
-          ownClasses={fieldClasses}
+          ownClasses="field__input"
           id={id}
           classesForInput={classesForInput}
           autoComplete={autoComplete}

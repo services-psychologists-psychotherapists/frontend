@@ -1,16 +1,16 @@
 .title {
-  font-family: var(--font-family-montsertat);
-  font-weight: var(--text-weight-title);
-  color: var(--text-color-dark-blue);
+  font-family: var(--font-family-montserrat);
+  font-weight: 700;
+  color: #272766;
 }
 
 .title_size_l {
-  font-size: var(--text-font-size-l);
+  font-size: 50px;
   line-height: 62px;
 }
 
 .title_size_m {
-  font-size: var(--text-font-size-m);
+  font-size: 38px;
   line-height: 48px;
 }
 

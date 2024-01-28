@@ -13,7 +13,6 @@ export default function PsychoFilters({
   handleFilterSubmit, resetCustomValue,
   setCustomValue,
 }) {
-  // TODO: У инпутов некорректные названия классов необходимо переделать
   return (
     <div className="psycho-filters-container">
       <form className="psycho-filters">

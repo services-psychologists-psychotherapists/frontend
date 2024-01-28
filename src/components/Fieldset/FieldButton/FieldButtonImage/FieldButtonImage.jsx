@@ -10,8 +10,8 @@ export default function FieldButtonImage({
   const isPasswordInputElement = element === inputElement && inputType === 'password';
 
   const fieldButtonImgClass = isPasswordInputElement
-    ? 'field-button__img_password'
-    : 'field-button__img_arrow';
+    ? 'field-button__img-password'
+    : 'field-button__img-arrow';
 
   const getPasswordIconState = () => {
     if (disabled) {

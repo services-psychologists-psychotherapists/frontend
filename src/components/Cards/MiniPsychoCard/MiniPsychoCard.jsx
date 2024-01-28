@@ -8,16 +8,13 @@ import { getDurationOfYears } from '../../../utils/helpers';
 import noAvatar from '../../../images/no-avatar.svg';
 
 export default function MiniPsychoCard({
-  cardClasses,
-  experience,
-  avatar,
-  firstName,
-  lastName,
-  speciality,
+  cardClasses, experience,
+  avatar, firstName,
+  lastName, speciality,
 }) {
   return (
     <BlockWithTitle title={speciality} size="xs">
-      <div className={`psycho-mini ${cardClasses}`}>
+      <div className={`mini-psycho-card ${cardClasses}`}>
         <Avatar size="m" src={avatar} />
         <PsychoName
           name={`${firstName} ${lastName}`}

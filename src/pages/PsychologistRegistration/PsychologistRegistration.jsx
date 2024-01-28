@@ -19,10 +19,8 @@ import { showPopupWithValue, showFileError } from '../../utils/helpers';
 
 export default function PsychologistRegistration({
   docIdForRequest, setIsLoading,
-  uploadDocuments,
-  setDocIdForRequest,
-  curPath,
-  isLoading,
+  uploadDocuments, setDocIdForRequest,
+  curPath, isLoading,
 }) {
   // TODO: добавить анимацию переходов
   const {
@@ -93,12 +91,12 @@ export default function PsychologistRegistration({
     <>
       {isSuccess
         && (
-        <Success
-          title="Заявка отправлена!"
-          text="Как только мы все проверим, Вам на почту придет уведомление"
-          buttonText="На главную"
-          buttonHref="/"
-        />
+          <Success
+            title="Заявка отправлена!"
+            text="Как только мы все проверим, Вам на почту придет уведомление"
+            buttonText="На главную"
+            buttonHref="/"
+          />
         )}
       {!isSuccess && (
         <PageLayout

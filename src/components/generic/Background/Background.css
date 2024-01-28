@@ -25,7 +25,7 @@
 .circle_size_m {
   width: 59%;
   padding-bottom: 59%;
-  background-color: var(--bg-color-light-violet);
+  background-color: #d9d9f1;
   top: -20%;
   left: -10%;
 }
@@ -33,7 +33,7 @@
 .circle_size_s {
   width: 50%;
   padding-bottom: 50%;
-  background-color: var(--bg-color-light-green);
+  background-color: #d4eee4;
   top: 20%;
   right: 5%;
 }
@@ -41,7 +41,7 @@
 .circle_size_xs {
   width: 30%;
   padding-bottom: 30%;
-  background-color: var(--bg-color-loight-yellow);
+  background-color: #f7f5ef;
   top: -60%;
   right: 5%;
 }
@@ -49,25 +49,25 @@
 .circle_size_l {
   width: 68%;
   padding-bottom: 68%;
-  background-color: var(--bg-color-loight-yellow);
+  background-color: #f7f5ef;
   bottom: 25%;
   right: -10%;
 }
 
 /* Анимация фона */
-.circle__l_animated {
+.circle_l_animated {
   animation: trans-right-down 30s ease-in-out infinite;
 }
 
-.circle__m_animated {
+.circle_m_animated {
   animation: trans-left-down 20s ease-in-out infinite;
 }
 
-.circle__s_animated {
+.circle_s_animated {
   animation: trans-right-up 20s ease-in-out infinite;
 }
 
-.circle__xs_animated {
+.circle_xs_animated {
   animation: trans-left-up 10s ease-in-out infinite;
 }
 

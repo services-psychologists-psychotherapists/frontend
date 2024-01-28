@@ -1,4 +1,4 @@
-.psycho-mini {
+.mini-psycho-card {
   display: flex;
   flex-direction: row;
   max-width: 588px;
@@ -6,13 +6,13 @@
   align-items: center;
   gap: 24px;
   border-radius: 12px;
-  box-shadow: inset 0 0 0 1px var(--border-color-medium-violet);
+  box-shadow: inset 0 0 0 1px #8d8de9;
   padding: 32px 32px 40px;
 }
 
 
 @media screen and (max-width: 768px){
-  .psycho-mini {
+  .mini-psycho-card {
     padding: 16px 16px 20px;
   }
 }

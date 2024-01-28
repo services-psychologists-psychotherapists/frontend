@@ -1,5 +1,5 @@
 .footer {
-  background-color: var(--bg-color-light-violet);
+  background-color: #d9d9f1;
   padding: 40px 0;
   width: 100%;
   display: flex;
@@ -21,7 +21,7 @@
   align-items: center;
 }
 
-.footer__sotial-networks {
+.footer__social-networks {
   list-style-type: none;
   display: flex;
   flex-direction: row;
@@ -29,19 +29,19 @@
   height: 32px;
 }
 
-.footer__sotial-networks_link {
+.footer__social-link {
   display: block;
 }
 
-.footer__sotial-networks_link,
-.footer__sotial-networks_icon {
+.footer__social-link,
+.footer__social-icon {
   width: 32px;
   height: 32px;
 }
 
 .footer__service-documents {
   flex-direction: column;
-  font-family: var(--font-family-montsertat);
+  font-family: var(--font-family-montserrat);
 }
 
 @media screen and (max-width: 1440px) {

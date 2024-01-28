@@ -9,15 +9,16 @@ import { titlesDropdownElement } from '../../../constants/constants';
 export default function ListWithDropdown({
   isFocused, onChange, type,
   dropdownContent, element, name,
-  selectedDropdownItems, values, customElement,
-  resetCustomValue, setCustomValue, classesForAbsoluteList,
+  selectedDropdownItems, values,
+  customElement, resetCustomValue,
+  setCustomValue, classesForAbsoluteList,
 }) {
   if (dropdownContent.length === 0) {
     return null;
   }
 
-  const dropdownListClasses = `dropdown-list${isFocused ? ' dropdown-list_opened' : ''}${
-    element === titlesDropdownElement ? ' dropdown-list_titles' : ''
+  const dropdownListClasses = `dropdown-list scrollbar${isFocused ? ' dropdown-list_type_opened' : ''}${
+    element === titlesDropdownElement ? ' dropdown-list_type_title' : ''
   }`;
 
   return (
@@ -26,7 +27,7 @@ export default function ListWithDropdown({
         ? ` ${classesForAbsoluteList}` : ''}`}
     >
       {dropdownContent.map((item) => (
-        <li className="dropdown-list__item" key={item}>
+        <li key={item}>
           <DropdownItem
             item={item}
             type={type}

@@ -12,16 +12,12 @@ import {
 import { removeProperty, updateData } from '../../../../utils/helpers';
 
 export default function FirstStep({
-  values,
-  handleChange,
-  errors,
-  inputValidStatus,
+  values, handleChange,
+  errors, inputValidStatus,
   getInvalidInput,
   selectedDropdownItems,
-  step,
-  setDataForRequest,
-  dataForRequest,
-  curPath,
+  step, setDataForRequest,
+  dataForRequest, curPath,
 }) {
   useEffect(() => {
     if (values.first_name) {
@@ -105,6 +101,7 @@ export default function FirstStep({
               autoComplete={i.autoComplete}
               placeholder={i.placeholder}
               pattern={i.pattern}
+              promptClasses="data-list__prompt"
             />
           </li>
         );

@@ -10,8 +10,8 @@ export default function BlockWithTitle({
   return (
     <div
       className={
-        `block-template${constainerClasses
-          ? ` ${constainerClasses}` : ''} block-template_size_${size}`
+        `block-with-title${constainerClasses
+          ? ` ${constainerClasses}` : ''} block-with-title_size_${size}`
       }
     >
       <Title

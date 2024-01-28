@@ -8,6 +8,7 @@ import { usePopup } from '../../hooks/usePopup';
 import { useResize } from '../../hooks/useResize';
 
 export default function SessionPlanner() {
+  // проверить переделать
   const { setValue } = usePopup();
   const { isScreenMd } = useResize();
 

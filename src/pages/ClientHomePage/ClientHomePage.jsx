@@ -9,7 +9,7 @@ import CardOfSession from '../../components/Cards/CardOfSession/CardOfSession';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 import Text from '../../components/generic/Text/Text';
 import Button from '../../components/generic/Button/Button';
-import MyPsychologist from '../../components/Cards/MyPsychologist/MyPsychologist';
+import YourPsychologist from '../../components/Cards/YourPsychologist/YourPsychologist';
 import { deleteSession } from '../../utils/services/clientService';
 import { usePopup } from '../../hooks/usePopup';
 import { showPopupWithValue } from '../../utils/helpers';
@@ -25,10 +25,17 @@ export default function ClientHomePage({ getUser }) {
       await deleteSession(nextSession.id, jwt);
 
       getUser(jwt);
-      showPopupWithValue(setValue, 'Сессия отменена успешно!', 'Оплата вернется в течение 7 дней');
+      showPopupWithValue(
+        setValue,
+        'Сессия отменена успешно!',
+        'Оплата вернется в течение 7 дней',
+      );
     } catch (err) {
       console.log(err);
-      showPopupWithValue(setValue, 'При отмене сессии произошла ошибка');
+      showPopupWithValue(
+        setValue,
+        'При отмене сессии произошла ошибка',
+      );
     }
   };
 
@@ -62,7 +69,7 @@ export default function ClientHomePage({ getUser }) {
           />
         </BlockWithTitle>
         <BlockWithTitle title="Ваш психолог">
-          <MyPsychologist psychologist={currentUser.my_psychologist} nextSession={nextSession} />
+          <YourPsychologist psychologist={currentUser.my_psychologist} nextSession={nextSession} />
         </BlockWithTitle>
       </div>
       {currentUser.my_psychologist.id && (

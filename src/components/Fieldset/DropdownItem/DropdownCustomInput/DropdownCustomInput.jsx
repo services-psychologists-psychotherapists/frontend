@@ -1,21 +1,18 @@
 import './DropdownCustomInput.css';
 import React from 'react';
-import PropTypes from 'prop-types';
+import { bool, string, func, objectOf } from 'prop-types';
 import Input from '../../Input/Input';
 
 export default function DropdownCustomInput({
-  item,
-  inputType,
-  onChange,
-  values,
-  customElement,
-  isCustomOpen,
+  item, inputType,
+  onChange, values,
+  customElement, isCustomOpen,
 }) {
   return (
     (customElement === item) && (
-      <div className="dropdown-item__custom-input">
+      <div className="dropdown-item-custom">
         <Input
-          ownClasses="dropdown-item__input dropdown-item__other"
+          ownClasses="dropdown-item-custom__input"
           type={inputType}
           name="custom"
           value={values.custom || ''}
@@ -29,12 +26,12 @@ export default function DropdownCustomInput({
 }
 
 DropdownCustomInput.propTypes = {
-  item: PropTypes.string,
-  values: PropTypes.objectOf(PropTypes.string),
-  onChange: PropTypes.func,
-  inputType: PropTypes.string,
-  customElement: PropTypes.string,
-  isCustomOpen: PropTypes.bool,
+  item: string,
+  values: objectOf(string),
+  onChange: func,
+  inputType: string,
+  customElement: string,
+  isCustomOpen: bool,
 };
 
 DropdownCustomInput.defaultProps = {

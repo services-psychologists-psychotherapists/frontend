@@ -6,10 +6,8 @@ import { getPriceWithSpace, formattedToday } from '../../../utils/helpers';
 
 export default function SessionInformation({
   selectedTime, isLoading,
-  selectedDay,
-  sessionDuration,
-  sessionPrice,
-  onClick,
+  selectedDay, sessionDuration,
+  sessionPrice, onClick,
   className,
 }) {
   return (
@@ -25,13 +23,13 @@ export default function SessionInformation({
         <span>Дата</span>
         <span>{selectedDay}</span>
       </div>
-      <div className="session-information__cell session-information__cell_time">
+      <div className="session-information__cell session-information__cell_type_time">
         <span>Время</span>
         <span>{selectedTime}</span>
       </div>
-      <div className="session-information__cell session-information__cell_price">
+      <div className="session-information__cell session-information__cell_type_price">
         <span>Стоимость</span>
-        <span className="session-information__cell_price-item">
+        <span className="session-information__cell_type_price-item">
           {`${getPriceWithSpace(sessionPrice)} руб.`}
         </span>
       </div>

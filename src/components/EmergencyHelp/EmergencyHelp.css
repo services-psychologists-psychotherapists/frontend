@@ -17,15 +17,15 @@
 .emergency-help__content {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border-color-medium-violet);
+  border: 1px solid #8d8de9;
   border-radius: 12px;
   padding: 32px 32px 48px;
   row-gap: 40px;
 }
 
 .emergency-help__text {
-  color: var(--text-color-dark-blue);
-  font-family: var(--font-family-montsertat);
+  color: #272766;
+  font-family: var(--font-family-montserrat);
   font-size: 22px;
   font-weight: 500;
   line-height: 30px;
@@ -49,15 +49,15 @@
 }
 
 .emergency-help__contacts-title {
-  color: var(--text-color-dark-violet);
+  color: #6b6bc7;
   font-family: var(--font-family-lato);
-  font-size: var(--text-font-size-s);
-  font-weight: var(--text-weight-primary);
+  font-size: 20px;
+  font-weight: 400;
   line-height: 26px;
 }
 
 .emergency-help__contacts-description {
-  color: var(--text-color-dark-blue);
+  color: #272766;
   font-family: var(--font-family-lato);
   font-size: 18px;
   line-height: 24px;

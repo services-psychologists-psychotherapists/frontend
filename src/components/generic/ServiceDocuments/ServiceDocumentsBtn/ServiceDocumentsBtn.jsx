@@ -4,7 +4,6 @@ import { func, string } from 'prop-types';
 import './ServiceDocumentsBtn.css';
 
 export default function ServiceDocumentsBtn({ onClick, el }) {
-  // TODO: Изменить состояние нажатия когда будет макет
   return (
     <button
       className="policy-btn"

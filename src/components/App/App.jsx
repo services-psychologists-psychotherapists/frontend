@@ -134,6 +134,7 @@ export default function App() {
   };
 
   const resetPassword = async (email, setPopup) => {
+    setIsLoading(true);
     try {
       await auth.resetPasswordWithEmail(email);
 
@@ -150,6 +151,8 @@ export default function App() {
           title: 'При отправке произошла ошибка',
         },
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -328,6 +331,7 @@ export default function App() {
                   element={(
                     <ResetPassword
                       resetPassword={resetPassword}
+                      isLoading={isLoading}
                     />
                   )}
                 />
@@ -338,6 +342,8 @@ export default function App() {
                       curPath={curPath}
                       goBack={goBack}
                       resetPassword={resetPassword}
+                      isLoading={isLoading}
+                      setIsLoading={setIsLoading}
                     />
                   )}
                 />
@@ -355,6 +361,21 @@ export default function App() {
                     />
                   )}
                 />
+                {isLoggedIn && (
+                  <Route
+                    path="/change_password"
+                    element={(
+                      <ProtectedRouteElement
+                        element={ChangePassword}
+                        navigate={navigate}
+                        loggedIn={isLoggedIn}
+                        goBack={goBack}
+                        isLoading={isLoading}
+                        setIsLoading={setIsLoading}
+                      />
+                    )}
+                  />
+                )}
                 {!isLoggedIn && (
                 <Route
                   path="/signin"
@@ -425,32 +446,9 @@ export default function App() {
                         />
                       )}
                     />
-                    {/* придумать общий для /change_password */}
-                    <Route
-                      path="/change_password"
-                      element={(
-                        <ProtectedRouteElement
-                          element={ChangePassword}
-                          navigate={navigate}
-                          loggedIn={isLoggedIn}
-                          goBack={goBack}
-                        />
-                      )}
-                    />
                   </>
                 ) : isLoggedIn && (
                 <>
-                  <Route
-                    path="/change_password"
-                    element={(
-                      <ProtectedRouteElement
-                        element={ChangePassword}
-                        navigate={navigate}
-                        loggedIn={isLoggedIn}
-                        goBack={goBack}
-                      />
-                      )}
-                  />
                   <Route
                     path="/client_account"
                     element={(
@@ -459,7 +457,7 @@ export default function App() {
                         loggedIn={isLoggedIn}
                         getUser={getUser}
                       />
-                      )}
+                    )}
                   />
                   <Route
                     path="/client_profile"

@@ -8,8 +8,8 @@
 }
 
 .not-found__title {
-  font-family: var(--font-family-montsertat);
-  color: var(--text-color-dark-violet);
+  font-family: var(--font-family-montserrat);
+  color: #6b6bc7;
   font-size: 140px;
   line-height: 169px;
   max-width: 400px;
@@ -20,7 +20,7 @@
 
 .not-found__text {
   font-family: var(--font-family-lato);
-  color: var(--text-color-dark-violet);
+  color: #6b6bc7;
   font-size: var(--text-font-size-s);
   line-height: 19px;
   max-width: 400px;

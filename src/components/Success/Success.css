@@ -4,7 +4,7 @@
   flex-direction: column;
   width: 100%;
   min-height: calc(100vh - 156px);
-  padding: 0 24px 60px;
+  padding: 40px 24px 60px;
   gap: 32px;
 }
 

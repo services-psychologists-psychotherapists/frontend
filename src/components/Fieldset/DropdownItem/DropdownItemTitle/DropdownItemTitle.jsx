@@ -13,10 +13,10 @@ export default function DropdownItemTitle({
 
   const getTitleStateClassName = () => {
     if (isTitlesElement && checked) {
-      return 'dropdown-item__title-titles_checked';
+      return 'dropdown-item-title_type_checked';
     }
     if (isTitlesElement && !checked) {
-      return 'dropdown-item__title-titles';
+      return 'dropdown-item-title';
     }
     return null;
   };

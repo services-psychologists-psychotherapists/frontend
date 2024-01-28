@@ -4,7 +4,7 @@ import './Background.css';
 
 export default function Background({ animationStatus }) {
   const circleClassName = (size) => (
-    `circle circle_size_${size}${animationStatus ? ` circle__${size}_animated` : ''}`
+    `circle circle_size_${size}${animationStatus ? ` circle_${size}_animated` : ''}`
   );
 
   const backgroundRef = useRef(null);

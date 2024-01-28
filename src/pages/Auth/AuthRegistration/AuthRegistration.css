@@ -15,7 +15,15 @@
   animation: fadeOut 1s;
 }
 
-.auth__form-registration_field-container {
+.auth__service-documents_type_text {
+  font-family: var(--font-family-lato);
+}
+
+.auth__service-documents {
+  padding-bottom: 40px;
+}
+
+.auth__form-registration-list {
   display: grid;
   grid-template-columns: minmax(min-content, 305px) minmax(min-content, 305px);
   column-gap: 20px;
@@ -23,7 +31,7 @@
   list-style-type: none;
 }
 
-.auth__form-registration_button {
+.auth__form-registration-button {
   align-self: end;
 }
 
@@ -34,8 +42,12 @@
   align-items: center;
 }
 
+.registration__prompt {
+  min-height: 51px;
+}
+
 @media screen and (max-width: 768px) {
-  .auth__form-registration_field-container {
+  .auth__form-registration-list {
     display: flex;
     flex-direction: column;
   }

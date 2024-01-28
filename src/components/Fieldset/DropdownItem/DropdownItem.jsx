@@ -7,33 +7,27 @@ import DropdownItemTitle from './DropdownItemTitle/DropdownItemTitle';
 import DropdownCustomInput from './DropdownCustomInput/DropdownCustomInput';
 
 export default function DropdownItem({
-  onChange,
-  item,
-  type,
-  element,
-  name,
-  selectedDropdownItems,
-  values,
-  customElement,
-  resetCustomValue,
-  setCustomValue,
+  onChange, item,
+  type, element,
+  name, selectedDropdownItems,
+  values, customElement,
+  resetCustomValue, setCustomValue,
 }) {
   const isTitlesElement = element === titlesDropdownElement;
-
   const isRadioType = type === radioType;
   const isCheckboxType = type === checkboxType;
 
   const getContainerClassName = () => {
     if (isRadioType) {
-      return ' dropdown-item__container_radio';
+      return ' dropdown-item-container_type_radio';
     }
 
     if (isCheckboxType) {
-      return ' dropdown-item__container_checkbox';
+      return ' dropdown-item-container_type_checkbox';
     }
 
     if (isTitlesElement) {
-      return ' dropdown-item__container_titles';
+      return ' dropdown-item-container_type_titles';
     }
 
     return '';
@@ -87,7 +81,7 @@ export default function DropdownItem({
   const onClickForInput = getOnClick();
 
   return (
-    <label className={`dropdown-item__container${getContainerClassName()}`}>
+    <label className={`dropdown-item-container${getContainerClassName()}`}>
       <DropdownItemIcon
         element={element}
         type={type}

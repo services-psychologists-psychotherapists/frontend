@@ -60,7 +60,7 @@ export default function Auth({
   };
 
   const getClassesForActiveBtn = (authVariat) => (
-    authVariat ? ' auth__variants_item-active' : ' auth__variants_item-inactive'
+    authVariat ? ' auth__variants-item_active' : ' auth__variants-item_inactive'
   );
 
   return (
@@ -76,7 +76,7 @@ export default function Auth({
         <li>
           <button
             onClick={handleChangeAuthVariant}
-            className={`auth__variants_item${getClassesForActiveBtn(isLogin)}`}
+            className={`auth__variants-item${getClassesForActiveBtn(isLogin)}`}
           >
             {AUTH_BTNS.login}
           </button>
@@ -84,7 +84,7 @@ export default function Auth({
         <li>
           <button
             onClick={handleChangeAuthVariant}
-            className={`auth__variants_item${getClassesForActiveBtn(isRegister)}`}
+            className={`auth__variants-item${getClassesForActiveBtn(isRegister)}`}
           >
             {AUTH_BTNS.registration}
           </button>

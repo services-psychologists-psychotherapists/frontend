@@ -1,5 +1,5 @@
 import React from 'react';
-import './MyPsychologist.css';
+import './YourPsychologist.css';
 import { string, number, shape } from 'prop-types';
 import Avatar from '../../generic/Avatar/Avatar';
 import PsychoName from '../../generic/PsychoName/PsychoName';
@@ -8,8 +8,9 @@ import EmptyCard from '../EmptyCard/EmptyCard';
 import { NO_PSYCHO_MESSAGE } from '../../../constants/constants';
 import { useResize } from '../../../hooks/useResize';
 
-export default function MyPsychologist({ psychologist, nextSession }) {
+export default function YourPsychologist({ psychologist, nextSession }) {
   const { isScreenSm } = useResize();
+
   return (
     <div className="your-psycho">
       {psychologist.id ? (
@@ -45,7 +46,7 @@ export default function MyPsychologist({ psychologist, nextSession }) {
   );
 }
 
-MyPsychologist.propTypes = {
+YourPsychologist.propTypes = {
   psychologist: shape({
     first_name: string,
     last_name: string,

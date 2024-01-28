@@ -17,7 +17,7 @@ export default function DocsForRegistr({ setValue, showPopupWithValue }) {
       </Text>
       <ServiceDocuments
         textVariant="whereby"
-        className="auth__service-documents_text"
+        className="data-list__documents-text"
         onClick={() => showPopupWithValue(setValue, 'Документ')}
       />
     </div>

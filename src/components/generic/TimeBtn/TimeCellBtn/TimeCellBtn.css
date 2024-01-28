@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 12px;
-  background-color: var(--bg-color-light-violet);
+  background-color: #d9d9f1;
   cursor: pointer;
   font-family: var(--font-family-lato);
   font-size: 18px;
@@ -19,6 +19,6 @@
 }
 
 .time-cell_active, .time-cell:active {
-  background-color: var(--border-color-dark-violet); /* поменять переменную */
+  background-color: #6b6bc7;
   color: #fff;
 }

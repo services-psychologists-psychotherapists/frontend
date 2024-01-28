@@ -6,26 +6,10 @@
   gap: 12px;
   list-style-type: none;
   padding-bottom: 12px;
-  /* Переделать на SimpleBar или Perfect Scrollbar? для moz */
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-color-dark-violet) var(--bg-color-white);
 }
 
-.time-container::-webkit-scrollbar {
-  /* Стили повторяются, подумать */
-  height: 4px;
-  border-radius: 4px;
-}
-
-.time-container::-webkit-scrollbar-thumb {
-  /* Стили повторяются, подумать */
-  background-color: var(--border-color-dark-violet);
-  border-radius: 4px;
-}
-
-/* TODO: Настроить когда будет дизайн */
 .time-container__not-found {
-  color: var(--text-color-dark-blue);
+  color: #272766;
   font-family: var(--font-family-lato);
   font-size: 18px;
   line-height: 24px;
