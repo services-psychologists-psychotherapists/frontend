@@ -22,16 +22,16 @@ export default function Footer() {
               className="footer__links"
             />
           </nav>
-          <ul className="footer__sotial-networks">
+          <ul className="footer__social-networks">
             {SOCIAL_MEDIA_ICONS.map((icon) => (
               <li key={icon.alt}>
                 <a
                   href={icon.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="footer__sotial-networks_link"
+                  className="footer__social-link"
                 >
-                  <img src={icon.path} alt={icon.alt} className="footer__sotial-networks_icon" />
+                  <img src={icon.path} alt={icon.alt} className="footer__social-icon" />
                 </a>
               </li>
             ))}

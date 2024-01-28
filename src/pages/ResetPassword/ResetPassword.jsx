@@ -1,5 +1,5 @@
 import React from 'react';
-import { func } from 'prop-types';
+import { func, bool, } from 'prop-types';
 import './ResetPassword.css';
 import Text from '../../components/generic/Text/Text';
 import Fieldset from '../../components/Fieldset/Fieldset';
@@ -10,7 +10,9 @@ import { usePopup } from '../../hooks/usePopup';
 import Title from '../../components/generic/Title/Title';
 
 // TODO: объединить все похожие формы в один компонент?
-export default function ResetPassword({ resetPassword }) {
+export default function ResetPassword({
+  resetPassword, isLoading,
+}) {
   const {
     values,
     handleChange,
@@ -22,7 +24,7 @@ export default function ResetPassword({ resetPassword }) {
   const { setValue } = usePopup();
 
   return (
-    <section className="reset_password">
+    <section className="reset-password">
       <Title
         text="Сброс пароля"
         titleLvl="2"
@@ -58,7 +60,7 @@ export default function ResetPassword({ resetPassword }) {
           disabled={!isValidForm}
           className="reset-password__form-button"
         >
-          Отправить
+          {isLoading ? 'Отправка...' : 'Отправить'}
         </Button>
       </form>
     </section>
@@ -67,4 +69,5 @@ export default function ResetPassword({ resetPassword }) {
 
 ResetPassword.propTypes = {
   resetPassword: func.isRequired,
+  isLoading: bool.isRequired,
 };

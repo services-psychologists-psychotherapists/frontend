@@ -12,10 +12,10 @@ export default function ClientProfilePage({
   setDocIdForRequest,
   changeClientAvatar,
   changeClientData,
-  curPath,
-  isLoading,
+  curPath, isLoading,
 }) {
   const currentUser = useContext(CurrentUserContext);
+
   return (
     <PageLayout
       title="Профиль"

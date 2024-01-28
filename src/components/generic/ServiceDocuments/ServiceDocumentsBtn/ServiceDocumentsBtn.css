@@ -1,11 +1,11 @@
 .policy-btn {
   all: unset;
-  color: var(--text-color-dark-violet);
+  color: #6b6bc7;
   font-size: 18px;
   line-height: 24px;
   cursor: pointer;
 }
 
 .policy-btn:hover {
-  color: var(--text-color-dark-blue);
+  color: #272766;
 }

@@ -1,20 +1,20 @@
-.field-container__prompt-height {
+.field-prompt_type_standart-height {
   min-height: 17px;
   max-height: min-content;
 }
 
-.field-container__prompt {
+.field-prompt {
   padding-left: 12px;
   font-family: var(--font-family-lato);
-  font-weight: var(--text-weight-primary);
+  font-weight: 400;
   font-size: 14px;
   line-height: normal;
 }
 
-.field-container__prompt_visible-error {
-  color: var(--text-color-error);
+.field-prompt_type_visible-error {
+  color: #cf3614;
 }
 
-.field-container__prompt_visible-prompt {
-  color: var(--text-color-dark-blue);
+.field-prompt_type_visible-prompt {
+  color: #272766;
 }

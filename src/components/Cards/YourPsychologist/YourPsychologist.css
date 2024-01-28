@@ -1,6 +1,6 @@
 .your-psycho {
   padding: 32px 32px 40px;
-  border: 1px solid var(--border-color-dark-violet);
+  border: 1px solid #6b6bc7;
   border-radius: 12px;
   max-width: 846px;
   display: flex;
@@ -21,19 +21,6 @@
 
 .your-psycho__container > .button {
   align-self: flex-end;
-}
-
-@media screen and (max-width: 868px) {
-  .session-card__info {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
-  .session-card__date {
-    flex-direction: row;
-    gap: 10px;
-  }
 }
 
 @media screen and (max-width: 768px) {

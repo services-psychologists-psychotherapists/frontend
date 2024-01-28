@@ -4,17 +4,14 @@ import { func, node, bool, string, oneOf } from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export default function Button({
-  onClick,
-  children,
-  type,
-  disabled,
-  variant,
-  className,
-  size,
-  href,
+  onClick, children,
+  type, disabled,
+  variant, className,
+  size, href,
 }) {
-  const classes = `button button__${variant} button_size_${size} ${className} ${
-    disabled ? `button_disabled button__${variant}_disabled` : `button__${variant}_active`
+  const classes = `button button_type_${variant} button_size_${size}${
+    className ? ` ${className}` : ''}${
+    disabled ? ` button_disabled button_type_${variant}-disabled` : ` button_type_${variant}-active`
   }`;
   const Tag = href !== '' ? Link : 'button';
 

@@ -31,7 +31,7 @@
   width: 100%;
 }
 
-.directory-psychologists__psycho-list_container {
+.directory-psychologists__psycho-list-container {
   list-style-type: none;
   display: flex;
   flex-direction: column;
@@ -39,14 +39,14 @@
   padding-bottom: 40px;
 }
 
-.directory-psychologists__psycho-list_item {
+.directory-psychologists__psycho-list-item {
   border-radius: 12px;
   transition: box-shadow .2s ease;
   cursor: pointer;
 }
 
-.directory-psychologists__psycho-list_item:hover {
-  box-shadow: 0 0 5px var(--border-color-medium-violet);
+.directory-psychologists__psycho-list-item:hover {
+  box-shadow: 0 0 5px #8d8de9;
 }
 
 .psychologists-popup {
@@ -88,26 +88,14 @@
   row-gap: 25px;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: var(--border-color-dark-violet) var(--bg-color-white);
+  scrollbar-color: #6b6bc7 #fefefe;
   margin-bottom: 30px;
-}
-
-.psychologists-popup__content::-webkit-scrollbar {
-  /* Стили повторяются, подумать */
-  height: 4px;
-  border-radius: 4px;
-}
-
-.psychologists-popup__content::-webkit-scrollbar-thumb {
-  /* Стили повторяются, подумать */
-  background-color: var(--border-color-dark-violet);
-  border-radius: 4px;
 }
 
 .psychologists-popup__btn {
   margin-top: 5px;
   align-self: flex-start;
-  color: var(--text-color-dark-blue);
+  color: #272766;
 }
 
 .directory-psychologists__psycho-list_error {

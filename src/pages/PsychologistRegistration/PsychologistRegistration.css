@@ -18,7 +18,7 @@
 }
 
 .psycho-registration__text {
-  color: var(--text-color-dark-blue);
+  color: #272766;
   font-family: var(--font-family-lato);
   font-size: 18px;
   font-style: normal;
@@ -39,7 +39,7 @@
 }
 
 .psycho-registration__form-title {
-  color: var(--text-color-dark-violet);
+  color: #6b6bc7;
   padding-top: 20px;
   margin-bottom: 28px;
 }

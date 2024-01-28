@@ -3,7 +3,7 @@
   flex-direction: column;
   padding: 32px 32px 40px;
   align-items: start;
-  border: 1px solid var(--border-color-dark-violet);
+  border: 1px solid #6b6bc7;
   border-radius: 12px;
   gap: 24px;
   max-width: 846px;
@@ -48,7 +48,7 @@
   line-height: 24px;
   align-items: flex-end;
   gap: 8px;
-  color: var(--text-color-dark-blue);
+  color: #272766;
   justify-content: center;
   flex-wrap: wrap;
 }

@@ -3,9 +3,9 @@
   font-family: var(--font-family-lato);
   font-size: 18px;
   font-weight: 400;
-  color: var(--text-color-dark-blue);
+  color: #272766;
   position: relative;
-  transition: 0.3s;
+  transition: .3s;
   display: inline-block;
   line-height: 24px;
 }
@@ -14,13 +14,13 @@
   display: inline-block;
   content: '';
   opacity: 0;
-  transition: 0.2s;
+  transition: .2s;
   position: absolute;
 }
 
 .nav-link:hover {
   transform: scale(1.1);
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .active::after,
@@ -29,8 +29,8 @@
   content: '';
   width: 100%;
   height: 1px;
-  background-color: var(--border-color-dark-violet);
-  transition: 0.2s;
+  background-color: #6b6bc7;
+  transition: .2s;
   margin-top: 4px;
   opacity: 1;
 }

@@ -155,11 +155,11 @@ export default function DirectoryOfPsychologists({
             <div className="directory-psychologists__psycho-list">
               {isLoading
                 ? <Preloader preloaderClassName="directory-psychologists__preloader" /> : (
-                  <ul className="directory-psychologists__psycho-list_container">
+                  <ul className="directory-psychologists__psycho-list-container">
                     {psychologistList && psychologistList.length > 0 ? psychologistList.map((i) => (
                       <li key={i.id}>
                         <div
-                          className="directory-psychologists__psycho-list_item"
+                          className="directory-psychologists__psycho-list-item"
                           onClick={(e) => handleOpenPsychoCard(i.id, e)}
                           role="button"
                           tabIndex="0"
@@ -199,7 +199,7 @@ export default function DirectoryOfPsychologists({
             >
               Назад
             </Button>
-            <div className="psychologists-popup__content" ref={psychoRef}>
+            <div className="psychologists-popup__content scrollbar" ref={psychoRef}>
               <Title
                 titleLvl="2"
                 size="m"

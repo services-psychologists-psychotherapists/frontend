@@ -1,11 +1,11 @@
 import React from 'react';
 import { withRouter } from 'storybook-addon-react-router-v6';
-import MyPsychologist from './MyPsychologist';
+import YourPsychologist from './YourPsychologist';
 import { PSYCHO } from '../../../constants/db';
 
 export default {
   title: 'Global components/Cards/My Psychologist',
-  component: MyPsychologist,
+  component: YourPsychologist,
   decorators: [withRouter],
   parameters: {
     layout: 'padded',
@@ -32,14 +32,14 @@ export default {
 };
 
 const Template = function Card(args) {
-  return <MyPsychologist {...args} />;
+  return <YourPsychologist {...args} />;
 };
 
 export function Psychologist() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <MyPsychologist psychologist={PSYCHO} />
-      <MyPsychologist psychologist={PSYCHO} nextSession={{}} />
+      <YourPsychologist psychologist={PSYCHO} />
+      <YourPsychologist psychologist={PSYCHO} nextSession={{}} />
     </div>
   );
 }
@@ -53,6 +53,6 @@ PsychologistEmpty.args = {
   psychologist: null,
 };
 
-export function YourPsychologist() {
-  return <MyPsychologist psychologist={PSYCHO} />;
+export function YourPsycho() {
+  return <YourPsychologist psychologist={PSYCHO} />;
 }

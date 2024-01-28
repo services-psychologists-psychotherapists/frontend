@@ -14,13 +14,10 @@ import Textarea from '../../../Fieldset/Textarea/Textarea';
 import { removeProperty, updateData } from '../../../../utils/helpers';
 
 export default function FourthStep({
-  values,
-  handleChange,
-  errors,
-  inputValidStatus,
+  values, handleChange,
+  errors, inputValidStatus,
   getInvalidInput,
-  step,
-  selectedDropdownItems,
+  step, selectedDropdownItems,
   resetCustomValue,
   setCustomValue,
   setDataForRequest,

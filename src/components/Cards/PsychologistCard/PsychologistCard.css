@@ -1,24 +1,11 @@
 .psycho-card {
   padding: 32px;
-  border: 1px solid var(--border-color-medium-violet);
+  border: 1px solid #8d8de9;
   border-radius: 12px;
   width: 100%;
   background-color: #fff;
   overflow-y: auto;
   max-height: 80vh;
-}
-
-.psycho-card::-webkit-scrollbar {
-  /* Стили повторяются, подумать */
-  height: 4px;
-  width: 4px;
-  border-radius: 4px;
-}
-
-.psycho-card::-webkit-scrollbar-thumb {
-  /* Стили повторяются, подумать */
-  background-color: var(--border-color-dark-violet);
-  border-radius: 4px;
 }
 
 .psycho-card__header {
@@ -29,7 +16,7 @@
 }
 
 .next-sessions__title {
-  color: var(--text-color-dark-blue);
+  color: #272766;
   font-family: Lato;
   font-size: 18px;
   font-style: normal;
@@ -61,15 +48,11 @@
 }
 
 .psycho-card__content_type_full::-webkit-scrollbar {
-  background-color: var(--bg-color-white);
-  width: 4px;
-  border-radius: 4px;
+  background-color: #fefefe;
   padding-left: 10px;
 }
 
 .psycho-card__content_type_full::-webkit-scrollbar-thumb {
-  background-color: var(--border-color-dark-violet);
-  border-radius: 4px;
   padding-left: 10px;
 }
 
@@ -98,17 +81,17 @@
   display: block;
   width: 100%;
   height: 1px;
-  background-color: var(--border-color-medium-violet);
+  background-color: #8d8de9;
 }
 
 /* заменить */
 .next-session__slot {
   padding: 10px 20px;
-  background-color: var(--bg-color-light-violet);
+  background-color: #d9d9f1;
   border-radius: 12px;
 }
 
-.psycho-card__list-education {
+.psycho-card__list_type_education {
   flex-direction: column;
   width: 100%;
 }

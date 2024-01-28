@@ -52,7 +52,7 @@
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  color: var(--text-color-dark-blue);
+  color: #272766;
   font-family: var(--font-family-lato);
   font-size: 18px;
   font-style: normal;
@@ -63,10 +63,10 @@
 .pagination-list__page-number:focus,
 .pagination-list__previous:focus,
 .pagination-list__next:focus {
-  outline: 2px solid var(--border-color-medium-violet);
+  outline: 2px solid #8d8de9;
 }
 
 .pagination-list__page-number_active {
-  background: var(--border-color-medium-violet); /* поменять название перем. */
+  background: #8d8de9; /* поменять название перем. */
   color: #fff;
 }

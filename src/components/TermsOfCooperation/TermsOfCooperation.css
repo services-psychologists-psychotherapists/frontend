@@ -17,7 +17,7 @@
   flex-direction: row;
   justify-content: space-between;
   border-radius: 12px;
-  border: 1px solid var(--border-color-medium-violet);
+  border: 1px solid #8d8de9;
   padding: 32px;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .terms-cooperation__description {
-  color: var(--text-color-dark-blue);
+  color: #272766;
   font-family: var(--font-family-lato);
   font-size: 22px;
   line-height: 28px;
@@ -38,8 +38,8 @@
 
 .terms-cooperation__email {
   font-family: var(--font-family-lato);
-  color: var(--text-color-dark-violet);
-  font-size: var(--text-font-size-s);
+  color: #6b6bc7;
+  font-size: 20px;
   line-height: 26px;
 }
 

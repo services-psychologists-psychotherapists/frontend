@@ -10,7 +10,7 @@
   padding: 32px;
   row-gap: 24px;
   border-radius: 12px;
-  border: 1px solid var(--border-color-dark-violet);
+  border: 1px solid #6b6bc7;
   max-width: 955px;
   width: 100%;
   flex-wrap: nowrap;
@@ -35,6 +35,7 @@
 .data-list_type_column {
   display: flex;
   flex-direction: column;
+  row-gap: 5px;
 }
 
 .data-list_type_grid {
@@ -57,7 +58,7 @@
 
 .data-list-container ul:not(:first-child) {
   padding-top: 40px;
-  border-top: 1px solid var(--border-color-dark-violet);
+  border-top: 1px solid #6b6bc7;
 }
 
 .user-data__buttons {

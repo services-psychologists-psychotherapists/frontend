@@ -48,7 +48,7 @@ export default function Textarea({
         className={
           `custom-textarea__text${
             textareaClassName ? ` ${textareaClassName}` : ''}${
-            errors[name] ? ' custom-textarea__text_error' : ''}
+            errors[name] ? ' custom-textarea__text_type_error' : ''}
           `
         }
         placeholder={placeholder}

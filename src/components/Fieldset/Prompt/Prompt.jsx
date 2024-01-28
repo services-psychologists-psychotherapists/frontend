@@ -1,19 +1,19 @@
 import './Prompt.css';
 import React from 'react';
-import PropTypes from 'prop-types';
+import { bool, string } from 'prop-types';
 
 export default function Prompt({
   prompt, disabled, errors, promptClasses
 }) {
-  const errorClassName = errors ? 'field-container__prompt_visible-error' : '';
+  const errorClassName = errors ? ' field-prompt_type_visible-error' : '';
   const promptClassName = prompt && !errors && !disabled
-    ? 'field-container__prompt_visible-prompt' : '';
+    ? ' field-prompt_type_visible-prompt' : '';
 
   return (
     <span
-      className={`field-container__prompt ${
-        promptClasses || 'field-container__prompt-height'
-      } ${errorClassName} ${promptClassName}`}
+      className={`field-prompt${
+        promptClasses ? ` ${promptClasses}` : ' field-prompt_type_standart-height'
+      }${errorClassName}${promptClassName}`}
     >
       {errors || prompt}
     </span>
@@ -21,10 +21,10 @@ export default function Prompt({
 }
 
 Prompt.propTypes = {
-  disabled: PropTypes.bool,
-  errors: PropTypes.string,
-  prompt: PropTypes.string,
-  promptClasses: PropTypes.string,
+  disabled: bool,
+  errors: string,
+  prompt: string,
+  promptClasses: string,
 };
 
 Prompt.defaultProps = {

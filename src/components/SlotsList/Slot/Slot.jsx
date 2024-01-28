@@ -1,7 +1,7 @@
 import React from 'react';
 import './Slot.css';
 import moment from 'moment';
-import PropTypes from 'prop-types';
+import { shape, string, func, bool } from 'prop-types';
 import arrow from '../../../images/arrow_icon.svg';
 import Button from '../../generic/Button/Button';
 import ButtonGroup from '../../generic/ButtonGroup/ButtonGroup';
@@ -9,6 +9,7 @@ import { getSessionTime } from '../../../utils/helpers';
 import { DATE_FORMAT } from '../../../constants/constants';
 
 export default function Slot({ session, onClick, isSlotOpen }) {
+  // проверить переделать
   const classIsOpen = (element) => {
     if (isSlotOpen) {
       return `${element}_opened`;
@@ -20,17 +21,23 @@ export default function Slot({ session, onClick, isSlotOpen }) {
   const endTime = moment(session.datetime_to, DATE_FORMAT);
 
   return (
-    <li className={`slot ${!session.client && 'slot_free'}`}>
+    <li className={`slot ${!session.client && 'slot_type_free'}`}>
       <button onClick={onClick} className="slot__header">
-        <p className="session-time">{getSessionTime(startTime, endTime)}</p>
+        <p className="slot__session-time">
+          {getSessionTime(startTime, endTime)}
+        </p>
         <p className="slot__title">
           {session.client
             ? `${session.client.first_name} ${session.client.last_name}`
             : 'Свободное время'}
         </p>
-        <img src={arrow} alt="arrow" className={`slot__icon ${classIsOpen('slot__icon')}`} />
+        <img
+          src={arrow}
+          alt="arrow"
+          className={`slot__icon${classIsOpen(' slot__icon')}`}
+        />
       </button>
-      <div className={`slot__content ${classIsOpen('slot__content')}`}>
+      <div className={`slot__content${classIsOpen(' slot__content')}`}>
         {!session.client ? (
           <Button size="m" onClick={() => {}} variant="secondary">
             Удалить из расписания
@@ -51,16 +58,16 @@ export default function Slot({ session, onClick, isSlotOpen }) {
 }
 
 Slot.propTypes = {
-  session: PropTypes.shape({
-    client: PropTypes.shape({
-      first_name: PropTypes.string,
-      last_name: PropTypes.string,
-      id: PropTypes.string,
+  session: shape({
+    client: shape({
+      first_name: string,
+      last_name: string,
+      id: string,
     }),
-    datetime_from: PropTypes.string,
-    datetime_to: PropTypes.string,
-    href: PropTypes.string,
+    datetime_from: string,
+    datetime_to: string,
+    href: string,
   }).isRequired,
-  onClick: PropTypes.func.isRequired,
-  isSlotOpen: PropTypes.bool.isRequired,
+  onClick: func.isRequired,
+  isSlotOpen: bool.isRequired,
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { object, func } from 'prop-types';
+import { object, func, bool, } from 'prop-types';
 import { usePopup } from '../../hooks/usePopup';
 import './CreatePassword.css';
 import { createPassword } from '../../utils/auth';
@@ -12,7 +12,10 @@ import Fieldset from '../../components/Fieldset/Fieldset';
 import Title from '../../components/generic/Title/Title';
 import Success from '../../components/Success/Success';
 
-export default function CreatePassword({ curPath, resetPassword }) {
+export default function CreatePassword({
+  curPath, resetPassword,
+  isLoading, setIsLoading,
+}) {
   const {
     values,
     handleChange,
@@ -29,6 +32,7 @@ export default function CreatePassword({ curPath, resetPassword }) {
   const isCorrectLink = token.length > 5 && uId.length > 5;
 
   const setPassword = async (curToken, curuId, pass) => {
+    setIsLoading(true);
     try {
       await createPassword(curToken, curuId, pass);
 
@@ -36,8 +40,12 @@ export default function CreatePassword({ curPath, resetPassword }) {
     } catch (err) {
       console.log(err);
 
-      showPopupWithValue(setValue, 'Произошла ошибка при установке пароля');
+      showPopupWithValue(
+        setValue,
+        'Произошла ошибка при установке пароля',
+      );
     }
+    setIsLoading(false);
   };
 
   const handleSubmit = () => {
@@ -137,11 +145,11 @@ export default function CreatePassword({ curPath, resetPassword }) {
                     ? handleSubmit
                     : () => resetPassword(values.email, setValue)
                 }
-                disabled={!isValidForm}
+                disabled={!isValidForm || isLoading}
                 className="create-password__form-button"
               >
-                {isCorrectLink && 'Сохранить пароль'}
-                {!isCorrectLink && 'Отправить ссылку'}
+                {isCorrectLink && (isLoading ? 'Сохранение...' : 'Сохранить пароль')}
+                {!isCorrectLink && (isLoading ? 'Отправка...' : 'Отправить ссылку')}
               </Button>
             </form>
           </>
@@ -154,4 +162,6 @@ CreatePassword.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   curPath: object.isRequired,
   resetPassword: func.isRequired,
+  isLoading: bool.isRequired,
+  setIsLoading: func.isRequired,
 };

@@ -5,6 +5,7 @@ import vectorOpened from './vector_opened.svg';
 import vectorClosed from './vector_closed.svg';
 
 export default function TimePicker({ timingList }) {
+  // Проверить (убрать) убрать свг
   const [isShowDropdown, setIsShowDropdown] = useState(false);
   const classesItems = `session-planner__timing-list  ${
     isShowDropdown ? 'session-planner__list_visible' : ''

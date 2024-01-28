@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { number, func } from 'prop-types';
 import './PaginationList.css';
 import usePagination from '../../../hooks/usePagination';
+import { NUMBER_OF_PAGES_DISPLAYED } from '../../../constants/constants';
 
 export default function PaginationList({
   pageCount, onPageClick, currentPage
 }) {
-  // TODO: перенести в конст
-  const NUMBER_OF_PAGES_DISPLAYED = 3;
   const pagesNumArray = usePagination(pageCount);
 
   const getPagesArrMatrix = (arr, arrSize) => {

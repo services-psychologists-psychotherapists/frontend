@@ -29,7 +29,7 @@ export default function HowToStart() {
         titleLvl="2"
         constainerClasses="how-to-start__container"
       >
-        <div className="how-to-start__box" {...scrollOnClick}>
+        <div className="how-to-start__box scrollbar" {...scrollOnClick}>
           <ul className="how-to-start__list">
             {LIST_OF_STEPS.map((el, index) => (
               <li

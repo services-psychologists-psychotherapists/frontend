@@ -26,7 +26,7 @@
 
 .about-problems__card {
   border: 1px solid;
-  border-color: var(--border-color-medium-violet);
+  border-color: #8d8de9;
   border-radius: 12px;
   padding: 32px 32px 20px;
   display: flex;
@@ -37,10 +37,10 @@
 
 .about-problems__description {
   font-family: var(--font-family-lato);
-  font-size: var(--text-font-size-s);
+  font-size: 20px;
   line-height: 26px;
-  font-weight: var(--text-font-size-s);
-  color: var(--text-color-dark-blue);
+  font-weight: 20px;
+  color: #272766;
 }
 
 .about-problems__img {

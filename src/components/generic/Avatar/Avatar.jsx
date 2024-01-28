@@ -13,21 +13,21 @@ export default function Avatar({ src, size, onClick }) {
     img.onerror = () => setAvatar(noAvatar);
   }, [src]);
 
-  function getNoAvatarClasses(tag) {
+  const getNoAvatarClasses = (tag) => {
     if (avatar === noAvatar) {
       if (tag === 'img') {
         if (size === 'xs' || size === 's') {
-          return `${tag}__no-avatar img_size_s`;
+          return ` ${tag}__no-avatar img_size_s`;
         }
         return '';
       }
-      return `${tag}__no-avatar`;
+      return ` ${tag}__no-avatar`;
     }
     return '';
-  }
+  };
 
   return (
-    <div className={`avatar avatar_size_${size} ${getNoAvatarClasses('avatar')}`}>
+    <div className={`avatar avatar_size_${size}${getNoAvatarClasses('avatar')}`}>
       <img
         src={avatar}
         alt="Аватар"

@@ -1,7 +1,7 @@
 .text {
   font-family: var(--font-family-lato);
-  font-weight: var(--text-weight-primary);
-  color: var(--text-color-dark-blue);
+  font-weight: 400;
+  color: #272766;
 }
 
 .text_size_l {
@@ -21,7 +21,7 @@
 
 .text_type_tag {
   display: inline-block;
-  background-color: var(--bg-color-light-violet);
+  background-color: #d9d9f1;
   padding: 8px 16px;
   border-radius: 20px;
 }

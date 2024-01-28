@@ -4,14 +4,13 @@ import { arrayOf, shape, string, bool } from 'prop-types';
 import NavigationLink from './NavigationLink/NavigationLink';
 
 export default function NavLinksList({
-  list,
-  navLink,
-  isList,
-  variant,
+  list, navLink,
+  isList, variant,
   className,
 }) {
   return (
-    <ul className={`links${isList ? ' links_type_list' : ''} links_type_${variant}${
+    <ul className={`links${isList ? ' links_type_list' : ''}${
+      variant ? ` links_type_${variant}` : ''}${
       className ? ` ${className}` : ''}`}
     >
       {list.map(({ link, text }) => (

@@ -9,7 +9,6 @@ import {
   DAYS_OF_WEEK,
 } from '../../constants/constants';
 import { today, formattedToday, binarySearchDateIndex } from '../../utils/helpers';
-// TODO: Сделать сброс недель по дизайну
 
 export default function Сalendar({
   onDateCellClick, titleText,
@@ -51,6 +50,7 @@ export default function Сalendar({
     } else {
       setSelectedDay('');
     }
+
     const resetStartDay = today.clone().startOf('week');
     const resetLastDay = moment(resetStartDay).add(NUMBER_OF_DAYS_DISPLAYED, 'days');
 
@@ -63,7 +63,6 @@ export default function Сalendar({
   useEffect(() => {
     const generateDates = () => {
       const newDates = [];
-
       const currentDatePoint = moment(startDay);
 
       while (currentDatePoint.isSameOrBefore(lastDay, 'day')) {
@@ -99,13 +98,13 @@ export default function Сalendar({
     }
   }, [freeSlotsArray]);
 
-  const dateСellСlasses = (i) => `${i.isDayOff ? ' calendar__day-of-week_day-off' : ''}${
-    i.date === formattedCurrentDate ? ' calendar__date_today' : ''
-  }${selectedDay === i.date ? ' calendar__date_selected' : ''}`;
+  const dateСellСlasses = (i) => `${i.isDayOff ? ' calendar__cell_type_day-off' : ''}${
+    i.date === formattedCurrentDate ? ' calendar__date_type_today' : ''
+  }${selectedDay === i.date ? ' calendar__date_type_selected' : ''}`;
 
-  const daysOfWeekClasses = (i) => `${(i === 'сб' || i === 'вс') && 'calendar__day-of-week_day-off'}`;
+  const daysOfWeekClasses = (i) => `${(i === 'сб' || i === 'вс') && 'calendar__cell_type_day-off'}`;
 
-  const getDisabledPrevSwitch = () => (!isChangedWeeks ? ' calendar__period_prev-disabled' : '');
+  const getDisabledPrevSwitch = () => (!isChangedWeeks ? ' calendar__period-switch_disabled' : '');
 
   const getCalendarDisabledDate = (i) => {
     const isDateLessThanToday = moment(i.date, 'DD.MM.YYYY') < moment(formattedToday, 'DD.MM.YYYY');
@@ -141,7 +140,10 @@ export default function Сalendar({
         <div className="calendar__period">
           <button
             type="button"
-            className={`calendar__period_switch calendar__period_prev${getDisabledPrevSwitch()}`}
+            className={
+              `calendar__period-switch calendar__period-switch_type_prev${
+                getDisabledPrevSwitch()}`
+            }
             onClick={switchToPrevWeeks}
             disabled={!isChangedWeeks}
           />
@@ -150,14 +152,14 @@ export default function Сalendar({
             {isChangedWeeks && (
               <button
                 type="button"
-                className="calendar__period_switch calendar__period_reset"
+                className="calendar__period-switch calendar__period-reset"
                 onClick={resetDates}
               />
             )}
           </div>
           <button
             type="button"
-            className="calendar__period_switch calendar__period_next"
+            className="calendar__period-switch calendar__period-switch_type_next"
             onClick={switchToNextWeeks}
           />
         </div>
@@ -165,7 +167,7 @@ export default function Сalendar({
           <ul className="calendar__days-of-week">
             {DAYS_OF_WEEK.map((i) => (
               <li
-                className={`calendar__cell calendar__day-of-week ${daysOfWeekClasses(i)}`}
+                className={`calendar__cell calendar__cell_type_day-of-week ${daysOfWeekClasses(i)}`}
                 key={i}
               >
                 {i}

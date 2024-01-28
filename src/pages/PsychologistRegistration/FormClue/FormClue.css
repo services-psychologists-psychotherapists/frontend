@@ -5,15 +5,15 @@
   align-items: center;
 }
 
-.psycho-registration__form-clue_icon {
-  background-image: url('./attention.svg');
+.psycho-registration__form-clue-icon {
+  background-image: url('../../../images/attention.svg');
   background-repeat: no-repeat;
   width: 20px;
   height: 20px;
 }
 
-.psycho-registration__form-clue_text {
-  color: var(--text-color-dark-violet);
+.psycho-registration__form-clue-text {
+  color: #6b6bc7;
   font-family: var(--font-family-lato);
   font-size: 14px;
   font-style: normal;

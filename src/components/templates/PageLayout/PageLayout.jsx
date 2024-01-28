@@ -10,10 +10,10 @@ export default function PageLayout({
 }) {
   return (
     <section
-      className="page-layout__container"
+      className="page-layout-container"
     >
       <div className={
-        `page-layout ${type === 'psychologist' ? `page-layout_type_${type}` : ''}${
+        `page-layout${type === 'psychologist' ? ` page-layout_type_${type}` : ''}${
           layoutClassName ? ` ${layoutClassName}` : ''}`
         }
       >

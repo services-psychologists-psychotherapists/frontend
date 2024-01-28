@@ -60,15 +60,15 @@ export default function ProfileCard({
             onClick={() => setValue(POPUP_DATA.avatar)}
           />
           <div className="profile-card__info">
-            <ul className="profile-card__container_data">
+            <ul className="profile-card__data">
               {PROFILE_FIELDS.map((i) => (
                 <li key={i.title}>
                   <div className="profile-card__fieldset">
-                    <span className="profile-card__fieldset_title">
+                    <span className="profile-card__fieldset-title">
                       {i.title}
                     </span>
-                    <div className="profile-card__fieldset_field">
-                      <span className="profile-card__fieldset_text">
+                    <div className="profile-card__fieldset-field">
+                      <span>
                         {i.title === 'Логин' ? currentUser.email : i.text}
                       </span>
                     </div>

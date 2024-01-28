@@ -94,7 +94,11 @@ export default function PsychologistAccount({
               )}
             </BlockWithTitle>
           </div>
-          <SlotsList sessions={selectedSlots} selectedDay={currentDay} />
+          <SlotsList
+            sessions={selectedSlots}
+            selectedDay={currentDay}
+            curPath={curPath}
+          />
         </section>
       ) : null}
       {path === 'profile' ? (

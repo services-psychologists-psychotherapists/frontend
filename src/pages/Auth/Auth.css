@@ -15,32 +15,24 @@
   column-gap: 28px;
 }
 
-.auth__variants_item {
+.auth__variants-item {
   background: none;
   border: none;
   height: 39px;
-  color: var(--text-color-dark-blue);
-  font-family: var(--font-family-montsertat);
+  color: #272766;
+  font-family: var(--font-family-montserrat);
   font-size: 22px;
   font-weight: 600;
   line-height: normal;
   cursor: pointer;
 }
 
-.auth__variants_item-active {
-  border-bottom: 4px solid var(--border-color-medium-violet);
+.auth__variants-item_active {
+  border-bottom: 4px solid #8d8de9;
 }
 
-.auth__variants_item-inactive {
-  color: var(--text-color-disabled);
-}
-
-.auth__service-documents {
-  padding-bottom: 40px;
-}
-
-.auth__service-documents_text {
-  font-family: var(--font-family-lato);
+.auth__variants-item_inactive {
+  color: #9b9da0;
 }
 
 @media screen and (max-width: 768px) {

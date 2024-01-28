@@ -19,7 +19,7 @@ export default function FieldButton({
   const isInputPasswordType = inputType === 'password';
   const isHaveIcon = isInputPasswordType || isRadioElement || isCheckboxElement || isTitlesElement;
   const isDropdownElement = isRadioElement || isCheckboxElement || isTitlesElement
-    ? ' field-button__dropdown' : '';
+    ? ' field-button_type_dropdown' : '';
 
   return (
     isHaveIcon && (

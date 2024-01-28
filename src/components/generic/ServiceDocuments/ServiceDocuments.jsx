@@ -11,7 +11,9 @@ export default function ServiceDocuments({
   // TODO: Возможно убрать отдельный компонент кнопки и сделать ее тут
   // TODO: Добавить ссылки для объектов?
   return (
-    <ul className={`policy-container${className ? ` ${className}` : ' policy-container_text'}`}>
+    <ul className={`policy-container${
+      className ? ` ${className}` : ' policy-container_type_text'}`}
+    >
       {SERVICE_DOCUMENTS[textVariant].map((el) => (
         <li key={el.text}>
           <ServiceDocumentsBtn

@@ -25,7 +25,7 @@ export default function Popup({ children }) {
   const buttonsQuantity = buttons ? buttons.length : 0;
 
   return (
-    <div className={`popup ${value ? 'popup-visible' : ''}`}>
+    <div className={`popup${value ? ' popup_visible' : ''}`}>
       {value && (
         <div className="popup__container" ref={ref}>
           <button type="button" className="popup__button-close" onClick={closePopup} />

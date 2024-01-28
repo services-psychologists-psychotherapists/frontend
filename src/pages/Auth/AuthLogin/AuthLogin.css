@@ -1,4 +1,4 @@
-.auth__form-login_buttons {
+.auth__form-login-buttons {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -26,6 +26,10 @@
   animation: fadeOut 1s;
 }
 
-.auth__form-login_fields {
+.auth__form-login-fields {
   list-style-type: none;
+}
+
+.auth__prompt {
+  min-height: 34px;
 }

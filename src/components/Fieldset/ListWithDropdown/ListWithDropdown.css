@@ -5,7 +5,6 @@
   overflow: hidden;
   transition: .4s ease;
   padding: 0 12px;
-  border: 0 solid var(--border-color-medium-violet);
   border-radius: 12px;
   list-style-type: none;
   display: flex;
@@ -15,42 +14,17 @@
   opacity: 0;
 }
 
-/* scrollbar-gutter: stable; изменяет границы в moz*/
-/* Переделать на SimpleBar или Perfect Scrollbar? для moz */
-@-moz-document url-prefix() {
-  .dropdown-list {
-    scrollbar-width: none !important;
-  }
-}
-
-/* TODO: стили скрола повторяются */
-/* TODO: поправить размер скрола */
-.dropdown-list::-webkit-scrollbar {
-  width: 4px;
-  border-radius: 4px;
-}
-
-.dropdown-list::-webkit-scrollbar-thumb {
-  background-color: var(--border-color-dark-violet);
-  border-radius: 4px;
-}
-
-.dropdown-list_opened {
-  width: 100%;
+.dropdown-list_type_opened {
   background-color: white;
   padding: 16px 12px;
   max-height: 300px;
   overflow-y: auto;
-  border: 1px solid var(--border-color-medium-violet);
+  border: 1px solid #8d8de9;
   transition: .5s ease-in-out;
-  border-radius: 12px;
   opacity: 1;
-  /* Переделать на SimpleBar или Perfect Scrollbar? для moz */
-  scrollbar-width: thin;
-  scrollbar-color: var(--border-color-dark-violet) var(--bg-color-white);
 }
 
-.dropdown-list_titles {
+.dropdown-list_type_title {
   flex-direction: initial;
   flex-wrap: wrap;
 }

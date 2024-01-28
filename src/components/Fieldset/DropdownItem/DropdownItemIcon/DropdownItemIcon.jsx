@@ -9,7 +9,6 @@ export default function DropdownItemIcon({
   onClick,
 }) {
   const isTitlesElement = element === titlesDropdownElement;
-
   const isRadioType = type === radioType;
   const isCheckboxType = type === checkboxType;
 
@@ -33,7 +32,7 @@ export default function DropdownItemIcon({
     type && (
       <input
         type={type}
-        className={`dropdown-item__icon_${getDropdownItemIconClassName()}`}
+        className={`dropdown-item-icon-${getDropdownItemIconClassName()}`}
         value={item}
         checked={checked}
         onChange={onChange}

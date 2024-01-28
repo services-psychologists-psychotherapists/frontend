@@ -2,3 +2,7 @@
   position: absolute;
   top: 90px;
 }
+
+.data-list__prompt {
+  min-height: 34px;
+}
