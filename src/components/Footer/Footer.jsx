@@ -31,7 +31,11 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="footer__social-link"
                 >
-                  <img src={icon.path} alt={icon.alt} className="footer__social-icon" />
+                  <img
+                    src={icon.path}
+                    alt={icon.alt}
+                    className="footer__social-icon"
+                  />
                 </a>
               </li>
             ))}

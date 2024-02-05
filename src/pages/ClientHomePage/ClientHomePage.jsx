@@ -10,7 +10,7 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 import Text from '../../components/generic/Text/Text';
 import Button from '../../components/generic/Button/Button';
 import YourPsychologist from '../../components/Cards/YourPsychologist/YourPsychologist';
-import { deleteSession } from '../../utils/services/clientService';
+import { deleteSession } from '../../utils/services/Api';
 import { usePopup } from '../../hooks/usePopup';
 import { showPopupWithValue } from '../../utils/helpers';
 

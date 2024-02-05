@@ -2,14 +2,13 @@ import React from 'react';
 import { func, bool, } from 'prop-types';
 import './ResetPassword.css';
 import Text from '../../components/generic/Text/Text';
-import Fieldset from '../../components/Fieldset/Fieldset';
+import Fieldset from '../../components/generic/Fieldset/Fieldset';
 import { inputElement, EMAIL_REGEX } from '../../constants/constants';
 import { useForm } from '../../hooks/useForm';
 import Button from '../../components/generic/Button/Button';
 import { usePopup } from '../../hooks/usePopup';
 import Title from '../../components/generic/Title/Title';
 
-// TODO: объединить все похожие формы в один компонент?
 export default function ResetPassword({
   resetPassword, isLoading,
 }) {

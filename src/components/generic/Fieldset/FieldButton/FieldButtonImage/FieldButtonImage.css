@@ -1,0 +1,14 @@
+.field-button__img-password {
+  width: 20px;
+  height: 20px;
+}
+
+.field-button__img-arrow {
+  width: 12px;
+  height: 6px;
+  transition: all .3s ease-in-out;
+}
+
+.field-button__img_rotate {
+  transform: rotate(180deg);
+}

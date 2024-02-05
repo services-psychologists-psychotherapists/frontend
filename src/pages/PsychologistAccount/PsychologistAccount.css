@@ -5,6 +5,14 @@
   align-items: start;
 }
 
+.psychologist-account__content {
+  align-items: center;
+}
+
+.psychologist-account__layout {
+  padding-bottom: 180px !important;
+}
+
 .psychologist-account__content-block {
   display: flex;
   flex-direction: column;
@@ -25,9 +33,11 @@
 @media screen and (max-width: 768px) {
   .psychologist-account__layout {
     align-items: center;
+    padding-bottom: 100px !important;
   }
 
   .psychologist-account {
     align-items: center;
+    max-width: min-content;
   }
 }

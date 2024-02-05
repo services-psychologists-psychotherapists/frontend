@@ -3,9 +3,9 @@ import {
   bool, objectOf, string, func, number, object,
 } from 'prop-types';
 import { PSYCHO_REGISTRATION_SECOND_STEP } from '../../../../constants/constants';
-import Fieldset from '../../../Fieldset/Fieldset';
-import Textarea from '../../../Fieldset/Textarea/Textarea';
-import FileUpload from '../../../Fieldset/FileUpload/FileUpload';
+import Fieldset from '../../../generic/Fieldset/Fieldset';
+import Textarea from '../../../generic/Fieldset/Textarea/Textarea';
+import FileUpload from '../../../generic/Fieldset/FileUpload/FileUpload';
 import Button from '../../../generic/Button/Button';
 import { usePopup } from '../../../../hooks/usePopup';
 import {

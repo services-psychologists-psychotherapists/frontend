@@ -19,7 +19,6 @@ import {
 import { usePopup } from '../../hooks/usePopup';
 
 export default function SessionRegistrationForClient({ goBack, isLoading }) {
-  // TODO: Сделать прелоадер
   const { date, time, cellId } = useParams();
   const { setValue } = usePopup();
   const [freeTimeElements, setFreeTimeElements] = useState([]);

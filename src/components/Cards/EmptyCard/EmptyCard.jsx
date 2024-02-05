@@ -25,7 +25,7 @@ export default function EmptyCard({ type, title, paragraph, textBtn }) {
       {textBtn
       && (
         <Button
-          href="/directory_psychologists"
+          href="/psychologist_account_schedule"
           size={isScreenSm ? 'm' : 'l'}
         >
             {textBtn}

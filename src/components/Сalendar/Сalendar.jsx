@@ -22,9 +22,9 @@ export default function Сalendar({
   const [startDay, setStartDay] = useState(today.clone().startOf('week'));
   const [lastDay, setLastDay] = useState(moment(startDay).add(NUMBER_OF_DAYS_DISPLAYED, 'days'));
 
-  const formattedCurrentDate = today.format('D.MM.YYYY');
-  const formattedStartDate = startDay.format('D MMMM');
-  const formattedlastDay = lastDay.format('D MMMM');
+  const formattedCurrentDate = today.format('DD.MM.YYYY');
+  const formattedStartDate = startDay.format('DD MMMM');
+  const formattedlastDay = lastDay.format('DD MMMM');
 
   const handleSelectDay = (e) => {
     if (e.key === 'Enter' || e.type === 'click') {
@@ -68,7 +68,7 @@ export default function Сalendar({
       while (currentDatePoint.isSameOrBefore(lastDay, 'day')) {
         newDates.push({
           dayOfWeek: currentDatePoint.format('ddd'),
-          date: currentDatePoint.format('D.MM.YYYY'),
+          date: currentDatePoint.format('DD.MM.YYYY'),
           day: currentDatePoint.format('D'),
           isDayOff: [6, 7].includes(currentDatePoint.isoWeekday()),
         });

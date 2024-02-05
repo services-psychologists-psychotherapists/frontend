@@ -1,0 +1,13 @@
+.titles-placeholder {
+  color: #757575;
+  font-family: var(--font-family-lato);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+@-moz-document url-prefix() {
+  .titles-placeholder {
+    color: #8B8BAD;
+  }
+}

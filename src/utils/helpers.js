@@ -9,6 +9,13 @@ export const formattedToday = today.format('DD.MM.YYYY');
 
 const currentTimezone = timezone.tz.guess();
 
+export const convertLocalToUtc = (localDateTime, format) => {
+  const localMoment = timezone.tz(localDateTime, format, currentTimezone);
+  const utcDateTime = localMoment.utc().format(format);
+
+  return utcDateTime;
+};
+
 export const convertUtcToLocal = (utcDateTime, format) => {
   const utcMoment = timezone.utc(utcDateTime, format);
   const localDateTime = utcMoment.tz(currentTimezone).format(format);
@@ -16,7 +23,6 @@ export const convertUtcToLocal = (utcDateTime, format) => {
   return localDateTime;
 };
 
-// getFormattredDay CardOfSession переделать на общую функцию?
 export const getMonthName = (date) => {
   const localTime = convertUtcToLocal(date.format('DD.MM.YYYY HH:mm'), 'DD.MM.YYYY HH:mm');
 
@@ -70,14 +76,6 @@ export const binarySearchDateIndex = (slots, date) => {
   return false;
 };
 
-// TODO: нам нужно такое преобразование?
-export const convertLocalToUtc = (localDateTime, format) => {
-  const localMoment = timezone.tz(localDateTime, format, currentTimezone);
-  const utcDateTime = localMoment.utc().format(format);
-
-  return utcDateTime;
-};
-
 export const getFormattedLocalTimeArr = (arr) => {
   const formattedDates = {};
 
@@ -111,7 +109,6 @@ export const getFormattedLocalTimeArr = (arr) => {
 
 export const getPriceWithSpace = (price) => price.toLocaleString();
 
-// возможно убрать или переделать
 export const showPopupWithValue = (setValue, title, text) => {
   setValue({
     data: {
@@ -287,7 +284,6 @@ export const getDisabledField = (blockId, userData, forStep, curStep, blockType)
 // ------------------------------------------------------------------------------
 
 export const checkResponse = async (res) => {
-  // TODO: подумать про варианты
   if (res.status >= 200 && res.status < 300) {
     return res.data;
   }

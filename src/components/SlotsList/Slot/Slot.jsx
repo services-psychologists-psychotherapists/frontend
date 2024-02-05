@@ -5,11 +5,14 @@ import { shape, string, func, bool } from 'prop-types';
 import arrow from '../../../images/arrow_icon.svg';
 import Button from '../../generic/Button/Button';
 import ButtonGroup from '../../generic/ButtonGroup/ButtonGroup';
-import { getSessionTime } from '../../../utils/helpers';
 import { DATE_FORMAT } from '../../../constants/constants';
 
-export default function Slot({ session, onClick, isSlotOpen }) {
-  // проверить переделать
+export default function Slot({
+  session, isSlotOpen,
+  handleDeleteSessionClick, handleDeleteSlotClick,
+  setSelectedSlot, setIsSlotOpen,
+  isListLoading,
+}) {
   const classIsOpen = (element) => {
     if (isSlotOpen) {
       return `${element}_opened`;
@@ -17,14 +20,25 @@ export default function Slot({ session, onClick, isSlotOpen }) {
     return '';
   };
 
+  const handleClick = () => {
+    setIsSlotOpen(!isSlotOpen);
+    setSelectedSlot(session);
+  };
+
   const startTime = moment(session.datetime_from, DATE_FORMAT);
   const endTime = moment(session.datetime_to, DATE_FORMAT);
 
   return (
-    <li className={`slot ${!session.client && 'slot_type_free'}`}>
-      <button onClick={onClick} className="slot__header">
+    <div
+      className={`slot ${!session.client ? 'slot_type_free' : ''}`}
+      onClick={() => handleClick()}
+      onKeyDown={(e) => e.key === 'Enter' && handleClick()}
+      role="button"
+      tabIndex={0}
+    >
+      <div className="slot__header">
         <p className="slot__session-time">
-          {getSessionTime(startTime, endTime)}
+          {`${startTime.format('HH:mm')} - ${endTime.format('HH:mm')}`}
         </p>
         <p className="slot__title">
           {session.client
@@ -33,27 +47,34 @@ export default function Slot({ session, onClick, isSlotOpen }) {
         </p>
         <img
           src={arrow}
-          alt="arrow"
+          alt="Иконка развернуть"
           className={`slot__icon${classIsOpen(' slot__icon')}`}
         />
-      </button>
+      </div>
       <div className={`slot__content${classIsOpen(' slot__content')}`}>
-        {!session.client ? (
-          <Button size="m" onClick={() => {}} variant="secondary">
-            Удалить из расписания
-          </Button>
-        ) : (
-          <ButtonGroup size="s">
+        <ButtonGroup size="s" className="slot__btns">
+          {!session.is_free && (
             <Button size="m" href={session.href}>
               Начать сессию
             </Button>
-            <Button size="m" onClick={() => {}} variant="secondary">
-              Отменить
-            </Button>
-          </ButtonGroup>
-        )}
+          )}
+          <Button
+            size="m"
+            onClick={() => {
+              if (session.is_free) {
+                handleDeleteSlotClick();
+              } else {
+                handleDeleteSessionClick();
+              }
+            }}
+            variant="secondary"
+            disabled={isListLoading}
+          >
+            Отменить
+          </Button>
+        </ButtonGroup>
       </div>
-    </li>
+    </div>
   );
 }
 
@@ -68,6 +89,10 @@ Slot.propTypes = {
     datetime_to: string,
     href: string,
   }).isRequired,
-  onClick: func.isRequired,
   isSlotOpen: bool.isRequired,
+  handleDeleteSessionClick: func.isRequired,
+  handleDeleteSlotClick: func.isRequired,
+  setSelectedSlot: func.isRequired,
+  setIsSlotOpen: func.isRequired,
+  isListLoading: bool.isRequired,
 };

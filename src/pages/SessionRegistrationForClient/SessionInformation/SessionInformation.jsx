@@ -12,12 +12,7 @@ export default function SessionInformation({
 }) {
   return (
     <div className={`session-information${className ? ` ${className}` : ''}`}>
-      {/* TODO: использовать компоненты?
-      на текущем этапе нет возможности т.к. компонентам нельзя задать доп. классы
-      */}
       <p className="session-information__title">Информация о сессии</p>
-      {/* TODO: получать инф. из карточки психолога
-      онлайн/оффлайн? */}
       <p className="session-information__description">{`Онлайн, ${sessionDuration} минут`}</p>
       <div className="session-information__cell">
         <span>Дата</span>

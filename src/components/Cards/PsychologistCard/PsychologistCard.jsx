@@ -18,10 +18,12 @@ import {
 import Button from '../../generic/Button/Button';
 import TimeContainer from '../../generic/TimeBtn/TimeContainer/TimeContainer';
 import { usePopup } from '../../../hooks/usePopup';
+import useVerticalScroll from '../../../hooks/useVerticalScroll';
 
 export default function PsychologistCard({
   type, psychologist, isLoggedIn, currentUser,
 }) {
+  const scrollOnClick = useVerticalScroll();
   const {
     first_name: firstName,
     last_name: lastName,
@@ -106,7 +108,7 @@ export default function PsychologistCard({
   };
 
   return (
-    <div className="psycho-card scrollbar">
+    <div className="psycho-card scrollbar" {...scrollOnClick}>
       <div className="psycho-card__header">
         <Avatar size="l" src={avatar} />
         <PsychoName
@@ -118,7 +120,7 @@ export default function PsychologistCard({
       </div>
       <div
         className={`psycho-card__content ${
-          type === 'full' ? 'psycho-card__content_type_full scrollbar' : ''
+          type === 'full' ? 'psycho-card__content_type_full' : ''
         }`}
       >
         {type !== 'full' && <Text>{about}</Text>}

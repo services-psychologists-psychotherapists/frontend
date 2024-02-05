@@ -52,5 +52,7 @@
 @media screen and (max-width: 550px) {
   .page-layout__children {
     width: 100%;
+    display: flex;
+    flex-direction: column;
   }
 }

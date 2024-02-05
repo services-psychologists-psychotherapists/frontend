@@ -16,3 +16,9 @@
     padding: 16px 16px 20px;
   }
 }
+
+@media screen and (max-width: 450px){
+  .mini-psycho-card {
+    flex-direction: column;
+  }
+}

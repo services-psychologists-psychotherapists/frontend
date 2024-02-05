@@ -8,8 +8,10 @@ import {
   INSTITUTES_GRADUATION_YEAR_ERROR, COURSES_GRADUATION_YEAR_ERROR,
   COURSES_GRADUATION_YEAR_TEST_REGEX, COURSES_TITLE_ERROR,
   COURSES_SPECIALITY_ERROR, PRICE_ERROR, EXPERIENCE_ERROR,
+  PRICE_REGEX, EXPERIENCE_REGEX,
 } from '../constants/constants';
 
+// TODO: переделать
 export const useForm = () => {
   const [values, setValues] = useState({});
   const [errors, setErrors] = useState({});
@@ -22,9 +24,6 @@ export const useForm = () => {
   const [customInputFieldset, setCustomInputFieldset] = useState('');
   const [fileForRequest, setFileForRequest] = useState({});
   const [isChanged, setIsChanged] = useState(false);
-  // переделать хук
-  // Сделать вызовы внутренных функций через параметры?
-  // настроить работу полей регистрации пользователя
 
   const getYears = (arr) => {
     if (arr.length > 0) {
@@ -93,20 +92,6 @@ export const useForm = () => {
     }
   }, [selectedDropdownItems.experience]);
 
-  const checkValidity = (objData) => {
-    let isValidData = true;
-    const keys = Object.keys(objData);
-
-    for (let i = 0; i < keys.length; i += 1) {
-      if (objData[keys[i]] === false) {
-        isValidData = false;
-        break;
-      }
-    }
-
-    return isValidData;
-  };
-
   useEffect(() => {
     const getGender = (value) => {
       if (value) {
@@ -130,7 +115,8 @@ export const useForm = () => {
       const currentGender = getGender(selectedDropdownItems.gender);
 
       if (currentGender !== null) {
-        setIsValidForm(checkValidity(inputValidStatus));
+        document.getElementsByName('gender')[0].value = currentGender;
+
         setDataForRequest({
           ...dataForRequest,
           gender: currentGender,
@@ -224,6 +210,7 @@ export const useForm = () => {
     const input = e.target;
     const { name, value, type } = input;
     setIsChanged(true);
+
     // ------------------------------Заполнение данных---------------------------------
 
     if (type !== 'file') {
@@ -236,6 +223,10 @@ export const useForm = () => {
         newValue = values[name];
       } else if (/^courses_graduation_year_\d+$/.test(name)
       && !COURSES_GRADUATION_YEAR_REGEX.test(value)) {
+        newValue = values[name];
+      } else if (name === 'price' && !PRICE_REGEX.test(value)) {
+        newValue = values[name];
+      } else if (name === 'experience' && !EXPERIENCE_REGEX.test(value)) {
         newValue = values[name];
       }
 
@@ -340,7 +331,6 @@ export const useForm = () => {
       }
     }
 
-    // TODO: возможно переделать на отдельные условия
     const getValuesForDropdown = () => {
       if (customInputElement && (customInputElement !== value)) {
         if (type === 'radio') {
@@ -402,7 +392,9 @@ export const useForm = () => {
       getValuesForDropdown();
     }
 
-    setIsValidForm(e.target.closest('form').checkValidity());
+    setTimeout(() => {
+      setIsValidForm(e.target.closest('form').checkValidity());
+    }, 1);
   };
 
   const resetForm = useCallback(

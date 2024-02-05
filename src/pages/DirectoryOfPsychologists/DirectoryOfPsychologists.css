@@ -87,8 +87,6 @@
   flex-direction: column;
   row-gap: 25px;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #6b6bc7 #fefefe;
   margin-bottom: 30px;
 }
 
