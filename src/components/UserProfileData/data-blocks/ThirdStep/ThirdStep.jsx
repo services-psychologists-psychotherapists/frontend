@@ -3,10 +3,10 @@ import {
   bool, objectOf, string, func, number, object,
 } from 'prop-types';
 import { PSYCHO_REGISTRATION_THIRD_STEP } from '../../../../constants/constants';
-import Fieldset from '../../../Fieldset/Fieldset';
-import FileUpload from '../../../Fieldset/FileUpload/FileUpload';
+import Fieldset from '../../../generic/Fieldset/Fieldset';
+import FileUpload from '../../../generic/Fieldset/FileUpload/FileUpload';
 import Button from '../../../generic/Button/Button';
-import Textarea from '../../../Fieldset/Textarea/Textarea';
+import Textarea from '../../../generic/Fieldset/Textarea/Textarea';
 import { usePopup } from '../../../../hooks/usePopup';
 import {
   checkFile, resetValue, handleDataUpdate, addEducationBlock,

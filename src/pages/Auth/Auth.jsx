@@ -5,7 +5,7 @@ import { AUTH_BTNS } from '../../constants/constants';
 import { useForm } from '../../hooks/useForm';
 import AuthLogin from './AuthLogin/AuthLogin';
 import AuthRegistration from './AuthRegistration/AuthRegistration';
-import { createUser } from '../../utils/auth';
+import { createUser } from '../../utils/services/Api';
 import { usePopup } from '../../hooks/usePopup';
 
 export default function Auth({
@@ -64,13 +64,6 @@ export default function Auth({
   );
 
   return (
-    // TODO: проверить классы
-    // TODO: Повторяются компоненты в Typografy Text Teg и FieldContainer Title Dropdown Field
-    // TODO: настроить размеры ошибок
-    // TODO: написать стори
-    // TODO: может не сбрасывать значения инпутов при переключении форм?
-    // TODO: Везде где promptClasses="auth__prompt" временная реализация, переделать
-    // TODO: добавить прелоадер
     <section className="auth">
       <ul className="auth__variants">
         <li>

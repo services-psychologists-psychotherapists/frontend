@@ -2,7 +2,7 @@ import React from 'react';
 import { bool, objectOf, string, func } from 'prop-types';
 import moment from 'moment';
 import './AuthRegistration.css';
-import Fieldset from '../../../components/Fieldset/Fieldset';
+import Fieldset from '../../../components/generic/Fieldset/Fieldset';
 import Button from '../../../components/generic/Button/Button';
 import Text from '../../../components/generic/Text/Text';
 import { REGISTRATION_INPUT_PARAMS_FOR_CLIENT } from '../../../constants/constants';

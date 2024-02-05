@@ -19,7 +19,7 @@ export default function Background({ animationStatus }) {
         backgroundRef.current.style.height = `${newHeight}px`;
       }
     };
-
+    handleResize();
     window.addEventListener('resize', handleResize);
 
     return () => {

@@ -32,5 +32,11 @@
 @media screen and (max-width: 480px) {
   .your-psycho {
     padding: 15px 20px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .your-psycho__container > .button {
+    width: 100%;
   }
 }

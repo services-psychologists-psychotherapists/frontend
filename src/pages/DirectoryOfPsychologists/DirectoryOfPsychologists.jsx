@@ -4,7 +4,7 @@ import './DirectoryOfPsychologists.css';
 import Title from '../../components/generic/Title/Title';
 import PsychoFilters from './PsychoFilters/PsychoFilters';
 import PsychologistCard from '../../components/Cards/PsychologistCard/PsychologistCard';
-import { getPsychologists, getPsychologist } from '../../utils/auth';
+import { getPsychologists, getPsychologist } from '../../utils/services/Api';
 import Button from '../../components/generic/Button/Button';
 import useOutsideClick from '../../hooks/useOnClickOutside';
 import PaginationList from '../../components/generic/PaginationList/PaginationList';
@@ -199,7 +199,7 @@ export default function DirectoryOfPsychologists({
             >
               Назад
             </Button>
-            <div className="psychologists-popup__content scrollbar" ref={psychoRef}>
+            <div className="psychologists-popup__content" ref={psychoRef}>
               <Title
                 titleLvl="2"
                 size="m"

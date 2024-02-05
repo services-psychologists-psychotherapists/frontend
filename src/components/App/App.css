@@ -7,6 +7,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  word-wrap: break-word;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .page {
@@ -25,9 +27,14 @@
   height: 4px;
   width: 4px;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
   background-color: #6b6bc7;
   border-radius: 4px;
+}
+
+:-moz-any(.scrollbar) {
+  scrollbar-width: none;
 }

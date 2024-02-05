@@ -10,10 +10,13 @@ import CurrentUserContext from '../../contexts/CurrentUserContext';
 import ClientHomePage from '../../pages/ClientHomePage/ClientHomePage';
 import ButtonUp from '../generic/ButtonUp/ButtonUp';
 import { PopupProvider } from '../../hooks/usePopup';
-import Popup from '../generic/Popup/Popup';
+import Popup from '../Popup/Popup';
 import SessionRegistrationForClient from '../../pages/SessionRegistrationForClient/SessionRegistrationForClient';
 import Auth from '../../pages/Auth/Auth';
-import * as auth from '../../utils/auth';
+import { uploadFile, getRole, getUserInfo, authUser,
+  resetPasswordWithEmail, refreshToken, changePsychoData,
+  changeClientData,
+} from '../../utils/services/Api';
 import DirectoryOfPsychologists from '../../pages/DirectoryOfPsychologists/DirectoryOfPsychologists';
 import Header from '../Header/Header';
 import ProtectedRouteElement from '../ProtectedRouteElement/ProtectedRouteElement';
@@ -25,7 +28,6 @@ import ResetPassword from '../../pages/ResetPassword/ResetPassword';
 import CheckEmail from '../../pages/CheckEmail/CheckEmail';
 import Preloader from '../generic/Preloader/Preloader';
 
-// Подумать/переделать реализацию setPopup есть функция
 export default function App() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -39,7 +41,7 @@ export default function App() {
   const uploadDocuments = async (document, setPopup) => {
     setIsLoading(true);
     try {
-      const docData = await auth.uploadFile(document);
+      const docData = await uploadFile(document);
 
       setDocIdForRequest(docData.id);
     } catch (err) {
@@ -59,9 +61,9 @@ export default function App() {
 
   const getUser = async (token) => {
     try {
-      const userParams = await auth.getRole(token);
+      const userParams = await getRole(token);
       const userRole = userParams.is_psychologists ? 'psychologist' : 'client';
-      const user = await auth.getUserInfo(token, userRole);
+      const user = await getUserInfo(token, userRole);
       user.role = userRole;
       user.email = userParams.email;
 
@@ -82,7 +84,7 @@ export default function App() {
   const signIn = async (data, setPopup) => {
     setIsLoading(true);
     try {
-      const token = await auth.authUser(data);
+      const token = await authUser(data);
 
       if (token) {
         localStorage.setItem('jwt', token.access);
@@ -119,7 +121,7 @@ export default function App() {
   const verifyJwt = async (token) => {
     setIsLoadingPage(true);
     try {
-      const tokenAccess = await auth.refreshToken(token);
+      const tokenAccess = await refreshToken(token);
 
       if (tokenAccess) {
         localStorage.setItem('jwt', tokenAccess.access);
@@ -136,7 +138,7 @@ export default function App() {
   const resetPassword = async (email, setPopup) => {
     setIsLoading(true);
     try {
-      await auth.resetPasswordWithEmail(email);
+      await resetPasswordWithEmail(email);
 
       setPopup({
         data: {
@@ -158,7 +160,7 @@ export default function App() {
 
   const changePsychoAvatar = async (avatar, token, setPopup) => {
     try {
-      const psychoData = await auth.changePsychoData({ avatar }, token);
+      const psychoData = await changePsychoData({ avatar }, token);
 
       setCurrentUser((prevData) => ({
         ...prevData,
@@ -181,20 +183,42 @@ export default function App() {
     }
   };
 
-  const changePsychologistData = async (data, token, setPopup) => {
-    const checkChangeData = (userData, prevUserData) => {
-      if (userData && prevUserData) {
-        if (userData.length !== prevUserData.length) {
-          return true;
-        }
-        const dict = new Set(prevUserData.map((i) => i.title));
-
-        return userData.some((i) => !dict.has(i));
+  const checkChangePsychoData = (userData, prevUserData) => {
+    if (userData && prevUserData) {
+      if (userData.length !== prevUserData.length) {
+        return true;
       }
+      const dict = new Set(prevUserData.map((i) => i.title));
 
-      return false;
-    };
+      return userData.some((i) => !dict.has(i));
+    }
 
+    return false;
+  };
+
+  const updatePsychoData = (data) => {
+    const newData = { ...data };
+
+    if (newData.institutes) {
+      newData.institutes = data.institutes.slice(currentUser.institutes.length);
+    }
+
+    if (newData.courses) {
+      newData.courses = data.courses.slice(currentUser.courses.length);
+    }
+
+    if (!checkChangePsychoData(data.approaches, currentUser.approaches)) {
+      delete newData.approaches;
+    }
+
+    if (!checkChangePsychoData(data.themes, currentUser.themes)) {
+      delete newData.themes;
+    }
+
+    return newData;
+  };
+
+  const changePsychologistData = async (data, token, setPopup) => {
     setIsLoading(true);
     try {
       if (!data.themes || !data.approaches) {
@@ -204,25 +228,8 @@ export default function App() {
           },
         });
       } else {
-        const newData = { ...data };
-
-        if (newData.institutes) {
-          newData.institutes = data.institutes.slice(currentUser.institutes.length);
-        }
-
-        if (newData.courses) {
-          newData.courses = data.courses.slice(currentUser.courses.length);
-        }
-
-        if (!checkChangeData(data.approaches, currentUser.approaches)) {
-          delete newData.approaches;
-        }
-
-        if (!checkChangeData(data.themes, currentUser.themes)) {
-          delete newData.themes;
-        }
-
-        const psychoData = await auth.changePsychoData(newData, token);
+        const newData = updatePsychoData(data);
+        const psychoData = await changePsychoData(newData, token);
 
         setCurrentUser((prevData) => ({
           ...prevData,
@@ -250,7 +257,7 @@ export default function App() {
 
   const changeClientAvatar = async (avatar, token, setPopup) => {
     try {
-      const clientData = await auth.changeClientData({ avatar }, token);
+      const clientData = await changeClientData({ avatar }, token);
 
       setCurrentUser((prevData) => ({
         ...prevData,
@@ -273,10 +280,10 @@ export default function App() {
     }
   };
 
-  const changeClientData = async (data, token, setPopup) => {
+  const changeClientInfo = async (data, token, setPopup) => {
     setIsLoading(true);
     try {
-      const clientData = await auth.changeClientData(data, token);
+      const clientData = await changeClientData(data, token);
 
       setCurrentUser((prevData) => ({
         ...prevData,
@@ -412,6 +419,8 @@ export default function App() {
                           setDocIdForRequest={setDocIdForRequest}
                           changePsychoAvatar={changePsychoAvatar}
                           changePsychologistData={changePsychologistData}
+                          isLoading={isLoading}
+                          setIsLoading={setIsLoading}
                         />
                       )}
                     />
@@ -427,6 +436,8 @@ export default function App() {
                           setDocIdForRequest={setDocIdForRequest}
                           changePsychoAvatar={changePsychoAvatar}
                           changePsychologistData={changePsychologistData}
+                          isLoading={isLoading}
+                          setIsLoading={setIsLoading}
                         />
                       )}
                     />
@@ -443,6 +454,7 @@ export default function App() {
                           changePsychoAvatar={changePsychoAvatar}
                           changePsychologistData={changePsychologistData}
                           isLoading={isLoading}
+                          setIsLoading={setIsLoading}
                         />
                       )}
                     />
@@ -469,7 +481,7 @@ export default function App() {
                         setDocIdForRequest={setDocIdForRequest}
                         uploadDocuments={uploadDocuments}
                         changeClientAvatar={changeClientAvatar}
-                        changeClientData={changeClientData}
+                        changeClientData={changeClientInfo}
                         curPath={curPath}
                         isLoading={isLoading}
                       />

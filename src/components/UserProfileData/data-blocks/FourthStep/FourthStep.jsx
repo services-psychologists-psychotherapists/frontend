@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React, {
+  useEffect, useContext, useState,
+} from 'react';
 import {
   bool, objectOf, string, func, number, oneOfType, array, object
 } from 'prop-types';
@@ -7,11 +9,12 @@ import {
   PSYCHO_REGISTRATION_FOURTH_STEP_ONE,
   PSYCHO_REGISTRATION_FOURTH_STEP_TWO,
   checkboxDropdownElement,
-  titlesDropdownElement,
+  titlesDropdownElement, dropdownLists,
 } from '../../../../constants/constants';
-import Fieldset from '../../../Fieldset/Fieldset';
-import Textarea from '../../../Fieldset/Textarea/Textarea';
+import Fieldset from '../../../generic/Fieldset/Fieldset';
+import Textarea from '../../../generic/Fieldset/Textarea/Textarea';
 import { removeProperty, updateData } from '../../../../utils/helpers';
+import CurrentUserContext from '../../../../contexts/CurrentUserContext';
 
 export default function FourthStep({
   values, handleChange,
@@ -23,6 +26,25 @@ export default function FourthStep({
   setDataForRequest,
   dataForRequest,
 }) {
+  const { approaches } = useContext(CurrentUserContext);
+  const [psychoApproaches, setPsychoApproaches] = useState([]);
+
+  useEffect(() => {
+    if (approaches) {
+      const approachesSet = new Set(dropdownLists.approachList);
+      const customApproaches = [];
+
+      approaches.forEach((i) => {
+        if (!approachesSet.has(i.title)) {
+          customApproaches.push(i.title);
+        }
+      });
+      setPsychoApproaches((customApproaches).concat(dropdownLists.approachList));
+    } else {
+      setPsychoApproaches(dropdownLists.approachList);
+    }
+  }, [approaches]);
+
   useEffect(() => {
     if (values.about) {
       updateData('about', values.about, setDataForRequest);
@@ -72,7 +94,7 @@ export default function FourthStep({
             isValid={getInvalidInput(inputValidStatus[i.name])}
             promptClasses={i.promptClasses}
             selectedDropdownItems={selectedDropdownItems}
-            dropdownContent={i.dropdownContent}
+            dropdownContent={i.name === 'themes' ? i.dropdownContent : psychoApproaches}
             typeForDropdown={i.typeForDropdown}
             disabled={step !== 4}
             resetCustomValue={resetCustomValue}
@@ -102,6 +124,8 @@ export default function FourthStep({
               minLength={i.minLength}
               maxLength={i.maxLength}
               placeholder={i.placeholder}
+              pattern={i.pattern}
+              promptClasses="data-list__prompt"
             />
           </li>
         ))}

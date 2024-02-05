@@ -6,7 +6,8 @@ import Title from '../../generic/Title/Title';
 export default function PageLayout({
   children, title,
   nav, section,
-  type, layoutClassName
+  type, layoutClassName,
+  childrenClassname,
 }) {
   return (
     <section
@@ -20,7 +21,11 @@ export default function PageLayout({
         {nav && <div className="page-layout__nav">{nav}</div>}
         {section && <div className="page-layout__section">{section}</div>}
         <Title text={title} />
-        <div className="page-layout__children">{children}</div>
+        <div
+          className={`page-layout__children${childrenClassname ? ` ${childrenClassname}` : ''}`}
+        >
+          {children}
+        </div>
       </div>
     </section>
   );
@@ -33,6 +38,7 @@ PageLayout.propTypes = {
   section: node,
   type: string,
   layoutClassName: string,
+  childrenClassname: string,
 };
 
 PageLayout.defaultProps = {
@@ -40,4 +46,5 @@ PageLayout.defaultProps = {
   section: '',
   type: '',
   layoutClassName: '',
+  childrenClassname: '',
 };

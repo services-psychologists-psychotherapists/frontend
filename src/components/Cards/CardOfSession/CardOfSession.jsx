@@ -1,7 +1,7 @@
 import React from 'react';
 import './CardOfSession.css';
 import moment from 'moment';
-import { oneOf, shape, string, func } from 'prop-types';
+import { oneOf, func, object } from 'prop-types';
 import Avatar from '../../generic/Avatar/Avatar';
 import PsychoName from '../../generic/PsychoName/PsychoName';
 import { getSessionTime, getMonthName, convertUtcToLocal } from '../../../utils/helpers';
@@ -15,7 +15,7 @@ import { useResize } from '../../../hooks/useResize';
 export default function CardOfSession({
   type, session, handleDeleteSessionClick
 }) {
-  const { isScreenSm } = useResize();
+  const { isScreenMd } = useResize();
   let user;
   let timeFrom;
   let timeTo;
@@ -74,14 +74,14 @@ export default function CardOfSession({
               </div>
             </div>
           </div>
-          <ButtonGroup size="s">
-            <Button href={session.href} size={isScreenSm ? 'm' : 'l'}>
+          <ButtonGroup size="s" className="session-card__buttons">
+            <Button href={session.href} size={isScreenMd ? 'm' : 'l'}>
               {type === 'psychologist' ? 'Перейти' : 'Начать сессию'}
             </Button>
             <Button
               onClick={handleDeleteSessionClick}
               variant="secondary"
-              size={isScreenSm ? 'm' : 'l'}
+              size={isScreenMd ? 'm' : 'l'}
             >
               Отменить
             </Button>
@@ -101,28 +101,13 @@ export default function CardOfSession({
 
 CardOfSession.propTypes = {
   type: oneOf(['client', 'psychologist']),
-  session: shape({
-    client: shape({
-      first_name: string,
-      last_name: string,
-      id: string,
-      avatar: string,
-    }),
-    psychologist: shape({
-      fitst_name: string,
-      last_name: string,
-      id: string,
-      avatar: string,
-    }),
-    datetime_from: string,
-    datetime_to: string,
-    href: string,
-  }),
+  // eslint-disable-next-line react/forbid-prop-types
+  session: object,
   handleDeleteSessionClick: func,
 };
 
 CardOfSession.defaultProps = {
   type: 'client',
-  session: null,
+  session: {},
   handleDeleteSessionClick: () => {},
 };

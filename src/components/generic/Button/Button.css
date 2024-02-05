@@ -143,3 +143,14 @@
 .button_type_text-icon-disabled svg path {
   stroke: #9b9da0;
 }
+
+@media screen and (max-width: 768px) {
+  .button_size_m {
+    padding:  10px 20px;
+    font-size: 14px;
+  }
+  .button_size_l {
+    padding: 10px 20px;
+    font-size: 18px;
+  }
+}

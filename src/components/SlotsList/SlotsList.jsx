@@ -1,45 +1,47 @@
 import React, { useState } from 'react';
-import { string, arrayOf, shape, instanceOf } from 'prop-types';
+import {
+  string, arrayOf, shape, instanceOf, object,
+  func, bool,
+} from 'prop-types';
 import moment from 'moment/moment';
 import './SlotsList.css';
 import Button from '../generic/Button/Button';
 import Slot from './Slot/Slot';
-import { getMonthName } from '../../utils/helpers';
 import { NO_SLOTS_MESSAGE } from '../../constants/constants';
 
 export default function SlotsList({
-  sessions, selectedDay, curPath
+  sessions, selectedDay, curPath,
+  handleDeleteSessionClick, handleDeleteSlotClick,
+  setSelectedSlot, selectedSlot,
+  isListLoading,
 }) {
-  // проверить переделать
-  const [openSlot, setOpenSlot] = useState(null);
+  const [isSlotOpen, setIsSlotOpen] = useState(false);
   const currentDay = selectedDay.isSame(moment(), 'day') ? 'otherDay' : 'today';
-
-  const handlerSlotClick = (id) => {
-    if (id !== openSlot) {
-      setOpenSlot(id);
-    } else {
-      setOpenSlot(null);
-    }
-  };
 
   return (
     <div className="slot-list">
-      <h2 className="slot-list__title">{getMonthName(selectedDay)}</h2>
+      <h2 className="slot-list__title">{moment(selectedDay).format('D MMMM')}</h2>
       {sessions.length > 0 ? (
         <ul className="slot-list__slots scrollbar">
           {sessions.map((session) => (
-            <Slot
-              session={session}
-              key={session.id}
-              id={session.id}
-              onClick={() => handlerSlotClick(session.id)}
-              isSlotOpen={openSlot === session.id}
-            />
+            <li key={session.id} id={session.id}>
+              <Slot
+                session={session}
+                key={session.id}
+                id={session.id}
+                isSlotOpen={selectedSlot.id === session.id && isSlotOpen}
+                handleDeleteSessionClick={handleDeleteSessionClick}
+                handleDeleteSlotClick={handleDeleteSlotClick}
+                setSelectedSlot={setSelectedSlot}
+                setIsSlotOpen={setIsSlotOpen}
+                isListLoading={isListLoading}
+              />
+            </li>
           ))}
         </ul>
       ) : (
         <div className="slot-list__empty">
-          {curPath !== '/psychologist_account_schedule' ? (
+          {curPath.pathname !== '/psychologist_account_schedule' ? (
             <>
               <p className="slot-list__description">
                 {NO_SLOTS_MESSAGE[currentDay].title}
@@ -77,5 +79,16 @@ SlotsList.propTypes = {
     }).isRequired
   ).isRequired,
   selectedDay: instanceOf(moment).isRequired,
-  curPath: string.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  curPath: object.isRequired,
+  handleDeleteSessionClick: func.isRequired,
+  handleDeleteSlotClick: func.isRequired,
+  setSelectedSlot: func.isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  selectedSlot: object,
+  isListLoading: bool.isRequired,
+};
+
+SlotsList.defaultProps = {
+  selectedSlot: {},
 };

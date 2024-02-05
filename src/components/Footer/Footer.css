@@ -6,6 +6,14 @@
   justify-content: center;
 }
 
+.footer__social-icon {
+  transition: all .3s ease-in-out;
+}
+
+.footer__social-icon:hover {
+  opacity: .7;
+}
+
 .footer__container {
   max-width: 1280px;
   width: 100%;

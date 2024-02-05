@@ -2,7 +2,7 @@ import React from 'react';
 import { func, bool, objectOf, string } from 'prop-types';
 import './AuthLogin.css';
 import { LOGIN_INPUT_PARAMS_FOR_CLIENT } from '../../../constants/constants';
-import Fieldset from '../../../components/Fieldset/Fieldset';
+import Fieldset from '../../../components/generic/Fieldset/Fieldset';
 import Button from '../../../components/generic/Button/Button';
 
 export default function AuthLogin({

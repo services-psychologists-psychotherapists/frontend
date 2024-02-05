@@ -47,15 +47,6 @@
   padding-left: 0;
 }
 
-.psycho-card__content_type_full::-webkit-scrollbar {
-  background-color: #fefefe;
-  padding-left: 10px;
-}
-
-.psycho-card__content_type_full::-webkit-scrollbar-thumb {
-  padding-left: 10px;
-}
-
 .psycho-card__list {
   list-style: none;
   display: flex;
@@ -84,7 +75,6 @@
   background-color: #8d8de9;
 }
 
-/* заменить */
 .next-session__slot {
   padding: 10px 20px;
   background-color: #d9d9f1;
@@ -106,6 +96,13 @@
 @media screen and (max-width: 1024px) {
   .psycho-card {
     max-height: 67vh;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .psycho-card__header {
+    flex-direction: column;
+    row-gap: 20px;
   }
 }
 

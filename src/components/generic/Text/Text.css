@@ -2,6 +2,7 @@
   font-family: var(--font-family-lato);
   font-weight: 400;
   color: #272766;
+  overflow: auto;
 }
 
 .text_size_l {
@@ -11,7 +12,6 @@
 
 .text_size_m {
   font-size: 20px;
-  line-height: 26px;
 }
 
 .text_size_s {

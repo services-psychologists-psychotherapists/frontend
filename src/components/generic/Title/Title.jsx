@@ -6,6 +6,7 @@ export default function Title({
   size, text, titleLvl, className,
 }) {
   const Heading = `h${titleLvl}`;
+
   return (
     <Heading
       className={

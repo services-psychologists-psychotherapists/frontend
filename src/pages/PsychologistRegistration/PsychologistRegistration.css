@@ -77,4 +77,12 @@
   .psycho-registration {
     padding-top: 0;
   }
+
+  .psycho-registration__fist-step {
+    padding-top: 60px;
+  }
+
+  .psycho-registration__switch {
+    margin-top: 0;
+  }
 }

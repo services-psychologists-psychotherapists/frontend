@@ -6,13 +6,8 @@ import Text from '../../../components/generic/Text/Text';
 
 export default function DocsForRegistr({ setValue, showPopupWithValue }) {
   return (
-    <div
-      className="data-list__documents"
-    >
-      <Text
-        size="s"
-        type="span"
-      >
+    <div className="data-list__documents">
+      <Text size="s" type="span">
         Нажимая кнопку «Подать заявку», Вы соглашаетесь c
       </Text>
       <ServiceDocuments

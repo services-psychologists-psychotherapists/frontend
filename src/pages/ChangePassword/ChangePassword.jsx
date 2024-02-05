@@ -3,7 +3,7 @@ import { func, bool, } from 'prop-types';
 import './ChangePassword.css';
 import PageLayout from '../../components/templates/PageLayout/PageLayout';
 import Button from '../../components/generic/Button/Button';
-import Fieldset from '../../components/Fieldset/Fieldset';
+import Fieldset from '../../components/generic/Fieldset/Fieldset';
 import { INPUT_DATA_FOR_CHANGE_PASSWORD } from '../../constants/constants';
 import { useForm } from '../../hooks/useForm';
 import {
@@ -11,7 +11,7 @@ import {
   checkPasswords,
 } from '../../utils/helpers';
 import { usePopup } from '../../hooks/usePopup';
-import { setNewPasswords } from '../../utils/auth';
+import { setNewPasswords } from '../../utils/services/Api';
 import CurrentUserContext from '../../contexts/CurrentUserContext';
 
 export default function ChangePassword({

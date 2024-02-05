@@ -5,7 +5,7 @@ import {
 import { parsePhoneNumberFromString } from 'libphonenumber-js';
 import moment from 'moment';
 import './FirsStep.css';
-import Fieldset from '../../../Fieldset/Fieldset';
+import Fieldset from '../../../generic/Fieldset/Fieldset';
 import {
   radioDropdownElement, PSYCHO_REGISTRATION_FIRST_STEP
 } from '../../../../constants/constants';
@@ -102,6 +102,7 @@ export default function FirstStep({
               placeholder={i.placeholder}
               pattern={i.pattern}
               promptClasses="data-list__prompt"
+              isChangeFocus={i.isChangeFocus}
             />
           </li>
         );

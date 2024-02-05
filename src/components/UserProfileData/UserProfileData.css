@@ -28,6 +28,10 @@
   margin-top: 20px;
 }
 
+.data-list__prompt {
+  min-height: 34px;
+}
+
 .data-list__text {
   min-height: 48px;
 }

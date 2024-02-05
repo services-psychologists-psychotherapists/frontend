@@ -10,7 +10,7 @@ import ThirdStep from '../../components/UserProfileData/data-blocks/ThirdStep/Th
 import FourthStep from '../../components/UserProfileData/data-blocks/FourthStep/FourthStep';
 import Success from '../../components/Success/Success';
 import { useForm } from '../../hooks/useForm';
-import { createPsychologist } from '../../utils/auth';
+import { createPsychologist } from '../../utils/services/Api';
 import { usePopup } from '../../hooks/usePopup';
 import DescrForStep from './DescrForStep/DescrForStep';
 import DocsForRegistr from './DocsForRegistr/DocsForRegistr';

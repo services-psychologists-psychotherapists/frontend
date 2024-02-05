@@ -4,7 +4,7 @@ import {
 } from 'prop-types';
 import './PsychoFilters.css';
 import Button from '../../../components/generic/Button/Button';
-import Fieldset from '../../../components/Fieldset/Fieldset';
+import Fieldset from '../../../components/generic/Fieldset/Fieldset';
 import { PSYCHO_FILTER_DATA } from '../../../constants/constants';
 
 export default function PsychoFilters({
@@ -21,7 +21,6 @@ export default function PsychoFilters({
             <div className="psycho-filters__header-icon" />
             <span className="psycho-filters__header-text">Фильтры</span>
           </div>
-          {/* TODO: у кнопок есть бекграунд, обратить внимание */}
           <Button
             variant="text"
             className="psycho-filters__header-button"

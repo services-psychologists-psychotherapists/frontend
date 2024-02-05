@@ -33,6 +33,8 @@ export const INSTITUTES_GRADUATION_YEAR_REGEX = /^(\d{0,4}([\-|\s]?\d{0,4})?)$/;
 export const INSTITUTES_GRADUATION_YEAR_TEST_REGEX = /^\d{4}[\-\s]\d{4}$/;
 export const COURSES_GRADUATION_YEAR_REGEX = /^\d{0,4}$/;
 export const COURSES_GRADUATION_YEAR_TEST_REGEX = /^\d{4}$/;
+export const PRICE_REGEX = /^\d{0,5}$/;
+export const EXPERIENCE_REGEX = /^\d{0,2}$/;
 export const EMAIL_ERROR_VALIDATION = 'Почта должна быть формата pochta@yandex.ru.';
 export const PASSWORD_ERROR_VALIDATION = 'Пароль должен содержать не менее 8 символов, буквы в верхнем и нижнем регистре, цифры и спец. символ';
 export const PHONE_ERROR_VALIDATION = 'Введите номер телефона в формате вашего региона.';
@@ -237,6 +239,16 @@ export const dropdownLists = {
 export const NUMBER_OF_DAYS_DISPLAYED = 13;
 export const NUMBER_TO_SWITCH_THE_WEEKS = 14;
 export const DAYS_OF_WEEK = ['пн', 'вт', 'ср', 'чт', 'пт', 'сб', 'вс'];
+export const TIMING_HOURS = [
+  '00', '01', '02', '03', '04', '05', '06', '07', '08', '09',
+  '10', '11', '12', '13', '14', '15', '16', '17', '18', '19',
+  '20', '21', '22', '23',
+];
+
+export const TIMING_MINUTES = [
+  '00', '05', '10', '15', '20', '25', '30',
+  '35', '40', '45', '50', '55',
+];
 
 export const CARD_OF_SESSION_MESSAGE = {
   client: {
@@ -344,7 +356,7 @@ export const REGISTRATION_INPUT_PARAMS_FOR_CLIENT = [
     typeForInput: 'text',
     required: true,
     placeholder: 'Введите имя',
-    maxLength: '50',
+    maxLength: '15',
     minLength: '1',
   },
   {
@@ -576,7 +588,7 @@ export const PSYCHO_REGISTRATION_FIRST_STEP = [
     name: 'first_name',
     typeForInput: 'text',
     required: true,
-    maxLength: '50',
+    maxLength: '15',
     minLength: '1',
     placeholder: 'Введите имя',
   },
@@ -586,7 +598,7 @@ export const PSYCHO_REGISTRATION_FIRST_STEP = [
     name: 'last_name',
     typeForInput: 'text',
     required: true,
-    maxLength: '50',
+    maxLength: '15',
     minLength: '1',
     placeholder: 'Введите фамилию',
   },
@@ -629,6 +641,7 @@ export const PSYCHO_REGISTRATION_FIRST_STEP = [
     typeForDropdown: 'radio',
     autoComplete: 'off',
     required: true,
+    isChangeFocus: true,
   },
 ];
 
@@ -742,6 +755,9 @@ export const PSYCHO_REGISTRATION_FOURTH_STEP_TWO = [
     required: true,
     inputContainerClasses: 'data-list__price',
     placeholder: '3000',
+    maxLength: '6',
+    minLength: '1',
+    pattern: PRICE_REGEX.toString().slice(1, -1),
   },
   {
     element: inputElement,
@@ -751,6 +767,9 @@ export const PSYCHO_REGISTRATION_FOURTH_STEP_TWO = [
     required: true,
     inputContainerClasses: 'data-list__experience',
     placeholder: '5',
+    maxLength: '3',
+    minLength: '1',
+    pattern: EXPERIENCE_REGEX.toString().slice(1, -1),
   },
 ];
 
@@ -913,7 +932,27 @@ export const POPUP_DATA = {
         },
       ],
     },
-  }
+  },
+  deleteSlot: {
+    data: {
+      title: 'Вы уверены, что хотите удалить из расписания свободное время?',
+      buttons: [
+        {
+          label: 'Отмена',
+          onClick: () => {},
+          type: 'button',
+          size: 'l',
+          variant: 'secondary',
+        },
+        {
+          label: 'Удалить',
+          type: 'button',
+          size: 'l',
+          variant: 'primary',
+        },
+      ],
+    },
+  },
 };
 
 export const CHECK_EMAIL_DATA = {
@@ -923,3 +962,22 @@ export const CHECK_EMAIL_DATA = {
   buttonText: 'На страницу входа',
   buttonHref: '/signin'
 };
+
+export const PSYCHO_ACCOUNT_TIMEPICKER = [
+  {
+    element: radioDropdownElement,
+    typeForDropdown: 'radio',
+    dropdownContent: TIMING_HOURS,
+    required: false,
+    autoComplete: 'off',
+    name: 'hours',
+  },
+  {
+    element: radioDropdownElement,
+    typeForDropdown: 'radio',
+    dropdownContent: TIMING_MINUTES,
+    required: false,
+    autoComplete: 'off',
+    name: 'minutes',
+  },
+];

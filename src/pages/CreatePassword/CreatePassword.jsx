@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { object, func, bool, } from 'prop-types';
 import { usePopup } from '../../hooks/usePopup';
 import './CreatePassword.css';
-import { createPassword } from '../../utils/auth';
+import { createPassword } from '../../utils/services/Api';
 import { showPopupWithValue, checkPasswords } from '../../utils/helpers';
 import { useForm } from '../../hooks/useForm';
 import Text from '../../components/generic/Text/Text';
 import Button from '../../components/generic/Button/Button';
 import { INPUT_DATA_FOR_SET_PASSWORD, inputElement, EMAIL_REGEX } from '../../constants/constants';
-import Fieldset from '../../components/Fieldset/Fieldset';
+import Fieldset from '../../components/generic/Fieldset/Fieldset';
 import Title from '../../components/generic/Title/Title';
 import Success from '../../components/Success/Success';
 
