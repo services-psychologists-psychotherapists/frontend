@@ -28,6 +28,6 @@ export const deleteSlot = async (id, token) => {
   const response = await axios.delete(`${API_URL}/auth/psychologists/slots/${id}/`, {
     headers: { Authorization: `JWT ${token}` },
   });
-  console.log(response);
+
   return checkResponse(response);
 };
