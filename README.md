@@ -45,4 +45,4 @@
 * Улучшить доступность
 
 ### Данные для входа:
-* Психолог (Логин: psychoguesttest@yandex.ru, Пароль: Psychoguesttest!1@yandex.ru)
+* Психолог (Логин: `psychoguesttest@yandex.ru`, Пароль: `Psychoguesttest!1@yandex.ru`)
